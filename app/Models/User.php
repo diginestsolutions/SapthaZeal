@@ -1,16 +1,20 @@
 <?php
 
 namespace App\Models;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Foundation\Auth\User as Authenticatable;
+use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use App\Models\Candidate;
+
+
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use  HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +25,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'mobile',
+        'status',
+        'otp',
     ];
 
     /**
@@ -41,4 +49,43 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    public function nextid()
+    {
+        // ref is the counter - change it to whatever you want to increment
+        $this->user_id = self::getID();
+    }
+
+    public static function bootUseAutoIncrementID()
+    {
+        static::creating(function ($model) {
+            $model->sequencial_id = self::getID($model->getTable());
+        });
+    }
+    public function getCasts()
+    {
+        return $this->casts;
+    }
+
+    
+        private static function getID()
+    {
+        $seq = DB::connection('mongodb')->getCollection('counters')->findOneAndUpdate(
+            ['user_id' => 'user_id'],
+            ['$inc' => ['seq' => 1]],
+            ['new' => true, 'upsert' => true]
+        );
+        return $seq->seq;
+    }
+    public function candidate()
+    {
+        return $this->hasMany(Candidate::class,'user_id');
+    }
 }

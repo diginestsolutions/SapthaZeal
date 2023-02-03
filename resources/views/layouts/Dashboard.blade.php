@@ -18,16 +18,15 @@
 
     .sidebar {
 
-
+        width: 250px;
 
         background: #fff;
-        padding: 10px 0;
 
+        margin-top: 10px;
         border-radius: 15px;
-        margin: 10px 0 10px;
+
         margin-bottom: 10px;
 
-        overflow: hidden;
 
         color: #000000;
 
@@ -67,36 +66,39 @@
     }
 
     ul {
-        padding-bottom: 10px;
-
+        padding-bottom: 18px;
+         font-size:15px;
 
     }
 
     h3 {
         text-align: left;
-        font: normal normal medium 52px/63px Quicksand;
-
+        font-family: 'Quicksand' !important;
+        font-weight: 600 !important;
+        letter-spacing: 1px;
         color: #000000;
         opacity: 1;
+        font-size: 32px !important;
     }
 
-    .sidebar ul li {
-        padding: 15px;
-        color: #000000;
-        display: block;
 
-    }
 
     .sidebar ul li a {
         color: #000000;
         display: block;
+        padding: 16px;
     }
 
+th{
+    font-family: 'Quicksand' !important;
+        font-weight: 600!important;  
+}
 
 
 
     .img-fluid {
         margin-top: 5px;
+        margin-bottom: 10px;
 
     }
 
@@ -105,18 +107,14 @@
         color: #bdb8d7 !important;
     } */
 
-    .sidebar ul li:hover {
-        background: #daf1d9;
 
 
-
-    }
-
-    .sidebar li :hover {
+    .sidebar ul li :hover {
         color: #49B945 !important;
         text-decoration: none;
         border-right: 3px solid #49B945;
-
+        background: #e4f5e3;
+   
 
     }
 
@@ -148,10 +146,10 @@
 
 
     .icons {
-        padding: 13px;
+        padding: 10 12 10 12px;
         background: #7ECD7C;
         color: white;
-        font-size: 15px;
+        font-size: 17px;
         text-align: center;
         border-radius: 15px;
     }
@@ -197,10 +195,7 @@
         color: #aaa;
     }
 
-    thead {
-        font: normal normal medium 52px/63px Quicksand;
-
-    }
+   
 
     .user-area .user-avatar {
         float: right;
@@ -243,6 +238,12 @@
 
     }
 
+    .profile {
+
+        display: flex;
+        padding-left: 50px !important;
+    }
+
 </style>
 
 <head>
@@ -251,43 +252,52 @@
     <script src="
 https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 "></script>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
-<div class="container-fluid col-md-12 h-custom native-scroll">
+<div class="container-fluid native-scroll">
     <div class="wrapper d-flex ">
-        <nav class=" col-lg-3 col-md-3" id="sidenav">
-            <div class="sidebar">
+     
+            <div class="sidebar col-lg-2 col-md-3 p-0">
 
-                <div class="col-12 d-flex justify-content-center flex-wrap menu ">
-                    <div class=" col-lg-12 ">
-                        <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+              
+                    <div class=" col-lg-10">
+                        <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
                     </div>
-
-                    <ul class="justify-content-left">
-                        <li><a href="{{route('view.job')}}">Job Management</a></li>
-                        <li><a href="{{route('view.industry')}}">Job Indusdry Management</a></li>
-                        <li><a href="#">Job Provider Management</a></li>
-                        <li><a href="#">Candidate Management</a></li>
-                        <li><a href="#">Order Management</a></li>
-                        <li><a href="#">Subscription Plans</a></li>
-                        <li><a href="#">Admin Management</a></li>
-                        <li><a href="#">Notifications</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <ul>
-
-                            <button type="button" class="btn btn-primary"
-                                style="border-radius: 0px 0px 50px 50px; width:250px;">Logout</button>
+                    <div class="justify-content-center">
+                        <ul >
+                            <li><a href="{{route('view.job')}}">Job Management</a></li>
+                            <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                            <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                            <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                            <li><a href="#">Order Management</a></li>
+                            <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                            <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                            <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                            <li><a href="{{route('profile.admin')}}">Profile</a></li>
                             <ul>
 
-                            </ul>
+                                </a>
 
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+
+                                <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                                    style="border-radius: 0px 0px 50px 50px; width:220px;"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+
+
+                            </ul>
+                    </div>
+              
             </div>
 
-        </nav>
+      
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <div class=" col-md-3 ">
@@ -330,81 +340,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             </div>
         </div>
 
-        <div class="col-lg-9  col-md-12" id="main">
-
-            <nav class="navbar navbar-light col-md-12 ">
-
-                <h3 class=" mt-3  heading" style=""> <a  class="navbar-brand">Job Management</a></h3>
-
-
-                <div class=" mt-12 pull-right">
-                    <form class="form-inline my-2 my-lg-0 justify-content-center" method="GET">
-                        <div class="w-100">
-                        <button class="btn " type="button"
-                                style=" background-color:white;border:none;border-radius:11px;  width: 132px;padding: 0px!important; "><img
-                                    class="user-avatar  pull-right" style="width:46px;    border-radius: 28%;"
-                                    src="https://colorlib.com/polygon/sufee/images/admin.jpg"><span
-                                    class="profile">{{Auth::user()->name}}</span><span
-                                    style="font-size: 12px;font-weight:200px;  padding-left:20px;!important;   font-weight: 200!important; ">{{Auth::user()->role}}</span></button>
-                            <button class="btn noti " type="button"> <span class="icons1"><i
-                                        class="fa fa-bell"></i><span></button>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </div>
-
-                    </form>
-
-                </div>
-
-
-            </nav>
-
-
-            <nav class="navbar navbar-light ">
-
-            <a class="btn " href="{{ route('get.addjob') }}">  <span class="icons"> <i class="fa fa-plus "
-                            aria-hidden="true"></i></span></a>
-
-
-
-                <div class="form-group has-search ">
-                    <span class="fa fa-search form-control-feedback"></span>
-                    <input type="text" class="form-control " placeholder="Search">
-                </div>
-            </nav>
-            <!--Table-->
-
-            <div class=" col-md-12 ">
-                <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-resp-noscroll">
-                                <thead>
-                                    <tr>
-                                        <th>Job ID</th>
-                                        <th>Created Date</th>
-                                        <th>JobProvider Name</th>
-                                        <th>Job Name</th>
-                                        <th>Category</th>
-                                        <th>Expiry Date</th>
-                                        <th>ApprovalStatus</th>
-                                        <th>Actions</th>
-
-                                    </tr>
-                                </thead>
-                              
-                            </table>
-                          
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+        @yield('content')
 
     </div>
 </div>

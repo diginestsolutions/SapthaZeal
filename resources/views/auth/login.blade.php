@@ -13,7 +13,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/Login.png');
+        background-image: url('../assets/Login.png');
         background-repeat: no-repeat;
         background-size: cover;
         height: 100%;
@@ -44,10 +44,11 @@
             width: 100%;
             box-sizing: border-box;
             border: none !important;
-            border: 1px solid #F3E5F5 !important;
+            z-index:1;
             font-size: 16px !important;
             color: #000 !important;
             font-weight: 400;
+           
         }
 
         .img-responsive {
@@ -66,10 +67,18 @@
         min-width: 36px;
         text-align: center;
         border-radius: 13px;
+        position: absolute;
+    top: 0px;
+    z-index: 999;
+      
+      
     }
 
     .icons {
-        margin-right: -37px;
+        
+      
+    
+        top:0;
     }
 
     .img-fluid {
@@ -91,27 +100,30 @@
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 col-lg-6 col-xl-5">
-                <img src="../Assets/Untitled-2.png" class="img-fluid" style="width: 500px;" alt="Sample image">
+                <img src="../assets/Untitled-2.png" class="img-fluid" style="width: 500px;" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
                 <div class="col-12 mx-auto d-flex justify-content-center flex-wrap">
                     <div class="col-md-6 col-lg-6 col-xl-5">
-                        <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                        <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
 
 
 
                 </div>
-                <form>
+               
+                <form method="POST" action="{{ route('get.otp') }}">
+                        @csrf
+                      
                     <h3 class="mb-5 text-center heading" style="">LOGIN</h3>
 
                     <div class="form-row justify-content-center">
                         <div class="form-group ">
                             <div class="input-group mx-auto mb-3">
                                 <span class="icons"> <i class="fa fa-phone icon" style="font-size:25px;"></i></span>
-                                <input class="form-control" type="text" placeholder="Phone number"
-                                    style="text-align:center; border-radius:13px;background: #FFFFFF 0% 0% no-repeat padding-box;border: 1px solid #4CB848;opacity: 0.15;box-shadow: 0px 3px 6px #0000002E; ">
+                                <input class="form-control" type="text" placeholder="Phone number" name="phone"
+                                    style="text-align:center; border-radius:13px;text-align:center; border-radius:13px;background: #FFFFFF 0% 0% no-repeat padding-box;border: 1px solid #eeeeee;">
                             </div>
                         </div>
                     </div>
@@ -119,7 +131,7 @@
 
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                        <button type="submit" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
 letter-spacing: 1.25px;
 border:none;
 color: #FFFFFF;
@@ -127,7 +139,7 @@ text-transform: uppercase;
 opacity: 1;
 background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
 width: 100px;
-;">LOGIN</button>
+;" >LOGIN</button>
 
                     </div>
 

@@ -122,17 +122,19 @@
 
 
                 </div>
-                <form>
+              
+                <form method="POST" action="{{ route('verify') }}">
+                   @csrf
+                <input type="hidden" value="{{$mobile}}" name="phone">
                     <h3 class="mb-5 text-center heading" style="">OTP</h3>
 
                     <div class="form-row justify-content-center">
                         <h6>A 4 digit One Time Password has been <br> sent to your registered phone number</h6>
                         <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                            <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
-                            <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
-                            <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
-                            <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
-
+                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]" maxlength="1"/>
+                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]" maxlength="1"/>
+                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]"  maxlength="1"/>
+                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]" maxlength="1"   />
                         </div>
 
                     </div>
@@ -146,7 +148,7 @@
 
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                        <button type="submit" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
 letter-spacing: 0.75px;
 border:none;
 color: #FFFFFF;
