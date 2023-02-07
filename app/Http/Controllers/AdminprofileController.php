@@ -64,6 +64,31 @@ class AdminprofileController extends Controller
         return redirect('admin/admin')->with('success', 'usercreated successfully.'); 
 
     }
+    public function update1(Request $request,$id)
+    {
+     
+        $user = User::find($id);
+        if ($request->hasFile('image')) {
+            $filename = $request->file('image')->getClientOriginalName();
+            $filename = str_replace(' ', '-', $filename);
+            $destinationPath = storage_path('app/public/uploads/');
+            $file = $request->file('image')->move($destinationPath,$filename);
+            
+            $basePath = env('APP_URL');
+
+            $user['image'] = $basePath . 'storage/uploads/' . $filename;
+        }
+       
+        if($user!= null){
+            $data      = $request->all();
+          
+     
+            $user->update($data);
+        }
+ 
+        return redirect('admin/admin');
+    }
+
     public function changeStatus($id)
     {
         $user = User::find($id);

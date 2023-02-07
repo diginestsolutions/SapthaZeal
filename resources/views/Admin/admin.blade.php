@@ -130,18 +130,23 @@
         color: #666;
     }
 
+    .title-label {
+        font-weight: 500;
+    }
+
     .dropzone {
         width: 100px;
-        height: 80px;
-        border: 1px dashed #999;
         border-radius: 3px;
         text-align: center;
     }
 
     .upload-icon {
-        margin: 25px 2px 2px 2px;
-        background-color: #208CD1;
-        border-radius: 5px;
+
+
+
+        height: 50px;
+        margin-left: px;
+        margin-top: -46px;
     }
 
     .upload-input {
@@ -282,9 +287,8 @@
                                             data-target="#updateModal{{$user->id}}" data-toggle="modal" class="mt-2"
                                             style="margin-right:5px;"><i class="fa fa-edit"></i></a>
 
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            class="mt-2" style="margin-right:5px;"><i class="fa fa-user"></i></a>
-                                        <a href="" data-popup="tooltip" data-placement="bottom" class="mt-2"><i
+
+                                        <a href=" {{ route('Admin.delete', $user->id)}}" data-popup="tooltip" data-placement="bottom" class="mt-2"><i
                                                 class="fa fa-trash"></i></a>
 
                                     </div>
@@ -346,9 +350,9 @@
 
 
                                 <button class="btn fileicon " type="button">
-                                    <div class="dropzone">
+                                    <div class="dropzone1">
                                         <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                        <input type="file" class="upload-input" />
+                                        <input type="file" class="upload-input1" name="image" />
                                     </div>
                                 </button>
 
@@ -473,9 +477,9 @@ width: 100px;
 
 
                                 <button class="btn fileicon " type="button">
-                                    <div class="dropzone">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                        <input type="file" class="upload-input" />
+                                    <div class="">
+                                        <img src="{{ $user->image}}" class="" style=" width:100px; height:100px;" />
+
                                     </div>
                                 </button>
 
@@ -555,8 +559,10 @@ width: 100px;
                 </button>
             </div>
             <div class="modal-body">
-                <form id="registerForm" method="POST" enctype="multipart/form-data">
+                <form id="registerForm" action="{{ route('update1.admin',$user->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
+
 
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
@@ -586,17 +592,23 @@ width: 100px;
 
 
 
-                                <button class="btn fileicon " type="button">
-                                    <div class="dropzone">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                        <input type="file" name="image" class="upload-input" id="images"
-                                            onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
-                                            multiple="multiple">
-                                    </div>
+
+
+                                <input style="display:none" type="file" id="my-file" name="image">
+
+                                <div class="dropzone">
+
+                                    <button class="btn fileicon " type="button"
+                                        onclick="document.getElementById('my-file').click()">
+                                        <img src="{{$user->image}} " width="100" height="100" alt=""
+                                            style="border-radius:10px;">
+
+                                        <img src="../assets/Group 22.png" class="upload-icon" />
+
+
+
+                                </div>
                                 </button>
-                                <img id="blah" alt="your image" width="100" height="100" />
-
-
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.Dashboard')
 @section('content')
-<div class="col-lg-10  col-md-12" id="main">
+<div class="col-lg-10 col-xl-10 col-md-12" id="main">
 
     <nav class="navbar navbar-light col-md-12 ">
 

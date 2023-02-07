@@ -471,7 +471,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="text-center">
 
                                     <button type="submit"
-                                        class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                                        class="btn  position-absolute bottom-0 end-0  gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
                                         letter-spacing: 1.25px;
                                         border:none;
                                         color: #FFFFFF;
