@@ -26,17 +26,19 @@
 
         img {
             height: 200px;
-            width: auto;
+            width: 200px;
         }
 
         h3 {
-            font: normal normal 200 20px/31px Quicksand;
-            letter-spacing: 1.25px;
-            color: black;
-            text-transform: uppercase;
+            font-family: 'Quicksand' !important;
+            font-weight: 600 !important;
+            letter-spacing: 1px;
+            color: #000000;
             opacity: 1;
+            font-size: 32px !important;
+            text-transform: uppercase;
+          
         }
-
         .form-control {
             background-color: #F3E5F5;
             border-radius: 50px !important;
@@ -91,7 +93,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
@@ -105,7 +107,7 @@
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
                 <div class="col-12 mx-auto d-flex justify-content-center flex-wrap">
-                    <div class="col-md-6 col-lg-6 col-xl-5">
+                    <div class="col-md-6 col-lg-6 col-xl-6">
                         <img src="assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
 

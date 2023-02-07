@@ -10,8 +10,8 @@ class AdminprofileController extends Controller
     public function admin(){
 
     
-        $users = User::all()->except(Auth::id());
-
+        $user1 = User::where('role', '=', 'admin')->get();
+        $users= $user1->except(Auth::id());
         return view('Admin/admin',compact('users'));
   
   

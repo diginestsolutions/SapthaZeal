@@ -15,6 +15,7 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
+        font-size: 15px;
     }
 
     .switch {
@@ -169,10 +170,12 @@
         background: rebeccapurple;
         box-shadow: 0 3px 0 0 deeppink;
     }
+
     .profile {
         display: flex;
         padding-left: 28px;
     }
+
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="col-lg-10  col-md-12" id="main">
@@ -185,8 +188,8 @@
         <div class=" mt-12 pull-right">
 
             <div class="w-100">
-            <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:11px;  width: 132px;padding: 0px!important; "><img
+                <button class="btn " type="button"
+                    style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
                         class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
@@ -219,14 +222,14 @@
 
     <nav class="navbar navbar-light ">
 
-        <a class="btn " href="{{ route('get.addjob') }}" data-toggle="modal" data-target="#registerModal"> <span
-                class="icons"> <i class="fa fa-plus " aria-hidden="true"></i></span></a>
+        <a class="btn " href="" data-toggle="modal" data-target="#registerModal"> <span class="icons"> <i
+                    class="fa fa-plus " aria-hidden="true"></i></span></a>
 
 
 
-        <div class="form-group has-search ">
+        <div class=" has-search col-md-3">
             <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class="form-control " placeholder="Search">
+            <input type="text" class=" form-control form-control-lg " placeholder="Search">
         </div>
     </nav>
     <!--Table-->
@@ -256,7 +259,7 @@
                                 <td>{{$user->created_at->format('d-m-Y')}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->mobile}}</td>
+                                <td>{{$user->phone}}</td>
                                 <td>{{$user->updated_at}}</td>
 
                                 <td class="">
@@ -281,8 +284,8 @@
 
                                         <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-user"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            class="mt-2 button"  data-id="{{$user->id}}"><i class="fa fa-trash"></i></a>
+                                        <a href="" data-popup="tooltip" data-placement="bottom" class="mt-2"><i
+                                                class="fa fa-trash"></i></a>
 
                                     </div>
                                 </td>
@@ -581,12 +584,14 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label"> image</label>
 
-                        
+
 
                                 <button class="btn fileicon " type="button">
                                     <div class="dropzone">
                                         <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                        <input type="file" name="image" class="upload-input" id="images"   onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"multiple="multiple">
+                                        <input type="file" name="image" class="upload-input" id="images"
+                                            onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"
+                                            multiple="multiple">
                                     </div>
                                 </button>
                                 <img id="blah" alt="your image" width="100" height="100" />
@@ -700,34 +705,3 @@ width: 100px;
     })
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script type="text/javascript">
-$(document).on('click', '.button', function (e) {
-
-    e.preventDefault();
-    
-    var id = $(this).data('id');
-  
-    swal({
-        title: 'Are you sure ?',
-                text: "You won't be able to revert this !",
-                icon: 'warning',
-          buttons:{cancel: true, 
-                confirmButtonText: 'Yes, delete it!'
-          }
-        },
-        function() {
-
-            $.ajax({
-                type: "POST",
-                url: "{{route("users.delete")}}" ,
-                data: {id:id},
-                success: function (data) {
-                             console.log(data)
-                    }         
-            });
-    });
-   
-});
-</script>
-

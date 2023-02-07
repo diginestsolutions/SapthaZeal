@@ -177,9 +177,14 @@ th{
 
     .has-search .form-control {
         padding-left: 2.375rem;
-        width: 180px;
+      
         float: right !important;
-        border-radius: 15px;
+      
+        font-size: 13px;
+        border-radius: 16px !important;
+    opacity: 1 !important;
+    box-shadow: 0px 3px 6px #0000000d;
+    border: none !important;
 
     }
 
@@ -192,7 +197,7 @@ th{
         line-height: 2.375rem;
         text-align: center;
         pointer-events: none;
-        color: #aaa;
+        color: #6a6a6a;
     }
 
    
@@ -273,7 +278,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
                             <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
                             <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                            <li><a href="#">Order Management</a></li>
+                            <li><a href="{{route('view.order')}}">Order Management</a></li>
                             <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
                             <li><a href="{{route('view.admin')}}">Admin Management</a></li>
                             <li><a href="{{route('view.notification')}}">Notifications</a></li>

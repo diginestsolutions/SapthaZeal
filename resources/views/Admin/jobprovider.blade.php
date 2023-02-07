@@ -10,8 +10,8 @@
         <div class=" mt-12 pull-right">
 
             <div class="w-100">
-            <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:11px;  width: 132px;padding: 0px!important; "><img
+                <button class="btn " type="button"
+                    style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
                         class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
@@ -55,9 +55,9 @@
 
 
 
-        <div class="form-group has-search ">
+        <div class=" has-search col-md-3">
             <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class="form-control " placeholder="Search">
+            <input type="text" class=" form-control form-control-lg " placeholder="Search">
         </div>
     </nav>
     <!--Table-->
@@ -71,46 +71,47 @@
                                 <th>Provider ID</th>
                                 <th>Created Date</th>
                                 <th>Company Name</th>
-                                 <th>Mobile Number</th>
+                                <th>Mobile Number</th>
                                 <th>Email Address</th>
                                 <th>Approve Status</th>
                                 <th>Actions</th>
 
                             </tr>
-                            
-                            @foreach ($results  as $providers)
-                                <tbody>
 
-                                    <tr>
-                                        <td>#{{ $providers->provider_id}}</td>
-                                       <td>{{$providers->created_at->format('d-m-Y')}}</td>
-                                       <td>{{$providers->company_name}}</td>
-                                       <td>{{$providers->user['mobile']}}</td>
-                                       <td>{{$providers->user['email']}}</td>
-                         
+                            @foreach ($results as $providers)
+                        <tbody>
+
+                            <tr>
+                                <td>#{{ $providers->provider_id}}</td>
+                                <td>{{$providers->created_at->format('d-m-Y')}}</td>
+                                <td>{{$providers->company_name}}</td>
+                                <td>{{$providers->user['mobile']}}</td>
+                                <td>{{$providers->user['email']}}</td>
 
 
-                                       <td style="color:#48BA48">
-                                   {{$providers->user['status']}}
+
+                                <td style="color:#48BA48">
+                                    {{$providers->user['status']}}
                                 </td>
 
-                            <td class="text-right">
-                                <div class="action-btns d-flex justify-content-end">
-                                <a href="" data-popup="tooltip" 
-                                                    style="margin-right:5px;" class="mt-2"><i class="fa fa-eye"></i></a>
+                                <td class="text-right">
+                                    <div class="action-btns d-flex justify-content-end">
+                                        <a href="" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
+                                                class="fa fa-eye"></i></a>
 
-                                        <a href="{{ route('get.editjobprovider',$providers->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('get.editjobprovider',$providers->id) }}" data-popup="tooltip"
+                                            title="Edit" data-placement="bottom" class="mt-2"
+                                            style="margin-right:5px;"><i class="fa fa-edit"></i></a>
 
 
-                                        
-                                   
-                                </div>
-                            </td>
+
+
+                                    </div>
+                                </td>
                             </tr>
 
-                        </thead>
-                     @endforeach
+                            </thead>
+                            @endforeach
                     </table>
 
                 </div>

@@ -8,19 +8,20 @@
         border: none !important;
         height: 40px !important;
     }
+
     .select-sup::after {
         font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 31px;
-    content: "\f13a";
-    position: absolute;
-    right: -12px;
-    bottom: 15px;
-   
-    padding: 0 1em;
-    color: #7ECD7C;
-    pointer-events: none;
-}
+        font-weight: 900;
+        font-size: 31px;
+        content: "\f13a";
+        position: absolute;
+        right: -12px;
+        bottom: 15px;
+
+        padding: 0 1em;
+        color: #7ECD7C;
+        pointer-events: none;
+    }
 
 </style>
 <div class="col-lg-10  col-md-12" id="main">
@@ -33,8 +34,8 @@
         <div class=" mt-12 pull-right">
 
             <div class="w-100">
-            <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:11px;  width: 132px;padding: 0px!important; "><img
+                <button class="btn " type="button"
+                    style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
                         class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
@@ -64,9 +65,9 @@
 
 
 
-        <div class="form-group has-search ">
+        <div class=" has-search col-md-3">
             <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class="form-control " placeholder="Search">
+            <input type="text" class=" form-control form-control-lg " placeholder="Search">
         </div>
     </nav>
     <!--Table-->
@@ -87,15 +88,15 @@
 
                             </tr>
                         </thead>
-                      
-                      
+
+
                         @foreach ($candidate as $noti)
                         <tbody>
 
                             <tr>
 
                                 <td>{{ $noti->created_at}}</td>
-                               <td></td>
+                                <td></td>
                                 <td>{{ $noti->usertype}}</td>
                                 <td>{{  $noti->heading}}</td>
 
@@ -116,8 +117,8 @@
 
 
                     </table>
-                   
-                  
+
+
 
                 </div>
             </div>
@@ -136,7 +137,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="registerModal">{{ __('Add Notification') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fas fa-times-circle "style="    color: #FF0000;" ></i></span>
+                    <span aria-hidden="true"><i class="fas fa-times-circle " style="    color: #FF0000;"></i></span>
                 </button>
             </div>
             <div class="modal-body">
@@ -151,9 +152,9 @@
 
 
                                 <select class="form-control select " name="usertype" required>
-                                <option value=""></option>
+                                    <option value=""></option>
                                     @foreach($users as $user)
-                                    
+
                                     <option value="{{$user}}">{{$user}}</option>
                                     @endforeach
 

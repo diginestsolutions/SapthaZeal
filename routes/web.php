@@ -10,6 +10,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,7 +63,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/admin', [AdminprofileController::class, 'admin'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'register'])->name('register.admin');
     Route::get('/changeStatus', [AdminprofileController::class, 'changeStatus'])->name('view.status');
-    Route::post('/deleteadmin', [AdminprofileController::class, 'delete'])->name('users.delete');
+    Route::get('/deleteadmin', [AdminprofileController::class, 'delete'])->name('users.delete');
     Route::get('/profileadmin', [AdminprofileController::class, 'edit'])->name('profile.admin');
     Route::post('/updateadmin',[AdminprofileController::class, 'update'])->name('update.admin');
 
@@ -89,6 +90,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
   
     Route::post('/addcandidate', [NotificationController::class, 'add'])->name('add.notification');
 
-   
+   //order
+   Route::get('/order', [OrderController::class, 'order'])->name('view.order');
     
 });
