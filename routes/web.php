@@ -53,8 +53,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/addindustry', [IndustryController::class, 'industry'])->name('get.addindustry');
     Route::get('/editindustry/{id}', [IndustryController::class, 'edit'])->name('get.editindustry');
     Route::post('/updateindustry/{id}', [IndustryController::class, 'update'])->name('update.industry');
-    Route::get('/deleteindustry/{id}', [IndustryController::class, 'destroy'])->name('industry.destroy');
-    
+    Route::post('/industry/{id}/destroy', [IndustryController::class, 'destroy'])->name('industry.destroy');
     //admin
     Route::get('/admin', [AdminprofileController::class, 'admin'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'register'])->name('register.admin');
