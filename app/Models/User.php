@@ -57,6 +57,7 @@ class User extends Authenticatable
     {
         return [];
     }
+    
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment
@@ -69,13 +70,14 @@ class User extends Authenticatable
             $model->sequencial_id = self::getID($model->getTable());
         });
     }
+
     public function getCasts()
     {
         return $this->casts;
     }
 
     
-        private static function getID()
+    private static function getID()
     {
         $seq = DB::connection('mongodb')->getCollection('counters')->findOneAndUpdate(
             ['user_id' => 'user_id'],
@@ -84,6 +86,7 @@ class User extends Authenticatable
         );
         return $seq->seq;
     }
+
     public function candidate()
     {
         return $this->hasMany(Candidate::class,'user_id');

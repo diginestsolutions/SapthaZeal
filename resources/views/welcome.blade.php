@@ -142,7 +142,9 @@ opacity: 1;
 background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
 width: 100px;
 ;" >LOGIN</button>
-
+@error('phone')
+<br/><span style="color: red;">{{$errors->first('phone')}}</span>
+                        @enderror
                     </div>
 
                 </form>

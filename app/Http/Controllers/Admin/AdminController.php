@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 
 use Illuminate\Http\Request;
@@ -10,9 +10,6 @@ use App\Models\Industry;
 class AdminController extends Controller
 {
     public function dashboard(){
-
-   
-
         return view('Admin/dashboard');
     }
     public function dashboard1(){
