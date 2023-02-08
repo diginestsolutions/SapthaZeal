@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\JobProviderController;
 use App\Http\Controllers\AdminprofileController;
@@ -22,28 +22,24 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
 
-Route::group([  'prefix' => 'auth' ], function ($router) {
+Route::get('/', [LoginController::class, 'index'])->name('get.login');
 
+Route::group([  'prefix' => 'auth' ], function ($router) {
     // AUTH
-    Route::get('/getlogin', [LoginController::class, 'index'])->name('get.login');
     Route::post('/getotp',    [LoginController::class, 'generate'])->name('get.otp');
     Route::get('/otp',   [LoginController::class, 'getotp'])->name('otp');
     Route::post('/verify', [LoginController::class, 'verify'])->name('verify');
     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [LoginController::class,'logout'])->name('logout');
-    
-   
-
 });
 
 Route::group([  'prefix' => 'admin' ], function ($router) {
-
     // job
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     

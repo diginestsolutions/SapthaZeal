@@ -118,9 +118,6 @@
                     <div class="col-md-6 col-lg-6 col-xl-5">
                         <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
-
-
-
                 </div>
               
                 <form method="POST" action="{{ route('verify') }}">
@@ -129,23 +126,20 @@
                     <h3 class="mb-5 text-center heading" style="">OTP</h3>
 
                     <div class="form-row justify-content-center">
-                        <h6>A 4 digit One Time Password has been <br> sent to your registered phone number</h6>
+                        <h6>A 4 digit one time password has been <br> sent to your registered phone number</h6>
                         <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]" maxlength="1"/>
-                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]" maxlength="1"/>
-                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]"  maxlength="1"/>
-                            <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp[]" maxlength="1"   />
+                            <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id='ist' onkeyup="clickEvent(this,'sec')" onkeypress='return restrictAlphabets(event)' maxlength=1/>
+                            <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id="sec" onkeyup="clickEvent(this,'third')" onkeypress='return restrictAlphabets(event)' maxlength=1/>
+                            <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id="third" onkeyup="clickEvent(this,'fourth')" onkeypress='return restrictAlphabets(event)' maxlength=1/>
+                            <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id="fourth" maxlength=1 onkeypress='return restrictAlphabets(event)'/>
                         </div>
 
                     </div>
                     <div class=" text-center">
                         <small>
-
                             <a href="#" class="text-decoration-none ">RESEND OTP?</a>
                         </small>
                     </div>
-
-
 
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="submit" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
@@ -166,3 +160,17 @@ width: 100px;
     </div>
 
 </section>
+<script>
+    function clickEvent(first,last){
+      if(first.value.length){
+        document.getElementById(last).focus();
+      }
+    }
+    function restrictAlphabets(e) {
+        var x = e.which || e.keycode;
+        if ((x >= 48 && x <= 57))
+            return true;
+        else
+            return false;
+    }
+</script>

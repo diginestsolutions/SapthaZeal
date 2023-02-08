@@ -62,7 +62,7 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-        'mongodb' => [
+        /*'mongodb' => [
             'driver'   => 'mongodb',
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => env('DB_PORT', 27017),
@@ -72,8 +72,13 @@ return [
             'options'  => [
                 'database' => 'sapthazeal' 
             ]
+        ],*/
+
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'dsn'   => env('DB_URI', 'mongodb://localhost:27017'),
+            'database' => 'sapthazeal'
         ],
-        
 
         'pgsql' => [
             'driver' => 'pgsql',
