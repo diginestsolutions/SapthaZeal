@@ -507,7 +507,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             </div>
 
 
-                            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
                                 <div class=" form-group">
                                     <label class="title-label"></i>Job Description</label>
@@ -515,7 +515,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <textarea rows="4" class="form-control1" name="jobdescription"></textarea>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
                                 <div class=" form-group">
                                     <label class="title-label"></i>Prefered Skills:</label>

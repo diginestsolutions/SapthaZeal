@@ -238,7 +238,7 @@
             display: block;
         }
 
-        #sidenav1 {
+        #sidenav {
             display: none;
         }
 
@@ -320,7 +320,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 </head>
 <div class="container-fluid col-md-12 h-custom ">
     <div class="wrapper d-flex ">
-    <div class="sidebar col-lg-2 col-md-3 p-0">
+    <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
 
               
 <div class=" col-lg-10">
@@ -332,7 +332,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
         <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
         <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-        <li><a href="#">Order Management</a></li>
+        <li><a href="{{route('view.order')}}">Order Management</a></li>
         <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
         <li><a href="{{route('view.admin')}}">Admin Management</a></li>
         <li><a href="{{route('view.notification')}}">Notifications</a></li>
@@ -356,48 +356,39 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 </div>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
             <div class=" col-md-3 ">
                 <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
             </div>
-            <ul class="navbar-nav mr-auto flex-column vertical-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Job Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Job Provider Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Candidate Management</a>
-                </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Order Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Subscription Plans</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Admin Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Notifications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
+            <div class="justify-content-center">
+            <ul >
+            <li><a href="{{route('view.job')}}">Job Management</a></li>
+                    <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                    <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                    <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                    <li><a href="{{route('view.order')}}">Order Management</a></li>
+                    <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                    <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                    <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                    <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                    <li>
 
 
-            </ul>
-            <div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
 
-                <button type="button" class="btn btn-primary"
-                    style="border-radius: 0px 0px 50px 50px; width:250px;">Logout</button>
+                        <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                            style="border-radius: 0px 0px 24px 24px; width:220px;"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
 
-            </div>
+
+                    </li>
         </div>
-
+    </div>
+</div>
         <div class="col-lg-10  col-md-12" id="main">
 
             <nav class="navbar navbar-light col-md-12 ">
@@ -415,7 +406,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <form class="form-inline my-2 my-lg-0 justify-content-center" method="GET">
                         <div class="w-100">
                         <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:11px;  width: 132px;padding: 0px!important; "><img
+                    style=" background-color:white;border:none;border-radius:21px;  ;padding: 0px!important; "><img
                         class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
