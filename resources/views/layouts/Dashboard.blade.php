@@ -67,7 +67,7 @@
 
     ul {
         padding-bottom: 18px;
-         font-size:15px;
+        font-size: 15px;
 
     }
 
@@ -89,10 +89,10 @@
         padding: 16px;
     }
 
-th{
-    font-family: 'Quicksand' !important;
-        font-weight: 600!important;  
-}
+    th {
+        font-family: 'Quicksand' !important;
+        font-weight: 600 !important;
+    }
 
 
 
@@ -114,7 +114,7 @@ th{
         text-decoration: none;
         border-right: 3px solid #49B945;
         background: #e4f5e3;
-   
+
 
     }
 
@@ -177,14 +177,14 @@ th{
 
     .has-search .form-control {
         padding-left: 2.375rem;
-      
+
         float: right !important;
-      
+
         font-size: 13px;
         border-radius: 16px !important;
-    opacity: 1 !important;
-    box-shadow: 0px 3px 6px #0000000d;
-    border: none !important;
+        opacity: 1 !important;
+        box-shadow: 0px 3px 6px #0000000d;
+        border: none !important;
 
     }
 
@@ -200,7 +200,7 @@ th{
         color: #6a6a6a;
     }
 
-   
+
 
     .user-area .user-avatar {
         float: right;
@@ -237,11 +237,18 @@ th{
             display: block;
         }
 
-        #sidenav1 {
+        #sidenav {
             display: none;
         }
 
     }
+    @media only screen   
+and (min-width: 1370px)  
+and (max-width: 1605px)  
+{ 
+    ul{
+    font-size:17px;
+}}  
 
     .profile {
 
@@ -265,86 +272,76 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 </head>
 <div class="container-fluid native-scroll">
     <div class="wrapper d-flex ">
-     
-            <div class="sidebar col-lg-2 col-md-3 p-0">
 
-              
-                    <div class=" col-lg-10">
-                        <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
-                    </div>
-                    <div class="justify-content-center">
-                        <ul >
-                            <li><a href="{{route('view.job')}}">Job Management</a></li>
-                            <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
-                            <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
-                            <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                            <li><a href="{{route('view.order')}}">Order Management</a></li>
-                            <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
-                            <li><a href="{{route('view.admin')}}">Admin Management</a></li>
-                            <li><a href="{{route('view.notification')}}">Notifications</a></li>
-                            <li><a href="{{route('profile.admin')}}">Profile</a></li>
-                            <ul>
-
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-
-                                <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                                    style="border-radius: 0px 0px 50px 50px; width:220px;"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+        <div class="sidebar col-lg-2  col-xl-2 col-md-3 p-0 " id="sidenav">
 
 
-                            </ul>
-                    </div>
-              
+            <div class=" col-lg-10">
+                <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+            </div>
+            <div class="justify-content-center">
+                <ul>
+                    <li><a href="{{route('view.job')}}">Job Management</a></li>
+                    <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                    <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                    <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                    <li><a href="{{route('view.order')}}">Order Management</a></li>
+                    <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                    <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                    <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                    <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                    <li>
+
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                        <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                            style="border-radius: 0px 0px 24px 24px; width:220px;"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+
+
+                    </li>
+                </ul>
             </div>
 
-      
+        </div>
+
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
             <div class=" col-md-3 ">
                 <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
             </div>
-            <ul class="navbar-nav mr-auto flex-column vertical-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Job Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Job Provider Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Candidate Management</a>
-                </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Order Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Subscription Plans</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Admin Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Notifications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
-                </li>
+            <div class="justify-content-center">
+            <ul >
+            <li><a href="{{route('view.job')}}">Job Management</a></li>
+                    <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                    <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                    <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                    <li><a href="{{route('view.order')}}">Order Management</a></li>
+                    <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                    <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                    <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                    <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                    <li>
 
 
-            </ul>
-            <div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
 
-                <button type="button" class="btn btn-primary"
-                    style="border-radius: 0px 0px 50px 50px; width:250px;">Logout</button>
+                        <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                            style="border-radius: 0px 0px 24px 24px; width:220px;"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
 
-            </div>
+
+                    </li>
         </div>
-
+    </div>
+</div>
         @yield('content')
 
     </div>

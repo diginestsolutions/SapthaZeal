@@ -58,10 +58,11 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/admin', [AdminprofileController::class, 'admin'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'register'])->name('register.admin');
     Route::get('/changeStatus', [AdminprofileController::class, 'changeStatus'])->name('view.status');
-    Route::get('/deleteadmin', [AdminprofileController::class, 'delete'])->name('users.delete');
+   
     Route::get('/profileadmin', [AdminprofileController::class, 'edit'])->name('profile.admin');
     Route::post('/updateadmin',[AdminprofileController::class, 'update'])->name('update.admin');
-
+    Route::post('/updateadmins/{id}',[AdminprofileController::class, 'update1'])->name('update1.admin');
+    Route::get('/deleteadmins/{id}', [AdminprofileController::class, 'delete'])->name('Admin.delete');
     //job provider
 
     Route::get('/jobprovider', [JobProviderController::class, 'jobprovider'])->name('view.jobprovider');
