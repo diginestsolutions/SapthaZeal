@@ -13,7 +13,7 @@
     }
 
     .container-fluid {
-        background-image: url('../assets/Login.png');
+        background-image: url('assets/Login.png');
         background-repeat: no-repeat;
         background-size: cover;
         height: 100%;
@@ -26,7 +26,7 @@
 
         img {
             height: 200px;
-            width: auto;
+            width: 200px;
         }
 
         h3 {
@@ -39,7 +39,6 @@
             text-transform: uppercase;
           
         }
-
         .form-control {
             background-color: #F3E5F5;
             border-radius: 50px !important;
@@ -103,13 +102,13 @@
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 col-lg-6 col-xl-5">
-                <img src="../assets/Untitled-2.png" class="img-fluid" style="width: 500px;" alt="Sample image">
+                <img src="assets/Untitled-2.png" class="img-fluid" style="width: 500px;" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
                 <div class="col-12 mx-auto d-flex justify-content-center flex-wrap">
                     <div class="col-md-6 col-lg-6 col-xl-6">
-                        <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
+                        <img src="assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
 
 
@@ -119,7 +118,7 @@
                 <form method="POST" action="{{ route('get.otp') }}">
                         @csrf
                       
-                    <h3 class="mb-5 text-center heading" >LOGIN</h3>
+                    <h3 class="mb-5 text-center heading" style="">LOGIN</h3>
 
                     <div class="form-row justify-content-center">
                         <div class="form-group ">
@@ -143,7 +142,9 @@ opacity: 1;
 background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
 width: 100px;
 ;" >LOGIN</button>
-
+@error('phone')
+<br/><span style="color: red;">{{$errors->first('phone')}}</span>
+                        @enderror
                     </div>
 
                 </form>

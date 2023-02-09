@@ -32,7 +32,7 @@ class Candidate extends Model
     }
 
     
-        private static function getID()
+    private static function getID()
     {
         $seq = DB::connection('mongodb')->getCollection('counters')->findOneAndUpdate(
             ['candidate_id' => 'candidate_id'],

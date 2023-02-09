@@ -30,7 +30,7 @@ class Job extends Model
     }
 
     
-        private static function getID()
+    private static function getID()
     {
         $seq = DB::connection('mongodb')->getCollection('counters')->findOneAndUpdate(
             ['job_id' => 'job_id'],

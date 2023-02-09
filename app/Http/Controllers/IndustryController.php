@@ -64,11 +64,27 @@ class IndustryController extends Controller
  
         return redirect('admin/industry');
     }
+    /**
+     * This Function used to delete industry
+     */
     public function destroy($id)
     {
-        $industry = Industry::find($id);
-        $industry->delete();
-       
-        return redirect('admin/industry'); 
+        $industry=Industry::find($id);
+        $response=array();
+        $response['success']=0;
+        $response['message'] ='';
+        if($industry)
+        {
+            $status = $industry->delete();
+            $response['success']=1;
+            $response['message'] ='Delete Success';
+            
+        }
+        else
+        {
+            $response['success'] = 0;
+            $response['message'] = 'Data not Exist';
+        }
+        return response()->json($response); 
     } 
 }
