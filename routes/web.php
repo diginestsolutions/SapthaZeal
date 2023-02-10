@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\JobProviderController;
 use App\Http\Controllers\Admin\AdminprofileController;
@@ -52,14 +52,11 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/viewjob', [AdminController::class, 'viewjob'])->name('view.job');
     Route::get('/showjob', [AdminController::class, 'show'])->name('show.job');
     //industry
-    Route::get('/industry', [IndustryController::class, 'viewindustry'])->name('view.industry');
-    Route::post('/addindustry', [IndustryController::class, 'addindustry'])->name('add.industry');
-    
-    Route::get('/addindustry', [IndustryController::class, 'industry'])->name('get.addindustry');
-    Route::get('/editindustry/{id}', [IndustryController::class, 'edit'])->name('get.editindustry');
-    Route::post('/updateindustry/{id}', [IndustryController::class, 'update'])->name('update.industry');
-    Route::get('/deleteindustry/{id}', [IndustryController::class, 'destroy'])->name('industry.destroy');
-    
+    Route::get('/industry', [IndustryController::class, 'index'])->name('view.industry');
+    Route::post('/industry/store', [IndustryController::class, 'store'])->name('add.industry');
+    Route::get('/industry/edit/{id}', [IndustryController::class, 'edit'])->name('edit.industry');
+    Route::post('/industry/update', [IndustryController::class, 'update'])->name('update.industry');
+    Route::post('/industry/{id}/destroy', [IndustryController::class, 'destroy'])->name('industry.destroy');
     //admin
     Route::get('/admin', [AdminprofileController::class, 'index'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'store'])->name('register.admin');

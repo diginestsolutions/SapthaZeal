@@ -52,9 +52,8 @@
     @endif
     <nav class="navbar navbar-light ">
 
-        <a class="btn " href="{{ route('get.addindustry') }}"> <span class="icons"> <i class="fa fa-plus "
-                    aria-hidden="true"></i></span></a>
-
+        <a class="btn " href="" data-toggle="modal" data-target="#industryModal"> <span class="icons"> <i
+                    class="fa fa-plus " aria-hidden="true"></i></span></a>
 
 
         <div class=" has-search col-md-3">
@@ -70,9 +69,8 @@
                     <table class="table table-resp-noscroll">
                         <thead>
                             <tr>
-                                <th>Job ID</th>
+                                <th>Industry ID</th>
                                 <th>Industry Name</th>
-                                <th>Approval Status</th>
                                 <th>Actions</th>
 
                             </tr>
@@ -83,24 +81,17 @@
                                 <td>#{{ $industrys->industry_id}}</td>
                                 <td>{{ $industrys->name}}</td>
 
-                                <td style="color:#48BA48">
-                                    {{$industrys->status}}
-                                </td>
-
-                                <td >
-                                    <div class="action-btns ">
-
-
-
-                                        <a href="{{ route('get.editindustry',$industrys->id) }}" data-popup="tooltip"
+                                <td>
+                                    <a href="javascript:void(0)" onclick="return edititem({{$industrys->industry_id}});" data-popup="tooltip"
                                             title="Edit" data-placement="bottom" class="mt-2"
                                             style="margin-right:5px;"><i class="fa fa-edit"></i></a>
 
+                                    <input type="hidden" id="industry_id_{{$industrys->industry_id}}" value="{{ $industrys->id }}"/>
+                                        
+                                    <a href="javascript:void(0)" onclick="return deleteitem({{$industrys->industry_id}});" data-popup="tooltip"
+                                            data-placement="bottom" class="mt-2" title="Delete"><i class="fa fa-trash"></i></a>
+                                   
 
-                                        <a href="{{ route('industry.destroy', $industrys->id)}}" data-popup="tooltip"
-                                            data-placement="bottom" class="mt-2"><i class="fa fa-trash"></i></a>
-
-                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -117,7 +108,6 @@
 
 
 </div>
-
 @endsection
 
 
