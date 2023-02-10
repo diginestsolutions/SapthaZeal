@@ -46,7 +46,6 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
   
     // job
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    
     Route::get('/addjob', [AdminController::class, 'addjob'])->name('get.addjob');
     Route::post('/createjob', [AdminController::class, 'createjob'])->name('create.job');
     Route::get('/viewjob', [AdminController::class, 'viewjob'])->name('view.job');

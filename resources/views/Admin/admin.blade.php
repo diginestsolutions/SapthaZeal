@@ -8,10 +8,12 @@
     #mymodal {
         border-radius: 15px;
     }
+
     .form-control[readonly] {
-    background-color: #fff !important;
-    opacity: 1;
-}
+        background-color: #fff !important;
+        opacity: 1;
+    }
+
     .dropzone1 {
         width: 100px;
         height: 80px;
@@ -34,6 +36,7 @@
         height: 100%;
         opacity: 0;
     }
+
     .form-control {
         border-radius: 16px !important;
         opacity: 1 !important;
@@ -303,21 +306,23 @@
                                     </div>
                                 </td>
 
-                                <td class="text-right" >
+                                <td class="text-right">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="javascript:void()" onclick="return showitem({{$user->user_id}});" data-popup="tooltip" title="View" data-toggle="modal"
-                                            style="margin-right:5px;"
-                                            class="mt-2"><i class="fa fa-eye"></i></a>
-                                        <a href="javascript:void()" onclick="return edititem({{$user->user_id}});" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            data-toggle="modal" class="mt-2"
-                                            style="margin-right:5px;"><i class="fa fa-edit"></i></a>
+                                        <a href="javascript:void()" onclick="return showitem({{$user->user_id}});"
+                                            data-popup="tooltip" title="View" data-toggle="modal"
+                                            style="margin-right:5px;" class="mt-2"><i class="fa fa-eye"></i></a>
+                                        <a href="javascript:void()" onclick="return edititem({{$user->user_id}});"
+                                            data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            data-toggle="modal" class="mt-2" style="margin-right:5px;"><i
+                                                class="fa fa-edit"></i></a>
 
 
-                        <input type="hidden" id="user_id" value="{{ $user->id }}"/>
-                        <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}"/>
+                                        <input type="hidden" id="user_id" value="{{ $user->id }}" />
+                                        <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}" />
 
-<a href="javascript:void()" onclick="return deleteitem();" data-popup="tooltip"
-    data-placement="bottom" class="mt-2" title="Delete"><i class="fa fa-trash"></i></a>
+                                        <a href="javascript:void()" onclick="return deleteitem();" data-popup="tooltip"
+                                            data-placement="bottom" class="mt-2" title="Delete"><i
+                                                class="fa fa-trash"></i></a>
 
                                     </div>
                                 </td>
@@ -388,7 +393,7 @@
 
                             </div>
                         </div>
-                    
+
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -405,8 +410,8 @@
 
 
 
-                  
-                    
+
+
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -461,8 +466,7 @@ width: 100px;
 </div>
 <!---------------view user--------------->
 
-<div class="modal fade" id="showmodal" tabindex="-1" role="dialog" aria-labelledby="showmodal"
-    aria-hidden="true">
+<div class="modal fade" id="showmodal" tabindex="-1" role="dialog" aria-labelledby="showmodal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
@@ -485,8 +489,8 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label"> Name</label>
 
-                                <input type="text" class="form-control form-control-lg" name="name"
-                                  id="user_name" readonly>
+                                <input type="text" class="form-control form-control-lg" name="name" id="user_name"
+                                    readonly>
                             </div>
                         </div>
 
@@ -503,19 +507,19 @@ width: 100px;
                                 <label class="title-label">image</label>
 
 
-                                  <div>
-                               
-                                
-                                        <img id="uploaded_image" class="" style=" width:70px; height:70px;">
+                                <div>
 
-</div>
+
+                                    <img id="uploaded_image" class="" style=" width:70px; height:70px;">
+
+                                </div>
 
 
 
                             </div>
                         </div>
-                   
-                   
+
+
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -524,8 +528,8 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label">Email Address</label>
 
-                                <input type="text" class="form-control form-control-lg" name="email"
-                                 id="email" readonly>
+                                <input type="text" class="form-control form-control-lg" name="email" id="email"
+                                    readonly>
                             </div>
                         </div>
 
@@ -533,7 +537,7 @@ width: 100px;
 
 
 
-                    
+
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -542,8 +546,8 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
-                                <input type="text" class="form-control form-control-lg" name="phone"
-                                    id="mobile" readonly>
+                                <input type="text" class="form-control form-control-lg" name="phone" id="mobile"
+                                    readonly>
                             </div>
                         </div>
 
@@ -573,8 +577,7 @@ width: 100px;
 
 <!---------------view user--------------->
 
-<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editmodal"
-    aria-hidden="true">
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editmodal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
@@ -585,7 +588,8 @@ width: 100px;
             </div>
 
             <div class="modal-body">
-                <form id="registerForm" method="POST" enctype="multipart/form-data" action="{{ route('update1.admin',$user->id) }}">
+                <form id="registerForm" method="POST" enctype="multipart/form-data"
+                    action="{{ route('update1.admin',$user->id) }}">
                     @csrf
                     <input type="hidden" name="id" id="user_edit_id">
                     <div class="row">
@@ -597,8 +601,7 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label"> Name</label>
 
-                                <input type="text" class="form-control form-control-lg" name="name"
-                                  id="name" >
+                                <input type="text" class="form-control form-control-lg" name="name" id="name">
                             </div>
                         </div>
 
@@ -616,7 +619,7 @@ width: 100px;
 
 
                                 <div class="dropzone">
-                                  <button class="btn fileicon " type="button"
+                                    <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
                                         <img src="{{$user->image}} " width="70" height="70" alt=""
                                             style="border-radius:10px;">
@@ -626,16 +629,16 @@ width: 100px;
 
 
                                 </div>
-                                
-                                        
-</div>
-
 
 
                             </div>
-                      
-                   
-                   
+
+
+
+                        </div>
+
+
+
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -644,8 +647,7 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label">Email Address</label>
 
-                                <input type="text" class="form-control form-control-lg" name="email"
-                                 id="_email" >
+                                <input type="text" class="form-control form-control-lg" name="email" id="_email">
                             </div>
                         </div>
 
@@ -653,7 +655,7 @@ width: 100px;
 
 
 
-                    
+
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -662,8 +664,7 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
-                                <input type="text" class="form-control form-control-lg" name="phone"
-                                    id="_mobile">
+                                <input type="text" class="form-control form-control-lg" name="phone" id="_mobile">
                             </div>
                         </div>
 
@@ -679,12 +680,12 @@ width: 100px;
                                 <label class="title-label">Designation</label>
 
                                 <input type="text" class="form-control form-control-lg" name="designation"
-                                    id="_designation" >
+                                    id="_designation">
                             </div>
                         </div>
 
-</div>
-<div class="form-group row ">
+                    </div>
+                    <div class="form-group row ">
                         <div class="col text-center ">
                             <button type="submit" class="btn gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
 letter-spacing: 1.25px;
@@ -702,11 +703,11 @@ width: 100px;
                             </button>
                         </div>
                     </div>
-                    </div>
-                </form>
             </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -738,9 +739,8 @@ width: 100px;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
-function deleteitem()
-    {
-        var id = $( "#user_id" ).val();
+    function deleteitem() {
+        var id = $("#user_id").val();
         var url = '{{ route("admin.destroy", ":id") }}';
         url = url.replace(':id', id);
         swal({
@@ -753,112 +753,107 @@ function deleteitem()
                 cancelButtonText: "No, cancel pls!",
                 closeOnConfirm: true,
                 closeOnCancel: true
-              },
-              function(isConfirm) {
+            },
+            function (isConfirm) {
                 if (isConfirm) {
-                   $.ajax({
-                            type:'POST',
-                            url:url,
-                            data:'_token={{ csrf_token() }}',
-                            success:function(data){
-                              if(data.success==1)
-                              {
-                                   swal(
-                                        'Deleted!',
-                                        'Admin has been deleted.',
-                                        'success'
-                                      );
-                                      $('#row'+id).remove();
-                                      location.reload();
-                              }
-                              else
-                              {
-                                  swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                              }
-                            },
-                            error:function(data)
-                            {
-                                console.log(data);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: '_token={{ csrf_token() }}',
+                        success: function (data) {
+                            if (data.success == 1) {
                                 swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
+                                    'Deleted!',
+                                    'Admin has been deleted.',
+                                    'success'
+                                );
+                                $('#row' + id).remove();
+                                location.reload();
+                            } else {
+                                swal(
+                                    'Failed!',
+                                    data.message,
+                                    'error'
+                                );
                             }
-                            
-                         });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            swal(
+                                'Failed!',
+                                data.message,
+                                'error'
+                            );
+                        }
+
+                    });
                 } else {
-                  swal("Cancelled", "Admin is safe :)", "error");
+                    swal("Cancelled", "Admin is safe :)", "error");
                 }
             });
     }
+
 </script>
 
 <script>
-    function showitem(id)
-    {
-       
+    function showitem(id) {
+
         var id = $(`#user_id_${id}`).val();
-       
+
         var url = '{{ route("show.admin", ":id") }}';
         url = url.replace(':id', id);
-      
-        if(id) {
+
+        if (id) {
             $.ajax({
-                type:'get',
-                url:url,
-                success:function(data){
-                    if(data.success==1)
-                    {
+                type: 'get',
+                url: url,
+                success: function (data) {
+                    if (data.success == 1) {
                         $('#user_edit_id').val(data.data._id);
                         $('#user_name').val(data.data.name);
                         $('#uploaded_image').attr('src', data.data.image).show();
                         $('#email').val(data.data.email);
                         $('#mobile').val(data.data.phone);
                         $('#designation').val(data.data.designation);
-                      
+
                         $('#showmodal').modal('show');
                     }
-                    
+
                 }
             })
         }
     }
+
 </script>
 <script>
-    function edititem(id)
-    {
-       
+    function edititem(id) {
+
         var id = $(`#user_id_${id}`).val();
-       
+
         var url = '{{ route("edit.admin", ":id") }}';
         url = url.replace(':id', id);
-        
-      
-        if(id) {
+
+
+        if (id) {
             $.ajax({
-                type:'get',
-                url:url,
-                success:function(data){
-                    if(data.success==1)
-                    {
+                type: 'get',
+                url: url,
+                success: function (data) {
+                    if (data.success == 1) {
                         $('#user_edit_id').val(data.data._id);
                         $('#name').val(data.data.name);
                         $('#upload_image').attr('src', data.data.image).show();
                         $('#_email').val(data.data.email);
                         $('#_mobile').val(data.data.phone);
                         $('#_designation').val(data.data.designation);
-                      
+
                         $('#editmodal').modal('show');
                     }
-                    
+
                 }
             })
         }
     }
+
 </script>
 @endsection
