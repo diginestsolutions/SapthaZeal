@@ -172,9 +172,7 @@ class AdminprofileController extends Controller
  
         return redirect('admin/admin')->with('success', 'userupdated successfully.');
     }
-
-
-    public function show($id)
+   public function show($id)
     {
         $user = User::find($id);
 

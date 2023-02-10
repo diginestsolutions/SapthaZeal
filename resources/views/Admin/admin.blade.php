@@ -500,7 +500,7 @@ width: 100px;
 
 
                             <div class=" form-group">
-                                <label class="title-label"> image</label>
+                                <label class="title-label">image</label>
 
 
                                   <div>
