@@ -1,11 +1,10 @@
 <?php
+namespace App\Http\Controllers;
 
-namespace App\Http\Controllers\Admin;
-
-
-use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Industry;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request; 
 
 class AdminController extends Controller
 {
@@ -61,11 +60,19 @@ class AdminController extends Controller
 
     
     }
+   
     public function viewjob(){
         $job = Job::orderBy('_id', 'ASC')->get();
       
         return view('Admin/job',array('job'=>$job));
 
     }
+    public function show(){
+        
+        $items =Industry::all(['_id', 'name']);
+        return view('Admin/viewjob',compact('items'));
+
+    }
+
 
 }
