@@ -80,7 +80,6 @@
                             <tr>
                                 <td>#{{ $industrys->industry_id}}</td>
                                 <td>{{ $industrys->name}}</td>
-
                                 <td>
                                     <a href="javascript:void(0)" onclick="return edititem({{$industrys->industry_id}});" data-popup="tooltip"
                                             title="Edit" data-placement="bottom" class="mt-2"
@@ -91,7 +90,6 @@
                                     <a href="javascript:void(0)" onclick="return deleteitem({{$industrys->industry_id}});" data-popup="tooltip"
                                             data-placement="bottom" class="mt-2" title="Delete"><i class="fa fa-trash"></i></a>
                                    
-
                                 </td>
                             </tr>
                             @endforeach
@@ -108,6 +106,186 @@
 
 
 </div>
+<!------------add notification-------------->
+<div class="modal fade" id="industryModal" tabindex="-1" role="dialog" aria-labelledby="industryModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius:15px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="industryModal">{{ __('Add Industry') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times-circle " style="    color: #FF0000;"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm" action="{{ route('add.industry') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class=" form-group">
+                                <label class="title-label">Industry Name</label>
+                                <input type="text" class="form-control form-control-lg" name="name">
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="form-group row ">
+                        <div class="col text-center ">
+                            <button type="submit" class="btn gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+letter-spacing: 1.25px;
+border:none;
+color: #FFFFFF;
+text-transform: uppercase;
+opacity: 1;
+
+background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
+width: 100px;
+
+;">
+                                Add
+                                <i class="icon-database-insert ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------Edit notification-------------->
+<div class="modal fade" id="industryEditModal" tabindex="-1" role="dialog" aria-labelledby="industryEditModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius:15px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="industryEditModal">{{ __('Edit Industry') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times-circle " style="    color: #FF0000;"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm" action="{{ route('update.industry') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" id="industry_edit_id">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class=" form-group">
+                                <label class="title-label">Industry Name</label>
+                                <input type="text" class="form-control form-control-lg" id="industry_name" name="name">
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="form-group row ">
+                        <div class="col text-center ">
+                            <button type="submit" class="btn gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+letter-spacing: 1.25px;
+border:none;
+color: #FFFFFF;
+text-transform: uppercase;
+opacity: 1;
+
+background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
+width: 100px;
+
+;">
+                                Add
+                                <i class="icon-database-insert ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
+<script>
+    function deleteitem(id)
+    {
+        var id = $(`#industry_id_${id}`).val();
+        var url = '{{ route("industry.destroy", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Industry has been deleted.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                } else {
+                  swal("Cancelled", "Industry is safe :)", "error");
+                }
+            });
+    }
+</script>
+<script>
+    function edititem(id)
+    {
+        var id = $(`#industry_id_${id}`).val();
+        var url = '{{ route("edit.industry", ":id") }}';
+        url = url.replace(':id', id);
+        if(id) {
+            $.ajax({
+                type:'get',
+                url:url,
+                success:function(data){
+                    if(data.success==1)
+                    {
+                        $(`#industry_edit_id`).val(data.data._id);
+                        $(`#industry_name`).val(data.data.name);
+                        $('#industryEditModal').modal('show');
+                    }
+                }
+            })
+        }
+    }
+</script>
 @endsection
 
 

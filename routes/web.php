@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\IndustryController;
+use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\JobProviderController;
 use App\Http\Controllers\Admin\AdminprofileController;
 use App\Http\Controllers\SubscriptionController;
@@ -57,6 +57,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/industry/edit/{id}', [IndustryController::class, 'edit'])->name('edit.industry');
     Route::post('/industry/update', [IndustryController::class, 'update'])->name('update.industry');
     Route::post('/industry/{id}/destroy', [IndustryController::class, 'destroy'])->name('industry.destroy');
+    
     //admin
     Route::get('/admin', [AdminprofileController::class, 'index'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'store'])->name('register.admin');
