@@ -1,5 +1,26 @@
 @extends('layouts.Dashboard')
 @section('content')
+<style>
+   
+
+.table{
+    border:none !important;
+}
+td{
+    text-align:center;  
+}
+
+.table th{
+    padding: 1rem !important;
+    text-align:center;
+}
+
+.table thead th {
+    vertical-align: bottom;
+     border-bottom: none !important;
+}
+
+    </style>
 <div class="col-lg-10 col-md-12" id="main">
 
     <nav class="navbar navbar-light col-md-12 ">
@@ -53,41 +74,41 @@
     <!--Table-->
     <div class=" col-md-12  mt-4 ">
         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
-            <div class="card-body">
+           
                 <div class="table-responsive">
-                    <table class=" table table-bordered table-resp-noscroll">
+                    <table class=" table   table-resp-noscroll">
 
 
-                        <thead>
+                        <thead >
                             <tr>
-                                <th>plan</th>
+                                <th style="border-top: none!important; border-right: 2px solid #00000005 ;">Plan</th>
                                 @foreach ($subscriptionplans as $sub)
-                                <td>{{$sub->name}}</td>
+                                <th style="border-top: none!important;">{{$sub->name}}</th>
                                 @endforeach
 
 
                             </tr>
 
                             <tr>
-                                <th>period</th>
+                                <th style="border-right: 2px solid #00000005 ;">Period</th>
                                 @foreach ($subscriptionplans as $sub)
                                 <td>{{ implode(", ",$sub->period)}}</td>
                                 @endforeach
                             </tr>
                             <tr>
-                                <th>Maximum job post</th>
+                                <th style="border-right: 2px solid #00000005 ;">Maximum job post</th>
                                 @foreach ($subscriptionplans as $sub)
                                 <td>{{$sub->maximumjobpost}}</td>
                                 @endforeach
                             </tr>
                             <tr>
-                                <th>Cvs per post</th>
+                                <th style="border-right: 2px solid #00000005 ;">Cvs per post</th>
                                 @foreach ($subscriptionplans as $sub)
                                 <td>{{$sub->cvsperpost}}</td>
                                 @endforeach
                             </tr>
                             <tr>
-                                <th>Amount</th>
+                                <th style="border-right: 2px solid #00000005 ;">Amount</th>
                                 @foreach ($subscriptionplans as $sub)
                                 <td>{{$sub->amount}}</td>
                                 @endforeach
@@ -100,7 +121,7 @@
 
                 </table>
 
-            </div>
+            
         </div>
     </div>
 </div>

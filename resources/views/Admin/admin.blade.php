@@ -8,14 +8,39 @@
     #mymodal {
         border-radius: 15px;
     }
+    .form-control[readonly] {
+    background-color: #fff !important;
+    opacity: 1;
+}
+    .dropzone1 {
+        width: 100px;
+        height: 80px;
+        border: 1px dashed #999;
+        border-radius: 3px;
+        text-align: center;
+    }
 
+    .upload-icon1 {
+        margin: 25px 2px 2px 2px;
+        background-color: #208CD1;
+        border-radius: 5px;
+    }
+
+    .upload-input1 {
+        position: relative;
+        top: -62px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
     .form-control {
         border-radius: 16px !important;
         opacity: 1 !important;
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .switch {
@@ -278,18 +303,21 @@
                                     </div>
                                 </td>
 
-                                <td class="text-right" style="width: 10%;">
+                                <td class="text-right" >
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="" data-popup="tooltip" title="View Cities" data-toggle="modal"
-                                            data-target="#editModal{{$user->id}}" style="margin-right:5px;"
+                                        <a href="javascript:void()" onclick="return showitem({{$user->user_id}});" data-popup="tooltip" title="View" data-toggle="modal"
+                                            style="margin-right:5px;"
                                             class="mt-2"><i class="fa fa-eye"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            data-target="#updateModal{{$user->id}}" data-toggle="modal" class="mt-2"
+                                        <a href="javascript:void()" onclick="return edititem({{$user->user_id}});" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            data-toggle="modal" class="mt-2"
                                             style="margin-right:5px;"><i class="fa fa-edit"></i></a>
 
 
-                                        <a href=" {{ route('Admin.delete', $user->id)}}" data-popup="tooltip" data-placement="bottom" class="mt-2"><i
-                                                class="fa fa-trash"></i></a>
+                        <input type="hidden" id="user_id" value="{{ $user->id }}"/>
+                        <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}"/>
+
+<a href="javascript:void()" onclick="return deleteitem();" data-popup="tooltip"
+    data-placement="bottom" class="mt-2" title="Delete"><i class="fa fa-trash"></i></a>
 
                                     </div>
                                 </td>
@@ -351,7 +379,7 @@
 
                                 <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon" />
+                                        <img src="../assets/cloud-computing.png" class="upload-icon1" />
                                         <input type="file" class="upload-input1" name="image" />
                                     </div>
                                 </button>
@@ -360,8 +388,7 @@
 
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+                    
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -378,8 +405,8 @@
 
 
 
-                    </div>
-                    <div class="row">
+                  
+                    
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -433,21 +460,22 @@ width: 100px;
     </div>
 </div>
 <!---------------view user--------------->
-@foreach ($users as $user)
-<div class="modal fade" id="editModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="registerModal"
+
+<div class="modal fade" id="showmodal" tabindex="-1" role="dialog" aria-labelledby="showmodal"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="registerModal">{{ __('View User') }}</h5>
+                <h5 class="modal-title" id="showmodal">{{ __('View User') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <form id="registerForm" method="POST" enctype="multipart/form-data">
                     @csrf
-
+                    <input type="hidden" name="id" id="user_edit_id">
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
@@ -458,7 +486,7 @@ width: 100px;
                                 <label class="title-label"> Name</label>
 
                                 <input type="text" class="form-control form-control-lg" name="name"
-                                    value="{{$user->name}}">
+                                  id="user_name" readonly>
                             </div>
                         </div>
 
@@ -475,20 +503,19 @@ width: 100px;
                                 <label class="title-label"> image</label>
 
 
+                                  <div>
+                               
+                                
+                                        <img id="uploaded_image" class="" style=" width:70px; height:70px;">
 
-                                <button class="btn fileicon " type="button">
-                                    <div class="">
-                                        <img src="{{ $user->image}}" class="" style=" width:100px; height:100px;" />
-
-                                    </div>
-                                </button>
+</div>
 
 
 
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+                   
+                   
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -498,7 +525,7 @@ width: 100px;
                                 <label class="title-label">Email Address</label>
 
                                 <input type="text" class="form-control form-control-lg" name="email"
-                                    value="{{$user->email}}">
+                                 id="email" readonly>
                             </div>
                         </div>
 
@@ -506,8 +533,7 @@ width: 100px;
 
 
 
-                    </div>
-                    <div class="row">
+                    
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -517,7 +543,7 @@ width: 100px;
                                 <label class="title-label">Mobile Number</label>
 
                                 <input type="text" class="form-control form-control-lg" name="phone"
-                                    value="{{$user->phone}}">
+                                    id="mobile" readonly>
                             </div>
                         </div>
 
@@ -533,7 +559,7 @@ width: 100px;
                                 <label class="title-label">Designation</label>
 
                                 <input type="text" class="form-control form-control-lg" name="designation"
-                                    value="{{$user->designation}}">
+                                    id="designation" readonly>
                             </div>
                         </div>
 
@@ -544,26 +570,24 @@ width: 100px;
         </div>
     </div>
 </div>
-@endforeach
 
+<!---------------view user--------------->
 
-<!---------------edit user--------------->
-@foreach ($users as $user)
-<div class="modal fade" id="updateModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="editmodal"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
-                <h5 class="modal-title" id="registerModal">{{ __('Edit User') }}</h5>
+                <h5 class="modal-title" id="editmodal">{{ __('Edit User') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                 </button>
             </div>
+
             <div class="modal-body">
-                <form id="registerForm" action="{{ route('update1.admin',$user->id) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form id="registerForm" method="POST" enctype="multipart/form-data" action="{{ route('update1.admin',$user->id) }}">
                     @csrf
-
-
+                    <input type="hidden" name="id" id="user_edit_id">
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
@@ -574,7 +598,7 @@ width: 100px;
                                 <label class="title-label"> Name</label>
 
                                 <input type="text" class="form-control form-control-lg" name="name"
-                                    value="{{$user->name}}">
+                                  id="name" >
                             </div>
                         </div>
 
@@ -591,16 +615,10 @@ width: 100px;
                                 <label class="title-label"> image</label>
 
 
-
-
-
-                                <input style="display:none" type="file" id="my-file" name="image">
-
                                 <div class="dropzone">
-
-                                    <button class="btn fileicon " type="button"
+                                  <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
-                                        <img src="{{$user->image}} " width="100" height="100" alt=""
+                                        <img src="{{$user->image}} " width="70" height="70" alt=""
                                             style="border-radius:10px;">
 
                                         <img src="../assets/Group 22.png" class="upload-icon" />
@@ -608,11 +626,16 @@ width: 100px;
 
 
                                 </div>
-                                </button>
+                                
+                                        
+</div>
+
+
+
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
+                      
+                   
+                   
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -622,7 +645,7 @@ width: 100px;
                                 <label class="title-label">Email Address</label>
 
                                 <input type="text" class="form-control form-control-lg" name="email"
-                                    value="{{$user->email}}">
+                                 id="_email" >
                             </div>
                         </div>
 
@@ -630,8 +653,7 @@ width: 100px;
 
 
 
-                    </div>
-                    <div class="row">
+                    
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -641,7 +663,7 @@ width: 100px;
                                 <label class="title-label">Mobile Number</label>
 
                                 <input type="text" class="form-control form-control-lg" name="phone"
-                                    value="{{$user->phone}}">
+                                    id="_mobile">
                             </div>
                         </div>
 
@@ -657,13 +679,12 @@ width: 100px;
                                 <label class="title-label">Designation</label>
 
                                 <input type="text" class="form-control form-control-lg" name="designation"
-                                    value="{{$user->designation}}">
+                                    id="_designation" >
                             </div>
                         </div>
 
-
-                    </div>
-                    <div class="form-group row ">
+</div>
+<div class="form-group row ">
                         <div class="col text-center ">
                             <button type="submit" class="btn gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
 letter-spacing: 1.25px;
@@ -681,18 +702,15 @@ width: 100px;
                             </button>
                         </div>
                     </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-@endforeach
-@endsection
-
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"> </script>
 
 
 <script>
@@ -717,3 +735,130 @@ width: 100px;
     })
 
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script>
+function deleteitem()
+    {
+        var id = $( "#user_id" ).val();
+        var url = '{{ route("admin.destroy", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Admin has been deleted.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                } else {
+                  swal("Cancelled", "Admin is safe :)", "error");
+                }
+            });
+    }
+</script>
+
+<script>
+    function showitem(id)
+    {
+       
+        var id = $(`#user_id_${id}`).val();
+       
+        var url = '{{ route("show.admin", ":id") }}';
+        url = url.replace(':id', id);
+      
+        if(id) {
+            $.ajax({
+                type:'get',
+                url:url,
+                success:function(data){
+                    if(data.success==1)
+                    {
+                        $('#user_edit_id').val(data.data._id);
+                        $('#user_name').val(data.data.name);
+                        $('#uploaded_image').attr('src', data.data.image).show();
+                        $('#email').val(data.data.email);
+                        $('#mobile').val(data.data.phone);
+                        $('#designation').val(data.data.designation);
+                      
+                        $('#showmodal').modal('show');
+                    }
+                    
+                }
+            })
+        }
+    }
+</script>
+<script>
+    function edititem(id)
+    {
+       
+        var id = $(`#user_id_${id}`).val();
+       
+        var url = '{{ route("edit.admin", ":id") }}';
+        url = url.replace(':id', id);
+        
+      
+        if(id) {
+            $.ajax({
+                type:'get',
+                url:url,
+                success:function(data){
+                    if(data.success==1)
+                    {
+                        $('#user_edit_id').val(data.data._id);
+                        $('#name').val(data.data.name);
+                        $('#upload_image').attr('src', data.data.image).show();
+                        $('#_email').val(data.data.email);
+                        $('#_mobile').val(data.data.phone);
+                        $('#_designation').val(data.data.designation);
+                      
+                        $('#editmodal').modal('show');
+                    }
+                    
+                }
+            })
+        }
+    }
+</script>
+@endsection

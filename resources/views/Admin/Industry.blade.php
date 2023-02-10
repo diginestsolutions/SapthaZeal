@@ -87,16 +87,19 @@
                                     {{$industrys->status}}
                                 </td>
 
-                                <td class="text-right" style="width: 10%;">
-                                    <div class="action-btns d-flex justify-content-end">
+                                <td >
+                                    <div class="action-btns ">
+
+
+
                                         <a href="{{ route('get.editindustry',$industrys->id) }}" data-popup="tooltip"
                                             title="Edit" data-placement="bottom" class="mt-2"
                                             style="margin-right:5px;"><i class="fa fa-edit"></i></a>
 
-                                        <input type="hidden" id="industry_id" value="{{ $industrys->id }}"/>
-                                        
-                                        <a href="javascript:void()" onclick="return deleteitem();" data-popup="tooltip"
-                                            data-placement="bottom" class="mt-2" title="Delete"><i class="fa fa-trash"></i></a>
+
+                                        <a href="{{ route('industry.destroy', $industrys->id)}}" data-popup="tooltip"
+                                            data-placement="bottom" class="mt-2"><i class="fa fa-trash"></i></a>
+
                                     </div>
                                 </td>
                             </tr>
@@ -109,68 +112,45 @@
             </div>
         </div>
     </div>
+
+
+
+
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
-<script>
-    function deleteitem()
-    {
-        var id = $( "#industry_id" ).val();
-        var url = '{{ route("industry.destroy", ":id") }}';
-        url = url.replace(':id', id);
-        swal({
-                title: "Are you sure?",
-                text: "You will not be able to recover this!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "No, cancel pls!",
-                closeOnConfirm: true,
-                closeOnCancel: true
-              },
-              function(isConfirm) {
-                if (isConfirm) {
-                   $.ajax({
-                            type:'POST',
-                            url:url,
-                            data:'_token={{ csrf_token() }}',
-                            success:function(data){
-                              if(data.success==1)
-                              {
-                                   swal(
-                                        'Deleted!',
-                                        'Industry has been deleted.',
-                                        'success'
-                                      );
-                                      $('#row'+id).remove();
-                                      location.reload();
-                              }
-                              else
-                              {
-                                  swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                              }
-                            },
-                            error:function(data)
-                            {
-                                console.log(data);
-                                swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                            }
-                            
-                         });
-                } else {
-                  swal("Cancelled", "Industry is safe :)", "error");
-                }
-            });
-    }
-</script>
+
 @endsection
 
+
+<script>
+    function myFunction() {
+        if (!confirm("Are You Sure to delete this"))
+            event.preventDefault();
+    }
+
+</script>
+
+
+
+
+
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+
+
+$('.navbar-toggler').click(function () {
+    if ($(window).width() < 960) {
+        $("#sidenav1").toggle("slide");
+}
+else {
+    $("#sidenav1").toggle();
+}
+  
+    
+});
+
+});
+    </script> -->
