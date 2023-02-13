@@ -7,53 +7,62 @@
         text-decoration: none;
 
     }
-    .progressbar {
-  counter-reset: step;
-}
-.progressbar li {
-  list-style: none;
-  display: inline-block;
-  width: 30.33%;
-  position: relative;
-  text-align: center;
-  cursor: pointer;
-}
-.progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  width: 30px;
-  height: 30px;
-  line-height : 30px;
-  border: 1px solid #ddd;
-  border-radius: 100%;
-  display: block;
-  text-align: center;
-  margin: 0 auto 10px auto;
-  background-color: #fff;
-}
-.progressbar li:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background-color: #ddd;
-  top: 15px;
-  left: -50%;
-  z-index : -1;
-}
-.progressbar li:first-child:after {
-  content: none;
-}
-.progressbar li.active {
-  color: green;
-}
-.progressbar li.active:before {
-  border-color: green;
-} 
-.progressbar li.active + li:after {
-  background-color: green;
-}
     
+
+    .progressbar {
+        counter-reset: step;
+    }
+
+    .progressbar li {
+        list-style: none;
+        display: inline-block;
+        width: 30.33%;
+        position: relative;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .progressbar li:before {
+        content: counter(step);
+        counter-increment: step;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #ddd;
+        border-radius: 100%;
+        display: block;
+        text-align: center;
+        margin: 0 auto 10px auto;
+        background-color: #fff;
+    }
+
+    .progressbar li:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background-color: #ddd;
+        top: 15px;
+        left: -50%;
+        z-index: -1;
+    }
+
+    .progressbar li:first-child:after {
+        content: none;
+    }
+
+    .progressbar li.active {
+        color: green;
+    }
+
+    .progressbar li.active:before {
+        border-color: green;
+    }
+
+    .progressbar li.active+li:after {
+        background-color: green;
+    }
+
 
     body {
         background: #f3f5f9;
@@ -115,7 +124,7 @@
 
     ul {
         padding-bottom: 10px;
-        font-size:15px;
+        font-size: 15px;
 
     }
 
@@ -128,6 +137,7 @@
         opacity: 1;
         font-size: 32px !important;
     }
+
     .sidebar ul li a {
         color: #000000;
         display: block;
@@ -151,7 +161,7 @@
         text-decoration: none;
         border-right: 3px solid #49B945;
         background: #e4f5e3;
-   
+
 
     }
 
@@ -337,6 +347,7 @@
         display: flex;
         padding-left: 15px;
     }
+
     .dropzone {
         width: 100px;
         height: 80px;
@@ -377,10 +388,15 @@
         background: rebeccapurple;
         box-shadow: 0 3px 0 0 deeppink;
     }
+
     .profile {
 
-display: flex;
-padding-left: 50px !important;
+        display: flex;
+        padding-left: 50px !important;
+    }
+    .tabcontent {
+  display: none;
+ 
 }
 </style>
 
@@ -398,53 +414,17 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 </head>
 <div class="container-fluid col-md-12 h-custom ">
     <div class="wrapper d-flex ">
-  
-     
-     <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
-
-       
-             <div class=" col-lg-10">
-                 <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
-             </div>
-             <div class="justify-content-center">
-                 <ul >
-                     <li><a href="{{route('view.job')}}">Job Management</a></li>
-                     <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
-                     <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
-                     <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                     <li><a href="{{route('view.order')}}">Order Management</a></li>
-                     <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
-                     <li><a href="{{route('view.admin')}}">Admin Management</a></li>
-                     <li><a href="{{route('view.notification')}}">Notifications</a></li>
-                     <li><a href="{{route('profile.admin')}}">Profile</a></li>
-                     <ul>
-
-                         </a>
-
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                             style="display: none;">
-                             @csrf
-                         </form>
-
-                         <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                             style="border-radius: 0px 0px 50px 50px; width:220px;"
-                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
 
 
-                     </ul>
-             </div>
-       
-     </div>
+        <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
 
-     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
-            <div class=" col-md-3 ">
-                <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+            <div class=" col-lg-10">
+                <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
-            <ul >
-            <li><a href="{{route('view.job')}}">Job Management</a></li>
+                <ul>
+                    <li><a href="{{route('view.job')}}">Job Management</a></li>
                     <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
                     <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
                     <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
@@ -453,22 +433,57 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li><a href="{{route('view.admin')}}">Admin Management</a></li>
                     <li><a href="{{route('view.notification')}}">Notifications</a></li>
                     <li><a href="{{route('profile.admin')}}">Profile</a></li>
-                    <li>
+                    <ul>
 
+                        </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
 
                         <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                            style="border-radius: 0px 0px 24px 24px; width:220px;"
+                            style="border-radius: 0px 0px 50px 50px; width:220px;"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
 
 
-                    </li>
+                    </ul>
+            </div>
+
         </div>
-    </div>
-</div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="sidebar col-lg-2 col-md-3 p-0 ">
+
+                <div class=" col-md-3 ">
+                    <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                </div>
+                <div class="justify-content-center">
+                    <ul>
+                        <li><a href="{{route('view.job')}}">Job Management</a></li>
+                        <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                        <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                        <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                        <li><a href="{{route('view.order')}}">Order Management</a></li>
+                        <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                        <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                        <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                        <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                        <li>
+
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+
+                            <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                                style="border-radius: 0px 0px 24px 24px; width:220px;"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+
+
+                        </li>
+                </div>
+            </div>
+        </div>
 
         <div class="col-lg-10  col-md-12" id="main">
 
@@ -486,13 +501,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 <div class=" mt-12 pull-right">
                     <form class="form-inline my-2 my-lg-0 justify-content-center" method="GET">
                         <div class="w-100">
-                        <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
-                        src="{{Auth::user()->image}} ">
-                    <h6 class="profile">{{Auth::user()->name}}</h6><span
-                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-                </button>
+                            <button class="btn " type="button"
+                                style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
+                                    class="user-avatar  pull-right"
+                                    style="width:44px;    border-radius: 28%;    height: 44px;"
+                                    src="{{Auth::user()->image}} ">
+                                <h6 class="profile">{{Auth::user()->name}}</h6><span
+                                    style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+                            </button>
 
                             <button class="btn noti " type="button"> <span class="icons1"><i
                                         class="fa fa-bell"></i><span></button>
@@ -510,12 +526,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             </nav>
-            <ul class="progressbar">
-        <li class="active">Basic Details</li>
-        <li>Educational Details</li>
-        <li>Experience Details</li>
-      </ul>
-         
+            <div class="tab">
+                <ul class="progressbar">
+                    <li class="tablinks active"><a  onclick="openEdit(event, 'Basic')">Basic Details</a></li>
+                    <li class="tablinks"><a  onclick="openEdit(event, 'Education')">Educational Details</a></li>
+                    <li class="tablinks"><a  onclick="openEdit(event, 'Experience')">Experience Details</a></li>
+                </ul>
+            </div>
+            <div id="Basic" class="tabcontent">
             <div class=" col-md-12 ">
                 <div class=" widget-content ">
                     <form class="" action="{{ route('add.candidate') }}" method="POST" enctype="multipart/form-data">
@@ -684,10 +702,35 @@ width: 100px;
                 </form>
             </div>
         </div>
-    </div>
-
-</div>
+   
 
 
+
+
+
+<div id="Education" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
 </div>
+
+<div id="Experience" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
 </div>
+<script>
+    function openEdit(evt, details) {
+
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(details).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+</script>

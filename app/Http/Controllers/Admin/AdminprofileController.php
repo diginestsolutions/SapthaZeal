@@ -15,7 +15,7 @@ class AdminprofileController extends Controller
      */
     public function index()
     {
-        $user1 = User::where('role', '=', 'admin')->get();
+        $user1 = User::where('role', '=', 'Admin')->get();
         $users = $user1->except(Auth::id());
         return view('Admin/admin',compact('users'));
   
@@ -73,7 +73,7 @@ class AdminprofileController extends Controller
             $user['image'] = $basePath . 'storage/uploads/' . $filename;
         }
         $user->designation	    = $request->designation;   
-        $user->role             = "admin";   
+        $user->role             = "Admin";   
         $user->status           = "Active";  
         $user->save(); 
        
@@ -173,7 +173,7 @@ class AdminprofileController extends Controller
                 $user['image'] = $basePath . 'storage/uploads/' . $filename;
             }
             $user->designation	    = $request->designation;   
-            $user->role             = "admin";   
+            $user->role             = "Admin";   
             $user->status           = "1";  
             $user->save(); 
         }

@@ -58,26 +58,29 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verify(Request $request){
+        
         $request->validate([
             'phone' => 'required|exists:users,phone',
-            'otp' => 'required'
+            'otp'   => 'required'
         ]);
         
-        $otp_digits = implode(' ', array_values($request->otp));
-        $otp  =  str_replace(' ','',$otp_digits);
+        $otp_digits =  implode(' ', array_values($request->otp));
+        $otp        =  str_replace(' ','',$otp_digits);
        
         $user = User::where('phone', 'LIKE','%'.$request->phone.'%')->where('otp',(int)$otp)->first();
 
         if($user){
             Auth::login($user);
             $job = Job::orderBy('_id', 'ASC')->get();
+           
             return view('Admin/job')->with(['name'=>$user->name,'job'=>$job]);
-        }else {
+        }
+        else {
             return redirect()->route('get.login')->with('error', 'Your OTP is not correct');
         }          
     }
     public function logout(Request $request) {
         Auth::logout();
-        return view('auth/login');
+        return redirect()->route('get.login');
       }
 }
