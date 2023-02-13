@@ -11,6 +11,8 @@ use App\Http\Controllers\SubController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\ResponseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,13 +46,19 @@ Route::group([  'prefix' => 'auth' ], function ($router) {
 
 Route::group([  'prefix' => 'admin' ], function ($router) {
   
-    // job
+    // dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
-    Route::get('/addjob', [AdminController::class, 'addjob'])->name('get.addjob');
-    Route::post('/createjob', [AdminController::class, 'createjob'])->name('create.job');
-    Route::get('/viewjob', [AdminController::class, 'viewjob'])->name('view.job');
-    Route::get('/showjob', [AdminController::class, 'show'])->name('show.job');
+    //job
+    Route::get('/addjob', [JobController::class, 'addjob'])->name('get.addjob');
+    Route::post('/createjob',[JobController::class, 'createjob'])->name('create.job');
+    Route::get('/viewjob', [JobController::class, 'viewjob'])->name('view.job');
+    Route::get('/showjob', [JobController::class, 'show'])->name('show.job');
+    Route::get('/editjob', [JobController::class, 'edit'])->name('edit.job');
+    
+    //response
+    Route::get('/getresponse', [ResponseController::class, 'get'])->name('get.response');
+
     //industry
     Route::get('/industry', [IndustryController::class, 'index'])->name('view.industry');
     Route::post('/industry/store', [IndustryController::class, 'store'])->name('add.industry');

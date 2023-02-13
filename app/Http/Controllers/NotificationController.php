@@ -11,7 +11,7 @@ class NotificationController extends Controller
 
         $candidate = Notification::all();
       
-        $users = User::where('role', '!=', 'admin')->distinct('role')->get();
+        $users = User::where('role', '!=', 'Admin')->get();
          
         
      return view('Admin/notification',compact('candidate','users')); 
