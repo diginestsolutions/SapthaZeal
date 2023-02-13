@@ -7,62 +7,6 @@
         text-decoration: none;
 
     }
-    
-
-    .progressbar {
-        counter-reset: step;
-    }
-
-    .progressbar li {
-        list-style: none;
-        display: inline-block;
-        width: 30.33%;
-        position: relative;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    .progressbar li:before {
-        content: counter(step);
-        counter-increment: step;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        border: 1px solid #ddd;
-        border-radius: 100%;
-        display: block;
-        text-align: center;
-        margin: 0 auto 10px auto;
-        background-color: #fff;
-    }
-
-    .progressbar li:after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 1px;
-        background-color: #ddd;
-        top: 15px;
-        left: -50%;
-        z-index: -1;
-    }
-
-    .progressbar li:first-child:after {
-        content: none;
-    }
-
-    .progressbar li.active {
-        color: green;
-    }
-
-    .progressbar li.active:before {
-        border-color: green;
-    }
-
-    .progressbar li.active+li:after {
-        background-color: green;
-    }
-
 
     body {
         background: #f3f5f9;
@@ -126,6 +70,7 @@
         padding-bottom: 10px;
         font-size: 15px;
 
+
     }
 
     h3 {
@@ -146,6 +91,8 @@
 
 
 
+
+
     .img-fluid {
         margin-top: 5px;
 
@@ -163,6 +110,20 @@
         background: #e4f5e3;
 
 
+    }
+
+    input::-webkit-datetime-edit {
+        color: transparent;
+    }
+
+    input:focus::-webkit-datetime-edit {
+        color: #000;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        border-radius: 4px;
+        filter: invert(1) sepia(100%) saturate(100000%) hue-rotate(170deg);
     }
 
     @media (min-width:992px) {
@@ -293,7 +254,7 @@
             display: block;
         }
 
-        #sidenav {
+        #sidenav1 {
             display: none;
         }
 
@@ -322,7 +283,7 @@
         opacity: 1 !important;
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
-        height: 40px !important;
+
     }
 
     .form-control1 {
@@ -331,73 +292,44 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         width: 450px;
+        padding: 3px;
 
     }
 
-    input[type="date"] {
-        cursor: pointer;
-        border-radius: 4px;
-        margin-right: 2px;
+    .select-sup::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 28px;
+        content: "\f13a";
+        position: absolute;
+        right: -9px;
+        bottom: 18px;
+        padding: 4px 1em;
         color: #7ECD7C;
-
-
+        pointer-events: none
     }
 
-    .profile {
-        display: flex;
-        padding-left: 15px;
+    .select-date::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 26px;
+        content: "\f073";
+        position: absolute;
+        right: 8px;
+        bottom: 23px;
+
+        padding: 0 1em;
+        color: #7ECD7C;
+        pointer-events: none;
     }
 
-    .dropzone {
-        width: 100px;
-        height: 80px;
-        border: 1px dashed #999;
-        border-radius: 3px;
-        text-align: center;
-    }
-
-    .upload-icon {
-        margin: 25px 2px 2px 2px;
-        background-color: #208CD1;
-        border-radius: 5px;
-    }
-
-    .upload-input {
-        position: relative;
-        top: -62px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-    }
-
-    .btn1 {
-        display: block;
-        width: 140px;
-        height: 40px;
-        background: darkmagenta;
-        color: #fff;
-        border-radius: 3px;
-        border: 0;
-        box-shadow: 0 3px 0 0 hotpink;
-        transition: all 0.3s ease-in-out;
-        font-size: 14px;
-    }
-
-    .btn1:hover {
-        background: rebeccapurple;
-        box-shadow: 0 3px 0 0 deeppink;
-    }
 
     .profile {
 
         display: flex;
         padding-left: 50px !important;
     }
-    .tabcontent {
-  display: none;
- 
-}
+
 </style>
 
 <head>
@@ -407,16 +339,13 @@
 https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 "></script>
     <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 <div class="container-fluid col-md-12 h-custom ">
     <div class="wrapper d-flex ">
-
-
-        <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
+        <div class="sidebar col-lg-2 col-md-3 p-0">
 
 
             <div class=" col-lg-10">
@@ -428,7 +357,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
                     <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
                     <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                    <li><a href="{{route('view.order')}}">Order Management</a></li>
+                    <li><a href="#">Order Management</a></li>
                     <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
                     <li><a href="{{route('view.admin')}}">Admin Management</a></li>
                     <li><a href="{{route('view.notification')}}">Notifications</a></li>
@@ -452,36 +381,44 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
-                <div class=" col-md-3 ">
-                    <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
-                </div>
-                <div class="justify-content-center">
-                    <ul>
-                        <li><a href="{{route('view.job')}}">Job Management</a></li>
-                        <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
-                        <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
-                        <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                        <li><a href="{{route('view.order')}}">Order Management</a></li>
-                        <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
-                        <li><a href="{{route('view.admin')}}">Admin Management</a></li>
-                        <li><a href="{{route('view.notification')}}">Notifications</a></li>
-                        <li><a href="{{route('profile.admin')}}">Profile</a></li>
-                        <li>
+            <div class=" col-md-3 ">
+                <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+            </div>
+            <ul class="navbar-nav mr-auto flex-column vertical-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Job Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Job Provider Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Candidate Management</a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Order Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Subscription Plans</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
 
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+            </ul>
+            <div>
 
-                            <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                                style="border-radius: 0px 0px 24px 24px; width:220px;"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+                <button type="button" class="btn btn-primary"
+                    style="border-radius: 0px 0px 50px 50px; width:250px;">Logout</button>
 
-
-                        </li>
-                </div>
             </div>
         </div>
 
@@ -489,10 +426,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
             <nav class="navbar navbar-light col-md-12 ">
 
-                <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.candidate') }}"><span
+                <h3 class=" mt-3   heading"> <a class="btn mr-2 " href="{{ route('view.job') }}"><span
                             class="icon2"><button class="btn-back" style="border-radius:50px;
-            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Add
-                    Candidate
+            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Show Job
                 </h3>
 
 
@@ -503,13 +439,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         <div class="w-100">
                             <button class="btn " type="button"
                                 style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                                    class="user-avatar  pull-right"
-                                    style="width:44px;    border-radius: 28%;    height: 44px;"
+                                    class="user-avatar  pull-right" style="width:44px;      height: 44px;   border-radius: 28%;"
                                     src="{{Auth::user()->image}} ">
                                 <h6 class="profile">{{Auth::user()->name}}</h6><span
                                     style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
                             </button>
-
                             <button class="btn noti " type="button"> <span class="icons1"><i
                                         class="fa fa-bell"></i><span></button>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -519,218 +453,216 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             </button>
                         </div>
 
-
                     </form>
 
                 </div>
 
 
             </nav>
-            <div class="tab">
-                <ul class="progressbar">
-                    <li class="tablinks active"><a  onclick="openEdit(event, 'Basic')">Basic Details</a></li>
-                    <li class="tablinks"><a  onclick="openEdit(event, 'Education')">Educational Details</a></li>
-                    <li class="tablinks"><a  onclick="openEdit(event, 'Experience')">Experience Details</a></li>
-                </ul>
-            </div>
-            <div id="Basic" class="tabcontent">
+
+
+
+
             <div class=" col-md-12 ">
                 <div class=" widget-content ">
-                    <form class="" action="{{ route('add.candidate') }}" method="POST" enctype="multipart/form-data">
+                    <form class="" action="{{ route('create.job') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @if(session()->has('message'))
                         <div class="alert alert-success">
                             {{ session()->get('message') }}
                         </div>
                         @endif
-                    <div class="row col-lg-12">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div class="row col-lg-12">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group select-sup">
 
 
+                                    <label class="title-label">Job Category</label>
 
 
-                           
-                                <label class="title-label"> image</label>
+                                    <select class="form-control select form-control-lg" name="jobcategory" required>
+
+                                        <option value="0" class="text-capitalize">
+                                        </option>
+                                        <option value="Boosted" class="text-capitalize">
+                                            Boosted
+                                        </option>
+                                        <option value="medicalfield" class="text-capitalize">
+                                            Normal
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group">
+                                    <label class="title-label">Job Name</label>
+
+                                    <input type="text" class="form-control form-control-lg" name="jobname">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group">
+                                    <label class="title-label">No. Of Openings</label>
+
+                                    <input type="text" class="form-control form-control-lg" name="openings" required>
+                                </div>
+                            </div>
 
 
+                            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
 
-                                <button class="btn fileicon " type="button">
-                                    <div class="dropzone">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                        <input type="file" name="image"  class="upload-input " />
+                                <div class=" form-group">
+                                    <label class="title-label"></i>Job Description</label>
+
+                                    <textarea rows="4" class="form-control1" name="jobdescription"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+
+                                <div class=" form-group">
+                                    <label class="title-label"></i>Prefered Skills:</label>
+                                    <input type="text" rows="4" name="skill" id="skill" class="form-control"
+                                        style=" height: 100px;" />
+
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group">
+                                    <label class="title-label">Experience</label>
+                                    <div class="row  ">
+                                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                            <input type="number" class="form-control form-control-lg " id="datepicker"
+                                                placeholder="years" name="years" style="text-align: right;">
+                                        </div>
+                                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                            <input type="number" name="months" class="form-control form-control-lg "
+                                                placeholder="months" required style="text-align: right;">
+                                        </div>
                                     </div>
-                                </button>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group">
+                                    <label class="title-label">Salary</label>
+
+                                    <input type="text" class="form-control form-control-lg" name="salary" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group select-date">
+                                    <label class="title-label">Expiry Date</label>
+
+                                    <input type="date" id="deadline" class="form-control form-control-lg"
+                                        name="expirydate" required></span>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group">
+                                    <label class="title-label">Job Location</label>
+
+                                    <input type="text" class="form-control form-control-lg" name="joblocation" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                <div class=" form-group select-sup">
 
 
+                                    <label class="title-label">Job Industry</label>
 
-                        
+                                    <select class="form-control form-control-lg " name="jobindustry" required>
+                                        <option value=""></option>
+                                        @foreach($items as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
 
                         </div>
-               
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label"> Name</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="name">
-                                </div>
-                            </div>
-                            
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label"> Email Address</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="email">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                   
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Mobile Number</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="mobile">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Prefered Job location</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="joblocation">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Height</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="height">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">weight</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="weight">
-                                </div>
-                            </div>
-                            <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Address</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="address">
-                                </div>
-                            </div>
-                          
-
-
-
-
-                                
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-
-
-
-
-
-
-
-                                <div class="text-center">
-
-                                    <button type="submit"
-                                        class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-letter-spacing: 1.25px;
-border:none;
-color: #FFFFFF;
-text-transform: uppercase;
-opacity: 1;
-background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
-width: 100px;
-;">
-                                        Add
-                                        <i class="icon-database-insert ml-1"></i>
-                                    </button>
-                                </div>
-
-
-                            </div>
-                        </div>
-
                 </div>
-                </form>
+
             </div>
+            </form>
         </div>
-   
-
-
-
-
-
-<div id="Education" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
+    </div>
 </div>
 
-<div id="Experience" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
 </div>
+
+
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 <script>
-    function openEdit(evt, details) {
+    $(document).ready(function () {
 
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(details).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+        $('#skill').tokenfield({
+            autocomplete: {
+                source: ['PHP', 'Codeigniter', 'HTML', 'JQuery', 'Javascript', 'CSS', 'Laravel',
+                    'CakePHP', 'Symfony', 'Yii 2', 'Phalcon', 'Zend', 'Slim', 'FuelPHP', 'PHPixie',
+                    'Mysql'
+                ],
+                delay: 100
+            },
+            showAutocompleteOnFocus: true
+        });
+
+        $('#programmer_form').on('submit', function (event) {
+            event.preventDefault();
+            if ($.trim($('#name').val()).length == 0) {
+                alert("Please Enter Your Name");
+                return false;
+            } else if ($.trim($('#skill').val()).length == 0) {
+                alert("Please Enter Atleast one Skill");
+                return false;
+            } else {
+                var form_data = $(this).serialize();
+                $('#submit').attr("disabled", "disabled");
+                $.ajax({
+                    url: "insert.php",
+                    method: "POST",
+                    data: form_data,
+                    beforeSend: function () {
+                        $('#submit').val('Submitting...');
+                    },
+                    success: function (data) {
+                        if (data != '') {
+                            $('#name').val('');
+                            $('#skill').tokenfield('setTokens', []);
+                            $('#success_message').html(data);
+                            $('#submit').attr("disabled", false);
+                            $('#submit').val('Submit');
+                        }
+                    }
+                });
+                setInterval(function () {
+                    $('#success_message').html('');
+                }, 5000);
+            }
+        });
+
+    });
 
 </script>
