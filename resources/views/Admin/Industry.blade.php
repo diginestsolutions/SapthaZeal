@@ -101,6 +101,10 @@
             </div>
         </div>
     </div>
+
+
+
+
 </div>
 <!------------add notification-------------->
 <div class="modal fade" id="industryModal" tabindex="-1" role="dialog" aria-labelledby="industryModal"
@@ -284,3 +288,37 @@ width: 100px;
 </script>
 @endsection
 
+
+<script>
+    function myFunction() {
+        if (!confirm("Are You Sure to delete this"))
+            event.preventDefault();
+    }
+
+</script>
+
+
+
+
+
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+
+
+$('.navbar-toggler').click(function () {
+    if ($(window).width() < 960) {
+        $("#sidenav1").toggle("slide");
+}
+else {
+    $("#sidenav1").toggle();
+}
+  
+    
+});
+
+});
+    </script> -->
