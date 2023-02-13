@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use Validator;
 class AdminprofileController extends Controller
 {
     /**
@@ -38,9 +39,19 @@ class AdminprofileController extends Controller
     public function store(Request $request)
     {
          # Validate Data
-         $request->validate([
-            'name' => 'required'
+         $validator = Validator::make($request->all(), [
+            'name'       => 'required|string|between:2,100',
+            'email'      => 'required|string|email|max:100|unique:users',
+         
+            'phone'     => 'required|integer|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:users',
+            'image'      => 'nullable|mimetypes:image/jpeg,image/jpg,image/png',
+            'designation'=> 'required|string|',
+            'role'       => 'required|string|',
+            'status'     => 'required|string'
         ]);
+
+        
+      
         try{
        
         $code = random_int(1000, 9999);
@@ -63,7 +74,7 @@ class AdminprofileController extends Controller
         }
         $user->designation	    = $request->designation;   
         $user->role             = "admin";   
-        $user->status           = "1";  
+        $user->status           = "Active";  
         $user->save(); 
        
         
