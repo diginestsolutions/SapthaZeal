@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndustryController;
-use App\Http\Controllers\JobProviderController;
+use App\Http\Controllers\Admin\JobProviderController;
 use App\Http\Controllers\Admin\AdminprofileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubController;
@@ -68,15 +68,18 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::post('/updateadmin',[AdminprofileController::class, 'update'])->name('update.admin');
     Route::post('/updateadmins/{id}',[AdminprofileController::class, 'update1'])->name('update1.admin');
     Route::post('/admindestroy/{id}', [AdminprofileController::class, 'destroy'])->name('admin.destroy');
-    //job provider
 
-    Route::get('/jobprovider', [JobProviderController::class, 'jobprovider'])->name('view.jobprovider');
-    Route::get('/add', [JobProviderController::class, 'jobprovider1'])->name('get.addjobprovider');
-    Route::post('/addjobprovider', [JobProviderController::class, 'addjobprovider'])->name('add.jobprovider');
-    Route::get('category/{id}', [JobProviderController::class, 'getcategory'])->name('categories');
-    Route::get('/editjobprovider/{id}', [JobProviderController::class, 'edit'])->name('get.editjobprovider');
-    Route::post('/update/{id}', [JobProviderController::class, 'update'])->name('update.jobprovider');
-    Route::get('/show/{id}', [JobProviderController::class, 'show'])->name('show.jobprovider');
+    //job provider
+    Route::get('/jobprovider', [JobProviderController::class, 'index'])->name('view.jobprovider');
+    Route::get('/jobprovider/create', [JobProviderController::class, 'create'])->name('get.addjobprovider');
+    Route::post('/jobprovider/store', [JobProviderController::class, 'store'])->name('add.jobprovider');
+    Route::get('/jobprovider/category/{id}', [JobProviderController::class, 'getcategory'])->name('categories');
+    Route::post('/jobprovider/{id}/status-approved', [JobProviderController::class, 'statusapproved'])->name('jobprovider.approvde');
+    Route::post('/jobprovider/{id}/status-rejected', [JobProviderController::class, 'statusrejected'])->name('jobprovider.rejected');
+    Route::get('/jobprovider/edit/{id}', [JobProviderController::class, 'edit'])->name('get.editjobprovider');
+    Route::post('/jobprovider/update/{id}', [JobProviderController::class, 'update'])->name('update.jobprovider');
+    Route::get('/jobprovider/show/{id}', [JobProviderController::class, 'show'])->name('show.jobprovider');
+    
     //subscription plan
     Route::get('/subcription', [SubController::class, 'index'])->name('view.subscription');
 
