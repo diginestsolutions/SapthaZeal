@@ -24,9 +24,10 @@ class CandidateController extends Controller
         $user->name 	= $request->name;
         $user->email	= $request->email;
         $user->mobile	= $request->mobile;
-        $user->password = bcrypt($request->password);
+        $user->password = bcrypt(1234);
+        $user->otp = 1234;
         
-        $user->role     ="jobseeker";
+        $user->role ="jobseeker";
         if ($request->hasFile('image')) {
             $filename = $request->file('image')->getClientOriginalName();
             $filename = str_replace(' ', '-', $filename);
