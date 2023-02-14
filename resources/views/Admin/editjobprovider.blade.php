@@ -304,6 +304,71 @@ padding-left: 50px !important;
     color: #7ECD7C;
     pointer-events: none;
 }
+.switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #FFCDDD;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: #42E927;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #B0FFA3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+        background-color: white;
+    }
+
+    .slider.round:after {
+
+        background-color: red;
+    }
 
 </style>
 
@@ -395,7 +460,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.jobprovider') }}"><span
                             class="icon2"><button class="btn-back" style="border-radius:50px;
-            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job
+            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Edit Job
                     Provider
                 </h3>
 
@@ -435,7 +500,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
             <div class=" col-md-12 mt-4 ">
                 <div class=" widget-content ">
-                    <form  action="{{ route('add.jobprovider') }}" method="POST" enctype="multipart/form-data">
+                    <form  action="{{ route('update.jobprovider', $provider->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @if(session()->has('message'))
                         <div class="alert alert-success">
@@ -451,7 +516,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label"> Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="name">
+                                    <input type="text" class="form-control form-control-lg" name="name" value="{{$provider->name}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -462,7 +527,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Official Email Address</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="email">
+                                    <input type="text" class="form-control form-control-lg" name="email" value="{{$provider->email}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -473,7 +538,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Mobile Number</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="mobile">
+                                    <input type="text" class="form-control form-control-lg" name="mobile" value="{{$provider->mobile}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -484,7 +549,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Designation</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="designation">
+                                    <input type="text" class="form-control form-control-lg" name="designation" value="{{$provider->designation}}">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -495,7 +560,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Company Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="company_name">
+                                    <input type="text" class="form-control form-control-lg" name="company_name" value="{{$provider->company_name}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -513,7 +578,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <select class="form-control select " name="jobindustry" required>
                                     <option value=""></option>
                                         @foreach($items as $item)
-                                        <option value="{{$item->name}}">{{$item->name}}</option>
+                                        <option value="{{$item->name}}" {{$provider->jobindustry ==$item->name ? 'selected' : ''}}>{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -530,21 +595,19 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                                     <label class="title-label">Address</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="address">
+                                    <input type="text" class="form-control form-control-lg" name="address" value="{{$provider->address}}">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
+                                <input type="hidden" value="{{$provider->subscriptionplan}}" id="subscription_id">
+                                <input type="hidden" value="{{$provider->duration}}" id="duration_id">
                                 <div class=" form-group select-sup">
                                     <label class="title-label">Subscription Plan</label>
 
                                     <select class="form-control select " name="subscriptionplan" id="plan" required>
                                     <option value=""></option>
                                         @foreach($subs as $sub)
-                                        <option value="{{$sub->id}}">{{$sub->name}}</option>
+                                        <option value="{{$sub->id}}" {{$provider->subscriptionplan == $sub->id ? 'selected' : ''}}>{{$sub->name}}</option>
                                         @endforeach
 
                                     </select>
@@ -552,12 +615,12 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group select-sup">
-                                    <label class="title-label">Duration</label>
+                                    <label class="title-label">Duration<span style="color: red;">*</span></label>
 
                                     <select class="form-control select " id="subplan" name="duration" required>
 
 
-                                        <option value="0"></option>
+                                        <option value="">Choose Duration</option>
 
                                     </select>
                                 </div>
@@ -570,16 +633,40 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                                     <option value="0" class="text-capitalize">
                                             </option>
-                                            <option value="paid" class="text-capitalize">
+                                            <option value="paid" class="text-capitalize" {{$provider->payment_status == "paid" ? 'selected' : ''}}>
                                                 paid
                                             </option>
                                             
                                     </select>
                                 </div>
                             </div>
-
-
-
+                            <input type="hidden" id="providers_id" value="{{ $provider->id }}"/>
+                            @if($provider->status =='Saved')  
+                            <div class="col-xl- col-lg-4 col-md-4 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label">Approved Status</label><br/>
+                                    <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                            class="mt-2"><i class="fa-solid fa-circle-check"
+                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$provider->id}});"></i></a>
+                                    <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            class="mt-2" style="margin-right:5px;"><i class="fa fa-times-circle"
+                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$provider->id}});"></i></a>
+                               
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-xl- col-lg-4 col-md-4 col-sm-12">
+                                <div class=" form-group"><div class="switch-wrapper">
+                                    <label class="title-label">Active Status</label><br/>
+                                    <label class="switch s-icons s-outline  s-outline-default">
+                                            <input class="action-switch_1 toggle-class" type="checkbox"
+                                                data-id={{$provider->id}} {{ $provider->status == "Active" ? 'checked' : '' }}>
+                                            <span class="slider round" data-popup="tooltip"
+                                                title="Click to Active"></span>
+                                    </label>  </div>
+                                </div>
+                            </div>
+                            @endif
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
 
@@ -622,43 +709,179 @@ width: 100px;
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
 <script type="text/javascript">
     $(document).ready(function () {
         $('#plan').change(function () {
-
             var id = $(this).val();
-
             $('#subplan').find('option').not(':first').remove();
-
-
             $.ajax({
                 url: 'category/' + id,
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    var len = 0;
-                    if (response.data != null) {
-                        len = response.data.length;
+                    var period = response.data.period;
+                    var option = '';
+                    for (var i = 0; i < period.length; i++) {
+                       option += '<option value="' + period[i] + '">' + period[i] +
+                                        '</option>';
                     }
-
-                    if (len > 0) {
-                        for (var i = 0; i < len; i++) {
-                            var id = response.data[i].id;
-                            var period = response.data[i].period;
-                            var option = '';
-                            for (var i = 0; i < period.length; i++) {
-                                option += '<option value="' + period[i] + '">' + period[i] +
-                                    '</option>';
-                            }
-
-
-
-                            $("#subplan").append(option);
-                        }
-                    }
+                    $("#subplan").append(option);
                 }
             })
         });
     });
-
+    $(document).ready(function () {
+        var id = $('#subscription_id').val();
+        var duration_id = $('#duration_id').val();
+        if(id)
+        {
+            $('#subplan').find('option').not(':first').remove();
+            var url = '{{ route("categories", ":id") }}';
+            url = url.replace(':id', id);
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    var period = response.data.period;
+                    var option = '';
+                    for (var i = 0; i < period.length; i++) {
+                        if(duration_id == period[i]) {
+                            option += '<option value="' + period[i] + '" selected>' + period[i] +
+                                        '</option>';
+                        }else {
+                            option += '<option value="' + period[i] + '">' + period[i] +
+                                        '</option>';
+                        }
+                    }
+                    $("#subplan").append(option);
+                }
+            })
+        }
+    });
+    $(function () {
+        $('.toggle-class').change(function () {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            alert(status);
+            if(status == 1)
+                statusapproved();
+            else
+                statusrejected();
+        })
+    })
+    function statusapproved()
+    {
+        alert("aaa");
+        var id = $('#providers_id').val();
+        var url = '{{ route("jobprovider.approvde", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Approved it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job provider has been approved.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+    function statusrejected()
+    {
+        var id = $('#providers_id').val();
+        var url = '{{ route("jobprovider.rejected", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Rejected it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job provider has been rejected.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
 </script>

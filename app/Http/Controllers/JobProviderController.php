@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Jobprovider;
@@ -45,18 +45,7 @@ class JobProviderController extends Controller
           
             $provider->subscriptionplan     = $request->subscriptionplan;
             $provider->duration             = $request->duration;
-            if(str_contains($request->duration, "month")){
-            $date                           = str_replace("month","",$request->duration);
             
-            $newDateTime                    = Carbon::now()->addMonths($date)->format('Y-m-d');
-           
-            }
-           else{
-            $date                           = str_replace("year","",$request->duration);
-            $newDateTime                    = Carbon::now()->addYear($date)->format('Y-m-d');
-           }
-          
-            $provider->planexpiry_date      = $newDateTime;
             $provider->payment_status       = $request->payment_status;
             $provider->status               = $request->status;
             $provider->save();

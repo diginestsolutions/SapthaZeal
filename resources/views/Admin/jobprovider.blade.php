@@ -79,33 +79,46 @@
                             </tr>
 
                             @foreach ($results as $providers)
-                        <tbody>
+                           <tbody>
 
                             <tr>
-                                <td>#{{ $providers->provider_id}}</td>
+                                <td>#{{ $providers->jobprovider_id}}</td>
                                 <td>{{$providers->created_at->format('d-m-Y')}}</td>
                                 <td>{{$providers->company_name}}</td>
-                                <td>{{$providers->user['mobile']}}</td>
-                                <td>{{$providers->user['email']}}</td>
+                                <td>{{$providers->mobile}}</td>
+                                <td>{{$providers->email}}</td>
 
-
-
-                                <td style="color:#48BA48">
-                                    {{$providers->user['status']}}
-                                </td>
-
+                                <input type="hidden" id="providers_id_{{$providers->jobprovider_id}}" value="{{ $providers->id }}"/>
+                                @if($providers->status =='Saved')  
                                 <td class="text-right">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
+                                        <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                            class="mt-2"><i class="fa-solid fa-circle-check"
+                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$providers->jobprovider_id}});"></i></a>
+                                        <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            class="mt-2" style="margin-right:5px;"><i class="fa fa-times-circle"
+                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$providers->jobprovider_id}});"></i></a>
+                                    </div>
+                                </td>
+                                @endif
+                                @if($providers->status =='Active') 
+                                <td style="color:#48BA48">
+                                    Approved
+                                </td>
+                                @endif
+                                @if($providers->status =='Inactive') 
+                                <td style="color:red">
+                                    Rejected
+                                </td>
+                                @endif
+                                <td class="text-right">
+                                    <div class="action-btns d-flex justify-content-end">
+                                        <a href=" {{route('show.jobprovider',$providers->id)}}" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
                                                 class="fa fa-eye"></i></a>
 
                                         <a href="{{ route('get.editjobprovider',$providers->id) }}" data-popup="tooltip"
                                             title="Edit" data-placement="bottom" class="mt-2"
                                             style="margin-right:5px;"><i class="fa fa-edit"></i></a>
-
-
-
-
                                     </div>
                                 </td>
                             </tr>
@@ -125,7 +138,122 @@
 </div>
 
 @endsection
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
+<script>
+    function statusapproved(id)
+    {
+        var id = $(`#providers_id_${id}`).val();
+        var url = '{{ route("jobprovider.approvde", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Approved it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job provider has been approved.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+    function statusrejected(id)
+    {
+        var id = $(`#providers_id_${id}`).val();
+        var url = '{{ route("jobprovider.rejected", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Rejected it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job provider has been rejected.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+</script>
 
 <script>
     function myFunction() {

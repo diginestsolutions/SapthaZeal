@@ -445,13 +445,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         <div class="row col-lg-12">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-
-
-
                                 <div class=" form-group">
-                                    <label class="title-label"> Name</label>
+                                    <label class="title-label">Name<span style="color: red;">*</span></label>
 
-                                    <input type="text" class="form-control form-control-lg" name="name">
+                                    <input type="text" class="form-control form-control-lg" name="name" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -460,9 +457,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                                 <div class=" form-group">
-                                    <label class="title-label">Official Email Address</label>
+                                    <label class="title-label">Official Email Address<span style="color: red;">*</span></label>
 
-                                    <input type="text" class="form-control form-control-lg" name="email">
+                                    <input type="text" class="form-control form-control-lg" name="email" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -471,9 +468,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                                 <div class=" form-group">
-                                    <label class="title-label">Mobile Number</label>
+                                    <label class="title-label">Mobile Number<span style="color: red;">*</span></label>
 
-                                    <input type="text" class="form-control form-control-lg" name="mobile">
+                                    <input type="text" class="form-control form-control-lg" name="mobile" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -495,7 +492,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Company Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="company_name">
+                                    <input type="text" class="form-control form-control-lg" name="company_name" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -508,10 +505,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group select-sup">
 
 
-                                    <label class="title-label">Job Industry</label>
+                                    <label class="title-label">Job Industry<span style="color: red;">*</span></label>
 
                                     <select class="form-control select " name="jobindustry" required>
-                                    <option value=""></option>
+                                        <option value="">Choose Industry</option>
                                         @foreach($items as $item)
                                         <option value="{{$item->name}}">{{$item->name}}</option>
                                         @endforeach
@@ -530,7 +527,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                                     <label class="title-label">Address</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="address">
+                                    <input type="textarea" class="form-control form-control-lg" name="address"  rows="5" >
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -539,10 +536,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                                 <div class=" form-group select-sup">
-                                    <label class="title-label">Subscription Plan</label>
+                                    <label class="title-label">Subscription Plan<span style="color: red;">*</span></label>
 
                                     <select class="form-control select " name="subscriptionplan" id="plan" required>
-                                    <option value=""></option>
+                                    <option value="">Choose Subscription Plan</option>
                                         @foreach($subs as $sub)
                                         <option value="{{$sub->id}}">{{$sub->name}}</option>
                                         @endforeach
@@ -552,24 +549,23 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group select-sup">
-                                    <label class="title-label">Duration</label>
+                                    <label class="title-label">Duration<span style="color: red;">*</span></label>
 
                                     <select class="form-control select " id="subplan" name="duration" required>
 
 
-                                        <option value="0"></option>
+                                        <option value="">Choose Duration</option>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group select-sup">
-                                    <label class="title-label">Payment Status</label>
+                                    <label class="title-label">Payment Status<span style="color: red;">*</span></label>
 
                                     <select class="form-control select " name="payment_status" required>
 
-                                    <option value="0" class="text-capitalize">
-                                            </option>
+                                    <option value="" class="text-capitalize">Choose Payment Status</option>
                                             <option value="paid" class="text-capitalize">
                                                 paid
                                             </option>
@@ -636,26 +632,13 @@ width: 100px;
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    var len = 0;
-                    if (response.data != null) {
-                        len = response.data.length;
+                    var period = response.data.period;
+                    var option = '';
+                    for (var i = 0; i < period.length; i++) {
+                       option += '<option value="' + period[i] + '">' + period[i] +
+                                        '</option>';
                     }
-
-                    if (len > 0) {
-                        for (var i = 0; i < len; i++) {
-                            var id = response.data[i].id;
-                            var period = response.data[i].period;
-                            var option = '';
-                            for (var i = 0; i < period.length; i++) {
-                                option += '<option value="' + period[i] + '">' + period[i] +
-                                    '</option>';
-                            }
-
-
-
-                            $("#subplan").append(option);
-                        }
-                    }
+                    $("#subplan").append(option);
                 }
             })
         });
