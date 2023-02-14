@@ -97,8 +97,7 @@ class JobProviderController extends Controller
     public function show($id)
     {
         $subs = Subscription::get();
-        $provider = JobProvider::with('user')->find($id);
-        
+        $provider = JobProvider::with('subscription:id,name')->find($id);
         return view('Admin/viewjobprovider', compact('provider','subs')); 
     }
 

@@ -9,7 +9,7 @@
     }
     .form-control[readonly] {
     background-color: #fff !important;
-   
+
     }
     .form-control {
     border-radius: 16px !important;
@@ -463,7 +463,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label"> Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="name" value="{{$provider->user['name']}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" name="name" value="{{$provider->name}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -474,7 +474,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Official Email Address</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="email"value="{{$provider->user['email']}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" name="email"value="{{$provider->email}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -485,7 +485,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Mobile Number</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="mobile" value="{{$provider->user['mobile']}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" name="mobile" value="{{$provider->mobile}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -517,25 +517,15 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
 
-                                <div class=" form-group select-sup">
+                                <div class=" form-group">
 
 
                                     <label class="title-label">Job Industry</label>
 
-                                    <select class="form-control select " name="jobindustry" required readonly>
-                                  
-                                    
-                                        <option value=" {{$provider->jobindustry }}">{{$provider->jobindustry}}</option>
-                                   
-                                    </select>
+                                    <input type="text" class="form-control form-control-lg" value="{{$provider->jobindustry}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-
-
-
-
-
 
                                 <div class=" form-group">
 
@@ -548,53 +538,25 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
 
-
-
-                                <div class=" form-group select-sup">
+                                <div class=" form-group">
                                     <label class="title-label">Subscription Plan</label>
 
-                                    <select class="form-control select " name="subscriptionplan" id="plan" required readonly>
-                                 
-                                    @foreach($subs as $sub)
-                                        <option value="{{$sub->id}}" {{$sub->id == $provider->subscriptionplan ? 'selected' : '' }}>{{$sub->name}}</option>
-                                        @endforeach
-                                     
-
-                                    </select>
+                                    <input type="text" class="form-control form-control-lg" value="{{$provider->subscription->name}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                <div class=" form-group select-sup">
+                                <div class=" form-group">
                                     <label class="title-label">Duration</label>
 
-                                    <select class="form-control select " id="subplan" name="duration" required readonly>
-
-
-                                        
-                                      
-                                        <option value=" {{$provider->duration}}" >{{$provider->duration}}</option>
-                                       
-
-                                    </select>
+                                    <input type="text" class="form-control form-control-lg" value="{{$provider->duration}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                <div class=" form-group select-sup">
+                                <div class=" form-group">
                                     <label class="title-label">Payment Status</label>
-
-                                    <select class="form-control select " name="payment_status" required readonly>
-
-                                    <option value=" {{$provider->payment_status}}" >{{$provider->payment_status}}</option>
-                                            
-                                    </select>
+                                    <input type="text" class="form-control form-control-lg" value="{{$provider->payment_status}}" readonly>
                                 </div>
                             </div>
-
-
-
-
-                            
-
 
                             </div>
                         </div>
