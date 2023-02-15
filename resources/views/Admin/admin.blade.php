@@ -35,7 +35,7 @@
     }
 
     .upload-icon1 {
-        margin: 25px 2px 2px 2px;
+        margin: -15px 2px 2px 2px;
         background-color: #208CD1;
         border-radius: 5px;
     }
@@ -396,8 +396,11 @@
 
                                 <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
+                                    <img id="preview" 
+                      style="height: 78px;width: 98px;">
                                         <img src="../assets/cloud-computing.png" class="upload-icon1" />
-                                        <input type="file" class="upload-input1" name="image" required />
+                                        <input type="file" class="upload-input1" name="image" id="image" required />
+                                       
                                     </div>
                                 </button>
 
@@ -859,6 +862,27 @@ width: 100px;
             })
         }
     }
+
+</script>
+<script type="text/javascript">
+     
+$(document).ready(function (e) {
+
+  
+   $('#image').change(function(){
+           
+    let reader = new FileReader();
+
+    reader.onload = (e) => { 
+
+      $('#preview').attr('src', e.target.result); 
+    }
+
+    reader.readAsDataURL(this.files[0]); 
+  
+   });
+  
+});
 
 </script>
 @endsection
