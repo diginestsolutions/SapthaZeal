@@ -33,7 +33,23 @@
 
     </nav>
 
-
+    {{-- Message --}}
+    @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+    </div>
+    @endif
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Error !</strong> {{ session('error') }}
+    </div>
+    @endif
     <nav class="navbar navbar-light ">
 
         <a class="btn " href="{{ route('get.addjob') }}"> <span class="icons"> <i class="fa fa-plus "
@@ -71,35 +87,47 @@
                             <tr>
                                 <td>#{{ $jobs->job_id}}</td>
                                 <td>{{ $jobs->created_at->format('Y-m-d')}}</td>
-                                <td></td>
+                                <td>{{ $jobs->jobprovider }}</td>
                                 <td>{{ $jobs->jobname}}</td>
                                 <td>{{ $jobs->jobcategory}}</td>
                                 <td>{{ $jobs->expirydate}}</td>
 
+                                <input type="hidden" id="jobs_id_{{$jobs->job_id}}" value="{{ $jobs->id }}"/>
+                                @if($jobs->status =='Saved')  
                                 <td class="text-right">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                        <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
                                             class="mt-2"><i class="fa-solid fa-circle-check"
-                                                style="font-size:25px;color:#7ECD7C"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$jobs->job_id}});"></i></a>
+                                        <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-times-circle"
-                                                style="font-size:25px;color:#C15A5A"></i></a>
-
-
+                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$jobs->job_id}});"></i></a>
                                     </div>
                                 </td>
+                                @endif
+                                @if($jobs->status =='Active') 
+                                <td style="color:#48BA48">
+                                    Approved
+                                </td>
+                                @endif
+                                @if($jobs->status =='Inactive') 
+                                <td style="color:red">
+                                    Rejected
+                                </td>
+                                @endif
 
                                 <td class="text-right" style="width: 10%;">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                        <a href="{{route('show.job',$jobs->id)}}" data-popup="tooltip" title="View" style="margin-right:5px;"
                                             class="mt-2"><i class="fa fa-eye"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                        <a href="{{ route('edit.job',$jobs->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
-
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            
+                                        <a href="{{ route('response.job',$jobs->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-user"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            class="mt-2"><i class="fa fa-trash"></i></a>
+                                        <a href="javascript:void(0)" onclick="return deleteitem({{$jobs->job_id}});" data-popup="tooltip"
+                                            data-placement="bottom" class="mt-2" title="Delete"><i class="fa fa-trash"></i></a>
+                                   
 
                                     </div>
                                 </td>
@@ -120,29 +148,177 @@
 </div>
 
 @endsection
-
-
-
-
-
-
-
-
-<!-- <script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
 <script>
-    $(document).ready(function () {
-
-
-$('.navbar-toggler').click(function () {
-    if ($(window).width() < 960) {
-        $("#sidenav1").toggle("slide");
-}
-else {
-    $("#sidenav1").toggle();
-}
-  
-    
-});
-
-});
-    </script> -->
+    function statusapproved(id)
+    {
+        var id = $(`#jobs_id_${id}`).val();
+        var url = '{{ route("job.approvde", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Approved it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job has been approved.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+    function statusrejected(id)
+    {
+        var id = $(`#jobs_id_${id}`).val();
+        var url = '{{ route("job.rejected", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Rejected it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job has been rejected.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+    function deleteitem(id)
+    {
+        var id = $(`#jobs_id_${id}`).val();
+        var url = '{{ route("job.destroy", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job has been deleted.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                } else {
+                  swal("Cancelled", "Job is safe :)", "error");
+                }
+            });
+    }
+</script>

@@ -27,8 +27,8 @@ class JobController extends Controller
             $job->jobdescription            = $request->jobdescription;
             $job->skills                    = $request->skills;
          
-            $job->experienceyears           =$request->years ."years";
-            $job->experiencemonths          =$request->months ."months";
+            $job->experienceyears           =$request->years;
+            $job->experiencemonths          =$request->months;
             $job->salary                    = $request->salary;
             $job->expirydate                =$request->expirydate;
             $job->joblocation               =$request->joblocation;

@@ -773,7 +773,6 @@ width: 100px;
     })
     function statusapproved()
     {
-        alert("aaa");
         var id = $('#providers_id').val();
         var url = '{{ route("jobprovider.approvde", ":id") }}';
         url = url.replace(':id', id);

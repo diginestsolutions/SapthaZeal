@@ -178,7 +178,7 @@ input:focus::-webkit-datetime-edit{ color: #000; }
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -342,7 +342,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
               
 <div class=" col-lg-10">
-    <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+    <img src="../assets/logo.png" class="img-fluid " alt="Sample image">
 </div>
 <div class="justify-content-center">
     <ul >
@@ -377,7 +377,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <div class=" col-md-3 ">
-                <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
             </div>
             <ul class="navbar-nav mr-auto flex-column vertical-nav">
                 <li class="nav-item">
@@ -477,8 +477,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                                     <select class="form-control select form-control-lg" name="jobcategory"  required>
                                        
-                                            <option value="0" class="text-capitalize">
-                                            </option>
+                                            <option value="" class="text-capitalize"> Choose Category</option>
                                             <option value="Boosted" class="text-capitalize">
                                                 Boosted
                                             </option>
@@ -494,7 +493,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Job Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="jobname">
+                                    <input type="text" class="form-control form-control-lg" name="jobname" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">

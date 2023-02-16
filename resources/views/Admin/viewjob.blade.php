@@ -475,23 +475,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         <div class="row col-lg-12">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                                <div class=" form-group select-sup">
-
+                                <div class="form-group">
 
                                     <label class="title-label">Job Category</label>
 
-
-                                    <select class="form-control select form-control-lg" name="jobcategory" required>
-
-                                        <option value="0" class="text-capitalize">
-                                        </option>
-                                        <option value="Boosted" class="text-capitalize">
-                                            Boosted
-                                        </option>
-                                        <option value="medicalfield" class="text-capitalize">
-                                            Normal
-                                        </option>
-                                    </select>
+                                    <input type="text" class="form-control form-control-lg" value="{{$job->jobcategory}}" readonly>
                                 </div>
                             </div>
 
@@ -500,7 +488,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Job Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="jobname">
+                                    <input type="text" class="form-control form-control-lg" name="jobname" value="{{$job->jobname}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -508,7 +496,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">No. Of Openings</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="openings" required>
+                                    <input type="text" class="form-control form-control-lg" name="openings" value="{{$job->openings}}" readonly>
                                 </div>
                             </div>
 
@@ -518,7 +506,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label"></i>Job Description</label>
 
-                                    <textarea rows="4" class="form-control1" name="jobdescription"></textarea>
+                                    <textarea rows="4" class="form-control1" name="jobdescription">{{$job->jobdescription}}</textarea>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
@@ -526,7 +514,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label"></i>Prefered Skills:</label>
                                     <input type="text" rows="4" name="skill" id="skill" class="form-control"
-                                        style=" height: 100px;" />
+                                        style=" height: 100px;" value="{{$job->skills}}" readonly/>
 
                                 </div>
                             </div>
@@ -538,11 +526,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <div class="row  ">
                                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                             <input type="number" class="form-control form-control-lg " id="datepicker"
-                                                placeholder="years" name="years" style="text-align: right;">
+                                                placeholder="years" name="years" style="text-align: right;" value="{{$job->experienceyears}}" readonly>
                                         </div>
                                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                             <input type="number" name="months" class="form-control form-control-lg "
-                                                placeholder="months" required style="text-align: right;">
+                                                placeholder="months" required style="text-align: right;" value="{{$job->experiencemonths}}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -552,17 +540,17 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Salary</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="salary" required>
+                                    <input type="text" class="form-control form-control-lg" name="salary" value="{{$job->salary}}" readonly>
                                 </div>
                             </div>
 
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                                <div class=" form-group select-date">
+                                <div class=" form-group">
                                     <label class="title-label">Expiry Date</label>
 
-                                    <input type="date" id="deadline" class="form-control form-control-lg"
-                                        name="expirydate" required></span>
+                                    <input type="text" id="deadline" class="form-control form-control-lg"
+                                        name="expirydate" value="{{$job->expirydate}}" readonly></span>
                                 </div>
                             </div>
 
@@ -571,22 +559,17 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Job Location</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="joblocation" required>
+                                    <input type="text" class="form-control form-control-lg" name="joblocation" value="{{$job->joblocation}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                                <div class=" form-group select-sup">
+                                <div class=" form-group" >
 
 
                                     <label class="title-label">Job Industry</label>
 
-                                    <select class="form-control form-control-lg " name="jobindustry" required>
-                                        <option value=""></option>
-                                        @foreach($items as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control form-control-lg" name="joblocation" value="{{$job->industry->name}}" readonly>
                                 </div>
                             </div>
 

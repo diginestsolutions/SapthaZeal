@@ -2,22 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Industry;
-use Illuminate\Support\Facades\DB;
+use App\Models\Candidate;
+use App\Models\Job;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-//use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class Job extends Model
+class JobAppliedDetails extends Model
 {
     use HasFactory;
-    protected $collection = 'jobs';
-    protected $guarded = [];
 
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment
-        $this->job_id = self::getID();
+        $this->job_applied_id = self::getID();
     }
 
     public static function bootUseAutoIncrementID()
@@ -35,16 +33,20 @@ class Job extends Model
     private static function getID()
     {
         $seq = DB::connection('mongodb')->getCollection('counters')->findOneAndUpdate(
-            ['job_id' => 'job_id'],
+            ['job_applied_id' => 'job_applied_id'],
             ['$inc' => ['seq' => 1]],
             ['new' => true, 'upsert' => true]
         );
         return $seq->seq;
     }
 
-    public function industry()
+    public function candidate()
     {
-        return $this->belongsTo(Industry::class,'jobindustry');
+        return $this->belongsTo(Candidate::class,'candidate_id');
+    }
+
+    public function Job()
+    {
+        return $this->belongsTo(Job::class,'job_id');
     }
 }
-

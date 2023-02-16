@@ -113,7 +113,6 @@ class JobProviderController extends Controller
         $subs = Subscription::get();
 
         $provider = JobProvider::find($id);
-       //dd($provider);
         return view('Admin/editjobprovider', compact('provider','items','subs'));
     }
 
