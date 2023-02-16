@@ -7,70 +7,84 @@
         text-decoration: none;
 
     }
-    
 
-    .progressbar {
-        counter-reset: step;
+    .con1 {
+
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 15px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
-    .progressbar li {
-        list-style: none;
-        display: inline-block;
-        width: 30.33%;
-        position: relative;
-        text-align: center;
+    /* Hide the browser's default radio button */
+    .con1 input {
+        position: absolute;
+        opacity: 0;
         cursor: pointer;
     }
 
-    .progressbar li:before {
-        content: counter(step);
-        counter-increment: step;
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        border: 1px solid #ddd;
-        border-radius: 100%;
-        display: block;
-        text-align: center;
-        margin: 0 auto 10px auto;
-        background-color: #fff;
-    }
+    /* Create a custom radio button */
 
-    .progressbar li:after {
-        content: "";
+    .checkmark {
         position: absolute;
-        width: 100%;
-        height: 1px;
-        background-color: #ddd;
-        top: 15px;
-        left: -50%;
-        z-index: -1;
-    }
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 22px;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 1px solid #208CD1;
 
-    .progressbar li:first-child:after {
-        content: none;
-    }
 
-    .progressbar li.active {
-        color: green;
-    }
-
-    .progressbar li.active:before {
-        border-color: green;
-    }
-
-    .progressbar li.active+li:after {
-        background-color: green;
     }
 
 
-    body {
-        background: #f3f5f9;
+    /* When the radio button is checked, add a blue background */
+    .con1 input:checked~.checkmark {
+        background-color: #208CD1;
+
+
     }
 
-    .wrapper {
-        position: relative;
+    th {
+        font-size: 14px;
+        font-family: 'Quicksand';
     }
+
+    .select-sup::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 28px;
+        content: "\f13a";
+        position: absolute;
+        right: -9px;
+        bottom: 18px;
+
+        padding: 4px 1em;
+        color: #7ECD7C;
+        pointer-events: none
+    }
+
+    .select-date::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 26px;
+        content: "\f073";
+        position: absolute;
+        right: 8px;
+        bottom: 23px;
+        padding: 0 1em;
+        color: #7ECD7C;
+        pointer-events: none;
+    }
+
+
+
 
     .sidebar {
 
@@ -190,10 +204,32 @@
 
     }
 
+    .dropzone1 {
+        width: 215px;
+        height: 80px;
+       
+        border-radius: 3px;
+        text-align: center;
+    }
+
+    .upload-icon1 {
+       
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .upload-input1 {
+        position: relative;
+        top: -62px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
 
 
     .icons {
-        padding: 13px;
+        padding: 11px;
         background: #7ECD7C;
         color: white;
         font-size: 15px;
@@ -314,7 +350,10 @@
     }
 
     .title-label {
-        font-weight: bold !important;
+
+        font-weight: 600 !important;
+        font-size: 15px;
+        font-family: 'Quicksand';
     }
 
     .form-control {
@@ -323,6 +362,7 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
+        font-size: 13px;
     }
 
     .form-control1 {
@@ -394,10 +434,227 @@
         display: flex;
         padding-left: 50px !important;
     }
-    .tabcontent {
-  display: none;
- 
-}
+
+
+    p {
+        color: grey
+    }
+
+    h1 {
+        text-transform: uppercase;
+        color: green;
+        font-weight: normal;
+        text-align: center;
+        margin: 10;
+        padding: 10
+    }
+
+    #heading {
+        text-transform: uppercase;
+        color: green;
+        font-weight: normal
+    }
+
+    #msform {
+
+        position: relative;
+        margin-top: 20px
+    }
+
+    #msform fieldset {
+        border: 0 none;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative
+    }
+
+    .form-card {
+        text-align: left
+    }
+
+    #msform fieldset:not(:first-of-type) {
+        display: none
+    }
+
+
+
+
+
+    #msform input:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid green;
+        outline-width: 0
+    }
+
+
+
+    #msform .action-button {
+        width: 100px;
+        background: green;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 0px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 0px 10px 5px;
+
+    }
+
+    #msform .action-button:hover {
+        background-color: #311B92
+    }
+
+    #msform .action-button:focus {
+        background-color: #311B92
+    }
+
+    #msform .action-button-pre {
+        width: 100px;
+        background: #616161;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 0px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 5px 10px 0px;
+        float: right
+    }
+
+    #msform .action-button-pre:hover {
+        background-color: #000000
+    }
+
+    #msform .action-button-pre:focus {
+        background-color: #000000
+    }
+
+    .card {
+        z-index: 0;
+        border: none;
+        position: relative
+    }
+
+    .fs-title {
+        font-size: 25px;
+        color: green;
+        margin-bottom: 15px;
+        font-weight: normal;
+        text-align: left
+    }
+
+    .purple-text {
+        color: green;
+        font-weight: normal
+    }
+
+    .steps {
+        font-size: 15px;
+        color: gray;
+        margin-bottom: 1px;
+        font-weight: normal;
+        text-align: right
+    }
+
+    .fieldlabels {
+        color: gray;
+        text-align: left
+    }
+
+    #progressbar {
+        margin-bottom: 20px;
+        overflow: hidden;
+        color: lightgrey
+    }
+
+    #progressbar .active {
+        color: #48BA48;
+    }
+
+    #progressbar li {
+        list-style-type: none;
+        font-size: 15px;
+        width: 25%;
+        float: left;
+        position: relative;
+        font-weight: 400;
+        font-family: 'Quicksand';
+    }
+
+    #progressbar #account:before {
+        content: "\f13e";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar #personal:before {
+        content: "\f007";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar #payment:before {
+        content: "\f030";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar #confirm:before {
+        content: "\f00c";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar li:before {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        display: block;
+        font-size: 20px;
+        background: lightgray;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        padding: 2px
+    }
+
+    #progressbar li:after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: lightgray;
+        position: absolute;
+        left: 0;
+        top: 25px;
+        z-index: -1
+    }
+
+    #progressbar li.active:before {
+        background: #48BA48;
+    }
+
+    #progressbar li.active:after {
+        background: #48BA48;
+    }
+
+    .progress {
+        height: 20px
+    }
+
+    .pbar {
+        background-color: green
+    }
+
+    .fit-image {
+        width: 100%;
+        object-fit: cover
+    }
+
 </style>
 
 <head>
@@ -420,7 +677,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
@@ -455,7 +712,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
                 <div class=" col-md-3 ">
-                    <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                    <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="justify-content-center">
                     <ul>
@@ -526,211 +783,505 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             </nav>
-            <div class="tab">
-                <ul class="progressbar">
-                    <li class="tablinks active"><a  onclick="openEdit(event, 'Basic')">Basic Details</a></li>
-                    <li class="tablinks"><a  onclick="openEdit(event, 'Education')">Educational Details</a></li>
-                    <li class="tablinks"><a  onclick="openEdit(event, 'Experience')">Experience Details</a></li>
+            <form id="msform">
+                <ul id="progressbar" style=" text-align: center;">
+                    <li class="active" id="account"><strong> Basic Details</strong></li>
+                    <li id="personal"><strong> Educational Details </strong></li>
+                    <li id="payment"><strong> Experience Details</strong></li>
+                    <li id="confirm"><strong>Status</strong></li>
                 </ul>
-            </div>
-            <div id="Basic" class="tabcontent">
-            <div class=" col-md-12 ">
-                <div class=" widget-content ">
-                    <form class="" action="{{ route('add.candidate') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
+
+                <br>
+                <fieldset>
+                    <div class=" col-md-12 ">
+                        <div class=" widget-content ">
+                            <div class="row col-lg-12">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <label class="title-label"> image</label>
+                                    <button class="btn fileicon " type="button">
+                                        <div class="dropzone">
+                                            <img src="../assets/cloud-computing.png" class="upload-icon" />
+                                            <input type="file" name="image" class="upload-input " />
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"> Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="name">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"> Email Address</label>
+                                        <input type="text" class="form-control form-control-lg" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Mobile Number</label>
+                                        <input type="text" class="form-control form-control-lg" name="mobile">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Prefered Job location</label>
+                                        <input type="text" class="form-control form-control-lg" name="joblocation">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Height</label>
+                                        <input type="text" class="form-control form-control-lg" name="height">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">weight</label>
+                                        <input type="text" class="form-control form-control-lg" name="weight">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Address</label>
+                                        <input type="text" class="form-control form-control-lg" name="address">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        @endif
-                    <div class="row col-lg-12">
+                    </div>
+
+                    <button type="button" class="next  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    text-align:center;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Next<i class="icon-database-insert ml-1"></i>
+
+
+
+                </fieldset>
+                <fieldset>
+
+                    <a class="btn " href="{{ route('add.education') }}" style="float:left;"> <span class="icons"> <i
+                                class="fa fa-plus " aria-hidden="true"></i></span></a>
+
+
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Previous<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    <button type="button" class=" next  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Next<i class="icon-database-insert ml-1"></i>
+                    </button>
+
+                    <div class=" col-md-12 ">
+                        <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 43px;">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th>Education</th>
+                                                <th>Board</th>
+                                                <th>Pass Out</th>
+                                                <th>School Medium</th>
+                                                <th>Marks Obtained(%)</th>
+                                                <th>Actions</th>
+
+                                            </tr>
+                                        </thead>
+
+
+                                        </thead>
+
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-12 ">
+                        <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 23px;">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th>Education</th>
+                                                <th>University</th>
+                                                <th>Course</th>
+                                                <th>Specialization</th>
+                                                <th>Type</th>
+                                                <th>Pass Out</th>
+                                                <th>Marks Obtained(%)</th>
+                                                <th>Actions</th>
+
+                                            </tr>
+                                        </thead>
+
+
+                                        </thead>
+
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </fieldset>
+                <fieldset>
+                    <div class=" col-md-12 ">
+                        <div class=" widget-content ">
+                            <div class="row col-lg-12">
+                                <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Is this your current employment?</label>
+                                            <label class="con1"><span>Yes</span>
+                                                <input type="radio" name="radio1" checked>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="con1"><span>No</span>
+                                                <input type="radio" name="radio1">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                        <div class=" form-group select-sup">
+                                            <label class="title-label">Notice Period</label>
+                                            <select class="form-control select form-control-lg" name="noticeperiod"
+                                                required>
+
+                                                <option value="0" class="text-capitalize">
+                                                </option>
+                                                <option value="Boosted" class="text-capitalize">
+                                                    Boosted
+                                                </option>
+                                                <option value="medicalfield" class="text-capitalize">
+                                                    Normal
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Company Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="companyname">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Designation</label>
+                                        <input type="text" class="form-control form-control-lg" name="designation">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group select-date">
+                                        <label class="title-label"> Joining Date</label>
+                                        <input type="text" class="form-control form-control-lg" name="Joiningdate">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Salary</label>
+                                        <input type="text" class="form-control form-control-lg" name="salary">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label">Total Experience</label>
+                                        <div class="row  ">
+                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                <input type="number" class="form-control form-control-lg "
+                                                    id="datepicker" placeholder="years" name="years"
+                                                    style="text-align: right;">
+                                            </div>
+                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                <input type="number" name="months" class="form-control form-control-lg "
+                                                    placeholder="months" required style="text-align: right;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                    <div class=" form-group select-sup">
+
+
+                                        <label class="title-label">Notice Period</label>
+
+
+                                        <select class="form-control select form-control-lg" name="noticeperiod"
+                                            required>
+
+                                            <option value="0" class="text-capitalize">
+                                            </option>
+                                            <option value="Boosted" class="text-capitalize">
+                                                Boosted
+                                            </option>
+                                            <option value="medicalfield" class="text-capitalize">
+                                                Normal
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label"></i>Job Description</label>
+
+                                        <textarea rows="4" class="form-control1" name="jobdescription"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label"></i>Prefered Skills:</label>
+                                        <input type="text" rows="4" name="skill" id="skill" class="form-control"
+                                            style=" height: 100px;" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        PREVIOUS<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    <button type="button" class=" next btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Next<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+
+                </fieldset>
+                <fieldset>
+                    <div class="row ">
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
+                            <div class=" form-group select-sup">
+                                <label class="title-label">Status</label>
+                                <select class="form-control select form-control-lg" name="education" id="myselection"
+                                    required>
 
+                                    <option>Select Status</option>
+                                    <option value="ten">10th</option>
+                                    <option value="Twelth">12th</option>
+                                    <option value="Grad">Graduation/Diploma</option>
+                                    <option value="Master">Masters/Post Graduation</option>
+                                    <option value="Doct">Doctorate/PHD</option>
+                                </select>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                           
-                                <label class="title-label"> image</label>
-
-
-
+                            <div class=" form-group">
+                                <label class="title-label"></i>Download Resume</label>
                                 <button class="btn fileicon " type="button">
-                                    <div class="dropzone">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                        <input type="file" name="image"  class="upload-input " />
+                                    <div class="dropzone1">
+                             
+                                   <img src="../assets/pdf.png" class="upload-icon1" />
+                                        <input type="file" class="upload-input1" name="image" id="image" required />
+                                       
                                     </div>
                                 </button>
 
-
-
-                        
-
-                        </div>
-               
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label"> Name</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="name">
-                                </div>
-                            </div>
-                            
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label"> Email Address</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="email">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                   
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Mobile Number</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="mobile">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Prefered Job location</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="joblocation">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Height</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="height">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">weight</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="weight">
-                                </div>
-                            </div>
-                            <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Address</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="address">
-                                </div>
-                            </div>
-                          
-
-
-
-
-                                
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-
-
-
-
-
-
-
-                                <div class="text-center">
-
-                                    <button type="submit"
-                                        class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-letter-spacing: 1.25px;
-border:none;
-color: #FFFFFF;
-text-transform: uppercase;
-opacity: 1;
-background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
-width: 100px;
-;">
-                                        Add
-                                        <i class="icon-database-insert ml-1"></i>
-                                    </button>
-                                </div>
-
-
+                             
                             </div>
                         </div>
+                    </div>
+</br>
 
-                </div>
-                </form>
-            </div>
-        </div>
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-color:  #69DB65 ;
    
+    font-size: 12px;
+    
+    font-family: 'Quicksand';" >
+                        Download<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+
+                    <button type="button" class=" pre btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        PREVIOUS<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    <button type="button" class=" btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    float:right;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Submit<i class="icon-database-insert ml-1"></i>
+
+                    </button>
 
 
+                    </fiedset>
 
 
+            </form>
+        </div>
+    </div>
 
-<div id="Education" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
 </div>
-
-<div id="Experience" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
 </div>
 <script>
-    function openEdit(evt, details) {
-
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(details).style.display = "block";
-        evt.currentTarget.className += " active";
+    function basicDetailsSubmit() {
+        alert("aaa");
     }
+    $(document).ready(function () {
+
+        var current_fs, next_fs, pre_fs;
+        var opacity;
+        var current = 1;
+        var steps = $("fieldset").length;
+        setProgressBar(current);
+        $(".next").click(function () {
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+            next_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 500
+            });
+            setProgressBar(++current);
+        });
+        $(".pre").click(function () {
+            current_fs = $(this).parent();
+            pre_fs = $(this).parent().prev();
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+            pre_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    pre_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 500
+            });
+
+        });
+
+        function setProgressBar(curStep) {
+            var percent = parseFloat(100 / steps) * curStep;
+            percentpercent = percent.toFixed();
+            $(".pbar")
+                .css("width", percent + "%")
+        }
+        $(".submit").click(function () {
+            return false;
+        })
+    });
 
 </script>

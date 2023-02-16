@@ -74,7 +74,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/editadmin/{id}', [AdminprofileController::class, 'edituser'])->name('edit.admin');
     Route::get('/profileadmin', [AdminprofileController::class, 'edit'])->name('profile.admin');
     Route::post('/updateadmin',[AdminprofileController::class, 'update'])->name('update.admin');
-    Route::post('/updateadmins/{id}',[AdminprofileController::class, 'update1'])->name('update1.admin');
+    Route::post('/updateadmins',[AdminprofileController::class, 'update1'])->name('update1.admin');
     Route::post('/admindestroy/{id}', [AdminprofileController::class, 'destroy'])->name('admin.destroy');
 
     //job provider
@@ -96,6 +96,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/candidate', [CandidateController::class, 'candidate'])->name('view.candidate');
     Route::get('/addcandidate', [CandidateController::class, 'addcandidate'])->name('view.addcandidate');
     Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
+    Route::get('/addeducation', [CandidateController::class, 'education'])->name('add.education');
 
     //notications
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
