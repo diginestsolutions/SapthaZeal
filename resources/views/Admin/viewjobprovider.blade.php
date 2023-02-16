@@ -474,7 +474,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Official Email Address</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="email"value="{{$provider->email}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" name="email" value="{{$provider->email}}" readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">

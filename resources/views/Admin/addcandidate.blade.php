@@ -82,10 +82,6 @@
         color: #7ECD7C;
         pointer-events: none;
     }
-
-
-
-
     .sidebar {
 
 
@@ -434,8 +430,6 @@
         display: flex;
         padding-left: 50px !important;
     }
-
-
     p {
         color: grey
     }
@@ -456,7 +450,6 @@
     }
 
     #msform {
-
         position: relative;
         margin-top: 20px
     }
@@ -480,9 +473,6 @@
     }
 
 
-
-
-
     #msform input:focus {
         -moz-box-shadow: none !important;
         -webkit-box-shadow: none !important;
@@ -490,8 +480,6 @@
         border: 1px solid green;
         outline-width: 0
     }
-
-
 
     #msform .action-button {
         width: 100px;
@@ -503,7 +491,6 @@
         cursor: pointer;
         padding: 10px 5px;
         margin: 10px 0px 10px 5px;
-
     }
 
     #msform .action-button:hover {
@@ -640,6 +627,7 @@
 
     #progressbar li.active:after {
         background: #48BA48;
+
     }
 
     .progress {
@@ -791,6 +779,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li id="confirm"><strong>Status</strong></li>
                 </ul>
 
+
                 <br>
                 <fieldset>
                     <div class=" col-md-12 ">
@@ -804,6 +793,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             <input type="file" name="image" class="upload-input " />
                                         </div>
                                     </button>
+
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
@@ -820,6 +810,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
+
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -1270,7 +1261,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 },
                 duration: 500
             });
-
         });
 
         function setProgressBar(curStep) {

@@ -11,7 +11,7 @@ use App\Http\Controllers\SubController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\JobController;
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\ResponseController;
 /*
 |--------------------------------------------------------------------------
@@ -50,11 +50,22 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     
     //job
-    Route::get('/addjob', [JobController::class, 'addjob'])->name('get.addjob');
-    Route::post('/createjob',[JobController::class, 'createjob'])->name('create.job');
-    Route::get('/viewjob', [JobController::class, 'viewjob'])->name('view.job');
-    Route::get('/showjob', [JobController::class, 'show'])->name('show.job');
-    Route::get('/editjob', [JobController::class, 'edit'])->name('edit.job');
+    Route::get('/job', [JobController::class, 'index'])->name('view.job');
+    Route::get('/job/create', [JobController::class, 'create'])->name('get.addjob');
+    Route::post('/job/store',[JobController::class, 'store'])->name('create.job');
+    Route::post('/job/{id}/status-approved', [JobController::class, 'statusapproved'])->name('job.approvde');
+    Route::post('/job/{id}/status-rejected', [JobController::class, 'statusrejected'])->name('job.rejected');
+    Route::get('/job/edit/{id}', [JobController::class, 'edit'])->name('edit.job');
+    Route::post('/job/update/{id}', [JobController::class, 'update'])->name('update.job');
+    Route::post('/job/{id}/destroy', [JobController::class, 'destroy'])->name('job.destroy');
+    Route::get('/job/show/{id}', [JobController::class, 'show'])->name('show.job');
+    Route::get('/job/response/{id}', [JobController::class, 'jobresponse'])->name('response.job');
+    Route::post('/job/response/status-list/{id}', [JobController::class, 'responsestatuslist'])->name('job.response.statuslist');
+    // Route::get('/addjob', [JobController::class, 'addjob'])->name('get.addjob');
+   // Route::post('/createjob',[JobController::class, 'createjob'])->name('create.job');
+   // Route::get('/viewjob', [JobController::class, 'viewjob'])->name('view.job');
+   
+   // Route::get('/editjob', [JobController::class, 'edit'])->name('edit.job');
     
     //response
     Route::get('/getresponse', [ResponseController::class, 'get'])->name('get.response');

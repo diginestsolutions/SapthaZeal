@@ -422,7 +422,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 <h3 class=" mt-3   heading"> <a class="btn mr-2 " href="{{ route('view.job') }}"><span class="icon2"><button
                                 class="btn-back" style="border-radius:50px;
-            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job
+            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Edit Job
                 </h3>
 
 
@@ -459,7 +459,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
             <div class=" col-md-12 ">
                 <div class=" widget-content ">
-                    <form class="" action="{{ route('create.job') }}" method="POST" enctype="multipart/form-data">
+                    <form class="" action="{{ route('update.job', $jobs->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @if(session()->has('message'))
                         <div class="alert alert-success">
@@ -479,10 +479,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                        
                                             <option value="0" class="text-capitalize">
                                             </option>
-                                            <option value="Boosted" class="text-capitalize">
+                                            <option value="Boosted" class="text-capitalize" {{$jobs->jobcategory == "Boosted" ? 'selected' : ''}}>
                                                 Boosted
                                             </option>
-                                            <option value="medicalfield" class="text-capitalize">
+                                            <option value="Normal" class="text-capitalize" {{$jobs->jobcategory == "Normal" ? 'selected' : ''}}>
                                                 Normal
                                             </option>
                                     </select>
@@ -494,7 +494,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Job Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="jobname">
+                                    <input type="text" class="form-control form-control-lg" name="jobname" value="{{$jobs->jobname}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -502,17 +502,17 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">No. Of Openings</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="openings" required>
+                                    <input type="text" class="form-control form-control-lg" name="openings" value="{{$jobs->openings}}" required>
                                 </div>
                             </div>
 
-
+                            
                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
                                 <div class=" form-group">
                                     <label class="title-label"></i>Job Description</label>
 
-                                    <textarea rows="4" class="form-control1" name="jobdescription"></textarea>
+                                    <textarea rows="4" class="form-control1" name="jobdescription">{{$jobs->jobdescription}}</textarea>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
@@ -520,7 +520,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label"></i>Prefered Skills:</label>
                                     <input type="text" rows="4" name="skill" id="skill" class="form-control"
-                                        style=" height: 100px;" />
+                                        style=" height: 100px;" value="{{$jobs->skills}}"/>
 
                                 </div>
                             </div>
@@ -532,11 +532,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <div class="row  ">
                                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                             <input type="number" class="form-control form-control-lg " id="datepicker"
-                                                placeholder="years" name="years" style="text-align: right;">
+                                                placeholder="years" name="years" style="text-align: right;" value="{{$jobs->experienceyears}}">
                                         </div>
                                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                             <input type="number" name="months" class="form-control form-control-lg "
-                                                placeholder="months" required style="text-align: right;">
+                                                placeholder="months" required style="text-align: right;" value="{{$jobs->experiencemonths}}">
                                         </div>
                                     </div>
                                 </div>
@@ -546,7 +546,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Salary</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="salary" required>
+                                    <input type="text" class="form-control form-control-lg" name="salary" value="{{$jobs->salary}}" required>
                                 </div>
                             </div>
 
@@ -555,7 +555,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group select-date">
                                     <label class="title-label">Expiry Date</label>
 
-                                    <input type="date" id="deadline" class="form-control form-control-lg" name="expirydate"
+                                    <input type="date" id="deadline" class="form-control form-control-lg" name="expirydate"  value="2018-07-22"
                                         required></span>
                                 </div>
                             </div>
@@ -565,7 +565,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Job Location</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="joblocation" required>
+                                    <input type="text" class="form-control form-control-lg" name="joblocation" value="{{$jobs->joblocation}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -578,11 +578,38 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <select class="form-control form-control-lg " name="jobindustry" required>
                                     <option value=""></option>
                                         @foreach($items as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        <option value="{{$item->id}}" {{$jobs->jobindustry ==$item->id ? 'selected' : ''}}>{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
+                            <input type="hidden" id="jobs_id" value="{{ $jobs->id }}"/>
+                            @if($jobs->status =='Saved')  
+                            <div class="col-xl- col-lg-4 col-md-4 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label">Approved Status</label><br/>
+                                    <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                            class="mt-2"><i class="fa-solid fa-circle-check"
+                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$jobs->id}});"></i></a>
+                                    <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            class="mt-2" style="margin-right:5px;"><i class="fa fa-times-circle"
+                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$jobs->id}});"></i></a>
+                               
+                                </div>
+                            </div>
+                            @else
+                            <div class="col-xl- col-lg-4 col-md-4 col-sm-12">
+                                <div class=" form-group"><div class="switch-wrapper">
+                                    <label class="title-label">Active Status</label><br/>
+                                    <label class="switch s-icons s-outline  s-outline-default">
+                                            <input class="action-switch_1 toggle-class" type="checkbox"
+                                                data-id={{$jobs->id}} {{ $jobs->status == "Active" ? 'checked' : '' }}>
+                                            <span class="slider round" data-popup="tooltip"
+                                                title="Click to Active"></span>
+                                    </label>  </div>
+                                </div>
+                            </div>
+                            @endif
 
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
 
@@ -683,4 +710,130 @@ width: 100px;
 
     });
 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
+<script type="text/javascript">
+    $(function () {
+        $('.toggle-class').change(function () {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            if(status == 1)
+                statusapproved();
+            else
+                statusrejected();
+        })
+    })
+    function statusapproved()
+    {
+        var id = $('#jobs_id').val();
+        var url = '{{ route("job.approvde", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Approved it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job has been approved.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+    function statusrejected()
+    {
+        var id = $('#jobs_id').val();
+        var url = '{{ route("job.rejected", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Rejected it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Job has been rejected.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
 </script>

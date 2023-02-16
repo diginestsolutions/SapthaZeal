@@ -113,7 +113,7 @@
                                 @endif
                                 <td class="text-right">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href=" {{route('show.jobprovider',$providers->id)}}" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
+                                        <a href="{{route('show.jobprovider',$providers->id)}}" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
                                                 class="fa fa-eye"></i></a>
 
                                         <a href="{{ route('get.editjobprovider',$providers->id) }}" data-popup="tooltip"
