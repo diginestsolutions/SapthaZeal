@@ -59,6 +59,9 @@ class CandidateController extends Controller
 
         return view('Admin/addcandidate');
     }
+    public function education(){
 
+        return view('Admin/addeducation');
+    }
 
 }
