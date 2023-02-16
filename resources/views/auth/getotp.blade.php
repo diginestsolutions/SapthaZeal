@@ -13,7 +13,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/Login.png');
+        background-image: url('../assets/Login.png');
         background-repeat: no-repeat;
         background-size: cover;
         height: 100%;
@@ -110,13 +110,13 @@
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 col-lg-6 col-xl-5">
-                <img src="../Assets/Untitled-2.png" class="img-fluid" style="width: 500px;" alt="Sample image">
+                <img src="../assets/Untitled-2.png" class="img-fluid" style="width: 500px;" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
                 <div class="col-12 mx-auto d-flex justify-content-center flex-wrap">
                     <div class="col-md-6 col-lg-6 col-xl-5">
-                        <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                        <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
                 </div>
               

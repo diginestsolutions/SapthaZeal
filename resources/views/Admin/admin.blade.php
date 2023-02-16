@@ -4,17 +4,19 @@
     .fa-times-circle {
         color: #FF0000;
     }
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     #mymodal {
         border-radius: 15px;
     }
@@ -33,7 +35,7 @@ input[type=number] {
     }
 
     .upload-icon1 {
-        margin: 25px 2px 2px 2px;
+        margin: -15px 2px 2px 2px;
         background-color: #208CD1;
         border-radius: 5px;
     }
@@ -394,8 +396,11 @@ input[type=number] {
 
                                 <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
+                                    <img id="preview" 
+                      style="height: 78px;width: 98px;">
                                         <img src="../assets/cloud-computing.png" class="upload-icon1" />
-                                        <input type="file" class="upload-input1" name="image"  required/>
+                                        <input type="file" class="upload-input1" name="image" id="image" required />
+                                       
                                     </div>
                                 </button>
 
@@ -412,7 +417,7 @@ input[type=number] {
                             <div class=" form-group">
                                 <label class="title-label">Email Address</label>
 
-                                <input type="email" class="form-control form-control-lg" name="email"required>
+                                <input type="email" class="form-control form-control-lg" name="email" required>
                             </div>
                         </div>
 
@@ -430,7 +435,8 @@ input[type=number] {
                             <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
-                                <input type="number" class="form-control form-control-lg" name="phone" required>
+                                <input type="number" class="form-control form-control-lg" name="phone" required
+                                    maxlength="10">
                             </div>
                         </div>
 
@@ -598,10 +604,10 @@ width: 100px;
             </div>
 
             <div class="modal-body">
-                <form id="registerForm" method="POST" enctype="multipart/form-data"
-                    action="{{ route('update1.admin',$user->id) }}">
+                <form  method="POST" enctype="multipart/form-data"
+                    action="{{ route('update1.admin')}}">
                     @csrf
-                    <input type="hidden" name="id" id="user_edit_id">
+                    <input type="hidden" name="id" id="user_edit_id_">
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
@@ -631,24 +637,16 @@ width: 100px;
                                 <div class="dropzone">
                                     <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
-                                        <img src="{{$user->image}} " width="100" height="100" alt=""
-                                            style="border-radius:10px;">
+                                          <img id="upload_image" style=" width:80px; height:80px;">
 
                                         <img src="../assets/Group 22.png" class="upload-icon" />
-
-
-
+                              </button>
                                 </div>
-
 
                             </div>
 
 
-
                         </div>
-
-
-
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
@@ -727,7 +725,7 @@ width: 100px;
 <script>
     $(function () {
         $('.toggle-class').change(function () {
-            var status = $(this).prop('checked') == true ? Active :Inactive;
+            var status = $(this).prop('checked') == true ? Active : Inactive;
             var user_id = $(this).data('id');
 
             $.ajax({
@@ -850,7 +848,7 @@ width: 100px;
                 url: url,
                 success: function (data) {
                     if (data.success == 1) {
-                        $('#user_edit_id').val(data.data._id);
+                        $('#user_edit_id_').val(data.data._id);
                         $('#name').val(data.data.name);
                         $('#upload_image').attr('src', data.data.image).show();
                         $('#_email').val(data.data.email);
@@ -864,6 +862,27 @@ width: 100px;
             })
         }
     }
+
+</script>
+<script type="text/javascript">
+     
+$(document).ready(function (e) {
+
+  
+   $('#image').change(function(){
+           
+    let reader = new FileReader();
+
+    reader.onload = (e) => { 
+
+      $('#preview').attr('src', e.target.result); 
+    }
+
+    reader.readAsDataURL(this.files[0]); 
+  
+   });
+  
+});
 
 </script>
 @endsection

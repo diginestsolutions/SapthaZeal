@@ -8,8 +8,80 @@
 
     }
 
+    .con1 {
 
-    
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 15px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .con1 input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 22px;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 1px solid #208CD1;
+
+
+    }
+
+
+    /* When the radio button is checked, add a blue background */
+    .con1 input:checked~.checkmark {
+        background-color: #208CD1;
+
+
+    }
+
+    th {
+        font-size: 14px;
+        font-family: 'Quicksand';
+    }
+
+    .select-sup::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 28px;
+        content: "\f13a";
+        position: absolute;
+        right: -9px;
+        bottom: 18px;
+
+        padding: 4px 1em;
+        color: #7ECD7C;
+        pointer-events: none
+    }
+
+    .select-date::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 26px;
+        content: "\f073";
+        position: absolute;
+        right: 8px;
+        bottom: 23px;
+        padding: 0 1em;
+        color: #7ECD7C;
+        pointer-events: none;
+    }
     .sidebar {
 
 
@@ -128,10 +200,32 @@
 
     }
 
+    .dropzone1 {
+        width: 215px;
+        height: 80px;
+       
+        border-radius: 3px;
+        text-align: center;
+    }
+
+    .upload-icon1 {
+       
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .upload-input1 {
+        position: relative;
+        top: -62px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
 
 
     .icons {
-        padding: 13px;
+        padding: 11px;
         background: #7ECD7C;
         color: white;
         font-size: 15px;
@@ -252,7 +346,10 @@
     }
 
     .title-label {
-        font-weight: bold !important;
+
+        font-weight: 600 !important;
+        font-size: 15px;
+        font-family: 'Quicksand';
     }
 
     .form-control {
@@ -261,6 +358,7 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
+        font-size: 13px;
     }
 
     .form-control1 {
@@ -332,8 +430,6 @@
         display: flex;
         padding-left: 50px !important;
     }
-
-    
     p {
         color: grey
     }
@@ -354,7 +450,6 @@
     }
 
     #msform {
-        text-align: center;
         position: relative;
         margin-top: 20px
     }
@@ -377,9 +472,6 @@
         display: none
     }
 
-    
-
-    
 
     #msform input:focus {
         -moz-box-shadow: none !important;
@@ -388,8 +480,6 @@
         border: 1px solid green;
         outline-width: 0
     }
-
-   
 
     #msform .action-button {
         width: 100px;
@@ -401,7 +491,6 @@
         cursor: pointer;
         padding: 10px 5px;
         margin: 10px 0px 10px 5px;
-      
     }
 
     #msform .action-button:hover {
@@ -472,7 +561,7 @@
     }
 
     #progressbar .active {
-        color:#48BA48;
+        color: #48BA48;
     }
 
     #progressbar li {
@@ -481,31 +570,32 @@
         width: 25%;
         float: left;
         position: relative;
-        font-weight: 400
+        font-weight: 400;
+        font-family: 'Quicksand';
     }
 
     #progressbar #account:before {
         content: "\f13e";
-        width:37px;
-        height:52px;
+        width: 37px;
+        height: 52px;
     }
 
     #progressbar #personal:before {
         content: "\f007";
-        width:37px;
-        height:52px;
+        width: 37px;
+        height: 52px;
     }
 
     #progressbar #payment:before {
         content: "\f030";
-        width:37px;
-        height:52px;
+        width: 37px;
+        height: 52px;
     }
 
     #progressbar #confirm:before {
         content: "\f00c";
-        width:37px;
-        height:52px;
+        width: 37px;
+        height: 52px;
     }
 
     #progressbar li:before {
@@ -532,11 +622,12 @@
     }
 
     #progressbar li.active:before {
-        background:#48BA48;
+        background: #48BA48;
     }
 
     #progressbar li.active:after {
-        background:#48BA48;
+        background: #48BA48;
+
     }
 
     .progress {
@@ -681,12 +772,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
             </nav>
             <form id="msform">
-                <ul id="progressbar">  
-                        <li class="active" id="account"><strong> Basic Details</strong></li>  
-                        <li id="personal"><strong> Educational Details </strong></li>  
-                        <li id="payment"><strong> Experience Details</strong></li>  
-                        <li id="confirm"><strong> Finish </strong></li>  
-                    </ul>
+                <ul id="progressbar" style=" text-align: center;">
+                    <li class="active" id="account"><strong> Basic Details</strong></li>
+                    <li id="personal"><strong> Educational Details </strong></li>
+                    <li id="payment"><strong> Experience Details</strong></li>
+                    <li id="confirm"><strong>Status</strong></li>
+                </ul>
+
 
                 <br>
                 <fieldset>
@@ -701,6 +793,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             <input type="file" name="image" class="upload-input " />
                                         </div>
                                     </button>
+
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
@@ -717,6 +810,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
+
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -756,39 +850,366 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             </div>
                         </div>
                     </div>
-                    <button type="button"
-                        class="next action-button btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-                        letter-spacing: 1.25px;
-                        border:none;
-                        color: #FFFFFF;
-                        text-transform: uppercase;
-                        opacity: 1;
-                        background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
-                        width: 100px;">
+
+                    <button type="button" class="next  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    text-align:center;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Next<i class="icon-database-insert ml-1"></i>
+
+
+
+                </fieldset>
+                <fieldset>
+
+                    <a class="btn " href="{{ route('add.education') }}" style="float:left;"> <span class="icons"> <i
+                                class="fa fa-plus " aria-hidden="true"></i></span></a>
+
+
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Previous<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    <button type="button" class=" next  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
                         Next<i class="icon-database-insert ml-1"></i>
                     </button>
+
+                    <div class=" col-md-12 ">
+                        <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 43px;">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th>Education</th>
+                                                <th>Board</th>
+                                                <th>Pass Out</th>
+                                                <th>School Medium</th>
+                                                <th>Marks Obtained(%)</th>
+                                                <th>Actions</th>
+
+                                            </tr>
+                                        </thead>
+
+
+                                        </thead>
+
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-md-12 ">
+                        <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 23px;">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table ">
+                                        <thead>
+                                            <tr>
+                                                <th>Education</th>
+                                                <th>University</th>
+                                                <th>Course</th>
+                                                <th>Specialization</th>
+                                                <th>Type</th>
+                                                <th>Pass Out</th>
+                                                <th>Marks Obtained(%)</th>
+                                                <th>Actions</th>
+
+                                            </tr>
+                                        </thead>
+
+
+                                        </thead>
+
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
                 </fieldset>
                 <fieldset>
-                   
-                hello
-                     <input type="button" name="next" class="next action-button" value="Next" /> <input
-                        type="button" name="pre" class="pre action-button-pre" value="Pre" />
+                    <div class=" col-md-12 ">
+                        <div class=" widget-content ">
+                            <div class="row col-lg-12">
+                                <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Is this your current employment?</label>
+                                            <label class="con1"><span>Yes</span>
+                                                <input type="radio" name="radio1" checked>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="con1"><span>No</span>
+                                                <input type="radio" name="radio1">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                        <div class=" form-group select-sup">
+                                            <label class="title-label">Notice Period</label>
+                                            <select class="form-control select form-control-lg" name="noticeperiod"
+                                                required>
+
+                                                <option value="0" class="text-capitalize">
+                                                </option>
+                                                <option value="Boosted" class="text-capitalize">
+                                                    Boosted
+                                                </option>
+                                                <option value="medicalfield" class="text-capitalize">
+                                                    Normal
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Company Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="companyname">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Designation</label>
+                                        <input type="text" class="form-control form-control-lg" name="designation">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group select-date">
+                                        <label class="title-label"> Joining Date</label>
+                                        <input type="text" class="form-control form-control-lg" name="Joiningdate">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Salary</label>
+                                        <input type="text" class="form-control form-control-lg" name="salary">
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label">Total Experience</label>
+                                        <div class="row  ">
+                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                <input type="number" class="form-control form-control-lg "
+                                                    id="datepicker" placeholder="years" name="years"
+                                                    style="text-align: right;">
+                                            </div>
+                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                <input type="number" name="months" class="form-control form-control-lg "
+                                                    placeholder="months" required style="text-align: right;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                    <div class=" form-group select-sup">
+
+
+                                        <label class="title-label">Notice Period</label>
+
+
+                                        <select class="form-control select form-control-lg" name="noticeperiod"
+                                            required>
+
+                                            <option value="0" class="text-capitalize">
+                                            </option>
+                                            <option value="Boosted" class="text-capitalize">
+                                                Boosted
+                                            </option>
+                                            <option value="medicalfield" class="text-capitalize">
+                                                Normal
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label"></i>Job Description</label>
+
+                                        <textarea rows="4" class="form-control1" name="jobdescription"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label"></i>Prefered Skills:</label>
+                                        <input type="text" rows="4" name="skill" id="skill" class="form-control"
+                                            style=" height: 100px;" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        PREVIOUS<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    <button type="button" class=" next btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Next<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+
                 </fieldset>
                 <fieldset>
-                    halo
-                   <input type="button" name="next" class="next action-button" value="Submit" /> <input
-                        type="button" name="pre" class="pre action-button-pre" value="Pre" />
-                </fieldset>
-               
-              
+                    <div class="row ">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                            <div class=" form-group select-sup">
+                                <label class="title-label">Status</label>
+                                <select class="form-control select form-control-lg" name="education" id="myselection"
+                                    required>
+
+                                    <option>Select Status</option>
+                                    <option value="ten">10th</option>
+                                    <option value="Twelth">12th</option>
+                                    <option value="Grad">Graduation/Diploma</option>
+                                    <option value="Master">Masters/Post Graduation</option>
+                                    <option value="Doct">Doctorate/PHD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                            <div class=" form-group">
+                                <label class="title-label"></i>Download Resume</label>
+                                <button class="btn fileicon " type="button">
+                                    <div class="dropzone1">
+                             
+                                   <img src="../assets/pdf.png" class="upload-icon1" />
+                                        <input type="file" class="upload-input1" name="image" id="image" required />
+                                       
+                                    </div>
+                                </button>
+
+                             
+                            </div>
+                        </div>
+                    </div>
+</br>
+
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-color:  #69DB65 ;
+   
+    font-size: 12px;
+    
+    font-family: 'Quicksand';" >
+                        Download<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+
+                    <button type="button" class=" pre btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        PREVIOUS<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    <button type="button" class=" btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    float:right;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Submit<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+
+
+                    </fiedset>
+
+
             </form>
         </div>
     </div>
+
 </div>
 </div>
 <script>
-    function basicDetailsSubmit()
-    {
+    function basicDetailsSubmit() {
         alert("aaa");
     }
     $(document).ready(function () {
@@ -840,7 +1261,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 },
                 duration: 500
             });
-           
         });
 
         function setProgressBar(curStep) {
