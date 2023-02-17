@@ -46,12 +46,12 @@ class IndustryController extends Controller
             $industry = new Industry;
             $industry->nextid();
             $industry->name = $request->name;
-            $industry->status = 1;
+            $industry->status = "Active";
             $industry->save();
             return redirect('admin/industry')->with('success', 'Industry created successfully.'); 
         }      
         catch (\Exception $e) {
-            return back()->withErrors(['message' => 'Failed to update subscription']);
+            return back()->withErrors(['message' => 'Failed to create Industry']);
         }
     }
 
