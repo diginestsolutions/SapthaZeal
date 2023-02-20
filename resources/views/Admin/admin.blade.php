@@ -329,11 +329,11 @@
                                                 class="fa fa-edit"></i></a>
 
 
-                                        <input type="hidden" id="user_id" value="{{ $user->id }}" />
+                                      
                                         <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}" />
 
-                                        <a href="javascript:void()" onclick="return deleteitem();" data-popup="tooltip"
-                                            data-placement="bottom" class="mt-2" title="Delete"><i
+                                        <a href="javascript:void()" onclick="return deleteitem({{$user->user_id}});"
+                                            data-popup="tooltip" data-placement="bottom" class="mt-2" title="Delete"><i
                                                 class="fa fa-trash"></i></a>
 
                                     </div>
@@ -396,11 +396,10 @@
 
                                 <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
-                                    <img id="preview" 
-                      style="height: 78px;width: 98px;">
+                                        <img id="preview" style="height: 78px;width: 98px;">
                                         <img src="../assets/cloud-computing.png" class="upload-icon1" />
                                         <input type="file" class="upload-input1" name="image" id="image" required />
-                                       
+
                                     </div>
                                 </button>
 
@@ -418,28 +417,25 @@
                                 <label class="title-label">Email Address</label>
 
                                 <input type="email" class="form-control form-control-lg" name="email" required>
+
+                                @if ($errors->has('email'))
+                                <span style="color: red;">{{ $errors->first('email') }}</span>
+                                @endif
+
                             </div>
                         </div>
-
-
-
-
-
-
-
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                            <div class=" form-group">
+                       <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                          <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
                                 <input type="number" class="form-control form-control-lg" name="phone" required
                                     maxlength="10">
+                                @error('phone')
+                                </br><span style="color: red;">{{$errors->first('phone')}}</span>
+                                @enderror
+
                             </div>
                         </div>
-
 
 
 
@@ -548,13 +544,7 @@ width: 100px;
                                     readonly>
                             </div>
                         </div>
-
-
-
-
-
-
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                       <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
 
@@ -604,8 +594,7 @@ width: 100px;
             </div>
 
             <div class="modal-body">
-                <form  method="POST" enctype="multipart/form-data"
-                    action="{{ route('update1.admin')}}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('update1.admin')}}">
                     @csrf
                     <input type="hidden" name="id" id="user_edit_id_">
                     <div class="row">
@@ -637,10 +626,10 @@ width: 100px;
                                 <div class="dropzone">
                                     <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
-                                          <img id="upload_image" style=" width:80px; height:80px;">
+                                        <img id="upload_image" style=" width:80px; height:80px;">
 
                                         <img src="../assets/Group 22.png" class="upload-icon" />
-                              </button>
+                                    </button>
                                 </div>
 
                             </div>
@@ -656,6 +645,9 @@ width: 100px;
                                 <label class="title-label">Email Address</label>
 
                                 <input type="email" class="form-control form-control-lg" name="email" id="_email">
+                                @if ($errors->has('email'))
+                                <span style="color: red;">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                         </div>
 
@@ -673,6 +665,9 @@ width: 100px;
                                 <label class="title-label">Mobile Number</label>
 
                                 <input type="number" class="form-control form-control-lg" name="phone" id="_mobile">
+                                @if ($errors->has('email'))
+                                <span style="color: red;">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                         </div>
 
@@ -747,8 +742,8 @@ width: 100px;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
-    function deleteitem() {
-        var id = $("#user_id").val();
+    function deleteitem(id) {
+        var id =  $(`#user_id_${id}`).val();
         var url = '{{ route("admin.destroy", ":id") }}';
         url = url.replace(':id', id);
         swal({
@@ -786,7 +781,7 @@ width: 100px;
                             }
                         },
                         error: function (data) {
-                            console.log(data);
+
                             swal(
                                 'Failed!',
                                 data.message,
@@ -823,7 +818,6 @@ width: 100px;
                         $('#email').val(data.data.email);
                         $('#mobile').val(data.data.phone);
                         $('#designation').val(data.data.designation);
-
                         $('#showmodal').modal('show');
                     }
 
@@ -865,24 +859,23 @@ width: 100px;
 
 </script>
 <script type="text/javascript">
-     
-$(document).ready(function (e) {
+    $(document).ready(function (e) {
 
-  
-   $('#image').change(function(){
-           
-    let reader = new FileReader();
 
-    reader.onload = (e) => { 
+        $('#image').change(function () {
 
-      $('#preview').attr('src', e.target.result); 
-    }
+            let reader = new FileReader();
 
-    reader.readAsDataURL(this.files[0]); 
-  
-   });
-  
-});
+            reader.onload = (e) => {
+
+                $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+    });
 
 </script>
 @endsection
