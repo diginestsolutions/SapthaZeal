@@ -779,13 +779,12 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li class="active" id="account"><strong> Basic Details</strong></li>
                     <li id="personal"><strong> Educational Details </strong></li>
                     <li id="payment"><strong> Experience Details</strong></li>
-                    <!--<li id="confirm"><strong>Status</strong></li>-->
+                    <li id="confirm"><strong>Status</strong></li>
                 </ul>
 
 
                 <br>
-                <div id="form-errors"></div>
-               <input type="hidden" id="candidate_id"/>
+               <input type="hidden" id="candidate_id" value="{{$candidate->id}}"/>
                 <fieldset>
                     <div class=" col-md-12 ">
                         <div class=" widget-content ">
@@ -793,26 +792,23 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             {{csrf_field()}}
                             <div class="row col-lg-12">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <label class="title-label"> image <span style="color: red;">*</span></label>
-                                    <button class="btn fileicon " type="button">
-                                        <div class="dropzone">
-                                            <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                            <input type="file" id="bimage" name="image" class="upload-input " required/>
-                                        </div>
-                                    </button>
-
+                                    <label class="title-label"> image </label>
+                                    <div class="dropzone">
+                                        <img src="{{$candidate->image}} " width="200" height="200" alt=""
+                                            style="border-radius:10px;">
+                                    </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
-                                        <label class="title-label"> Name <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bname" name="name" required>
+                                        <label class="title-label"> Name </label>
+                                        <input type="text" class="form-control form-control-lg" id="bname" name="name" value="{{$candidate->name}}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
-                                        <label class="title-label"> Email Address <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bemail" name="email" required>
+                                        <label class="title-label"> Email Address </label>
+                                        <input type="text" class="form-control form-control-lg" id="bemail" name="email" value="{{$candidate->email}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -822,14 +818,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
-                                        <label class="title-label">Mobile Number <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bmobile" name="mobile" required>
+                                        <label class="title-label">Mobile Number </label>
+                                        <input type="text" class="form-control form-control-lg" id="bmobile" name="mobile" value="{{$candidate->mobile}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
-                                        <label class="title-label">Prefered Job location <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bjoblocation" name="joblocation" required>
+                                        <label class="title-label">Prefered Job location </label>
+                                        <input type="text" class="form-control form-control-lg" id="bjoblocation" name="joblocation" value="{{$candidate->joblocation}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -839,19 +835,19 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Height</label>
-                                        <input type="text" class="form-control form-control-lg" id="bheight" name="height">
+                                        <input type="text" class="form-control form-control-lg" id="bheight" name="height" value="{{$candidate->height}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">weight</label>
-                                        <input type="text" class="form-control form-control-lg" id="bweight" name="weight">
+                                        <input type="text" class="form-control form-control-lg" id="bweight" name="weight" value="{{$candidate->weight}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Address</label>
-                                        <input type="text" class="form-control form-control-lg" id="baddress" name="address">
+                                        <input type="text" class="form-control form-control-lg" id="baddress" name="address" value="{{$candidate->address}}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -879,8 +875,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                    <!-- <a class="btn " href="{{ route('add.education') }}" style="float:left;"> <span class="icons"> <i
                                 class="fa fa-plus " aria-hidden="true"></i></span></a>-->
 
-                    <a class="btn " href="" data-toggle="modal" data-target="#educationModal"> <span class="icons"> <i
-                    class="fa fa-plus " aria-hidden="true"></i></span></a>
+                   <!-- <a class="btn " href="" data-toggle="modal" data-target="#educationModal"> <span class="icons"> <i
+                    class="fa fa-plus " aria-hidden="true"></i></span></a>-->
                     <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
@@ -895,7 +891,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         Previous<i class="icon-database-insert ml-1"></i>
 
                     </button>
-                    <button type="button" class=" next1 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                    <button type="button" class=" next btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
                           letter-spacing: 0.25px;
     border: none;
     color: #FFFFFF;
@@ -921,10 +917,29 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                 <th>Pass Out</th>
                                                 <th>School Medium</th>
                                                 <th>Marks Obtained(%)</th>
-                                                <th>Actions</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyfirst">
+                                            @if($candidate->candidate_education)
+                                                @foreach($candidate->candidate_education as $education)
+                                                    @if($education->education == 1 ||  $education->education == 2)
+                                                        <tr>
+                                                            @if($education->education == 1)
+                                                            <td>10th</td>
+                                                            @endif
+                                                            @if($education->education == 2)
+                                                            <td>12th</td>
+                                                            @endif
+                                                            <td>{{$education->board}}</td>
+                                                            <td>{{$education->passout}}</td>
+                                                            <td>{{$education->school_medium}}</td>
+                                                            <td>{{$education->mark_obtained}}</td>
+                                                            
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -945,10 +960,34 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                 <th>Type</th>
                                                 <th>Pass Out</th>
                                                 <th>Marks Obtained(%)</th>
-                                                <th>Actions</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody id="tbodysecond">
+                                            @if($candidate->candidate_education)
+                                                @foreach($candidate->candidate_education as $education)
+                                                    @if($education->education == 3 ||  $education->education == 4 || $education->education == 5)
+                                                        <tr>
+                                                            @if($education->education == 3)
+                                                            <td>Graduation/Diploma</td>
+                                                            @endif
+                                                            @if($education->education == 4)
+                                                            <td>Masters/Post Graduation</td>
+                                                            @endif
+                                                            @if($education->education == 5)
+                                                            <td>Doctorate/PHD</td>
+                                                            @endif
+                                                            <td>{{$education->university}}</td>
+                                                            <td>{{$education->course}}</td>
+                                                            <td>{{$education->specialization}}</td>
+                                                            <td>{{$education->course_type}}</td>
+                                                            <td>{{$education->passout}}</td>
+                                                            <td>{{$education->mark_obtained}}</td>
+                                                            
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
 
@@ -963,19 +1002,34 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         <div class=" widget-content ">
                             <form method="POST" enctype="multipart/form-data" id="experience-form" action="javascript:void(0)" >
                             {{csrf_field()}}
+                            @if($candidate->candidate_experience)
                             <div class="row col-lg-12">
                                 <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                         <div class=" form-group">
                                             <label class="title-label">Is this your current employment?</label>
+                                            @if($candidate->candidate_experience->current_employee_status == 'on')
                                             <label class="con1"><span>Yes</span>
-                                                <input type="radio" name="current_employee_status" checked>
+                                                <input type="radio" name="current_employee_status" checked readonly>
                                                 <span class="checkmark"></span>
                                             </label>
+                                            @else
                                             <label class="con1"><span>No</span>
-                                                <input type="radio" name="current_employee_status">
+                                                <input type="radio" name="current_employee_status" readonly>
                                                 <span class="checkmark"></span>
                                             </label>
+                                            @endif
+                                            @if($candidate->candidate_experience->current_employee_status == 'off')
+                                            <label class="con1"><span>Yes</span>
+                                                <input type="radio" name="current_employee_status" readonly>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            @else
+                                            <label class="con1"><span>No</span>
+                                                <input type="radio" name="current_employee_status" checked readonly>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -987,10 +1041,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                 <option value="" class="text-capitalize">
                                                     Choose employement type
                                                 </option>
-                                                <option value="fulltime" class="text-capitalize">
+                                                <option value="fulltime" class="text-capitalize" {{$candidate->candidate_experience->employement_type == "fulltime" ? 'selected' : ''}}>
                                                     Full Time
                                                 </option>
-                                                <option value="parttime" class="text-capitalize">
+                                                <option value="parttime" class="text-capitalize" {{$candidate->candidate_experience->employement_type == "parttime" ? 'selected' : ''}}>
                                                     Part Time
                                                 </option>
                                             </select>
@@ -1001,27 +1055,27 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Company Name</label>
-                                        <input type="text" class="form-control form-control-lg" name="company_name">
+                                        <input type="text" class="form-control form-control-lg" name="company_name" value="{{$candidate->candidate_experience->company_name}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Designation</label>
-                                        <input type="text" class="form-control form-control-lg" name="designation">
+                                        <input type="text" class="form-control form-control-lg" name="designation" value="{{$candidate->candidate_experience->designation}}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group select-date">
                                         <label class="title-label"> Joining Date</label>
-                                        <input type="text" class="form-control form-control-lg" name="Joining_date">
+                                        <input type="text" class="form-control form-control-lg" name="Joining_date" value="{{$candidate->candidate_experience->Joining_date}}" readonly>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Salary</label>
-                                        <input type="text" class="form-control form-control-lg" name="salary">
+                                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$candidate->candidate_experience->salary}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -1031,12 +1085,12 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="row  ">
                                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                                 <input type="number" class="form-control form-control-lg "
-                                                    id="datepicker" placeholder="years" name="years"
-                                                    style="text-align: right;">
+                                                    id="datepicker" placeholder="years" name="years" value="{{$candidate->candidate_experience->years}}"
+                                                    style="text-align: right;" readonly>
                                             </div>
                                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                                 <input type="number" name="months" class="form-control form-control-lg "
-                                                    placeholder="months" required style="text-align: right;">
+                                                    placeholder="months" required style="text-align: right;" value="{{$candidate->candidate_experience->months}}" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -1049,10 +1103,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             required>
                                             <option value="0" class="text-capitalize">
                                             </option>
-                                            <option value="1month" class="text-capitalize">
+                                            <option value="1month" class="text-capitalize" {{$candidate->candidate_experience->notice_period == "1month" ? 'selected' : ''}}>
                                                 1 Month
                                             </option>
-                                            <option value="3month" class="text-capitalize">
+                                            <option value="3month" class="text-capitalize" {{$candidate->candidate_experience->notice_period == "3month" ? 'selected' : ''}}>
                                                 3 Month
                                             </option>
                                         </select>
@@ -1061,18 +1115,19 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"></i>Job Description</label>
-                                        <textarea rows="4" class="form-control1" name="job_description"></textarea>
+                                        <textarea rows="4" class="form-control1" name="job_description" readonly>{{$candidate->candidate_experience->job_description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"></i>Prefered Skills:</label>
                                         <input type="text" rows="4" name="skill" id="skill" class="form-control"
-                                            style=" height: 100px;" />
+                                            style=" height: 100px;" value="{{$candidate->candidate_experience->skill}}" readonly/>
 
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </form>
                         </div>
                     </div>
@@ -1089,7 +1144,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         PREVIOUS<i class="icon-database-insert ml-1"></i>
 
                     </button>
-                    <button type="button" class="next2 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                    <!--<button type="button" class="next2 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
     color: #FFFFFF;
@@ -1099,9 +1154,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     width: 90px;
     font-size: 14px;
     font-family: 'Quicksand';">
-                        SUBMIT<i class="icon-database-insert ml-1"></i>
+                        UPDATE<i class="icon-database-insert ml-1"></i>
 
-                    </button>
+                    </button>-->
 
                 </fieldset>
                 <!--<fieldset>
@@ -1363,105 +1418,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> 
 <script>
-    $(document).ready(function () {
-
+        $(document).ready(function () {
         var current_fs, next_fs, pre_fs;
         var opacity;
         var current = 1;
         var steps = $("fieldset").length;
         setProgressBar(current);
         $(".next").click(function () {
-            current_fs = $(this).parent();
-            next_fs = $(this).parent().next();
-            
-            var data=$('#image-upload').serialize();
-            var file_data = $('#bimage').prop('files')[0]; 
-            var form = $("#image-upload")[0];
-            var form_data = new FormData(form);
-            var success_variable= false;
-            
-            var url = '{{ route("add.candidate") }}';
-            $.ajax({
-                type:'POST',
-                url:url,
-                dataType: 'json',  // what to expect back from the PHP script, if anything
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                success:function(data) {
-                    $("#candidate_id").val(data.candidate_id);
-
-                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-                    next_fs.show();
-                    current_fs.animate({
-                        opacity: 0
-                    }, {
-                        step: function (now) {
-                            opacity = 1 - now;
-                            current_fs.css({
-                                'display': 'none',
-                                'position': 'relative'
-                            });
-                            next_fs.css({
-                                'opacity': opacity
-                            });
-                        },
-                        duration: 500
-                    });
-                    setProgressBar(++current);
-                },error:function(data) {
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
-
-                    $.each( data.responseJSON.errors, function( key, value ) {
-                        console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                    });
-                    errorsHtml += '</ul></div>';
-
-                    $('#form-errors').html( errorsHtml );
-                }
-            });
-        });
-        $(".pre").click(function () {
-            current_fs = $(this).parent();
-            pre_fs = $(this).parent().prev();
-            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-            pre_fs.show();
-            current_fs.animate({
-                opacity: 0
-            }, {
-                step: function (now) {
-                    opacity = 1 - now;
-                    current_fs.css({
-                        'display': 'none',
-                        'position': 'relative'
-                    });
-                    pre_fs.css({
-                        'opacity': opacity
-                    });
-                },
-                duration: 500
-            });
-        });
-
-        function setProgressBar(curStep) {
-            var percent = parseFloat(100 / steps) * curStep;
-            percentpercent = percent.toFixed();
-            $(".pbar")
-                .css("width", percent + "%")
-        }
-        $(".submit").click(function () {
-            return false;
-        })
-    });
-    $(document).ready(function () {
-        var current_fs, next_fs, pre_fs;
-        var opacity;
-        var current = 1;
-        var steps = $("fieldset").length;
-        setProgressBar(current);
-        $(".next1").click(function () {
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
             $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
@@ -1523,7 +1486,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         formData.append("education", education);
         formData.append("candidate_id", candidate_id);
         formData.append("option", 1);
-        //console.log(formData);
+        
         var edit_id = $(`#educational_edit_id`).val();
         formData.append("educational_edit_id", edit_id);
 
@@ -1566,15 +1529,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 }
             },error:function(data) {
-                errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                    $.each( data.responseJSON.errors, function( key, value ) {
-                        console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                    });
-                    errorsHtml += '</ul></div>';
-
-                    $('#form-errors').html( errorsHtml );
             }
         });
     }
@@ -1628,15 +1583,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 });
                 $('#tbodysecond').html(res);   
             },error:function(data) {
-                errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                    $.each( data.responseJSON.errors, function( key, value ) {
-                        console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                    });
-                    errorsHtml += '</ul></div>';
-
-                    $('#form-errors').html( errorsHtml );
             }
         });
     }
@@ -1677,16 +1624,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         }
                         $('#educationModal').modal('show');
                     }
-                },error:function(data) {
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
-
-                        $.each( data.responseJSON.errors, function( key, value ) {
-                            console.log(value[0]);
-                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                        });
-                        errorsHtml += '</ul></div>';
-
-                        $('#form-errors').html( errorsHtml );
                 }
             })
         }
@@ -1726,16 +1663,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         }
                         $('#educationModal').modal('show');
                     }
-                },error:function(data) {
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
-
-                        $.each( data.responseJSON.errors, function( key, value ) {
-                            console.log(value[0]);
-                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                        });
-                        errorsHtml += '</ul></div>';
-
-                        $('#form-errors').html( errorsHtml );
                 }
             })
         }
@@ -1866,6 +1793,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         var steps = $("fieldset").length;
         setProgressBar(current);
         $(".next2").click(function () {
+            
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
             
@@ -1876,7 +1804,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             form_data.append("candidate_id", candidate_id);
             var success_variable= false;
             
-            var url = '{{ route("add.candidate.experience") }}';
+            var url = '{{ route("update.candidate.experience") }}';
             $.ajax({
                 type:'POST',
                 url:url,
@@ -1904,17 +1832,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         duration: 500
                     });
                     setProgressBar(++current);*/
-                    window.location = window.location.origin+'/admin/candidate';
+                    window.location = window.location.origin+'/admin/candidate';  
                 },error:function(data) {
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                        $.each( data.responseJSON.errors, function( key, value ) {
-                            console.log(value[0]);
-                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                        });
-                        errorsHtml += '</ul></div>';
-
-                        $('#form-errors').html( errorsHtml );
                 }
             });
         });
@@ -1983,15 +1903,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 success:function(data) {
                     window.location = window.location.origin+'/admin/candidate';                   
                 },error:function(data) {
-                    errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                        $.each( data.responseJSON.errors, function( key, value ) {
-                            console.log(value[0]);
-                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                        });
-                        errorsHtml += '</ul></div>';
-
-                        $('#form-errors').html( errorsHtml );
                 }
             });
         }
