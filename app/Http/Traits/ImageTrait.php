@@ -17,9 +17,4 @@ trait ImageTrait {
 
         return($input['imagename']);
     }
-    public function getpdf($pdf_file) {
-        $filename = time().'.'.$pdf_file->getClientOriginalExtension();
-        $filePath = storage_path('app/public/uploads/resumes/'); 
-        $pdf_file->move($filePath, $filename);
-    }
 }

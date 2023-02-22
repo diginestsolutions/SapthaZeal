@@ -51,16 +51,6 @@
     </div>
     @endif
     <nav class="navbar navbar-light ">
-
-        <a class="btn " href="{{ route('get.addjob') }}"> <span class="icons"> <i class="fa fa-plus "
-                    aria-hidden="true"></i></span></a>
-
-
-
-        <div class=" has-search col-md-3">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class=" form-control form-control-lg " placeholder="Search">
-        </div>
     </nav>
     <!--Table-->
     <div class=" col-md-12 ">
