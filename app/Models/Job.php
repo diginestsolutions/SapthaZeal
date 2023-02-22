@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Industry;
+use App\Models\JobAppliedDetails;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 //use Illuminate\Database\Eloquent\Model;
@@ -45,6 +46,11 @@ class Job extends Model
     public function industry()
     {
         return $this->belongsTo(Industry::class,'jobindustry');
+    }
+
+    public function job_applied_details()
+    {
+        return $this->hasMany(JobAppliedDetails::class,'job_id');
     }
 }
 

@@ -6,6 +6,8 @@ use App\Models\Candidate;
 use App\Models\User;
 use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
+use App\Models\Job;
+use App\Models\JobAppliedDetails;
 use validator;
 use App\Http\Traits\ImageTrait;
 use App\Http\Controllers\Controller;
@@ -363,6 +365,33 @@ class CandidateController extends Controller
             return $response;
         }
         catch (\Exception $e) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Failed to update candidate'
+            ], 400);
+        }
+    }
+    public function shortlisted($id)
+    {
+        $job = Job::with(['job_applied_details' => function ($query) use ($id){
+                    $query->where('candidate_id',$id);
+               }])->orderBy('_id', 'ASC')->get();
+              //  dd($job);
+        return view('Admin/shortlisted',array('job'=>$job));
+    }
+    public function doshortlisted($id,$candidate_id)
+    {
+        try {
+            $job_applied_details = new JobAppliedDetails();
+            $job_applied_details->nextid();
+            $job_applied_details->job_id = $id;
+            $job_applied_details->candidate_id = $candidate_id;
+            $job_applied_details->applied_status = 'scheduled_resumes';
+            $job_applied_details->save();
+            $response['success'] = 1;
+            $response['message'] ='Shortlisted Successfuly';
+            return $response;
+        } catch (\Exception $e) {
             return response()->json([
                 'status'  => false,
                 'message' => 'Failed to update candidate'
