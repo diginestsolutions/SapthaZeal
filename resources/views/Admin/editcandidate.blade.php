@@ -779,13 +779,12 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li class="active" id="account"><strong> Basic Details</strong></li>
                     <li id="personal"><strong> Educational Details </strong></li>
                     <li id="payment"><strong> Experience Details</strong></li>
-                    <!--<li id="confirm"><strong>Status</strong></li>-->
+                    <li id="confirm"><strong>Status</strong></li>
                 </ul>
 
 
                 <br>
-                <div id="form-errors"></div>
-               <input type="hidden" id="candidate_id"/>
+               <input type="hidden" id="candidate_id" value="{{$candidate->id}}"/>
                 <fieldset>
                     <div class=" col-md-12 ">
                         <div class=" widget-content ">
@@ -796,7 +795,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <label class="title-label"> image <span style="color: red;">*</span></label>
                                     <button class="btn fileicon " type="button">
                                         <div class="dropzone">
-                                            <img src="../assets/cloud-computing.png" class="upload-icon" />
+                                            <img src="{{$candidate->image}} " width="200" height="200" alt=""
+                                            style="border-radius:10px;">
                                             <input type="file" id="bimage" name="image" class="upload-input " required/>
                                         </div>
                                     </button>
@@ -805,14 +805,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"> Name <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bname" name="name" required>
+                                        <input type="text" class="form-control form-control-lg" id="bname" name="name" value="{{$candidate->name}}" required>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"> Email Address <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bemail" name="email" required>
+                                        <input type="text" class="form-control form-control-lg" id="bemail" name="email" value="{{$candidate->email}}" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -823,13 +823,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Mobile Number <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bmobile" name="mobile" required>
+                                        <input type="text" class="form-control form-control-lg" id="bmobile" name="mobile" value="{{$candidate->mobile}}" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Prefered Job location <span style="color: red;">*</span></label>
-                                        <input type="text" class="form-control form-control-lg" id="bjoblocation" name="joblocation" required>
+                                        <input type="text" class="form-control form-control-lg" id="bjoblocation" name="joblocation" value="{{$candidate->joblocation}}" required>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -839,19 +839,19 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Height</label>
-                                        <input type="text" class="form-control form-control-lg" id="bheight" name="height">
+                                        <input type="text" class="form-control form-control-lg" id="bheight" name="height" value="{{$candidate->height}}">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">weight</label>
-                                        <input type="text" class="form-control form-control-lg" id="bweight" name="weight">
+                                        <input type="text" class="form-control form-control-lg" id="bweight" name="weight" value="{{$candidate->weight}}">
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Address</label>
-                                        <input type="text" class="form-control form-control-lg" id="baddress" name="address">
+                                        <input type="text" class="form-control form-control-lg" id="baddress" name="address" value="{{$candidate->address}}">
                                     </div>
                                 </div>
                             </div>
@@ -925,6 +925,31 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyfirst">
+                                            @if($candidate->candidate_education)
+                                                @foreach($candidate->candidate_education as $education)
+                                                    @if($education->education == 1 ||  $education->education == 2)
+                                                        <tr>
+                                                            @if($education->education == 1)
+                                                            <td>10th</td>
+                                                            @endif
+                                                            @if($education->education == 2)
+                                                            <td>12th</td>
+                                                            @endif
+                                                            <td>{{$education->board}}</td>
+                                                            <td>{{$education->passout}}</td>
+                                                            <td>{{$education->school_medium}}</td>
+                                                            <td>{{$education->mark_obtained}}</td>
+                                                            <td>
+                                                                <div class="action-btns d-flex justify-content-end">
+                                                                    <a href="javascript:void(0)" onclick="return edititem({{$education->candidate_education_id}});" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
+                                                                    <input type="hidden" id="candidate_education_id_{{$education->candidate_education_id}} value="{{$education->candidate_education_id}}"/>
+                                                                    <a href="javascript:void(0)" onclick="return deleteitem({{$education->candidate_education_id}});" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -949,6 +974,36 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             </tr>
                                         </thead>
                                         <tbody id="tbodysecond">
+                                            @if($candidate->candidate_education)
+                                                @foreach($candidate->candidate_education as $education)
+                                                    @if($education->education == 3 ||  $education->education == 4 || $education->education == 5)
+                                                        <tr>
+                                                            @if($education->education == 3)
+                                                            <td>Graduation/Diploma</td>
+                                                            @endif
+                                                            @if($education->education == 4)
+                                                            <td>Masters/Post Graduation</td>
+                                                            @endif
+                                                            @if($education->education == 5)
+                                                            <td>Doctorate/PHD</td>
+                                                            @endif
+                                                            <td>{{$education->university}}</td>
+                                                            <td>{{$education->course}}</td>
+                                                            <td>{{$education->specialization}}</td>
+                                                            <td>{{$education->course_type}}</td>
+                                                            <td>{{$education->passout}}</td>
+                                                            <td>{{$education->mark_obtained}}</td>
+                                                            <td>
+                                                                <div class="action-btns d-flex justify-content-end">
+                                                                    <a href="javascript:void(0)" onclick="return edititem1('+value.candidate_education_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
+                                                                    <input type="hidden" id="candidate_education_id1_'+value.candidate_education_id+'" value="'+value._id+'"/>
+                                                                    <a href="javascript:void(0)" onclick="return deleteitem1('+value.candidate_education_id+');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
 
@@ -968,14 +1023,28 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                         <div class=" form-group">
                                             <label class="title-label">Is this your current employment?</label>
+                                            @if(@$candidate->candidate_experience->current_employee_status == 'on')
                                             <label class="con1"><span>Yes</span>
                                                 <input type="radio" name="current_employee_status" checked>
                                                 <span class="checkmark"></span>
                                             </label>
+                                            @else
                                             <label class="con1"><span>No</span>
                                                 <input type="radio" name="current_employee_status">
                                                 <span class="checkmark"></span>
                                             </label>
+                                            @endif
+                                            @if(@$candidate->candidate_experience->current_employee_status == 'off')
+                                            <label class="con1"><span>Yes</span>
+                                                <input type="radio" name="current_employee_status">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            @else
+                                            <label class="con1"><span>No</span>
+                                                <input type="radio" name="current_employee_status" checked>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -987,10 +1056,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                 <option value="" class="text-capitalize">
                                                     Choose employement type
                                                 </option>
-                                                <option value="fulltime" class="text-capitalize">
+                                                <option value="fulltime" class="text-capitalize" {{@$candidate->candidate_experience->employement_type == "fulltime" ? 'selected' : ''}}>
                                                     Full Time
                                                 </option>
-                                                <option value="parttime" class="text-capitalize">
+                                                <option value="parttime" class="text-capitalize" {{@$candidate->candidate_experience->employement_type == "parttime" ? 'selected' : ''}}>
                                                     Part Time
                                                 </option>
                                             </select>
@@ -1001,27 +1070,27 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Company Name</label>
-                                        <input type="text" class="form-control form-control-lg" name="company_name">
+                                        <input type="text" class="form-control form-control-lg" name="company_name" value="{{@$candidate->candidate_experience->company_name}}">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Designation</label>
-                                        <input type="text" class="form-control form-control-lg" name="designation">
+                                        <input type="text" class="form-control form-control-lg" name="designation" value="{{@$candidate->candidate_experience->designation}}">
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group select-date">
                                         <label class="title-label"> Joining Date</label>
-                                        <input type="text" class="form-control form-control-lg" name="Joining_date">
+                                        <input type="text" class="form-control form-control-lg" name="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Salary</label>
-                                        <input type="text" class="form-control form-control-lg" name="salary">
+                                        <input type="text" class="form-control form-control-lg" name="salary" value="{{@$candidate->candidate_experience->salary}}">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -1031,12 +1100,12 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="row  ">
                                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                                 <input type="number" class="form-control form-control-lg "
-                                                    id="datepicker" placeholder="years" name="years"
+                                                    id="datepicker" placeholder="years" name="years" value="{{@$candidate->candidate_experience->years}}"
                                                     style="text-align: right;">
                                             </div>
                                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                                 <input type="number" name="months" class="form-control form-control-lg "
-                                                    placeholder="months" required style="text-align: right;">
+                                                    placeholder="months" required style="text-align: right;" value="{{@$candidate->candidate_experience->months}}">
                                             </div>
                                         </div>
                                     </div>
@@ -1049,10 +1118,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             required>
                                             <option value="0" class="text-capitalize">
                                             </option>
-                                            <option value="1month" class="text-capitalize">
+                                            <option value="1month" class="text-capitalize" {{@$candidate->candidate_experience->notice_period == "1month" ? 'selected' : ''}}>
                                                 1 Month
                                             </option>
-                                            <option value="3month" class="text-capitalize">
+                                            <option value="3month" class="text-capitalize" {{@$candidate->candidate_experience->notice_period == "3month" ? 'selected' : ''}}>
                                                 3 Month
                                             </option>
                                         </select>
@@ -1061,14 +1130,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"></i>Job Description</label>
-                                        <textarea rows="4" class="form-control1" name="job_description"></textarea>
+                                        <textarea rows="4" class="form-control1" name="job_description">{{@$candidate->candidate_experience->job_description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"></i>Prefered Skills:</label>
                                         <input type="text" rows="4" name="skill" id="skill" class="form-control"
-                                            style=" height: 100px;" />
+                                            style=" height: 100px;" value="{{@$candidate->candidate_experience->skill}}"/>
 
                                     </div>
                                 </div>
@@ -1099,7 +1168,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     width: 90px;
     font-size: 14px;
     font-family: 'Quicksand';">
-                        SUBMIT<i class="icon-database-insert ml-1"></i>
+                        UPDATE<i class="icon-database-insert ml-1"></i>
 
                     </button>
 
@@ -1379,8 +1448,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             var form = $("#image-upload")[0];
             var form_data = new FormData(form);
             var success_variable= false;
+
+            var candidate_id = $(`#candidate_id`).val();
+            form_data.append("candidate_id", candidate_id);
             
-            var url = '{{ route("add.candidate") }}';
+            var url = '{{ route("update.candidate") }}';
             $.ajax({
                 type:'POST',
                 url:url,
@@ -1390,8 +1462,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 processData: false,
                 data: form_data,
                 success:function(data) {
-                    $("#candidate_id").val(data.candidate_id);
-
                     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
                     next_fs.show();
                     current_fs.animate({
@@ -1413,13 +1483,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 },error:function(data) {
                     errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                    $.each( data.responseJSON.errors, function( key, value ) {
-                        console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                    });
-                    errorsHtml += '</ul></div>';
+                        $.each( data.responseJSON.errors, function( key, value ) {
+                            console.log(value[0]);
+                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
 
-                    $('#form-errors').html( errorsHtml );
+                        $('#form-errors').html( errorsHtml );
                 }
             });
         });
@@ -1523,7 +1593,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         formData.append("education", education);
         formData.append("candidate_id", candidate_id);
         formData.append("option", 1);
-        //console.log(formData);
+        
         var edit_id = $(`#educational_edit_id`).val();
         formData.append("educational_edit_id", edit_id);
 
@@ -1566,16 +1636,16 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 }
             },error:function(data) {
-                errorsHtml = '<div class="alert alert-danger"><ul>';
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                    $.each( data.responseJSON.errors, function( key, value ) {
-                        console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                    });
-                    errorsHtml += '</ul></div>';
+                        $.each( data.responseJSON.errors, function( key, value ) {
+                            console.log(value[0]);
+                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
 
-                    $('#form-errors').html( errorsHtml );
-            }
+                        $('#form-errors').html( errorsHtml );
+                }
         });
     }
     function eduaction1() {
@@ -1628,16 +1698,16 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 });
                 $('#tbodysecond').html(res);   
             },error:function(data) {
-                errorsHtml = '<div class="alert alert-danger"><ul>';
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
 
-                    $.each( data.responseJSON.errors, function( key, value ) {
-                        console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
-                    });
-                    errorsHtml += '</ul></div>';
+                        $.each( data.responseJSON.errors, function( key, value ) {
+                            console.log(value[0]);
+                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
 
-                    $('#form-errors').html( errorsHtml );
-            }
+                        $('#form-errors').html( errorsHtml );
+                }
         });
     }
 </script>
@@ -1866,6 +1936,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         var steps = $("fieldset").length;
         setProgressBar(current);
         $(".next2").click(function () {
+            
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
             
@@ -1876,7 +1947,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             form_data.append("candidate_id", candidate_id);
             var success_variable= false;
             
-            var url = '{{ route("add.candidate.experience") }}';
+            var url = '{{ route("update.candidate.experience") }}';
             $.ajax({
                 type:'POST',
                 url:url,
@@ -1904,7 +1975,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         duration: 500
                     });
                     setProgressBar(++current);*/
-                    window.location = window.location.origin+'/admin/candidate';
+                    window.location = window.location.origin+'/admin/candidate';  
                 },error:function(data) {
                     errorsHtml = '<div class="alert alert-danger"><ul>';
 

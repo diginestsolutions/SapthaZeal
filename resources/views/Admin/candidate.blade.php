@@ -72,18 +72,17 @@
                             <tr>
                                 <td>#{{ $candidates->candidate_id}}</td>
                                 <td>{{$candidates->created_at}}</td>
-                                <td>{{$candidates->user['name']}}</td>
-                                <td>{{$candidates->user['mobile']}}</td>
-                                <td>{{$candidates->user['email']}}</td>
+                                <td>{{$candidates->name}}</td>
+                                <td>{{$candidates->mobile}}</td>
+                                <td>{{$candidates->email}}</td>
                                 <td>{{$candidates->joblocation}}</td>
-                                <td>{{$candidates->designation}}</td>
+                                <td>{{@$candidates->candidate_experience->designation}}</td>
                                 <td class="text-right">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                        <a href="{{ route('show.candidate',$candidates->id) }}" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
                                             class="mt-2"><i class="fa fa-eye"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                        <a href="{{ route('edit.candidate',$candidates->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
-
                                         <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-user"></i></a>
 

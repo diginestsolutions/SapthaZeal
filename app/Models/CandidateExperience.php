@@ -1,23 +1,21 @@
 <?php
+
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\CandidateEducation;
-use App\Models\CandidateExperience;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Candidate extends Model
+class CandidateExperience extends Model
 {
     use HasFactory;
-    protected $collection = '';
-    protected $guarded = [];
+
+    protected $collection = 'candidate_experience';
 
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment
-        $this->candidate_id = self::getID();
+        $this->candidate_experience_id = self::getID();
     }
 
     public static function bootUseAutoIncrementID()
@@ -35,23 +33,10 @@ class Candidate extends Model
     private static function getID()
     {
         $seq = DB::connection('mongodb')->getCollection('counters')->findOneAndUpdate(
-            ['candidate_id' => 'candidate_id'],
+            ['candidate_experience_id' => 'candidate_experience_id'],
             ['$inc' => ['seq' => 1]],
             ['new' => true, 'upsert' => true]
         );
         return $seq->seq;
-    }
-
-    public function user() {
-
-        return $this->belongsTo(User::class,'user_id');
-    }
-    public function candidate_education()
-    {
-        return $this->hasMany(CandidateEducation::class,'candidate_id');
-    }
-    public function candidate_experience()
-    {
-        return $this->hasOne(CandidateExperience::class,'candidate_id');
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\JobProviderController;
 use App\Http\Controllers\Admin\AdminprofileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubController;
-use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\JobController;
@@ -61,15 +61,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/job/show/{id}', [JobController::class, 'show'])->name('show.job');
     Route::get('/job/response/{id}', [JobController::class, 'jobresponse'])->name('response.job');
     Route::post('/job/response/status-list/{id}', [JobController::class, 'responsestatuslist'])->name('job.response.statuslist');
-    // Route::get('/addjob', [JobController::class, 'addjob'])->name('get.addjob');
-   // Route::post('/createjob',[JobController::class, 'createjob'])->name('create.job');
-   // Route::get('/viewjob', [JobController::class, 'viewjob'])->name('view.job');
-   
-   // Route::get('/editjob', [JobController::class, 'edit'])->name('edit.job');
-    
-    //response
-    Route::get('/getresponse', [ResponseController::class, 'get'])->name('get.response');
-
+  
     //industry
     Route::get('/industry', [IndustryController::class, 'index'])->name('view.industry');
     Route::post('/industry/store', [IndustryController::class, 'store'])->name('add.industry');
@@ -103,17 +95,30 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/subcription', [SubController::class, 'index'])->name('view.subscription');
 
     //candidate
+    Route::get('/candidate', [CandidateController::class, 'index'])->name('view.candidate');
+    Route::get('/candidate/create', [CandidateController::class, 'create'])->name('view.addcandidate');
+    Route::post('/candidate/store-basic', [CandidateController::class, 'store'])->name('add.candidate');
+    Route::post('/candidate/store-education', [CandidateController::class, 'addeducation'])->name('add.addeducation');
+    Route::get('/candidate/edit-education/{id}', [CandidateController::class, 'editeducation'])->name('candidate.education.edit');
+    Route::post('/candidate/{id}/education-destroy', [CandidateController::class, 'educationdestroy'])->name('education.destroy');
+    Route::post('/candidate/store-experience', [CandidateController::class, 'addexperience'])->name('add.candidate.experience');
+    Route::post('/candidate/change-status', [CandidateController::class, 'changestatus'])->name('change.candidate.status');
+    Route::get('/candidate/edit/{id}', [CandidateController::class, 'edit'])->name('edit.candidate');
+    Route::post('/candidate/update', [CandidateController::class, 'update'])->name('update.candidate');
+    Route::post('/candidate/update-experience', [CandidateController::class, 'updateexperience'])->name('update.candidate.experience');
+    Route::get('/candidate/show/{id}', [CandidateController::class, 'show'])->name('show.candidate');
+    //Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
 
-    Route::get('/candidate', [CandidateController::class, 'candidate'])->name('view.candidate');
-    Route::get('/addcandidate', [CandidateController::class, 'addcandidate'])->name('view.addcandidate');
-    Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
+    //Route::get('/candidate', [CandidateController::class, 'candidate'])->name('view.candidate');
+    //Route::get('/addcandidate', [CandidateController::class, 'addcandidate'])->name('view.addcandidate');
+   // Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
     Route::get('/addeducation', [CandidateController::class, 'education'])->name('add.education');
 
     //notications
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
   
     Route::post('/addcandidate', [NotificationController::class, 'add'])->name('add.notification');
-
+ 
    //order
    Route::get('/order', [OrderController::class, 'order'])->name('view.order');
     
