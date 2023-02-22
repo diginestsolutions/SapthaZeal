@@ -83,7 +83,7 @@
                                             class="mt-2"><i class="fa fa-eye"></i></a>
                                         <a href="{{ route('edit.candidate',$candidates->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                        <a href="{{ route('shortlisted.candidate',$candidates->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-user"></i></a>
 
                                     </div>

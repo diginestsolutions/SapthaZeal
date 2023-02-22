@@ -107,6 +107,8 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::post('/candidate/update', [CandidateController::class, 'update'])->name('update.candidate');
     Route::post('/candidate/update-experience', [CandidateController::class, 'updateexperience'])->name('update.candidate.experience');
     Route::get('/candidate/show/{id}', [CandidateController::class, 'show'])->name('show.candidate');
+    Route::get('/candidate/shortlisted/{id}', [CandidateController::class, 'shortlisted'])->name('shortlisted.candidate');
+    Route::get('/candidate/do-shortlisted/{id}/{candidate_id}', [CandidateController::class, 'doshortlisted'])->name('candidate.shortlisted');
     //Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
 
     //Route::get('/candidate', [CandidateController::class, 'candidate'])->name('view.candidate');
