@@ -739,9 +739,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.candidate') }}"><span
                             class="icon2"><button class="btn-back" style="border-radius:50px;
-            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Add
-                    Candidate
-                </h3>
+            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Jobseeker #{{$candidate->candidate_id}}</h3>
 
 
 
