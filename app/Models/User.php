@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Candidate;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 
-
-class User extends Authenticatable
+class User extends Authenticatable  implements JWTSubject
 {
     use  HasFactory, Notifiable;
 
@@ -90,5 +90,9 @@ class User extends Authenticatable
     public function candidate()
     {
         return $this->hasMany(Candidate::class,'user_id');
+    }
+    public function notification()
+    {
+        return $this->hasMany(Notification::class,'user_id');
     }
 }

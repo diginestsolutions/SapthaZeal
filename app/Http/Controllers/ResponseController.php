@@ -11,4 +11,9 @@ class ResponseController extends Controller
 
         return view('Admin/viewresponse');
     }
+    public function chat(){
+       
+
+        return view('Admin/viewchat');
+    }
 }
