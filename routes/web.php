@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\IndustryController;
-use App\Http\Controllers\JobProviderController;
+use App\Http\Controllers\Admin\JobProviderController;
 use App\Http\Controllers\Admin\AdminprofileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\CandidateController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\ResponseController;
@@ -58,6 +58,8 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     
     //response
     Route::get('/getresponse', [ResponseController::class, 'get'])->name('get.response');
+    Route::get('/getchat', [ResponseController::class, 'chat'])->name('view.chat');
+    
 
     //industry
     Route::get('/industry', [IndustryController::class, 'index'])->name('view.industry');
@@ -69,7 +71,8 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     //admin
     Route::get('/admin', [AdminprofileController::class, 'index'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'store'])->name('register.admin');
-    Route::get('/changeStatus', [AdminprofileController::class, 'changeStatus'])->name('view.status');
+    Route::post('/user/{id}/status-approved', [AdminprofileController::class, 'statusapproved'])->name('user.approved');
+    Route::post('/user/{id}/status-rejected', [AdminprofileController::class, 'statusrejected'])->name('user.rejected');
     Route::get('/showadmin/{id}', [AdminprofileController::class, 'show'])->name('show.admin');
     Route::get('/editadmin/{id}', [AdminprofileController::class, 'edituser'])->name('edit.admin');
     Route::get('/profileadmin', [AdminprofileController::class, 'edit'])->name('profile.admin');
@@ -78,13 +81,17 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::post('/admindestroy/{id}', [AdminprofileController::class, 'destroy'])->name('admin.destroy');
     //job provider
 
-    Route::get('/jobprovider', [JobProviderController::class, 'jobprovider'])->name('view.jobprovider');
-    Route::get('/add', [JobProviderController::class, 'jobprovider1'])->name('get.addjobprovider');
-    Route::post('/addjobprovider', [JobProviderController::class, 'addjobprovider'])->name('add.jobprovider');
-    Route::get('category/{id}', [JobProviderController::class, 'getcategory'])->name('categories');
-    Route::get('/editjobprovider/{id}', [JobProviderController::class, 'edit'])->name('get.editjobprovider');
-    Route::post('/update/{id}', [JobProviderController::class, 'update'])->name('update.jobprovider');
-    Route::get('/show/{id}', [JobProviderController::class, 'show'])->name('show.jobprovider');
+    //job provider
+    Route::get('/jobprovider', [JobProviderController::class, 'index'])->name('view.jobprovider');
+    Route::get('/jobprovider/create', [JobProviderController::class, 'create'])->name('get.addjobprovider');
+    Route::post('/jobprovider/store', [JobProviderController::class, 'store'])->name('add.jobprovider');
+    Route::get('/jobprovider/category/{id}', [JobProviderController::class, 'getcategory'])->name('categories');
+    Route::post('/jobprovider/{id}/status-approved', [JobProviderController::class, 'statusapproved'])->name('jobprovider.approvde');
+    Route::post('/jobprovider/{id}/status-rejected', [JobProviderController::class, 'statusrejected'])->name('jobprovider.rejected');
+    Route::get('/jobprovider/edit/{id}', [JobProviderController::class, 'edit'])->name('get.editjobprovider');
+    Route::post('/jobprovider/update/{id}', [JobProviderController::class, 'update'])->name('update.jobprovider');
+    Route::get('/jobprovider/show/{id}', [JobProviderController::class, 'show'])->name('show.jobprovider');
+    
     //subscription plan
     Route::get('/subcription', [SubController::class, 'index'])->name('view.subscription');
 
@@ -97,8 +104,8 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
 
     //notications
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
-  
-    Route::post('/addcandidate', [NotificationController::class, 'add'])->name('add.notification');
+    Route::get('/show/{id}', [NotificationController::class, 'show'])->name('show.notification');
+    Route::post('/addnotification', [NotificationController::class, 'add'])->name('add.notification');
 
    //order
    Route::get('/order', [OrderController::class, 'order'])->name('view.order');

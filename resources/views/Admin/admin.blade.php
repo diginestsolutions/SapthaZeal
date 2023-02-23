@@ -1,4 +1,5 @@
 @extends('layouts.Dashboard')
+
 @section('content')
 <style>
     .fa-times-circle {
@@ -9,7 +10,7 @@
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
-        margin: 0;
+          margin: 0;
     }
 
     /* Firefox */
@@ -35,7 +36,7 @@
     }
 
     .upload-icon1 {
-        margin: -15px 2px 2px 2px;
+        margin: -41px 2px 2px 2px;
         background-color: #208CD1;
         border-radius: 5px;
     }
@@ -48,6 +49,7 @@
         height: 100%;
         opacity: 0;
     }
+    
 
     .form-control {
         border-radius: 16px !important;
@@ -220,8 +222,10 @@
         display: flex;
         padding-left: 28px;
     }
+    
 
 </style>
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="col-lg-10  col-md-12" id="main">
 
@@ -254,6 +258,14 @@
 
 
     </nav>
+   
+
+    <nav class="navbar navbar-light ">
+
+        <a class="" href="" data-toggle="modal" data-target="#registerModal"> <span class="icons"> <i
+                    class="fa fa-plus " aria-hidden="true"></i></span></a>
+    </nav>
+    <!--Table-->
     {{-- Message --}}
     @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible" role="alert">
@@ -263,63 +275,75 @@
         <strong>Success !</strong> {{ session('success') }}
     </div>
     @endif
-
-
-    <nav class="navbar navbar-light ">
-
-        <a class="btn " href="" data-toggle="modal" data-target="#registerModal"> <span class="icons"> <i
-                    class="fa fa-plus " aria-hidden="true"></i></span></a>
-
-
-
-        <div class=" has-search col-md-3">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class=" form-control form-control-lg " placeholder="Search">
-        </div>
-    </nav>
-    <!--Table-->
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Error !</strong> {{ session('error') }}
+    </div>
+    @endif
     <div class=" col-md-12 ">
         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-resp-noscroll">
-                        <thead>
+                    <table class="table table-resp-noscroll" id="dt-vertical-scroll">
+                    <thead>
                             <tr>
-                                <th>UserID</th>
-                                <th style="width:14%">Created Date</th>
+                                <th style="width:10%">User ID</th>
+                                <th style="width:15%">Created Date</th>
                                 <th> Name</th>
                                 <th>Email Address</th>
-                                <th>Mobile</th>
+                                <th style="width:16%">Mobile Number</th>
                                 <th>Last Login</th>
-                                <th style="width:15%">Approval Status</th>
+                                <th style="width:16%">Approval Status</th>
                                 <th>Actions</th>
 
                             </tr>
                         </thead>
-                        @foreach ($users as $user)
-                        <tbody>
-
-                            <tr>
+             <tbody> 
+             @foreach($users as $user)        
+             <tr>
+            
                                 <td>#{{$user->user_id}}</td>
                                 <td>{{$user->created_at->format('d-m-Y')}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->phone}}</td>
-                                <td>{{$user->updated_at}}</td>
+                                <td>{{$user->last_login_in}}</td>
 
-                                <td class="">
-                                    <div class="switch-wrapper">
-                                        <label class="switch s-icons s-outline  s-outline-default">
-                                            <input class="action-switch_1 toggle-class" type="checkbox"
-                                                data-id={{$user->id}} {{ $user->status ? 'checked' : '' }}>
+                                <td class="text-center">
+                                <input type="hidden" id="user_id" value="{{ $user->id }}" />
+                              
+                            @if($user->status =='Saved')  
+                                <div class="action-btns d-flex ">
+                              
+                                    <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
+                                            class="mt-2"><i class="fa-solid fa-circle-check"
+                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$user->user_id}});"></i></a>
+                                    <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                            class="mt-2" ><i class="fa fa-times-circle"
+                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$user->user_id}});"></i></a>
+                               
+                                </div>
+                           
+                            @else
+                            <div class="col-xl- col-lg-4 col-md-4 col-sm-12">
+                                <div class=" form-group"><div class="switch-wrapper">
+                              
+                             
+                                    <label class="switch s-icons s-outline  s-outline-default">
+                                    <input class="action-switch_1 toggle-class" type="checkbox"
+                                                data-id={{$user->id}} {{ $user->status == "Active" ? 'checked' : '' }}>
                                             <span class="slider round" data-popup="tooltip"
                                                 title="Click to Active"></span>
-                                        </label>
-                                    </div>
-                                </td>
-
-                                <td class="text-right">
-                                    <div class="action-btns d-flex justify-content-end">
+                                    </label>  </div>
+                                </div>
+                            </div>
+                            @endif
+                                <td >
+                                    
+                                    <div class="action-btns d-flex ">
                                         <a href="javascript:void()" onclick="return showitem({{$user->user_id}});"
                                             data-popup="tooltip" title="View" data-toggle="modal"
                                             style="margin-right:5px;" class="mt-2"><i class="fa fa-eye"></i></a>
@@ -328,7 +352,7 @@
                                             data-toggle="modal" class="mt-2" style="margin-right:5px;"><i
                                                 class="fa fa-edit"></i></a>
 
-
+                                                <input type="hidden" id="user_id" value="{{ $user->id }}" />
                                       
                                         <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}" />
 
@@ -339,9 +363,10 @@
                                     </div>
                                 </td>
                             </tr>
-
-                        </tbody>
-                        @endforeach
+          @endforeach
+                            
+</tbody>
+    
                     </table>
 
                 </div>
@@ -359,54 +384,37 @@
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
                 <h5 class="modal-title" id="registerModal">{{ __('Add User') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close"  onclick="return reset();" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="registerForm" action="{{ route('register.admin') }}" method="POST"
+                <form id="form" action="{{ route('register.admin') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
                             <div class=" form-group">
                                 <label class="title-label"> Name</label>
 
                                 <input type="text" class="form-control form-control-lg" name="name" required>
                             </div>
                         </div>
-
-
-
-
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" id="demo">
-
-
-
-
+                    <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" id="demo">
+                   
                             <div class=" form-group">
                                 <label class="title-label"> image</label>
-
-
-
-                                <button class="btn fileicon " type="button">
+                                   <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
                                         <img id="preview" style="height: 78px;width: 98px;">
                                         <img src="../assets/cloud-computing.png" class="upload-icon1" />
-                                        <input type="file" class="upload-input1" name="image" id="image" required />
+                                        <input type="file" class="upload-input1" name="image" id="image"  />
 
                                     </div>
                                 </button>
-
-
-
                             </div>
-                        </div>
+                    </div>
 
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
@@ -418,9 +426,7 @@
 
                                 <input type="email" class="form-control form-control-lg" name="email" required>
 
-                                @if ($errors->has('email'))
-                                <span style="color: red;">{{ $errors->first('email') }}</span>
-                                @endif
+                              
 
                             </div>
                         </div>
@@ -429,10 +435,8 @@
                                 <label class="title-label">Mobile Number</label>
 
                                 <input type="number" class="form-control form-control-lg" name="phone" required
-                                    maxlength="10">
-                                @error('phone')
-                                </br><span style="color: red;">{{$errors->first('phone')}}</span>
-                                @enderror
+                                maxlength=10>
+                              
 
                             </div>
                         </div>
@@ -516,7 +520,7 @@ width: 100px;
 
 
                             <div class=" form-group">
-                                <label class="title-label">image</label>
+                                <label class="title-label">Image</label>
 
 
                                 <div>
@@ -606,7 +610,7 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label"> Name</label>
 
-                                <input type="text" class="form-control form-control-lg" name="name" id="name">
+                                <input type="text" class="form-control form-control-lg" name="name" id="name" required>
                             </div>
                         </div>
 
@@ -620,15 +624,14 @@ width: 100px;
 
 
                             <div class=" form-group">
-                                <label class="title-label"> image</label>
+                                <label class="title-label"> Image</label>
 
                                 <input style="display:none" type="file" id="my-file" name="image">
                                 <div class="dropzone">
                                     <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
                                         <img id="upload_image" style=" width:80px; height:80px;">
-
-                                        <img src="../assets/Group 22.png" class="upload-icon" />
+                                        <img src="../assets/cloud-computing.png" class="upload-icon1" />
                                     </button>
                                 </div>
 
@@ -644,30 +647,16 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label">Email Address</label>
 
-                                <input type="email" class="form-control form-control-lg" name="email" id="_email">
-                                @if ($errors->has('email'))
-                                <span style="color: red;">{{ $errors->first('email') }}</span>
-                                @endif
+                                <input type="email" class="form-control form-control-lg" name="email" id="_email" required>
+                               
                             </div>
                         </div>
-
-
-
-
-
-
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                            <div class=" form-group">
+                     <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                        <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
-                                <input type="number" class="form-control form-control-lg" name="phone" id="_mobile">
-                                @if ($errors->has('email'))
-                                <span style="color: red;">{{ $errors->first('email') }}</span>
-                                @endif
+                                <input type="number" class="form-control form-control-lg" name="phone" id="_mobile" required maxlength=10>
+                               
                             </div>
                         </div>
 
@@ -683,7 +672,7 @@ width: 100px;
                                 <label class="title-label">Designation</label>
 
                                 <input type="text" class="form-control form-control-lg" name="designation"
-                                    id="_designation">
+                                    id="_designation" required>
                             </div>
                         </div>
 
@@ -713,32 +702,12 @@ width: 100px;
 </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"> </script>
 
 
-<script>
-    $(function () {
-        $('.toggle-class').change(function () {
-            var status = $(this).prop('checked') == true ? Active : Inactive;
-            var user_id = $(this).data('id');
 
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '../admin/changeStatus',
-                data: {
-                    'status': status,
-                    'user_id': user_id
-                },
-                success: function (data) {
-                    console.log(data.success)
-                }
-            });
-        })
-    })
 
-</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
@@ -878,4 +847,176 @@ width: 100px;
     });
 
 </script>
+<script>
+$(function () {
+        $('.toggle-class').change(function () {
+            var status = $(this).prop('checked') == true ? "Active" : "Inactive";
+          
+            if(status == "Active")
+                statusapproved();
+            else
+                statusrejected();
+        })
+    })
+
+function statusapproved()
+    {
+       
+        var id =  $('#user_id').val();
+        var url = '{{ route("user.approved", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Approved it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Changed!',
+                                        'User has been approved.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+    function statusrejected(id)
+    {
+        var id =  $('#user_id').val();
+        var url = '{{ route("user.rejected", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                //text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, Rejected it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'changed!',
+                                        'Status has been rejected.',
+                                        'success'
+                                      );
+                                      $('#row'+id).remove();
+                                      location.reload();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                }
+            });
+    }
+</script>
+<script>
+    function reset() {
+        $("#form").trigger('reset');
+    }
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.9/jquery.jgrowl.min.js" integrity="sha512-C4ipk1AO8TBc9HbU6T7DDrssiNBEzFoNRtkE5Ci9Eq0Q3QxhO5GPSOL4szGcjMH7pYwP41G1KDQWC6MDWvWilA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+@if(Session::has('success'))
+<script>
+    $(function () {
+        
+        $.jGrowl("{{ Session::get('success') }}", {
+            position: 'bottom-center',
+            header: 'SUCCESS 👌',
+            theme: 'bg-success',
+            
+        });    
+    });
+</script>
+@endif
+@if(Session::has('message'))
+<script>
+    $(function () {
+        $.jGrowl("{{ Session::get('message') }}", {
+            position: 'bottom-center',
+            header: 'Wooopsss ⚠️',
+            theme: 'bg-warning',
+        });    
+    });
+</script>
+@endif
+@if($errors->any())
+<script>
+    $(function () {
+        $.jGrowl("{{ implode('', $errors->all(':message')) }}", {
+            position: 'bottom-center',
+            header: 'ERROR ⁉️',
+            theme: 'bg-danger',
+        });    
+    });
+</script>
+@endif
+
+
+
 @endsection

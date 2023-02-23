@@ -119,6 +119,23 @@
                         <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
                 </div>
+                {{-- Message --}}
+    @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+    </div>
+    @endif
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Error !</strong> {{ session('error') }}
+    </div>
+    @endif
               
                 <form method="POST" action="{{ route('verify') }}">
                    @csrf
@@ -128,7 +145,7 @@
                     <div class="form-row justify-content-center">
                         <h6>A 4 digit one time password has been <br> sent to your registered phone number</h6>
                         <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                            <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id='ist' onkeyup="clickEvent(this,'sec')" onkeypress='return restrictAlphabets(event)' maxlength=1/>
+                            <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id='ist' onkeyup="clickEvent(this,'sec')" onkeypress='return restrictAlphabets(event)' maxlength=1 required/>
                             <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id="sec" onkeyup="clickEvent(this,'third')" onkeypress='return restrictAlphabets(event)' maxlength=1/>
                             <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id="third" onkeyup="clickEvent(this,'fourth')" onkeypress='return restrictAlphabets(event)' maxlength=1/>
                             <input class="m-2 text-center form-control rounded" type="text" name="otp[]" id="fourth" maxlength=1 onkeypress='return restrictAlphabets(event)'/>
@@ -140,6 +157,11 @@
                             <a href="#" class="text-decoration-none ">RESEND OTP?</a>
                         </small>
                     </div>
+                    <div class="row justify-content-center">
+                        @error('otp')
+</br><span style="color: red;">{{$errors->first('otp')}}</span>
+                        @enderror
+</div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="submit" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;

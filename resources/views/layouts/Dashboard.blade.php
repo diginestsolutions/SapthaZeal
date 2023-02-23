@@ -4,8 +4,9 @@
         padding: 0;
         box-sizing: border-box;
         list-style: none;
-        text-decoration: none;
-
+      
+      
+       
     }
 
     body {
@@ -88,6 +89,7 @@
         display: block;
         padding: 16px;
     }
+    
 
     th {
         font-family: 'Quicksand' !important;
@@ -153,7 +155,14 @@
         text-align: center;
         border-radius: 15px;
     }
-
+    th{
+        font-size: 15px;
+    font-family: 'Quicksand';
+    }
+    td{
+        font-size: 14px;
+    font-family: 'Quicksand';  
+    }
     .icons1 {
         padding: 10 12 10 12px;
         background: #ffff;
@@ -255,6 +264,15 @@ and (max-width: 1605px)
         display: flex;
         padding-left: 50px !important;
     }
+    .sidebar a.active {
+        color: #49B945 !important;
+        text-decoration: none;
+        border-right: 3px solid #49B945;
+        background: #e4f5e3;
+
+  
+}
+    
 
 </style>
 
@@ -265,6 +283,7 @@ and (max-width: 1605px)
 https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 "></script>
     <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+ 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -281,7 +300,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             </div>
             <div class="justify-content-center">
                 <ul>
-                    <li><a href="{{route('view.job')}}">Job Management</a></li>
+                    <li><a  href="{{route('view.job')}}">Job Management</a></li>
                     <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
                     <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
                     <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
@@ -318,7 +337,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             <div class="justify-content-center">
             <ul >
             <li><a href="{{route('view.job')}}">Job Management</a></li>
-                    <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                    <li><a  href="{{route('view.industry')}}">Job Industry Management</a></li>
                     <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
                     <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
                     <li><a href="{{route('view.order')}}">Order Management</a></li>
@@ -348,26 +367,23 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 </div>
 
 
+<script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"/>
 
-
-
-
-
-<!-- <script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function () {
+ $(document).ready(function () {
+  $('#dt-vertical-scroll').dataTable();
+});
+</script>
 
 
-$('.navbar-toggler').click(function () {
-    if ($(window).width() < 960) {
-        $("#sidenav1").toggle("slide");
-}
-else {
-    $("#sidenav1").toggle();
-}
+
+
+<script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function($){
+    var url = window.location.href;
+    $('.sidebar li a[href="'+url+'"]').addClass('active');
+});
   
-    
-});
-
-});
-    </script> -->
+    </script>

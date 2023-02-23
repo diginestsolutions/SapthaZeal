@@ -62,7 +62,7 @@ class AuthController extends Controller
             'image'      => 'required|mimetypes:image/jpeg,image/jpg,image/png',
             'designation'=> 'required|string|',
             'role'       => 'required|string|',
-            'status'     => 'required|string'
+           
         ]);
 
         if($validator->fails()){
@@ -73,10 +73,9 @@ class AuthController extends Controller
        
    
         $user = new User();
-				
-        $user->name 	= $request->name;
+	    $user->name 	= $request->name;
         $user->email	= $request->email;
-        $user->phone 	= $request->phone;
+        $user->mobile 	= $request->mobile;
         $user->password = bcrypt($request->password);
         $user->otp 	    = $code;
         if ($request->hasFile('image')) {
@@ -91,13 +90,13 @@ class AuthController extends Controller
         }
         $user->designation	    = $request->designation;   
         $user->role             = $request->role;   
-        $user->status           = $request->status;  
+        $user->status           = "Active";  
         $user->save(); 
         
 
         return response()->json([
             'message' => 'User successfully registered',
-            'user' => $user
+            'data' => $user
         ], 201);
 
     }
@@ -200,7 +199,7 @@ class AuthController extends Controller
         }
         
 
-        return $this->createNewToken($token);
+      
             
     }
 
@@ -240,12 +239,5 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function createNewToken($token){
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()
-        ]);
-    }
+   
 }
