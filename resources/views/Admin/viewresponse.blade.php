@@ -172,10 +172,10 @@
                                 @endif
                                 <td class="text-right" style="width: 10%;">
                                     <div class="action-btns d-flex justify-content-end">
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                        <a href="{{ route('response.candidate.job',$response->candidate->candidate_id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
                                             
-                                        <a href="" data-popup="tooltip" title="Edit" data-placement="bottom"
+                                        <a href="{{ route('response.candidate.chatbox',$response->candidate->candidate_id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-commenting-o"></i></a>
                                     </div>
                                 </td>
@@ -223,6 +223,7 @@
                             status="Negotiation";   
                         if(value.applied_status == "hired")
                             status="Hired";
+                            
                         res +=
                         '<tr>'+
                             '<td>'+value.candidate.candidate_id+'</td>'+
@@ -234,8 +235,8 @@
                             '<td style="color: #eea203;">'+status+'</td>'+
                             '<td class="text-right" style="width: 10%;">'+
                             '<div class="action-btns d-flex justify-content-end">'+
-                            '<a href="" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>'+
-                            '<a href="" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-commenting-o"></i></a>'+
+                            '<a href="javascript:void(0)" onclick="return edititem('+value.candidate.candidate_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>'+
+                            '<a href="javascript:void(0)" onclick="return chatbox('+value.candidate.candidate_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-commenting-o"></i></a>'+
                             '</div>'+
                             '</td>'+
                         '</tr>';
@@ -248,6 +249,14 @@
 
             }
         });
+    }
+    function edititem(id)
+    {
+        window.location = window.location.origin+'/admin/job/candidate-details/'+id;  
+    }
+    function chatbox(id)
+    {
+        window.location = window.location.origin+'/admin/job/candidate-chatbox/'+id;  
     }
 </script>
 

@@ -322,10 +322,14 @@ class CandidateController extends Controller
                     $candidate->status = 'hired';
                 }
                 if ($request->hasFile('file')) {
-                    $getImage = $this->getpdf($request->resume);
+                    $filename = time().'.'.$request->resume->getClientOriginalExtension();
+                    $filePath = storage_path('app/public/uploads/resumes/'); 
+                    $request->resume->move($filePath, $filename);
+
                     $basePath = env('APP_URL');
-                    $candidate->resume = $basePath . '/storage/uploads/resumes/' . $getImage;
+                    $candidate->resume = $basePath . '/storage/uploads/resumes/' . $filename;
                 }
+                $candidate->cover_letter = $request->cover_letter;
                 $candidate->save();
                 $response['success'] = 1;
                 $response['message'] ='Candidate Status Changed Successfully';

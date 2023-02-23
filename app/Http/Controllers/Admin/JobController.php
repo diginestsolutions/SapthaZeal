@@ -5,7 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Job;
 use App\Models\Industry;
 use App\Models\JobAppliedDetails;
+use App\Models\Candidate;
+use App\Models\Message;
 use App\Http\Controllers\Controller;
+use Excel;
+use PDF;
+use Auth;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -226,4 +231,51 @@ class JobController extends Controller
         $response['data']=  $job_response;
         return $response;
     }
+    public function responsecandidate($id)
+    {
+        $candidate = Candidate::with('candidate_education','candidate_experience')->where('candidate_id',(int)$id)->first();
+        return view('Admin/jobseeker',compact('candidate'));
+    }
+    public function candidatechatbox($id)
+    {
+        $candidate_id = Candidate::where('candidate_id',(int)$id)->first()->id;
+        $message = Message::where('candidate_id',$candidate_id)->where('admin_id',Auth::user()->id)->get();
+        return view('Admin/viewchat',compact('candidate_id','message'));
+    }
+    public function sendmessage(Request $request)
+    {
+        try{
+            $message = new Message();
+            $message->candidate_id = $request->candidate_id;
+            $message->admin_id = $request->admin_id;
+            $message->message = $request->message;
+            $message->send_by = "admin";
+            $message->status = "Active";
+            $message->save();
+            return redirect()->back()->with('success', 'Message added successfully.'); 
+        }
+        catch (\Exception $e) {
+            //echo $e;
+            return response()->json([
+                'status'  => false,
+                'message' => 'Failed to update job'
+            ], 400);
+        }
+    }
+    /*public function pdf($id) {
+        $member_list = Candidate::find($id);
+                 ->get();
+        $total_counts = DB::table('member')->where('agent_code',$agent_code)
+          ->select(DB::raw('SUM(total_balance) AS grand_total_balance'), DB::raw('SUM(total_profit) AS grand_total_profit'))->get();
+        $agent = Agent::where('agent_code',$agent_code)->first();
+        
+        $data = [
+            'member_list' => $member_list,
+            'total_counts' => $total_counts,
+            'agent' => $agent
+        ];
+        $pdf = PDF::loadView('hotline.pdf.memberlist', $data);
+        
+        return $pdf->download('MemberList.pdf');
+    }*/
 }

@@ -61,7 +61,11 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/job/show/{id}', [JobController::class, 'show'])->name('show.job');
     Route::get('/job/response/{id}', [JobController::class, 'jobresponse'])->name('response.job');
     Route::post('/job/response/status-list/{id}', [JobController::class, 'responsestatuslist'])->name('job.response.statuslist');
-  
+    Route::get('/job/candidate-details/{id}', [JobController::class, 'responsecandidate'])->name('response.candidate.job');
+    Route::get('/job/candidate-chatbox/{id}', [JobController::class, 'candidatechatbox'])->name('response.candidate.chatbox');
+    Route::post('/job/candidate-message',[JobController::class, 'sendmessage'])->name('send.message');
+    
+    
     //industry
     Route::get('/industry', [IndustryController::class, 'index'])->name('view.industry');
     Route::post('/industry/store', [IndustryController::class, 'store'])->name('add.industry');
