@@ -36,7 +36,7 @@
 
 
         height: 50px;
-        margin-left: px;
+       
         margin-top: -46px;
     }
 

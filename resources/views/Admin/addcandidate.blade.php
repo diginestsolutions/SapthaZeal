@@ -256,7 +256,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../../assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -393,7 +393,7 @@
     }
 
     .upload-icon {
-        margin: 25px 2px 2px 2px;
+        margin: -23px 2px 2px 2px;
         background-color: #208CD1;
         border-radius: 5px;
     }
@@ -642,6 +642,13 @@
         width: 100%;
         object-fit: cover
     }
+    .dropzone1 {
+        width: 100px;
+        height: 80px;
+        border: 1px dashed #999;
+        border-radius: 3px;
+        text-align: center;
+    }
 
 </style>
 
@@ -668,7 +675,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
@@ -795,9 +802,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <label class="title-label"> image <span style="color: red;">*</span></label>
                                     <button class="btn fileicon " type="button">
-                                        <div class="dropzone">
-                                            <img src="../assets/cloud-computing.png" class="upload-icon" />
-                                            <input type="file" id="bimage" name="image" class="upload-input " required/>
+                                        <div class="dropzone1">
+                                        <img id="preview" style="height: 78px;width: 98px;">
+                                            <img src="../../assets/cloud-computing.png" class="upload-icon" />
+                                            <input type="file" name="image" class="upload-input" id="image"  required/>
                                         </div>
                                     </button>
 
@@ -1210,9 +1218,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             </div>
             <div class="modal-body">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class=" form-group select-sup">
+                        <div class=" form-group ">
                             <label class="title-label">Education<span style="color: red;">*</span></label>
-                            <select class="form-control select form-control-lg" name="education"
+                            <select class="form-control select select-sup form-control-lg" name="education"
                              id="educationselect" required>
                                 <option>Select Option</option>
                                 <option value="1">10th</option>
@@ -1230,9 +1238,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         @csrf
                         <div class="row col-lg-12">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group select-sup">
+                                <div class=" form-group ">
                                     <label class="title-label">Board<span style="color: red;">*</span></label>
-                                    <select class="form-control select form-control-lg" name="board" id="mydivboard" required>
+                                    <select class="form-control select select-sup  form-control-lg" name="board" id="mydivboard" required>
                                         <option value="">Choose Board</option>
                                         <option value="CBSE" class="text-capitalize">CBSE</option>
                                         <option value="ICSE" class="text-capitalize">ICSE</option>
@@ -1996,4 +2004,24 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             });
         }
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+
+        $('#image').change(function () {
+
+            let reader = new FileReader();
+
+            reader.onload = (e) => {
+
+                $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+    });
+
 </script>

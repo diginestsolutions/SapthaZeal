@@ -36,7 +36,7 @@
 
     <nav class="navbar navbar-light ">
 
-        <a class="btn " href="{{ route('view.addcandidate') }}"> <span class="icons"> <i class="fa fa-plus "
+        <a href="{{ route('view.addcandidate') }}"> <span class="icons"> <i class="fa fa-plus "
                     aria-hidden="true"></i></span></a>
 
     </nav>
