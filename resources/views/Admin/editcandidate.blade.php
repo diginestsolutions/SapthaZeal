@@ -256,7 +256,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../../../assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -642,6 +642,21 @@
         width: 100%;
         object-fit: cover
     }
+    
+        .dropzone {
+        width: 100px;
+        border-radius: 3px;
+        text-align: center;
+    }
+
+    .upload-icon {
+
+
+
+        height: 38px;
+    margin-top: -31px;
+
+    }
 
 </style>
 
@@ -668,7 +683,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../../assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
@@ -788,11 +803,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="row col-lg-12">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <label class="title-label"> image <span style="color: red;">*</span></label>
-                                    <button class="btn fileicon " type="button">
+                                    <input style="display:none" type="file" id="my-file" name="image">
+                                    <button class="btn fileicon " type="button"   onclick="document.getElementById('my-file').click()">
                                         <div class="dropzone">
-                                            <img src="{{$candidate->image}} " width="200" height="200" alt=""
+                                        <img src="{{$candidate->image}} " width="80" height="80" alt=""
                                             style="border-radius:10px;">
-                                            <input type="file" id="bimage" name="image" class="upload-input " required/>
+                                        <img src="../../../assets/Group 22.png" class="upload-icon" />
+                                     <input type="file" id="bimage" name="image" class="upload-input " required/>
                                         </div>
                                     </button>
 

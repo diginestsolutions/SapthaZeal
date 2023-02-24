@@ -52,15 +52,20 @@ class CandidateController extends Controller
             'joblocation' => 'required'
         ]);
         try {
+           
             $user = new User();
+           
             $user->nextid();
-            $user->name = $request->name;
+                  $user->name = $request->name;
             $user->email = $request->email;
             $user->mobile = $request->mobile;
             $user->role = "jobseeker";
             $user->status= "Active";		
             $user->otp = 1234;
+           
             $user->save();
+           //
+            
 
             $candidate = new Candidate;
             $candidate->nextid();
@@ -86,6 +91,7 @@ class CandidateController extends Controller
 
             return $response;
         }catch (\Exception $e) {
+            print($e);exit;
             return back()->withErrors(['message' => 'Failed to add candidate']);
         }
     }

@@ -256,7 +256,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../../../assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -668,7 +668,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../../assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
