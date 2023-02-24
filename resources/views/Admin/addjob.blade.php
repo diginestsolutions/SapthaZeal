@@ -178,7 +178,7 @@ input:focus::-webkit-datetime-edit{ color: #000; }
     }
 
     .container-fluid {
-        background-image: url('../assets/1.png');
+        background-image: url('../../assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -342,7 +342,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
               
 <div class=" col-lg-10">
-    <img src="../assets/logo.png" class="img-fluid " alt="Sample image">
+    <img src="../../assets/logo.png" class="img-fluid " alt="Sample image">
 </div>
 <div class="justify-content-center">
     <ul >
@@ -429,25 +429,23 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                 <div class=" mt-12 pull-right">
-                    <form class="form-inline my-2 my-lg-0 justify-content-center" method="GET">
-                        <div class="w-100">
-                        <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
-                        src="{{Auth::user()->image}} ">
-                    <h6 class="profile">{{Auth::user()->name}}</h6><span
-                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-                </button>
-                            <button class="btn noti " type="button"> <span class="icons1"><i
-                                        class="fa fa-bell"></i><span></button>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </div>
 
-                    </form>
+                    <div class="w-100">
+                        <button class="btn " type="button"
+                            style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                                class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
+                                src="{{Auth::user()->image}} ">
+                            <h6 class="profile">{{Auth::user()->name}}</h6><span
+                                style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+                        </button>
+
+                        <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
 
                 </div>
 

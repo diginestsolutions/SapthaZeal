@@ -10,7 +10,17 @@
         font-weight: 100;
         font-size: 15px;
     }
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
 
+        /* Firefox */
+        input[type=number] {
+        -moz-appearance: textfield;
+        }
     .title-label {
         font-weight: 500;
     }
@@ -43,7 +53,7 @@
             <div class="w-100  p-0 ">
                 <button class="btn " type="button"
                     style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
+                        class="user-avatar  pull-right" style="width:44px;     height: 44px;   border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
                         style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
@@ -63,7 +73,15 @@
 
 
     </nav>
-
+    {{-- Message --}}
+    @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+    </div>
+    @endif
 
 
     <div class=" col-md-12 ">
@@ -103,7 +121,7 @@
                                     <label class="title-label"> Name</label>
 
                                     <input type="text" class="form-control form-control-lg" name="name"
-                                        value="{{$user->name}}">
+                                        value="{{$user->name}}" required>
                                 </div>
                             </div>
 
@@ -116,8 +134,9 @@
                                 <div class=" form-group">
                                     <label class="title-label"> Email Address</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="email"
-                                        value="{{$user->email}}">
+                                    <input type="email" class="form-control form-control-lg" name="email"
+                                        value="{{$user->email}}" required>
+                                       
                                 </div>
                             </div>
 </div>
@@ -130,8 +149,9 @@
                                 <div class=" form-group">
                                     <label class="title-label">Mobile Number</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="mobile"
-                                        value="{{$user->phone}}">
+                                    <input type="number" class="form-control form-control-lg" name="phone"
+                                        value="{{$user->phone}}" required>
+                                       
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
@@ -142,8 +162,8 @@
                                 <div class=" form-group">
                                     <label class="title-label">Designation</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="joblocation"
-                                        value="{{$user->designation}}">
+                                    <input type="text" class="form-control form-control-lg" name="designation"
+                                        value="{{$user->designation}}" required>
                                 </div>
                             </div>
                         </div>

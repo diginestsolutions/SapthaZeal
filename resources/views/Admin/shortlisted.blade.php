@@ -12,7 +12,7 @@
             <div class="w-100">
                 <button class="btn " type="button"
                     style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
+                        class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
                         style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
@@ -57,7 +57,7 @@
         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-resp-noscroll">
+                    <table class="table table-resp-noscroll"  id="dt-vertical-scroll">
                         <thead>
                             <tr>
                                 <th>Job ID</th>

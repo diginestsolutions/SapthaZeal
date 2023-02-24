@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Candidate;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends Authenticatable implements JWTSubject
+
+class User extends Authenticatable 
 {
-    use HasFactory, Notifiable;  
-    protected $guarded = [];
+    use  HasFactory, Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -57,6 +57,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment
@@ -89,5 +90,9 @@ class User extends Authenticatable implements JWTSubject
     public function candidate()
     {
         return $this->hasMany(Candidate::class,'user_id');
+    }
+    public function notification()
+    {
+        return $this->hasMany(Notification::class,'user_id');
     }
 }

@@ -133,7 +133,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <input type="hidden" id="jobs_id" value="{{ $job_id }}"/>
-                    <table id='responseTable' class="table table-resp-noscroll">
+                    <table id='responseTable' class="table table-resp-noscroll" id="dt-vertical-scroll">
                         <thead>
                             <tr>
                                 <th style="width:14%">Job Seeker ID</th>

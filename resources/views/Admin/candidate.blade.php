@@ -11,8 +11,8 @@
 
             <div class="w-100">
                 <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
+                    style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                        class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
                         src="{{Auth::user()->image}} ">
                     <h6 class="profile">{{Auth::user()->name}}</h6><span
                         style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
@@ -39,19 +39,13 @@
         <a class="btn " href="{{ route('view.addcandidate') }}"> <span class="icons"> <i class="fa fa-plus "
                     aria-hidden="true"></i></span></a>
 
-
-
-        <div class=" has-search col-md-3">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class=" form-control form-control-lg " placeholder="Search">
-        </div>
     </nav>
     <!--Table-->
     <div class=" col-md-12 ">
         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-resp-noscroll">
+                    <table class="table table-resp-noscroll" id="dt-vertical-scroll">
                         <thead>
                             <tr>
                                 <th style="width:14%">Job Seeker ID</th>
@@ -66,9 +60,9 @@
                             </tr>
                         </thead>
 
-                        @foreach ($results as $candidates)
+                       
                         <tbody>
-
+                        @foreach ($results as $candidates)
                             <tr>
                                 <td>#{{ $candidates->candidate_id}}</td>
                                 <td>{{$candidates->created_at}}</td>
@@ -90,7 +84,9 @@
                                 </td>
                             </tr>
                             @endforeach
-                            </thead>
+                  
+                            </tbody>
+                         
 
                     </table>
 

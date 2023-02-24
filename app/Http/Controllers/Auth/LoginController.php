@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use App\Models\Job;
 use Auth;
+use Carbon\Carbon;
 use Validator;
 class LoginController extends Controller
 {
@@ -42,8 +43,12 @@ class LoginController extends Controller
         $code = random_int(1000, 9999);
      
         $users = User::where('phone', $request->phone)->first();
+        if($users){
         $users->otp = 1234;
+        $now = Carbon::now();
+        $users->last_login_in = $now->format(' d-m-Y h:i a');
         $users->save();
+        }
 
         return view('auth/getotp',array('mobile' => $users->phone));
  
@@ -69,14 +74,20 @@ class LoginController extends Controller
        
         $user = User::where('phone', 'LIKE','%'.$request->phone.'%')->where('otp',(int)$otp)->first();
 
-        if($user){
+        if($user != null){
+            if($user->status=="Active"){
             Auth::login($user);
             $job = Job::orderBy('_id', 'ASC')->get();
            
             return view('Admin/job')->with(['name'=>$user->name,'job'=>$job]);
         }
+        else{
+            return redirect('auth/getlogin')->with('error', 'Looks Like Your status is InActive');
+        }
+
+        }
         else {
-            return redirect()->route('get.login')->with('error', 'Your OTP is not correct');
+            return redirect('auth/getlogin')->with('error', 'Your OTP is not correct');
         }          
     }
     public function logout(Request $request) {
