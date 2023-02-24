@@ -567,7 +567,7 @@
     #progressbar li {
         list-style-type: none;
         font-size: 15px;
-        width: 25%;
+        width: 33%;
         float: left;
         position: relative;
         font-weight: 400;
@@ -739,7 +739,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.candidate') }}"><span
                             class="icon2"><button class="btn-back" style="border-radius:50px;
-            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Add
+            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>View 
                     Candidate
                 </h3>
 
@@ -779,7 +779,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li class="active" id="account"><strong> Basic Details</strong></li>
                     <li id="personal"><strong> Educational Details </strong></li>
                     <li id="payment"><strong> Experience Details</strong></li>
-                    <li id="confirm"><strong>Status</strong></li>
+                    <!--<li id="confirm"><strong>Status</strong></li>-->
                 </ul>
 
 

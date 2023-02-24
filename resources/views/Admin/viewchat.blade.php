@@ -382,11 +382,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 @endsection

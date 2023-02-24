@@ -35,9 +35,6 @@
 
 
 <nav class="navbar navbar-light ">
-
-    <a class="btn " href="{{ route('get.addjob') }}"> <span class="icons"> <i class="fa fa-plus "
-                aria-hidden="true"></i></span></a>
 </nav>
 <!--Table-->
 <div class=" col-md-12 ">
@@ -46,36 +43,53 @@
                         <div class="table-responsive">
                             <table class="table table-resp-noscroll" id="dt-vertical-scroll">
                                 <thead>
-                                <tr>
+                                    <tr>
                                         <th style="width:11%">Order ID</th>
                                         <th style="width:14%">Order Date</th>
                                         <th style="width:18%">Job Provider ID</th>
                                         <th style="width:17%">Mobile Number</th>
                                         <th style="width:14%">Plan Type</th>
-                                        <th  style="width:14%">Expiry Date</th>
+                                        <th style="width:14%">Expiry Date</th>
                                         <th style="width:15%">Transaction ID</th>
                                         <th style="width:18%">Payment Status</th>
                                         <th>Actions</th>
-
                                     </tr>
                                 </thead>
-                              
-                               
-                                </thead>
-                              
+                                <tbody>
+                                    @foreach ($order as $order)
+                                    <tr>
+                                        <td>#{{ $order->order_id}}</td>
+                                        <td>{{ $order->created_at->format('d/m/Y')}} {{ $order->created_at->format('H:i a')}}</td>
+                                        <td>#{{ $order->jobprovider->jobprovider_id}}</td>
+                                        <td>{{ $order->jobprovider->mobile}}</td>
+                                        <td>{{ $order->subscription->name}}</td>
+                                        <td>{{ $order->planexpiry_date}}</td>
+                                        <td>{{ $order->transaction_id}}</td>
+                                        @if($order->payment_status == "paid")
+                                        <td style="color: #2ead2e;">Paid</td>
+                                        @endif
+                                        @if($order->payment_status == "pending")
+                                        <td style="color: #c38b25;">Pending</td>
+                                        @endif
+                                        @if($order->payment_status == "cancelled")
+                                        <td style="color: #e62b14;">Cancelled</td>
+                                        @endif
+                                        <td>
+                                            <a href="{{ route('show.order',$order->id) }}" data-popup="tooltip" title="View Order" style="margin-right:5px;"
+                                            class="mt-2"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('edit.order',$order->id) }}" data-popup="tooltip" title="Edit Order" data-placement="bottom"
+                                            class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
-                          
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
-
 </div>
-            
-            @endsection
+@endsection
         
 
 

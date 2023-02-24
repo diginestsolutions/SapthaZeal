@@ -9,8 +9,8 @@ use App\Http\Controllers\Admin\AdminprofileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\Admin\CandidateController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\NotificationController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\ResponseController;
 /*
@@ -128,6 +128,9 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
    Route::post('/addnotification', [NotificationController::class, 'add'])->name('add.notification');
  
    //order
-   Route::get('/order', [OrderController::class, 'order'])->name('view.order');
+   Route::get('/order', [OrderController::class, 'index'])->name('view.order');
+   Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('edit.order');
+   Route::post('/order/update/{id}', [OrderController::class, 'update'])->name('update.order');
+   Route::get('/order/show/{id}', [OrderController::class, 'show'])->name('show.order');
     
 });
