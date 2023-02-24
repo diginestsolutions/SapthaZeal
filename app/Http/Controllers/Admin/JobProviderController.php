@@ -6,6 +6,7 @@ use App\Models\Jobprovider;
 use App\Models\Industry;
 use App\Models\User;
 use App\Models\Subscription;
+use App\Models\Order;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -80,6 +81,17 @@ class JobProviderController extends Controller
                 $provider->payment_status = $request->payment_status;
                 $provider->status = "Active";
                 $provider->save();
+
+                $order = new Order();
+                $order->nextid();
+                $order->provider_id = $provider->id;
+                $order->subscriptionplan = $request->subscriptionplan; 
+                $order->payment_status = $request->payment_status;  
+                $order->planexpiry_date = $newDateTime;
+                $order->transaction_id = "";
+                $order->status = "Active";
+                $order->save();
+
                 return redirect()->route('view.jobprovider')->with('success', 'Provider created successfully.'); 
             }
         }catch (\Exception $e) {
@@ -152,6 +164,16 @@ class JobProviderController extends Controller
             $user->mobile = $request->mobile;
             $user->save();
 
+            $order = new Order();
+            $order->nextid();
+            $order->provider_id = $provider->id;
+            $order->subscriptionplan = $request->subscriptionplan; 
+            $order->payment_status = $request->payment_status;  
+            $order->planexpiry_date = $newDateTime;
+            $order->transaction_id = "";
+            $order->status = "Active";
+            $order->save();
+
             return redirect()->route('view.jobprovider')->with('success', 'Provider edited successfully.'); 
         }catch (\Exception $e) {
             return back()->withErrors(['message' => 'Failed to edited provider']);
@@ -179,7 +201,7 @@ class JobProviderController extends Controller
     }
     public function statusapproved($id)
     {
-        $provider = JobProvider::findOrFail($id);;
+        $provider = JobProvider::findOrFail($id);
         $response=array();
         $response['success']=0;
         $response['message'] ='';
@@ -206,7 +228,7 @@ class JobProviderController extends Controller
     }
     public function statusrejected($id)
     {
-        $provider = JobProvider::findOrFail($id);;
+        $provider = JobProvider::findOrFail($id);
         $response=array();
         $response['success']=0;
         $response['message'] ='';
