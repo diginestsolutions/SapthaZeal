@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\AdminprofileController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\SubController;
 use App\Http\Controllers\Admin\CandidateController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\ResponseController;
@@ -74,9 +74,11 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::post('/industry/{id}/destroy', [IndustryController::class, 'destroy'])->name('industry.destroy');
     
     //admin
+    //admin
     Route::get('/admin', [AdminprofileController::class, 'index'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'store'])->name('register.admin');
-    Route::get('/changeStatus', [AdminprofileController::class, 'changeStatus'])->name('view.status');
+    Route::post('/user/{id}/status-approved', [AdminprofileController::class, 'statusapproved'])->name('user.approved');
+    Route::post('/user/{id}/status-rejected', [AdminprofileController::class, 'statusrejected'])->name('user.rejected');
     Route::get('/showadmin/{id}', [AdminprofileController::class, 'show'])->name('show.admin');
     Route::get('/editadmin/{id}', [AdminprofileController::class, 'edituser'])->name('edit.admin');
     Route::get('/profileadmin', [AdminprofileController::class, 'edit'])->name('profile.admin');
@@ -120,10 +122,10 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
    // Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
     Route::get('/addeducation', [CandidateController::class, 'education'])->name('add.education');
 
-    //notications
-    Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
-  
-    Route::post('/addcandidate', [NotificationController::class, 'add'])->name('add.notification');
+   //notications
+   Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
+   Route::get('/show/{id}', [NotificationController::class, 'show'])->name('show.notification');
+   Route::post('/addnotification', [NotificationController::class, 'add'])->name('add.notification');
  
    //order
    Route::get('/order', [OrderController::class, 'order'])->name('view.order');

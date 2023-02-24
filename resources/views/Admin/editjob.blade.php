@@ -7,6 +7,73 @@
         text-decoration: none;
 
     }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #FFCDDD;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: #42E927;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #B0FFA3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+        background-color: white;
+    }
+
+    .slider.round:after {
+
+        background-color: red;
+    }
+
+
 
     body {
         background: #f3f5f9;
@@ -178,7 +245,7 @@ input:focus::-webkit-datetime-edit{ color: #000; }
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../../../assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -342,7 +409,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
               
 <div class=" col-lg-10">
-    <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+    <img src="../../../assets/logo.png" class="img-fluid " alt="Sample image">
 </div>
 <div class="justify-content-center">
     <ul >
@@ -429,29 +496,24 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                 <div class=" mt-12 pull-right">
-                    <form class="form-inline my-2 my-lg-0 justify-content-center" method="GET">
-                        <div class="w-100">
+
+                    <div class="w-100">
                         <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
-                        src="{{Auth::user()->image}} ">
-                    <h6 class="profile">{{Auth::user()->name}}</h6><span
-                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-                </button>
-                            <button class="btn noti " type="button"> <span class="icons1"><i
-                                        class="fa fa-bell"></i><span></button>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </div>
+                            style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                                class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
+                                src="{{Auth::user()->image}} ">
+                            <h6 class="profile">{{Auth::user()->name}}</h6><span
+                                style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+                        </button>
 
-                    </form>
-
+                        <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
                 </div>
-
-
             </nav>
 
 

@@ -70,17 +70,13 @@
         text-align: center;
         border-radius: 13px;
         position: absolute;
-    top: 0px;
-    z-index: 999;
-      
-      
+        top: 0px;
+        z-index: 999;
+    
     }
 
     .icons {
-        
-      
-    
-        top:0;
+         top:0;
     }
 
     .img-fluid {
@@ -93,7 +89,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+   <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
@@ -112,9 +108,26 @@
                     </div>
 
 
-
+                
                 </div>
-               
+                            {{-- Message --}}
+                @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <strong>Success !</strong> {{ session('success') }}
+                </div>
+                @endif
+                @if (Session::has('error'))
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <strong>Error !</strong> {{ session('error') }}
+                </div>
+                @endif
+   
                 <form method="POST" action="{{ route('get.otp') }}">
                         @csrf
                       
@@ -125,25 +138,29 @@
                             <div class="input-group mx-auto mb-3">
                                 <span class="icons"> <i class="fa fa-phone icon" style="font-size:25px;"></i></span>
                                 <input class="form-control" type="text" placeholder="Phone number" name="phone"
-                                    style="text-align:center; border-radius:13px;text-align:center; border-radius:13px;background: #FFFFFF 0% 0% no-repeat padding-box;border: 1px solid #eeeeee;">
+                                    style="text-align:center; border-radius:13px;text-align:center; border-radius:13px;background: #FFFFFF 0% 0% no-repeat padding-box;border: 1px solid #eeeeee;" maxlength=10/>
                             </div>
                         </div>
-                    </div>
-                    @error('phone')
-</br><span style="color: red;">{{$errors->first('phone')}}</span>
-                        @enderror
+                      
 
+                    </div>
+                    <div class="row justify-content-center">
+                        @error('phone')
+                    </br><span style="color: red;">{{$errors->first('phone')}}</span>
+                        @enderror
+                    </div>
+                   
 
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="submit" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-letter-spacing: 1.25px;
-border:none;
-color: #FFFFFF;
-text-transform: uppercase;
-opacity: 1;
-background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
-width: 100px;
-;" >LOGIN</button>
+                        letter-spacing: 1.25px;
+                        border:none;
+                        color: #FFFFFF;
+                        text-transform: uppercase;
+                        opacity: 1;
+                        background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
+                        width: 100px;
+                    ;" >LOGIN</button>
 
                     </div>
 

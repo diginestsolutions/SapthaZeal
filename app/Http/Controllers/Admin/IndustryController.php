@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Industry;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class IndustryController extends Controller
 {
@@ -39,20 +40,28 @@ class IndustryController extends Controller
     public function store(Request $request)
     {
         # Validate Data
-        $request->validate([
-            'name' => 'required'
+        $validator = Validator::make($request->all(), [
+          
+            'name'      => 'required|string|max:100|unique:industries',
+           
+           
         ]);
+        if($validator->fails()) {
+            return redirect('admin/industry')->with('error', 'Industry already Exists.');
+        }
+        else{
         try{
             $industry = new Industry;
             $industry->nextid();
             $industry->name = $request->name;
-            $industry->status = 1;
+            $industry->status = "Active";
             $industry->save();
             return redirect('admin/industry')->with('success', 'Industry created successfully.'); 
         }      
         catch (\Exception $e) {
-            return back()->withErrors(['message' => 'Failed to update subscription']);
+            return back()->withErrors(['message' => 'Failed to create Industry']);
         }
+    }
     }
 
     /**
@@ -96,21 +105,29 @@ class IndustryController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'name' => 'required'
+        $validator = Validator::make($request->all(), [
+          
+            'name'      => 'required|string|max:100|exists:industries',
+           
+           
         ]);
+        if($validator->fails()) {
+            return redirect('admin/industry')->withErrors($validator);
+        }
+        else{
         try {            
             $industry = Industry::find($request->id);
             if($industry){
                 $industry->name = $request->name;
                 $industry->save();
             }
-            return redirect('admin/industry')->with('success', 'Industry updated successfully.'); 
+            return redirect('admin/industry')->with(['success' => 'User Updated successfully']);
         } catch (\Throwable $th) {
             return response()->json([
                 'message' => 'Error'
             ],400);
         }
+    }
     }
 
     /**
