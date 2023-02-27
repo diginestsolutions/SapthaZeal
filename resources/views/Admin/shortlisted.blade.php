@@ -175,7 +175,7 @@
     }
 
     .container-fluid {
-        background-image: url('../../../assets/1.png');
+        background-image: url('../../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -272,6 +272,32 @@ and (max-width: 1605px)
 
   
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    
+    background-color: #208CD1!important;
+    
+    border:none !important;
+    border-radius:35px!important;
+   
+}
+.dataTables_wrapper .dataTables_paginate  .paginate_button.current:hover {
+    
+    background-color:#7ECD7C!important; 
+    border:none !important;
+    border-radius:35px!important;
+   
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    color:none!important;
+}
+
+
+    
+
     
 
 </style>
@@ -296,7 +322,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../../../assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>

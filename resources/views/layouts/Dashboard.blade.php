@@ -272,6 +272,30 @@ and (max-width: 1605px)
 
   
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    
+    background-color: #208CD1!important;
+    
+    border:none !important;
+    border-radius:35px!important;
+   
+}
+.dataTables_wrapper .dataTables_paginate  .paginate_button.current:hover {
+    
+    background-color:#7ECD7C!important; 
+    border:none !important;
+    border-radius:35px!important;
+   
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+    color:none!important;
+}
+
+
     
 
 </style>

@@ -169,7 +169,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -389,7 +389,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
               
 <div class=" col-lg-10">
-    <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+    <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
 </div>
 <div class="justify-content-center">
     <ul >
@@ -425,7 +425,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
             <div class=" col-md-3 ">
-                <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                <img src="../../../Assets/logo.png" class="img-fluid" alt="Sample image">
             </div>
             <div class="justify-content-center">
             <ul >
@@ -461,7 +461,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.jobprovider') }}"><span
                             class="icon2"><button class="btn-back" style="border-radius:50px;
             border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Edit Job
-                    Provider
+                    Provider  #{{$provider->jobprovider_id}}
                 </h3>
 
 
