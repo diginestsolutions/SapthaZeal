@@ -59,8 +59,6 @@
 
                             </tr>
                         </thead>
-
-                       
                         <tbody>
                         @foreach ($results as $candidates)
                             <tr>

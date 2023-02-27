@@ -42,23 +42,7 @@
     }
 
 </style>
-{{-- Message --}}
-@if (Session::has('success'))
-<div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <i class="fa fa-times"></i>
-    </button>
-    <strong>Success !</strong> {{ session('success') }}
-</div>
-@endif
-@if (Session::has('error'))
-<div class="alert alert-danger alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert">
-        <i class="fa fa-times"></i>
-    </button>
-    <strong>Error !</strong> {{ session('error') }}
-</div>
-@endif
+
 <div class="col-lg-10  col-md-12" id="main">
     <nav class="navbar navbar-light col-md-12 ">
         <h3 class=" mt-3  heading" style="">Notifications</h3>
@@ -86,6 +70,23 @@
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
     </nav>
     <!--Table-->
+    {{-- Message --}}
+@if (Session::has('success'))
+<div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <i class="fa fa-times"></i>
+    </button>
+    <strong>Success !</strong> {{ session('success') }}
+</div>
+@endif
+@if (Session::has('error'))
+<div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <i class="fa fa-times"></i>
+    </button>
+    <strong>Error !</strong> {{ session('error') }}
+</div>
+@endif
     <div class=" col-md-12 ">
         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
             <div class="card-body">

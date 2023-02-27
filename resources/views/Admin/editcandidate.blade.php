@@ -256,7 +256,7 @@
     }
 
     .container-fluid {
-        background-image: url('../../../assets/1.png');
+        background-image: url('../../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -387,16 +387,12 @@
     .dropzone {
         width: 100px;
         height: 80px;
-        border: 1px dashed #999;
+       
         border-radius: 3px;
         text-align: center;
     }
 
-    .upload-icon {
-        margin: 25px 2px 2px 2px;
-        background-color: #208CD1;
-        border-radius: 5px;
-    }
+    
 
     .upload-input {
         position: relative;
@@ -652,7 +648,7 @@
     .upload-icon {
 
 
-
+      margin-left:42px;
         height: 38px;
     margin-top: -31px;
 
@@ -683,7 +679,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../../../assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
@@ -718,7 +714,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
                 <div class=" col-md-3 ">
-                    <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
+                    <img src="../../../Assets/logo.png" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="justify-content-center">
                     <ul>
@@ -803,13 +799,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="row col-lg-12">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <label class="title-label"> image <span style="color: red;">*</span></label>
-                                    <input style="display:none" type="file" id="my-file" name="image">
-                                    <button class="btn fileicon " type="button"   onclick="document.getElementById('my-file').click()">
+                                  
+                                    <button class="btn fileicon " type="button"   onclick="document.getElementById('bimage').click()">
                                         <div class="dropzone">
-                                        <img src="{{$candidate->image}} " width="80" height="80" alt=""
+                                        <img src="{{$candidate->image}} "id="preview" width="150" height="150" alt=""
                                             style="border-radius:10px;">
-                                        <img src="../../../assets/Group 22.png" class="upload-icon" />
-                                     <input type="file" id="bimage" name="image" class="upload-input " required/>
+                                     
+                                     <input type="file" id="bimage" name="image" class="upload-input image" required/>
                                         </div>
                                     </button>
 
@@ -870,7 +866,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         </form>
                         </div>
                     </div>
-                    <button type="button" class="next  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                    <button type="button" class="next  mx-auto  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
     color: #FFFFFF;
@@ -2079,4 +2075,24 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             });
         }
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+
+        $('.image').change(function () {
+
+            let reader = new FileReader();
+
+            reader.onload = (e) => {
+
+                $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+    });
+
 </script>
