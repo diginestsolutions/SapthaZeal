@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Http\Traits\ImageTrait;
 use Validator;
+
 class AdminprofileController extends Controller
 {
+    use ImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -57,40 +59,32 @@ class AdminprofileController extends Controller
             return redirect('admin/admin')->with('error', 'User already Exists.');
         }
         else{
-         try{
-       
-        $code = random_int(1000, 9999);
-        $user = new User();
-        $user->nextid();		
-        $user->name 	= $request->name;
-        $user->email	= $request->email;
-        $user->phone 	= $request->phone;
-        $user->password = bcrypt($request->password);
-        $user->otp 	    = $code;
-        if ($request->hasFile('image')) {
-            $filename = $request->file('image')->getClientOriginalName();
-            $filename = str_replace(' ', '-', $filename);
-            $destinationPath = storage_path('app/public/uploads/');
-            $file = $request->file('image')->move($destinationPath,$filename);
-            
-            $basePath = env('APP_URL');
+            try{
+                $code = random_int(1000, 9999);
+                $user = new User();
+                $user->nextid();		
+                $user->name 	= $request->name;
+                $user->email	= $request->email;
+                $user->phone 	= $request->phone;
+                $user->password = bcrypt($request->password);
+                $user->otp 	    = $code;
+                if ($request->hasFile('image')) {
+                    $getImage = $this->getTrait($request->image);
+                    $basePath = env('APP_URL');
+                    $user->image = $basePath . '/storage/uploads/' . $getImage;
+                }
+                $user->designation	    = $request->designation;   
+                $user->role             = "Admin";   
+                $user->status           = "Saved";  
+                
+                $user->save();     
 
-            $user['image'] = $basePath . 'storage/uploads/' . $filename;
+                return redirect('admin/admin')->with(['success' => 'User Created successfully']);
+            }
+            catch (\Exception $e) {
+                return back()->withErrors(['message' => 'Failed to create User']);
+            }
         }
-        $user->designation	    = $request->designation;   
-        $user->role             = "Admin";   
-        $user->status           = "Saved";  
-        
-        $user->save(); 
-       
-        
-
-        return redirect('admin/admin')->with(['success' => 'User Created successfully']);
-    }
-    catch (\Exception $e) {
-        return back()->withErrors(['message' => 'Failed to create User']);
-    }
-    }
     }
     
 

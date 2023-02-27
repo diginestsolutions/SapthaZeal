@@ -805,7 +805,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="dropzone1">
                                         <img id="preview" style="height: 78px;width: 98px;">
                                             <img src="../../assets/cloud-computing.png" class="upload-icon" />
-                                            <input type="file" name="image" class="upload-input" id="image"  required/>
+                                            <input type="file" name="image" class="upload-input" id="bimage"  required/>
                                         </div>
                                     </button>
 
