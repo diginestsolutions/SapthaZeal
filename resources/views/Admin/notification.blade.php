@@ -42,7 +42,6 @@
     }
 
 </style>
-
 <div class="col-lg-10  col-md-12" id="main">
     <nav class="navbar navbar-light col-md-12 ">
         <h3 class=" mt-3  heading" style="">Notifications</h3>
@@ -69,6 +68,7 @@
         <a class=" " href="" data-toggle="modal" data-target="#registerModal"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
     </nav>
+    <br/>
     <!--Table-->
     {{-- Message --}}
 @if (Session::has('success'))
@@ -150,9 +150,11 @@
                                 <label class="title-label">User Type</label>
                                 <select class="form-control select " name="usertype" required>
                                     <option value="">Choose Usertype</option>
-                                    @foreach($users as $user)
+                                    <option value="jobseeker">Job seekers</option>
+                                    <option value="jobprovider">Job providers</option>
+                                    <!--@foreach($users as $user)
                                     <option value="{{$user->role}}">{{$user->role}}</option>
-                                    @endforeach
+                                    @endforeach-->
                                 </select>
                             </div>
                         </div>
@@ -212,14 +214,18 @@
 
                 <div class="row justify-content-center align-items-center">
                     <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                        <div class=" form-group select-sup">
+                        <div class=" form-group">
                             <label class="title-label">User Type</label>
-                            <select class="form-control select " name="usertype" id="usertype" required readonly>
+                            <input type="text" class="form-control form-control-lg" name="heading" id="usertype"
+                                readonly>
+                            <!--<select class="form-control select " name="usertype" id="usertype" required readonly>
                                 <option value="">Choose Usertype</option>
+                                <option value="jobseeker">Job seekers</option>
+                                <option value="jobprovider">Job providers</option>
                                 @foreach($users as $user)
                                 <option value="{{$user->id}}">{{$user->role}}</option>
                                 @endforeach
-                            </select>
+                            </select>-->
                         </div>
                     </div>
                 </div>
@@ -264,8 +270,10 @@
                 success: function (data) {
                     if (data.success == 1) {
                         $('#not_edit_id').val(data.data._id);
-                        var option = "<option value='" + id + "'>" + data.data.usertype + "</option>";
-                        $('#usertype').html(option);
+                        if(data.data.usertype == 'jobseeker')
+                            $('#usertype').val("Job seekers");
+                        else
+                            $('#usertype').val("Job providers");
                         $('#heading').val(data.data.heading);
                         $('#description').val(data.data.description);
                         $('#editModal').modal('show');
