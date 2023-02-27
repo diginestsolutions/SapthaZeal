@@ -76,11 +76,10 @@ class LoginController extends Controller
 
         if($user != null){
             if($user->status=="Active"){
-            Auth::login($user);
-            $job = Job::orderBy('_id', 'ASC')->get();
-           
-            return view('Admin/job')->with(['name'=>$user->name,'job'=>$job]);
-        }
+                Auth::login($user);
+                $job = Job::orderBy('_id', 'ASC')->get();
+                return view('Admin/job')->with(['name'=>$user->name,'job'=>$job]);
+            }
         else{
             return redirect('auth/getlogin')->with('error', 'Looks Like Your status is InActive');
         }
