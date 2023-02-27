@@ -178,7 +178,7 @@ input:focus::-webkit-datetime-edit{ color: #000; }
     }
 
     .container-fluid {
-        background-image: url('../../assets/1.png');
+        background-image: url('../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -342,7 +342,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
               
 <div class=" col-lg-10">
-    <img src="../../assets/logo.png" class="img-fluid " alt="Sample image">
+    <img src="../../Assets/logo.png" class="img-fluid " alt="Sample image">
 </div>
 <div class="justify-content-center">
     <ul >
@@ -350,7 +350,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
         <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
         <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-        <li><a href="#">Order Management</a></li>
+        <li><a href="{{route('view.order')}}">Order Management</a></li>
         <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
         <li><a href="{{route('view.admin')}}">Admin Management</a></li>
         <li><a href="{{route('view.notification')}}">Notifications</a></li>
@@ -377,7 +377,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <div class=" col-md-3 ">
-                <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
+                <img src="../../Assets/logo.png" class="img-fluid" alt="Sample image">
             </div>
             <ul class="navbar-nav mr-auto flex-column vertical-nav">
                 <li class="nav-item">
@@ -552,7 +552,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group select-date">
                                     <label class="title-label">Expiry Date</label>
 
-                                    <input type="date" id="deadline" class="form-control form-control-lg" name="expirydate"
+                                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="deadline" class="form-control form-control-lg" name="expirydate"
                                         required></span>
                                 </div>
                             </div>

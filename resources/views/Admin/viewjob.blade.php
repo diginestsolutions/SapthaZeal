@@ -185,7 +185,7 @@
     }
 
     .container-fluid {
-        background-image: url('../Assets/1.png');
+        background-image: url('../../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -329,6 +329,11 @@
         display: flex;
         padding-left: 50px !important;
     }
+    .form-control[readonly] {
+    background-color:white  !important;
+    opacity: 1;
+}
+
 
 </style>
 
@@ -349,7 +354,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
@@ -357,7 +362,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
                     <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
                     <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                    <li><a href="#">Order Management</a></li>
+                    <li><a href="{{route('view.order')}}">Order Management</a></li>
                     <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
                     <li><a href="{{route('view.admin')}}">Admin Management</a></li>
                     <li><a href="{{route('view.notification')}}">Notifications</a></li>
