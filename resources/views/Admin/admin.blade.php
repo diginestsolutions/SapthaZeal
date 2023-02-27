@@ -265,6 +265,7 @@
         <a class="" href="" data-toggle="modal" data-target="#registerModal"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
     </nav>
+    <br/>
     <!--Table-->
     {{-- Message --}}
     @if (Session::has('success'))
@@ -404,7 +405,7 @@
                     <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" id="demo">
                    
                             <div class=" form-group">
-                                <label class="title-label"> image</label>
+                                <label class="title-label"> Image</label><br/>
                                    <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
                                         <img id="preview" style="height: 78px;width: 98px;">
@@ -631,7 +632,7 @@ width: 100px;
                                     <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
                                         <img id="upload_image" style=" width:80px; height:80px;">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon1" />
+                                        <!--<img src="../assets/cloud-computing.png" class="upload-icon1" />-->
                                     </button>
                                 </div>
 
