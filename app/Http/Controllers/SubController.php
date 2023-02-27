@@ -7,6 +7,10 @@ use App\Models\Subscription;
 
 class SubController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function Index()
     {
         # code...

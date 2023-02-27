@@ -7,6 +7,10 @@ use App\Models\User;
 use App\Models\Notification;
 class NotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function notification(){
 
         $result = Notification::with('user')->get();
