@@ -58,11 +58,11 @@ class IndustryController extends Controller
         
         $industry = Industry::find($id);
        
-        $industry->name              = $request->industryname;
+        $industry->name = $request->industryname;
      
         $industry->save();
  
-        return redirect('admin/industry');
+        return redirect('admin/industry')->with('success', 'industry updated successfully.');
     }
     /**
      * This Function used to delete industry

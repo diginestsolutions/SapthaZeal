@@ -4,9 +4,9 @@
         padding: 0;
         box-sizing: border-box;
         list-style: none;
-      
-      
-       
+
+
+
     }
 
     body {
@@ -89,7 +89,7 @@
         display: block;
         padding: 16px;
     }
-    
+
 
     th {
         font-family: 'Quicksand' !important;
@@ -155,14 +155,17 @@
         text-align: center;
         border-radius: 15px;
     }
-    th{
+
+    th {
         font-size: 15px;
-    font-family: 'Quicksand';
+        font-family: 'Quicksand';
     }
-    td{
+
+    td {
         font-size: 14px;
-    font-family: 'Quicksand';  
+        font-family: 'Quicksand';
     }
+
     .icons1 {
         padding: 10 12 10 12px;
         background: #ffff;
@@ -251,52 +254,62 @@
         }
 
     }
-    @media only screen   
-and (min-width: 1370px)  
-and (max-width: 1605px)  
-{ 
-    ul{
-    font-size:17px;
-}}  
+
+    @media only screen and (min-width: 1370px) and (max-width: 1605px) {
+        ul {
+            font-size: 17px;
+        }
+    }
 
     .profile {
 
         display: flex;
         padding-left: 50px !important;
     }
+
     .sidebar a.active {
         color: #49B945 !important;
         text-decoration: none;
         border-right: 3px solid #49B945;
         background: #e4f5e3;
 
-  
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button:active {
-  background: none;
-  color: black!important;
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    
-    background-color: #208CD1!important;
-    
-    border:none !important;
-    border-radius:35px!important;
-   
-}
-.dataTables_wrapper .dataTables_paginate  .paginate_button.current:hover {
-    
-    background-color:#7ECD7C!important; 
-    border:none !important;
-    border-radius:35px!important;
-   
-}
-.dataTables_wrapper .dataTables_paginate .paginate_button.current{
-    color:none!important;
-}
 
+    }
 
-    
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: none;
+        color: black !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+
+        background-color: #208CD1 !important;
+
+        border: none !important;
+        border-radius: 35px !important;
+
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+
+        background-color: #7ECD7C !important;
+        border: none !important;
+        border-radius: 35px !important;
+
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        color: none !important;
+    }
+
+    .make-me-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+
+        padding: 0 15px;
+    }
 
 </style>
 
@@ -307,7 +320,7 @@ and (max-width: 1605px)
 https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 "></script>
     <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
- 
+
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -317,97 +330,100 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     <div class="wrapper d-flex ">
 
         <div class="sidebar col-lg-2  col-xl-2 col-md-3 p-0 " id="sidenav">
+            <div class="make-me-sticky p-0">
 
+                <div class=" col-lg-10">
+                    <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+                </div>
+                <div class="justify-content-center">
+                    <ul>
+                        <li><a href="{{route('view.job')}}">Job Management</a></li>
+                        <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                        <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                        <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                        <li><a href="{{route('view.order')}}">Order Management</a></li>
+                        <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                        <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                        <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                        <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                        <li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
 
-            <div class=" col-lg-10">
-                <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+                            <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                                style="border-radius: 0px 0px 24px 24px; width:220px;"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="justify-content-center">
-                <ul>
-                    <li><a  href="{{route('view.job')}}">Job Management</a></li>
-                    <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
-                    <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
-                    <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                    <li><a href="{{route('view.order')}}">Order Management</a></li>
-                    <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
-                    <li><a href="{{route('view.admin')}}">Admin Management</a></li>
-                    <li><a href="{{route('view.notification')}}">Notifications</a></li>
-                    <li><a href="{{route('profile.admin')}}">Profile</a></li>
-                    <li>
-
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-
-                        <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                            style="border-radius: 0px 0px 24px 24px; width:220px;"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
-
-
-                    </li>
-                </ul>
-            </div>
-
         </div>
 
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="sidebar col-lg-2 col-md-3 p-0 ">
+        <div class="collapse navbar-collapse p-0" id="navbarSupportedContent">
+            <div class="sidebar col-lg-2 col-md-3 p-0 ">
+                <div class="make-me-sticky p-0">
+                    <div class=" col-md-3 ">
+                        <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                    </div>
+                    <div class="justify-content-center">
+                        <ul>
+                            <li><a href="{{route('view.job')}}">Job Management</a></li>
+                            <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                            <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                            <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                            <li><a href="{{route('view.order')}}">Order Management</a></li>
+                            <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                            <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                            <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                            <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                            <li>
 
-            <div class=" col-md-3 ">
-                <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+
+                                <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                                    style="border-radius: 0px 0px 24px 24px; width:220px;"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+
+
+                            </li>
+                    </div>
+                </div>
             </div>
-            <div class="justify-content-center">
-            <ul >
-            <li><a href="{{route('view.job')}}">Job Management</a></li>
-                    <li><a  href="{{route('view.industry')}}">Job Industry Management</a></li>
-                    <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
-                    <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                    <li><a href="{{route('view.order')}}">Order Management</a></li>
-                    <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
-                    <li><a href="{{route('view.admin')}}">Admin Management</a></li>
-                    <li><a href="{{route('view.notification')}}">Notifications</a></li>
-                    <li><a href="{{route('profile.admin')}}">Profile</a></li>
-                    <li>
-
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-
-                        <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                            style="border-radius: 0px 0px 24px 24px; width:220px;"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
-
-
-                    </li>
         </div>
-    </div>
-</div>
+
         @yield('content')
 
     </div>
+
 </div>
 
 
 <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" />
 
 <script>
- $(document).ready(function () {
-  $('#dt-vertical-scroll').dataTable();
-});
+    $(document).ready(function () {
+        $('#dt-vertical-scroll').dataTable();
+    });
+
 </script>
 
 
 
 
-<script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
 <script>
-    $(document).ready(function($){
-    var url = window.location.href;
-    $('.sidebar li a[href="'+url+'"]').addClass('active');
-});
-  
-    </script>
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        $('.sidebar li a[href="' + url + '"]').addClass('active');
+    });
+
+</script>

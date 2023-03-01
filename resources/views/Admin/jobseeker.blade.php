@@ -1171,7 +1171,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <label class="title-label">Download Resume</label>
                                 <button class="btn fileicon" type="button">
                                     <div class="dropzone1">
-                                        <img src="../assets/pdf.png" class="upload-icon1" />
+                                        <img src="../../../Assets/pdf.png" class="upload-icon1" />
                                         <input type="file" class="upload-input1" name="resume" id="resume" required />                                       
                                     </div>
                                 </button>

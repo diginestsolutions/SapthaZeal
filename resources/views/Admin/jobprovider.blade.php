@@ -71,10 +71,10 @@
                                 <th>Actions</th>
 
                             </tr>
-
-                            @foreach ($results as $providers)
+                      </thead>
+                           
                            <tbody>
-
+                           @foreach ($results as $providers)
                             <tr>
                                 <td>#{{ $providers->jobprovider_id}}</td>
                                 <td>{{$providers->created_at->format('d-m-Y')}}</td>
@@ -116,9 +116,9 @@
                                     </div>
                                 </td>
                             </tr>
-
-                            </thead>
                             @endforeach
+                            </tbody>
+                          
                     </table>
 
                 </div>

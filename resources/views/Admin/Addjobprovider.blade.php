@@ -169,7 +169,7 @@
     }
 
     .container-fluid {
-        background-image: url('../../assets/1.png');
+        background-image: url('../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -324,7 +324,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
               
 <div class=" col-lg-10">
-    <img src="../../assets/logo.png" class="img-fluid " alt="Sample image">
+    <img src="../../Assets/logo.png" class="img-fluid " alt="Sample image">
 </div>
 <div class="justify-content-center">
     <ul >
@@ -571,40 +571,28 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     </select>
                                 </div>
                             </div>
-
-
-
-
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-
-
-
-
-
-
-
+                     
+                            <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
                                 <div class="text-center">
-
                                     <button type="submit"
                                         class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-letter-spacing: 1.25px;
-border:none;
-color: #FFFFFF;
-text-transform: uppercase;
-opacity: 1;
-background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
-width: 100px;
-;">
+                                        letter-spacing: 1.25px;
+                                        border:none;
+                                        color: #FFFFFF;
+                                        text-transform: uppercase;
+                                        opacity: 1;
+                                        background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
+                                        width: 100px;
+                                        margin-top:75px;
+                                        ;">
                                         Add
                                         <i class="icon-database-insert ml-1"></i>
                                     </button>
                                 </div>
-
-
                             </div>
+                         
                         </div>
-
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
