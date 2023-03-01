@@ -49,8 +49,7 @@ class AdminprofileController extends Controller
          $validator = Validator::make($request->all(), [
             'name'       => 'required|string|between:2,100',
             'email'      => 'required|string|email|max:100|unique:users',
-            'phone'     => 'required|integer|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:users',
-            'image'      => 'required|mimetypes:image/jpeg,image/jpg,image/png',
+            'phone'     => 'required|integer|unique:users',
             'designation'=> 'required|string|',
            
         ]);
@@ -129,17 +128,12 @@ class AdminprofileController extends Controller
     public function update(Request $request)
     {
         
-         $id=Auth::id();
-        $user = User::find($id);
-        
-       
+        $user =Auth::user();
         if($user ){
             $user->name 	= $request->name;
             $user->email	= $request->email;
             $user->phone 	= $request->phone;
-           
-            
-            if ($request->hasFile('image')) {
+           if ($request->hasFile('image')) {
                 $filename = $request->file('image')->getClientOriginalName();
                 $filename = str_replace(' ', '-', $filename);
                 $destinationPath = storage_path('app/public/uploads/');
@@ -154,7 +148,7 @@ class AdminprofileController extends Controller
             $user->save(); 
         }
         
-        return view ('Admin/editprofile',compact('user'))->with(['success' => 'User Updated successfully']);
+        return redirect ('admin/profileadmin')->with(['success' => 'User Created successfully']);
     
    
     }
@@ -170,8 +164,6 @@ class AdminprofileController extends Controller
             $user->name 	= $request->name;
             $user->email	= $request->email;
             $user->phone 	= $request->phone;
-          
-          
             if ($request->hasFile('image')) {
                 $filename = $request->file('image')->getClientOriginalName();
                 $filename = str_replace(' ', '-', $filename);

@@ -63,7 +63,7 @@
                         @foreach ($results as $candidates)
                             <tr>
                                 <td>#{{ $candidates->candidate_id}}</td>
-                                <td>{{$candidates->created_at}}</td>
+                                <td>{{$candidates->created_at->format('d/m/Y')}} {{ $candidates->created_at->format('h:i a')}}</td>
                                 <td>{{$candidates->name}}</td>
                                 <td>{{$candidates->mobile}}</td>
                                 <td>{{$candidates->email}}</td>

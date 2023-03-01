@@ -10,17 +10,19 @@
         font-weight: 100;
         font-size: 15px;
     }
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
-        }
+    }
 
-        /* Firefox */
-        input[type=number] {
+    /* Firefox */
+    input[type=number] {
         -moz-appearance: textfield;
-        }
+    }
+
     .title-label {
         font-weight: 500;
     }
@@ -36,7 +38,7 @@
 
 
         height: 50px;
-       
+
         margin-top: -46px;
     }
 
@@ -82,6 +84,14 @@
         <strong>Success !</strong> {{ session('success') }}
     </div>
     @endif
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Error !</strong> {{ session('error') }}
+    </div>
+    @endif
 
 
     <div class=" col-md-12 ">
@@ -93,16 +103,16 @@
                         <div class="col-lg-3">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                                <input style="display:none" type="file" id="my-file" name="image">
+                                <input style="display:none" type="file" id="image" name="image">
 
                                 <div class="dropzone">
 
                                     <button class="btn fileicon " type="button"
-                                        onclick="document.getElementById('my-file').click()">
-                                        <img src="{{Auth::user()->image}} " width="200" height="200" alt=""
+                                        onclick="document.getElementById('image').click()">
+                                        <img src="{{Auth::user()->image}}" id="preview" width="200" height="200" alt=""
                                             style="border-radius:10px;">
 
-                                        <img src="../assets/Group 22.png" class="upload-icon" />
+                                        <img src="../Assets/Group 22.png" class="upload-icon" />
 
 
 
@@ -112,63 +122,45 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="row">
-                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"> Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="name"
+                                            value="{{Auth::user()->name}}" required>
+                                    </div>
+                                </div>
 
 
+                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"> Email Address</label>
 
+                                        <input type="email" class="form-control form-control-lg" name="email"
+                                            value="{{Auth::user()->email}}" required>
 
-                                <div class=" form-group">
-                                    <label class="title-label"> Name</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="name"
-                                        value="{{$user->name}}" required>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
+                                    <div class=" form-group">
+                                        <label class="title-label">Mobile Number</label>
 
+                                        <input type="number" class="form-control form-control-lg" name="phone"
+                                            value="{{Auth::user()->phone}}" required>
 
-                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label"> Email Address</label>
-
-                                    <input type="email" class="form-control form-control-lg" name="email"
-                                        value="{{$user->email}}" required>
-                                       
+                                    </div>
                                 </div>
-                            </div>
-</div>
-           <div class="row">
-                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Mobile Number</label>
-
-                                    <input type="number" class="form-control form-control-lg" name="phone"
-                                        value="{{$user->phone}}" required>
-                                       
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-                                <div class=" form-group">
-                                    <label class="title-label">Designation</label>
-
-                                    <input type="text" class="form-control form-control-lg" name="designation"
-                                        value="{{$user->designation}}" required>
+                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Designation</label>
+                                         <input type="text" class="form-control form-control-lg" name="designation"
+                                            value="{{Auth::user()->designation}}" required>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-</div>
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
                 <div class="text-center">
@@ -201,5 +193,25 @@
 
 
 </div>
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+
+        $('#image').change(function () {
+
+            let reader = new FileReader();
+
+            reader.onload = (e) => {
+
+                $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+    });
+
+</script>
 
 @endsection

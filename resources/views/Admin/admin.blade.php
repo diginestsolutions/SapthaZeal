@@ -10,7 +10,7 @@
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
-          margin: 0;
+        margin: 0;
     }
 
     /* Firefox */
@@ -49,7 +49,7 @@
         height: 100%;
         opacity: 0;
     }
-    
+
 
     .form-control {
         border-radius: 16px !important;
@@ -222,7 +222,6 @@
         display: flex;
         padding-left: 28px;
     }
-    
 
 </style>
 
@@ -258,14 +257,14 @@
 
 
     </nav>
-   
+
 
     <nav class="navbar navbar-light ">
 
         <a class="" href="" data-toggle="modal" data-target="#registerModal"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
     </nav>
-    <br/>
+    <br />
     <!--Table-->
     {{-- Message --}}
     @if (Session::has('success'))
@@ -289,7 +288,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-resp-noscroll" id="dt-vertical-scroll">
-                    <thead>
+                        <thead>
                             <tr>
                                 <th style="width:10%">User ID</th>
                                 <th style="width:15%">Created Date</th>
@@ -302,10 +301,10 @@
 
                             </tr>
                         </thead>
-             <tbody> 
-             @foreach($users as $user)        
-             <tr>
-            
+                        <tbody>
+                            @foreach($users as $user)
+                            <tr>
+
                                 <td>#{{$user->user_id}}</td>
                                 <td>{{$user->created_at->format('d-m-Y')}}</td>
                                 <td>{{$user->name}}</td>
@@ -313,37 +312,39 @@
                                 <td>{{$user->phone}}</td>
                                 <td>{{$user->last_login_in}}</td>
 
-                               
+
                                 <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}" />
-                              
-                               @if($user->status =='Saved') 
-                               <td class="text-center"> 
-                                <div class="action-btns d-flex ">
-                              
-                                    <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
-                                            class="mt-2"><i class="fa-solid fa-circle-check"
-                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$user->user_id}});"></i></a>
-                                    <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
-                                            class="mt-2" ><i class="fa fa-times-circle"
-                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$user->user_id}});"></i></a>
-                               
-                                </div>
-                           </td>
-                           @endif
-                           @if($user->status =='Active') 
+
+                                @if($user->status =='Saved')
+                                <td class="text-center">
+                                    <div class="action-btns d-flex ">
+
+                                        <a href="javascript:void(0)" data-popup="tooltip" title="View Cities"
+                                            style="margin-right:5px;" class="mt-2"><i class="fa-solid fa-circle-check"
+                                                style="font-size:25px;color:#7ECD7C"
+                                                onclick="return statusapproved({{$user->user_id}});"></i></a>
+                                        <a href="javascript:void(0)" data-popup="tooltip" title="Edit"
+                                            data-placement="bottom" class="mt-2"><i class="fa fa-times-circle"
+                                                style="font-size:25px;color:#C15A5A"
+                                                onclick="return statusrejected({{$user->user_id}});"></i></a>
+
+                                    </div>
+                                </td>
+                                @endif
+                                @if($user->status =='Active')
                                 <td style="color:#48BA48">
                                     Approved
                                 </td>
                                 @endif
-                                @if($user->status =='Inactive') 
+                                @if($user->status =='Inactive')
                                 <td style="color:red">
                                     Rejected
                                 </td>
                                 @endif
 
-                            
-                          <td>
-                                    
+
+                                <td>
+
                                     <div class="action-btns d-flex ">
                                         <a href="javascript:void()" onclick="return showitem({{$user->user_id}});"
                                             data-popup="tooltip" title="View" data-toggle="modal"
@@ -353,8 +354,8 @@
                                             data-toggle="modal" class="mt-2" style="margin-right:5px;"><i
                                                 class="fa fa-edit"></i></a>
 
-                                                <input type="hidden" id="user_id" value="{{ $user->id }}" />
-                                      
+                                        <input type="hidden" id="user_id" value="{{ $user->id }}" />
+
                                         <input type="hidden" id="user_id_{{$user->user_id}}" value="{{ $user->id }}" />
 
                                         <a href="javascript:void()" onclick="return deleteitem({{$user->user_id}});"
@@ -364,10 +365,10 @@
                                     </div>
                                 </td>
                             </tr>
-          @endforeach
-                            
-</tbody>
-    
+                            @endforeach
+
+                        </tbody>
+
                     </table>
 
                 </div>
@@ -385,13 +386,12 @@
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
                 <h5 class="modal-title" id="registerModal">{{ __('Add User') }}</h5>
-                <button type="button" class="close"  onclick="return reset();" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" onclick="return reset();" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form" action="{{ route('register.admin') }}" method="POST"
-                    enctype="multipart/form-data">
+                <form id="form" action="{{ route('register.admin') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">
@@ -402,20 +402,20 @@
                                 <input type="text" class="form-control form-control-lg" name="name" required>
                             </div>
                         </div>
-                    <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" id="demo">
-                   
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" id="demo">
+
                             <div class=" form-group">
-                                <label class="title-label"> Image</label><br/>
-                                   <button class="btn fileicon " type="button">
+                                <label class="title-label"> Image</label><br />
+                                <button class="btn fileicon " type="button">
                                     <div class="dropzone1">
                                         <img id="preview" style="height: 78px;width: 98px;">
-                                        <img src="../assets/cloud-computing.png" class="upload-icon1" />
-                                        <input type="file" class="upload-input1" name="image" id="image"  />
+                                        <img src="../Assets/cloud-computing.png" class="upload-icon1" />
+                                        <input type="file" class="upload-input1" name="image" id="image" />
 
                                     </div>
                                 </button>
                             </div>
-                    </div>
+                        </div>
 
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
@@ -427,17 +427,17 @@
 
                                 <input type="email" class="form-control form-control-lg" name="email" required>
 
-                              
+
 
                             </div>
                         </div>
-                       <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                          <div class=" form-group">
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                            <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
                                 <input type="number" class="form-control form-control-lg" name="phone" required
-                                maxlength=10>
-                              
+                                    maxlength=10>
+
 
                             </div>
                         </div>
@@ -549,7 +549,7 @@ width: 100px;
                                     readonly>
                             </div>
                         </div>
-                       <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
 
 
 
@@ -598,7 +598,7 @@ width: 100px;
                 </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body col-lg-12">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('update1.admin')}}">
                     @csrf
                     <input type="hidden" name="id" id="user_edit_id_">
@@ -632,7 +632,7 @@ width: 100px;
                                     <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('my-file').click()">
                                         <img id="upload_image" style=" width:80px; height:80px;">
-                                        <!--<img src="../assets/cloud-computing.png" class="upload-icon1" />-->
+                                        <img src="../Assets/cloud-computing.png" class="upload-icon1" />
                                     </button>
                                 </div>
 
@@ -640,7 +640,7 @@ width: 100px;
 
 
                         </div>
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" style="margin-top: -57px;">
 
 
 
@@ -648,23 +648,25 @@ width: 100px;
                             <div class=" form-group">
                                 <label class="title-label">Email Address</label>
 
-                                <input type="email" class="form-control form-control-lg" name="email" id="_email" required>
-                               
+                                <input type="email" class="form-control form-control-lg" name="email" id="_email"
+                                    required>
+
                             </div>
                         </div>
-                     <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                        <div class=" form-group">
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                            <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
-                                <input type="number" class="form-control form-control-lg" name="phone" id="_mobile" required maxlength=10>
-                               
+                                <input type="number" class="form-control form-control-lg" name="phone" id="_mobile"
+                                    required maxlength=10>
+
                             </div>
                         </div>
 
 
 
 
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" style="margin-top: -77px;">
 
 
 
@@ -713,7 +715,7 @@ width: 100px;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
     function deleteitem(id) {
-        var id =  $(`#user_id_${id}`).val();
+        var id = $(`#user_id_${id}`).val();
         var url = '{{ route("admin.destroy", ":id") }}';
         url = url.replace(':id', id);
         swal({
@@ -849,10 +851,8 @@ width: 100px;
 
 </script>
 <script>
+    function statusapproved(id) {
 
-function statusapproved(id)
-    {
-       
         var id = $(`#user_id_${id}`).val();
         var url = '{{ route("user.approved", ":id") }}';
         url = url.replace(':id', id);
@@ -867,49 +867,45 @@ function statusapproved(id)
                 cancelButtonText: "No, cancel pls!",
                 closeOnConfirm: true,
                 closeOnCancel: true
-              },
-              function(isConfirm) {
+            },
+            function (isConfirm) {
                 if (isConfirm) {
-                   $.ajax({
-                            type:'POST',
-                            url:url,
-                            data:'_token={{ csrf_token() }}',
-                            success:function(data){
-                              if(data.success==1)
-                              {
-                                   swal(
-                                        'Changed!',
-                                        'User has been approved.',
-                                        'success'
-                                      );
-                                      $('#row'+id).remove();
-                                      location.reload();
-                              }
-                              else
-                              {
-                                  swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                              }
-                            },
-                            error:function(data)
-                            {
-                                console.log(data);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: '_token={{ csrf_token() }}',
+                        success: function (data) {
+                            if (data.success == 1) {
                                 swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
+                                    'Changed!',
+                                    'User has been approved.',
+                                    'success'
+                                );
+                                $('#row' + id).remove();
+                                location.reload();
+                            } else {
+                                swal(
+                                    'Failed!',
+                                    data.message,
+                                    'error'
+                                );
                             }
-                            
-                         });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            swal(
+                                'Failed!',
+                                data.message,
+                                'error'
+                            );
+                        }
+
+                    });
                 }
             });
     }
-    function statusrejected(id)
-    {
+
+    function statusrejected(id) {
         var id = $(`#user_id_${id}`).val();
         var url = '{{ route("user.rejected", ":id") }}';
         url = url.replace(':id', id);
@@ -923,47 +919,44 @@ function statusapproved(id)
                 cancelButtonText: "No, cancel pls!",
                 closeOnConfirm: true,
                 closeOnCancel: true
-              },
-              function(isConfirm) {
+            },
+            function (isConfirm) {
                 if (isConfirm) {
-                   $.ajax({
-                            type:'POST',
-                            url:url,
-                            data:'_token={{ csrf_token() }}',
-                            success:function(data){
-                              if(data.success==1)
-                              {
-                                   swal(
-                                        'changed!',
-                                        'Status has been rejected.',
-                                        'success'
-                                      );
-                                      $('#row'+id).remove();
-                                      location.reload();
-                              }
-                              else
-                              {
-                                  swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                              }
-                            },
-                            error:function(data)
-                            {
-                                console.log(data);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: '_token={{ csrf_token() }}',
+                        success: function (data) {
+                            if (data.success == 1) {
                                 swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
+                                    'changed!',
+                                    'Status has been rejected.',
+                                    'success'
+                                );
+                                $('#row' + id).remove();
+                                location.reload();
+                            } else {
+                                swal(
+                                    'Failed!',
+                                    data.message,
+                                    'error'
+                                );
                             }
-                            
-                         });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            swal(
+                                'Failed!',
+                                data.message,
+                                'error'
+                            );
+                        }
+
+                    });
                 }
             });
     }
+
 </script>
 <script>
     function reset() {
@@ -971,44 +964,25 @@ function statusapproved(id)
     }
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jgrowl/1.4.9/jquery.jgrowl.min.js" integrity="sha512-C4ipk1AO8TBc9HbU6T7DDrssiNBEzFoNRtkE5Ci9Eq0Q3QxhO5GPSOL4szGcjMH7pYwP41G1KDQWC6MDWvWilA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-@if(Session::has('success'))
-<script>
-    $(function () {
-        
-        $.jGrowl("{{ Session::get('success') }}", {
-            position: 'bottom-center',
-            header: 'SUCCESS 👌',
-            theme: 'bg-success',
-            
-        });    
-    });
-</script>
-@endif
-@if(Session::has('message'))
-<script>
-    $(function () {
-        $.jGrowl("{{ Session::get('message') }}", {
-            position: 'bottom-center',
-            header: 'Wooopsss ⚠️',
-            theme: 'bg-warning',
-        });    
-    });
-</script>
-@endif
-@if($errors->any())
-<script>
-    $(function () {
-        $.jGrowl("{{ implode('', $errors->all(':message')) }}", {
-            position: 'bottom-center',
-            header: 'ERROR ⁉️',
-            theme: 'bg-danger',
-        });    
-    });
-</script>
-@endif
+<script type="text/javascript">
+    $(document).ready(function (e) {
 
 
+        $('.image').change(function () {
+
+            let reader = new FileReader();
+
+            reader.onload = (e) => {
+
+                $('.preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+    });
+
+</script>
 
 @endsection

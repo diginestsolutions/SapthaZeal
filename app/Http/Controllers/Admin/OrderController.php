@@ -84,11 +84,11 @@ class OrderController extends Controller
                 $order->provider_id = $order->provider_id;
                 $order->subscriptionplan = $request->subscriptionplan; 
                 $order->duration = $request->duration;
-                if(str_contains($request->duration, "month")){
-                    $date = str_replace("month","",$request->duration); 
+                if(str_contains($request->duration, "Month")){
+                    $date = str_replace("Month","",$request->duration); 
                     $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
                 }else{
-                    $date = str_replace("year","",$request->duration);
+                    $date = str_replace("Year","",$request->duration);
                     $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
                 }
                 $order->payment_status = $request->payment_status;  
@@ -105,7 +105,7 @@ class OrderController extends Controller
                     $provider->save();
                 }
             }
-            return redirect()->route('view.order')->with('success', 'Provider edited successfully.'); 
+            return redirect()->route('view.order')->with('success', 'Order edited successfully.'); 
         }catch (\Exception $e) {
             return back()->withErrors(['message' => 'Failed to edited provider']);
         } 
