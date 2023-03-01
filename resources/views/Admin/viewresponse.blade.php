@@ -565,7 +565,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         @endif
                                         <td class="text-right" style="width: 10%;">
                                             <div class="action-btns d-flex justify-content-end">
-                                                <a href="{{ route('response.candidate.job',$response->candidate->candidate_id) }}"
+                                                <a href="{{url('admin/job/candidate-details/' . $response->candidate->candidate_id . '/' . $job_id)}}"
                                                     data-popup="tooltip" title="Edit" data-placement="bottom"
                                                     class="mt-2" style="margin-right:5px;"><i
                                                         class="fa fa-edit"></i></a>
@@ -655,7 +655,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             }
 
             function edititem(id) {
-                window.location = window.location.origin + '/admin/job/candidate-details/' + id;
+                var job_id = $(`#jobs_id`).val();
+                window.location = window.location.origin + '/admin/job/candidate-details/' + id + '/' + job_id;
             }
 
             function chatbox(id) {

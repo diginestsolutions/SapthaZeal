@@ -1151,38 +1151,37 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                             <div class=" form-group select-sup">
                                 <label class="title-label">Status</label>
-                                <select class="form-control select form-control-lg" name="candidate_status" id="candidatestatus"
+                                <select class="form-control select form-control-lg" name="provider_status" id="candidatestatus"
                                     required>
                                     <option>Select Status</option>
-                                    <option value="1" {{@$candidate->status == "interested" ? 'selected' : ''}}>Interested Candidates</option>
-                                    <option value="2" {{@$candidate->status == "scheduled_resumes" ? 'selected' : ''}}>Scheduled Resumes</option>
-                                    <option value="3" {{@$candidate->status == "interview_scheduled" ? 'selected' : ''}}>Interview Scheduled</option>
-                                    <option value="4" {{@$candidate->status == "negotiation" ? 'selected' : ''}}>Negotiation</option>
-                                    <option value="5" {{@$candidate->status == "hired" ? 'selected' : ''}}>Hired</option>
+                                    <option value="1" {{@$candidate->candidate_job_applied_details[0]->applied_status == "interested" ? 'selected' : ''}}>Interested Candidates</option>
+                                    <option value="2" {{@$candidate->candidate_job_applied_details[0]->applied_status == "scheduled_resumes" ? 'selected' : ''}}>Scheduled Resumes</option>
+                                    <option value="3" {{@$candidate->candidate_job_applied_details[0]->applied_status == "interview_scheduled" ? 'selected' : ''}}>Interview Scheduled</option>
+                                    <option value="4" {{@$candidate->candidate_job_applied_details[0]->applied_status == "negotiation" ? 'selected' : ''}}>Negotiation</option>
+                                    <option value="5" {{@$candidate->candidate_job_applied_details[0]->applied_status == "hired" ? 'selected' : ''}}>Hired</option>
                                 </select>
                             </div>
                         </div>
 
                     </div>
-                    
+                    <input type="hidden" id="jobid" name="jobid" value="{{$jobid}}"/>
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class=" form-group">
                                 <label class="title-label">Download Resume</label>
                                 <button class="btn fileicon" type="button">
                                     <div class="dropzone1">
-                                        <img src="../assets/pdf.png" class="upload-icon1" />
+                                        <img src="../../../Assets/pdf.png" class="upload-icon1" />
                                         <input type="file" class="upload-input1" name="resume" id="resume" required />                                       
                                     </div>
                                 </button>
 
                              
                             </div>
-                        </div>
-                    </div>
+                        
                     
                     
-                    </br><a href="{{@$candidate->resume}}" target="_blank" download>
+                    </br></br><a href="{{@$candidate->resume}}" target="_blank" download>
                     <button type="button" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
@@ -1193,17 +1192,36 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
    
     font-size: 12px;
     
-    font-family: 'Quicksand';" >
+    font-family: 'Quicksand';margin-left: 63px;" >
                         Download<i class="icon-database-insert ml-1"></i>
                     </button></a>
-<br/>
-                    <div class="row ">
-                        <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+<br/></div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class=" form-group">
                                 <label class="title-label"></i>Cover Letter</label>
-                                <textarea rows="4" class="form-control1" name="cover_letter" readonly>{{@$candidate->cover_letter}}</textarea>
+                                <textarea rows="8" class="form-control1" name="cover_letter" readonly>{{@$candidate->cover_letter}}</textarea>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group select-sup">
+                                <label class="title-label">Candidate Status <span style="color: red;">*</span></label>
+                                <select class="form-control select form-control-lg" name="candidate_status"
+                                id="candidatestatusselect" required>
+                                    <option>Select Option</option>
+                                    <option value="1" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "applied" ? 'selected' : ''}}>Applied</option>
+                                    <option value="2" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "in_progress" ? 'selected' : ''}}>In Progress</option>
+                                    <option value="3" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "resume_evaluation" ? 'selected' : ''}}>Resume Evaluation</option>
+                                    <option value="4" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "incomplete_application" ? 'selected' : ''}}>Incomplete Application</option>
+                                    <option value="5" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "interview_scheduled" ? 'selected' : ''}}>Interview Scheduled</option>
+                                    <option value="6" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "negotiation" ? 'selected' : ''}}>Negotiation</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="candidate_status_div">
+
                     </div>
                     </form>
                     <button type="button" class=" pre btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
@@ -1468,6 +1486,63 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         });
     });
 
+</script>
+<script>
+    $('#candidatestatusselect').on('change', function () {
+        var demovalue = $(this).val();
+        if ($(this).val() == 2  || $(this).val() == 6) {
+            res='<div class="row">'+
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
+                '<div class=" form-group">'+
+                '<label class="title-label"></i>Remark</label>'+
+                '<textarea rows="4" class="form-control1" name="remark"></textarea>'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+            $('#candidate_status_div').html(res);    
+        }
+        if($(this).val() == 4) {
+            res='<div class="row">'+
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
+                '<div class=" form-group">'+
+                '<label class="title-label"></i>Reson</label>'+
+                '<input type="text" class="form-control1" name="reson">'+
+                '</div>'+
+                '</div>'+
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
+                '<div class=" form-group">'+
+                '<label class="title-label"></i>Remark</label>'+
+                '<textarea rows="4" class="form-control1" name="remark"></textarea>'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+            $('#candidate_status_div').html(res);
+        }
+        if($(this).val() == 5) {
+            res='<div class="row">'+
+                '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">'+
+                '<div class=" form-group select-date"">'+
+                '<label class="title-label"></i>Date</label>'+
+                '<input type="text" class="form-control form-control-lg" name="interview_date">'+
+                '</div>'+
+                '</div>'+
+                '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">'+
+                '<div class=" form-group">'+
+                '<label class="title-label"></i>Place</label>'+
+                '<input type="text" class="form-control1" name="interview_place">'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
+                '<div class=" form-group">'+
+                '<label class="title-label"></i>Remark</label>'+
+                '<textarea rows="4" class="form-control1" name="remark"></textarea>'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+            $('#candidate_status_div').html(res);
+        }
+    });
 </script>
 <script>
     function eduaction() {
