@@ -314,21 +314,8 @@ class CandidateController extends Controller
             $candidate = Candidate::find($request->candidate_id);
             if($candidate)
             {
-                if($request->candidate_status == 1) {
-                    $candidate->status = 'interested';
-                }
-                if($request->candidate_status == 2) {
-                    $candidate->status = 'scheduled_resumes';
-                }
-                if($request->candidate_status == 3) {
-                    $candidate->status = 'interview_scheduled';
-                }
-                if($request->candidate_status == 4) {
-                    $candidate->status = 'negotiation';
-                }
-                if($request->candidate_status == 5) {
-                    $candidate->status = 'hired';
-                }
+                $candidate->cover_letter = $request->cover_letter;
+                $candidate->save();
                 if ($request->hasFile('file')) {
                     $filename = time().'.'.$request->resume->getClientOriginalExtension();
                     $filePath = storage_path('app/public/uploads/resumes/'); 
@@ -337,8 +324,54 @@ class CandidateController extends Controller
                     $basePath = env('APP_URL');
                     $candidate->resume = $basePath . '/storage/uploads/resumes/' . $filename;
                 }
-                $candidate->cover_letter = $request->cover_letter;
-                $candidate->save();
+                
+                $job_applied_details = JobAppliedDetails::where('candidate_id',$candidate->_id)
+                                       ->where('job_id',$request->jobid)->first();
+                $job_applied_details->applied_status = 'scheduled_resumes';
+                $job_applied_details->save();
+                if($request->provider_status == 1) {
+                    $job_applied_details->applied_status = 'interested';
+                }
+                if($request->provider_status == 2) {
+                    $job_applied_details->applied_status = 'scheduled_resumes';
+                }
+                if($request->provider_status == 3) {
+                    $job_applied_details->applied_status = 'interview_scheduled';
+                }
+                if($request->provider_status == 4) {
+                    $job_applied_details->applied_status = 'negotiation';
+                }
+                if($request->provider_status == 5) {
+                    $job_applied_details->applied_status = 'hired';
+                }
+
+                if($request->candidate_status == 1) {
+                    $job_applied_details->candidate_status = 'applied';
+                }
+                if($request->candidate_status == 2) {
+                    $job_applied_details->candidate_status = 'in_progress';
+                    $job_applied_details->remark = $request->remark;
+                }
+                if($request->candidate_status == 3) {
+                    $job_applied_details->candidate_status = 'resume_evaluation';
+                }
+                if($request->candidate_status == 4) {
+                    $job_applied_details->candidate_status = 'incomplete_application';
+                    $job_applied_details->reson = $request->reson;
+                    $job_applied_details->remark = $request->remark;
+                }
+                if($request->candidate_status == 5) {
+                    $job_applied_details->candidate_status = 'interview_scheduled';
+                    $job_applied_details->interview_date = $request->interview_date;
+                    $job_applied_details->interview_place = $request->interview_place;
+                    $job_applied_details->remark = $request->remark;
+                }
+                if($request->candidate_status == 6) {
+                    $job_applied_details->candidate_status = 'negotiation';
+                    $job_applied_details->remark = $request->remark;
+                }
+                $job_applied_details->save();
+
                 $response['success'] = 1;
                 $response['message'] ='Candidate Status Changed Successfully';
             }else {

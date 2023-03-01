@@ -235,10 +235,13 @@ class JobController extends Controller
         $response['data']=  $job_response;
         return $response;
     }
-    public function responsecandidate($id)
+    public function responsecandidate($id,$jobid)
     {
-        $candidate = Candidate::with('candidate_education','candidate_experience')->where('candidate_id',(int)$id)->first();
-        return view('Admin/jobseeker',compact('candidate'));
+        $jobid = $jobid;
+        $candidate = Candidate::with(['candidate_education','candidate_experience','candidate_job_applied_details' => function ($query) use ($jobid){
+            $query->where('job_id',$jobid);
+        }])->where('candidate_id',(int)$id)->first();
+        return view('Admin/jobseeker',compact('candidate','jobid'));
     }
     public function candidatechatbox($id)
     {
@@ -266,20 +269,4 @@ class JobController extends Controller
             ], 400);
         }
     }
-    /*public function pdf($id) {
-        $member_list = Candidate::find($id);
-                 ->get();
-        $total_counts = DB::table('member')->where('agent_code',$agent_code)
-          ->select(DB::raw('SUM(total_balance) AS grand_total_balance'), DB::raw('SUM(total_profit) AS grand_total_profit'))->get();
-        $agent = Agent::where('agent_code',$agent_code)->first();
-        
-        $data = [
-            'member_list' => $member_list,
-            'total_counts' => $total_counts,
-            'agent' => $agent
-        ];
-        $pdf = PDF::loadView('hotline.pdf.memberlist', $data);
-        
-        return $pdf->download('MemberList.pdf');
-    }*/
 }
