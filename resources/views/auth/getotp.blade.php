@@ -13,7 +13,7 @@
     }
 
     .container-fluid {
-        background-image: url('../assets/Login.png');
+        background-image: url('../Assets/Login.png');
         background-repeat: no-repeat;
         background-size: cover;
         height: 100%;
@@ -116,7 +116,7 @@
 
                 <div class="col-12 mx-auto d-flex justify-content-center flex-wrap">
                     <div class="col-md-6 col-lg-6 col-xl-5">
-                        <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
+                        <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
                     </div>
                 </div>
                 {{-- Message --}}

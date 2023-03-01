@@ -13,7 +13,10 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\ResponseController;
+//jobprovider
+use App\Http\Controllers\Jobprovider\JobproviderloginController;
 /*
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -73,7 +76,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::post('/industry/update', [IndustryController::class, 'update'])->name('update.industry');
     Route::post('/industry/{id}/destroy', [IndustryController::class, 'destroy'])->name('industry.destroy');
     
-    //admin
+    
     //admin
     Route::get('/admin', [AdminprofileController::class, 'index'])->name('view.admin');
     Route::post('/adminregister', [AdminprofileController::class, 'store'])->name('register.admin');
@@ -133,4 +136,10 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
    Route::post('/order/update/{id}', [OrderController::class, 'update'])->name('update.order');
    Route::get('/order/show/{id}', [OrderController::class, 'show'])->name('show.order');
     
+});
+Route::group([  'prefix' => 'jobprovider' ], function ($router) {
+
+ // Login
+ Route::get('/login', [JobproviderloginController::class, 'index'])->name('login');
+
 });
