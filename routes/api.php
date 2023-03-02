@@ -28,7 +28,7 @@ use App\Http\Controllers\SubscriptionController;
 Route::group([ 'middleware' => 'api', 'prefix' => 'auth' ], function ($router) {
     // AUTH
     Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/jobseeker/login',[App\Http\Controllers\Api\AuthController::class,'jobseekerlogin']);  
+    //Route::post('/jobseeker/login',[App\Http\Controllers\Api\AuthController::class,'jobseekerlogin']);  
     Route::post('/loginotp',[App\Http\Controllers\Api\AuthController::class,'loginotp']);
 });
 Route::group([ 'middleware' => 'api', 'prefix' => 'admin' ], function ($router) {
@@ -37,6 +37,14 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'admin' ], function ($router) 
     Route::delete('/delete-subscriptionplan/{id}', [SubscriptionController::class, 'Delete']);
 });
 
+/**
+ * JOB SEEKER API
+ */
 Route::group([ 'middleware' => 'api', 'prefix' => 'jobseeker' ], function ($router) {
+    /**Auth APIS */
+    Route::post('/register',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'register']); 
+    Route::post('/loginotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'loginotp']); 
+    Route::post('/login',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'jobseekerlogin']);
+    Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);   
     Route::get('/job', [JobController::class, 'job']);
 });
