@@ -64,7 +64,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/job/show/{id}', [JobController::class, 'show'])->name('show.job');
     Route::get('/job/response/{id}', [JobController::class, 'jobresponse'])->name('response.job');
     Route::post('/job/response/status-list/{id}', [JobController::class, 'responsestatuslist'])->name('job.response.statuslist');
-    Route::get('/job/candidate-details/{id}', [JobController::class, 'responsecandidate'])->name('response.candidate.job');
+    Route::get('/job/candidate-details/{id}/{jobid}', [JobController::class, 'responsecandidate'])->name('response.candidate.job');
     Route::get('/job/candidate-chatbox/{id}', [JobController::class, 'candidatechatbox'])->name('response.candidate.chatbox');
     Route::post('/job/candidate-message',[JobController::class, 'sendmessage'])->name('send.message');
     
@@ -118,23 +118,18 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/candidate/show/{id}', [CandidateController::class, 'show'])->name('show.candidate');
     Route::get('/candidate/shortlisted/{id}', [CandidateController::class, 'shortlisted'])->name('shortlisted.candidate');
     Route::get('/candidate/do-shortlisted/{id}/{candidate_id}', [CandidateController::class, 'doshortlisted'])->name('candidate.shortlisted');
-    //Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
-
-    //Route::get('/candidate', [CandidateController::class, 'candidate'])->name('view.candidate');
-    //Route::get('/addcandidate', [CandidateController::class, 'addcandidate'])->name('view.addcandidate');
-   // Route::post('/addcandidate1', [CandidateController::class, 'add'])->name('add.candidate');
     Route::get('/addeducation', [CandidateController::class, 'education'])->name('add.education');
 
-   //notications
-   Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
-   Route::get('/show/{id}', [NotificationController::class, 'show'])->name('show.notification');
-   Route::post('/addnotification', [NotificationController::class, 'add'])->name('add.notification');
+    //notications
+    Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
+    Route::get('/show/{id}', [NotificationController::class, 'show'])->name('show.notification');
+    Route::post('/addnotification', [NotificationController::class, 'add'])->name('add.notification');
  
-   //order
-   Route::get('/order', [OrderController::class, 'index'])->name('view.order');
-   Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('edit.order');
-   Route::post('/order/update/{id}', [OrderController::class, 'update'])->name('update.order');
-   Route::get('/order/show/{id}', [OrderController::class, 'show'])->name('show.order');
+    //order
+    Route::get('/order', [OrderController::class, 'index'])->name('view.order');
+    Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('edit.order');
+    Route::post('/order/update/{id}', [OrderController::class, 'update'])->name('update.order');
+    Route::get('/order/show/{id}', [OrderController::class, 'show'])->name('show.order');
     
 });
 Route::group([  'prefix' => 'jobprovider' ], function ($router) {

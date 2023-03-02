@@ -7,12 +7,15 @@ use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Hash;
+use Illuminate\Support\Str;
+use Session;
 
 class AuthController extends Controller
 {
-    public function __construct() {
+   /* public function __construct() {
         $this->middleware('auth:api', ['except' => ['jobseekerlogin','createNewToken','loginotp']]);
-    }
+    }*/
     public function jobseekerlogin(Request $request){
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,_id',
@@ -24,66 +27,31 @@ class AuthController extends Controller
             $errors=$messages->all();
             return response()->json(['message' => join(',', $errors)], 400);
         }
-        $auth = User::find($request->id);
-        
-        if ($auth->role ="jobseeker"){
-
-            /*if ($auth->otp != $request->otp) {
-                return response()->json(['message' => 'Wrong otp'], 403);
+        try {
+            $user = User::find($request->id);
+            if ($user->role ="jobseeker"){
+                /*if ($auuserth->otp != $request->otp) {
+                    return response()->json(['message' => 'Wrong otp'], 403);
+                }*/
+                $token = Str::random(60);
+                $user->remember_token = hash('sha256', $token);
+                $user->save();
+                            
+                \Session::put('token', $user->remember_token);
+                \Session::save();
+                Auth::guard('jobseeker')->login($user);
+                
+                if (Auth::guard('jobseeker')->login($user)) {
+                    return response()->json(['message' => 'Unauthorized'], 403);
+                }
             }
-            Auth::logout($auth);*/
-            if (! $token = Auth::login($auth)) {
-                //print_r(auth()->user());exit;
-                return response()->json(['message' => 'Unauthorized'], 403);
-            }
-            if(auth()->user()->role != "jobseeker"){
-                return response()->json(['message' => 'You are not authorized'], 403);
-            }
-            $auth->otp = null;
-            $auth->save();
-        }
-        
-
-        return $this->createNewToken($token);
-            
+            return $this->createNewToken($user);
+        } catch (\Throwable $th) {
+            echo $th;
+        } 
     }
-    //jobseeker login
-    /*public function jobseekerlogin(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-             'mobile' => 'required|exists:users,mobile',
-             'otp'    => 'required',
-         ]);
- 
-         if ($validator->fails()) {
-             $messages=$validator->messages();
-             $errors=$messages->all();
-             return response()->json(['message' => join(',', $errors)], 400);
-         }
-         $user = User::where('mobile', $request->mobile)->where('role', 'jobseeker')->first();
-         
-         if($user == null){
-            return response()->json(['message' => 'Unauthorized'], 403);
-         }else {
-            $token = $user->createToken('myapptokens')->plainTextToken;
-         }
-        dd($token);
-         if ($auth->loginotp != $request->otp) {
-           return response()->json(['message' => 'Wrong otp'], 403);
-         }
-         if (! $token = \Auth::login($auth)) {
-             return response()->json(['message' => 'Unauthorized'], 403);
-         }
-         if(auth()->user()->role != "patient"){
-             return response()->json(['message' => 'You are not authorized'], 403);
-         }
-         $auth->loginotp = null;
-         $auth->save();
- 
-         return $this->createToken($token);
-    }*/
-    
-    public function loginotp(Request $request)
+       
+    /*public function loginotp(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'mobile' => 'required|exists:users,mobile',
@@ -109,18 +77,17 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
           echo $th;
         }
-    }
-    protected function createNewToken($token)
+    }*/
+    protected function createNewToken($user)
     {
-         $basepath = env('APP_URL');
-         return response()->json([
-             'access_token' => $token,
+        $basepath = env('APP_URL');
+        return response()->json([
+             'access_token' => $user->remember_token,
              'token_type' => 'bearer',
-             'expires_in' => auth()->factory()->getTTL() * 60,
-             'user' => auth()->user(),
+             'user' => $user,
              'role'=>"jobseeker",
              'basepath' => $basepath
-         ]);
+        ]);
     }
     
 }

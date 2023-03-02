@@ -45,6 +45,14 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'jobseeker' => [
+            'driver' => 'session',
+            'provider' => 'jobseekers',
+        ]
     ],
 
     /*
@@ -66,6 +74,14 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+        'jobseekers' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
