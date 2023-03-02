@@ -74,11 +74,11 @@ class JobProviderController extends Controller
                 $provider->address = $request->address;
                 $provider->subscriptionplan = $request->subscriptionplan;   
                 $provider->duration = $request->duration;  
-                if(str_contains($request->duration, "month")){
-                    $date = str_replace("month","",$request->duration); 
+                if(str_contains($request->duration, "Month")){
+                    $date = str_replace("Month","",$request->duration); 
                     $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
                 }else{
-                    $date = str_replace("year","",$request->duration);
+                    $date = str_replace("Year","",$request->duration);
                     $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
                 }
                 $provider->planexpiry_date = $newDateTime;
@@ -150,11 +150,11 @@ class JobProviderController extends Controller
         
             $provider->subscriptionplan = $request->subscriptionplan;
             $provider->duration = $request->duration;
-            if(str_contains($request->duration, "month")){
-                $date = str_replace("month","",$request->duration); 
+            if(str_contains($request->duration, "Month")){
+                $date = str_replace("Month","",$request->duration); 
                 $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
             }else{
-                $date = str_replace("year","",$request->duration);
+                $date = str_replace("Year","",$request->duration);
                 $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
             }
             $provider->planexpiry_date      = $newDateTime;

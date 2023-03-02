@@ -106,7 +106,7 @@
                         <tbody>
                         @foreach ($result as $noti)
                             <tr>
-                                <td>{{ $noti->created_at}}</td>
+                                <td>{{ $noti->created_at->format('d/m/Y')}} {{ $noti->created_at->format('h:i a')}}</td>
                                 <td>{{Auth::user()->name}}</td>
                                 <td>{{ $noti->usertype}}</td>
                                 <td>{{ $noti->heading}}</td>

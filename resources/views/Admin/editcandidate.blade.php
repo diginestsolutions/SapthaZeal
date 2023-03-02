@@ -42,7 +42,14 @@
 
 
     }
-
+    th {
+        font-size: 14px;
+        font-family: 'Quicksand';
+    }
+    td{
+        font-size: 14px;
+        font-family: 'Quicksand';
+    }
 
     /* When the radio button is checked, add a blue background */
     .con1 input:checked~.checkmark {
@@ -55,6 +62,10 @@
         font-size: 14px;
         font-family: 'Quicksand';
     }
+    td{
+        font-size: 14px;
+        font-family: 'Quicksand';
+    }
 
     .select-sup::after {
         font-family: "Font Awesome 5 Free";
@@ -64,6 +75,19 @@
         position: absolute;
         right: -9px;
         bottom: 18px;
+
+        padding: 4px 1em;
+        color: #7ECD7C;
+        pointer-events: none
+    }
+    .select-sup1::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 28px;
+        content: "\f13a";
+        position: absolute;
+        right: -9px;
+        bottom: -9px;
 
         padding: 4px 1em;
         color: #7ECD7C;
@@ -351,14 +375,14 @@
         font-size: 15px;
         font-family: 'Quicksand';
     }
-
     .form-control {
         border-radius: 16px !important;
         opacity: 1 !important;
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
-        font-size: 13px;
+        font-size: 16px !important;
+        font-family:'Quicksand'!important;
     }
 
     .form-control1 {
@@ -367,8 +391,11 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         width: 450px;
+        font-size: 16px !important;
+        font-family:'Quicksand'!important;
 
     }
+
 
     input[type="date"] {
         cursor: pointer;
@@ -1091,7 +1118,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group select-date">
                                         <label class="title-label"> Joining Date</label>
-                                        <input type="text" class="form-control form-control-lg" name="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
+                                        <input type="date" class="form-control form-control-lg" name="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
                                     </div>
                                 </div>
 
@@ -1287,9 +1314,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             </div>
             <div class="modal-body">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class=" form-group select-sup">
+                        <div class=" form-group select-sup1">
                             <label class="title-label">Education<span style="color: red;">*</span></label>
-                            <select class="form-control select form-control-lg" name="education"
+                            <select class="form-control  form-control-lg" name="education"
                              id="educationselect" required>
                                 <option>Select Option</option>
                                 <option value="1">10th</option>

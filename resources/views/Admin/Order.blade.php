@@ -37,6 +37,23 @@
 <nav class="navbar navbar-light ">
 </nav>
 <!--Table-->
+{{-- Message --}}
+    @if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Success !</strong> {{ session('success') }}
+    </div>
+    @endif
+    @if (Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>Error !</strong> {{ session('error') }}
+    </div>
+    @endif
 <div class=" col-md-12 ">
                 <div class="card  col-lg-12 col-md-12" style="border-radius:15px;">
                     <div class="card-body">
@@ -59,7 +76,7 @@
                                     @foreach ($order as $order)
                                     <tr>
                                         <td>#{{ $order->order_id}}</td>
-                                        <td>{{ $order->created_at->format('d/m/Y')}} {{ $order->created_at->format('H:i a')}}</td>
+                                        <td>{{ $order->created_at->format('d/m/Y')}} {{ $order->created_at->format('h:i a')}}</td>
                                         <td>#{{ $order->jobprovider->jobprovider_id}}</td>
                                         <td>{{ $order->jobprovider->mobile}}</td>
                                         <td>{{ $order->subscription->name}}</td>

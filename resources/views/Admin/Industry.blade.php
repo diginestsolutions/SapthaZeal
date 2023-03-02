@@ -1,5 +1,6 @@
 @extends('layouts.Dashboard')
 @section('content')
+
 <div class="col-lg-10 col-md-12" id="main">
 
     <nav class="navbar navbar-light col-md-12 ">
@@ -284,15 +285,13 @@ width: 100px;
         }
     }
 </script>
-@endsection
-
-
 <script>
     function reset() {
         $("#form").trigger('reset');
     }
 
 </script>
+@endsection
 
 
 
@@ -301,21 +300,6 @@ width: 100px;
 
 
 
-<!-- <script src="https://code.jquery.com/jquery-1.9.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
 
 
-$('.navbar-toggler').click(function () {
-    if ($(window).width() < 960) {
-        $("#sidenav1").toggle("slide");
-}
-else {
-    $("#sidenav1").toggle();
-}
-  
-    
-});
 
-});
-    </script> -->

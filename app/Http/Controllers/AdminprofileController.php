@@ -113,10 +113,7 @@ class AdminprofileController extends Controller
     {
         $id=Auth::id();
         $user = User::find($id);
-     
-      
-  
-        return view ('Admin/editprofile',compact('user'));
+     return view ('Admin/editprofile',compact('user'));
        
         
     }

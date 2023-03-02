@@ -55,11 +55,15 @@
         font-size: 14px;
         font-family: 'Quicksand';
     }
+    td{
+        font-size: 14px;
+        font-family: 'Quicksand';
+    }
 
     .select-sup::after {
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
-        font-size: 28px;
+        font-size: 25px;
         content: "\f13a";
         position: absolute;
         right: -9px;
@@ -69,7 +73,19 @@
         color: #7ECD7C;
         pointer-events: none
     }
+    .select-sup1::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 25px;
+        content: "\f13a";
+        position: absolute;
+        right: -9px;
+        bottom: -9px;
 
+        padding: 4px 1em;
+        color: #7ECD7C;
+        pointer-events: none
+    }
     .select-date::after {
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
@@ -82,6 +98,13 @@
         color: #7ECD7C;
         pointer-events: none;
     }
+    input::-webkit-datetime-edit{ color: transparent; }
+input:focus::-webkit-datetime-edit{ color: #000; }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  filter: invert(1) sepia(100%) saturate(100000%) hue-rotate(170deg);
+}
     .sidebar {
 
 
@@ -256,7 +279,7 @@
     }
 
     .container-fluid {
-        background-image: url('../../assets/1.png');
+        background-image: url('../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -358,7 +381,8 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
-        font-size: 13px;
+        font-size: 16px !important;
+        font-family:'Quicksand'!important;
     }
 
     .form-control1 {
@@ -367,6 +391,8 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         width: 450px;
+        font-size: 16px !important;
+        font-family:'Quicksand'!important;
 
     }
 
@@ -675,7 +701,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
             <div class=" col-lg-10">
-                <img src="../../assets/logo.png" class="img-fluid " alt="Sample image">
+                <img src="../../Assets/logo.png" class="img-fluid " alt="Sample image">
             </div>
             <div class="justify-content-center">
                 <ul>
@@ -710,7 +736,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
                 <div class=" col-md-3 ">
-                    <img src="../assets/logo.png" class="img-fluid" alt="Sample image">
+                    <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="justify-content-center">
                     <ul>
@@ -804,8 +830,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <button class="btn fileicon " type="button">
                                         <div class="dropzone1">
                                         <img id="preview" style="height: 78px;width: 98px;">
-                                            <img src="../../assets/cloud-computing.png" class="upload-icon" />
-                                            <input type="file" name="image" class="upload-input image"  id="bimage" required/>
+                                            <img src="../../Assets/cloud-computing.png" class="upload-icon" />
+                                            <input type="file" name="image" class="upload-input image" id="bimage"  required/>
                                         </div>
                                     </button>
 
@@ -887,8 +913,22 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                    <!-- <a class="btn " href="{{ route('add.education') }}" style="float:left;"> <span class="icons"> <i
                                 class="fa fa-plus " aria-hidden="true"></i></span></a>-->
 
-                    <a class="btn " href="" data-toggle="modal" data-target="#educationModal"> <span class="icons"> <i
+                    <a  href="" data-toggle="modal" data-target="#educationModal" id="remove"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
+                    
+                    <button type="button" class=" next1 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Next<i class="icon-database-insert ml-1"></i>
+                    </button>
                     <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
@@ -903,24 +943,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         Previous<i class="icon-database-insert ml-1"></i>
 
                     </button>
-                    <button type="button" class=" next1 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-                          letter-spacing: 0.25px;
-    border: none;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    opacity: 1;
-    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
-    width: 90px;
-    float:right;
-    font-size: 14px;
-    font-family: 'Quicksand';">
-                        Next<i class="icon-database-insert ml-1"></i>
-                    </button>
 
                     <div class=" col-md-12 ">
                         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 43px;">
                             <div class="card-body">
-                                <div class="table-responsive">
+                                <div class=" table table-responsive">
                                     <table class="table ">
                                         <thead>
                                             <tr>
@@ -968,7 +995,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 </fieldset>
                 <fieldset>
                     <div class=" col-md-12 ">
-                        <div class=" widget-content ">
+                        <div class="widget-content">
                             <form method="POST" enctype="multipart/form-data" id="experience-form" action="javascript:void(0)" >
                             {{csrf_field()}}
                             <div class="row col-lg-12">
@@ -1022,7 +1049,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group select-date">
                                         <label class="title-label"> Joining Date</label>
-                                        <input type="text" class="form-control form-control-lg" name="Joining_date">
+                                        <input type="date" class="form-control form-control-lg" name="Joining_date">
                                     </div>
                                 </div>
 
@@ -1218,9 +1245,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             </div>
             <div class="modal-body">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class=" form-group ">
+                        <div class=" form-group select-sup1">
                             <label class="title-label">Education<span style="color: red;">*</span></label>
-                            <select class="form-control select select-sup form-control-lg" name="education"
+                            <select class="form-control  form-control-lg" name="education"
                              id="educationselect" required>
                                 <option>Select Option</option>
                                 <option value="1">10th</option>
@@ -1238,9 +1265,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         @csrf
                         <div class="row col-lg-12">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group ">
+                                <div class=" form-group  select-sup ">
                                     <label class="title-label">Board<span style="color: red;">*</span></label>
-                                    <select class="form-control select select-sup  form-control-lg" name="board" id="mydivboard" required>
+                                    <select class="form-control   form-control-lg" name="board" id="mydivboard" required>
                                         <option value="">Choose Board</option>
                                         <option value="CBSE" class="text-capitalize">CBSE</option>
                                         <option value="ICSE" class="text-capitalize">ICSE</option>
@@ -1254,7 +1281,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group">
+                                <div class=" form-group  ">
                                     <label class="title-label">School Medium<span style="color: red;">*</span></label>
                                     <input type="text" class="form-control form-control-lg" name="schoolmedium" id="mydivschoolmedium" required>
                                 </div>
@@ -1435,7 +1462,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             current_fs = $(this).parent();
             pre_fs = $(this).parent().prev();
             $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+            $("#image-upload").trigger('reset');
             pre_fs.show();
+
             current_fs.animate({
                 opacity: 0
             }, {
@@ -1508,6 +1537,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         $(".myDiv1").hide();
         $('#educationselect').on('change', function () {
             var demovalue = $(this).val();
+           
+
             if ($(this).val() == 1  || $(this).val() == 2) {
                 $(".myDiv").show();
                 $(".myDiv1").hide();
@@ -1527,6 +1558,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         var candidate_id = $(`#candidate_id`).val();
 
         var form = $("#education-form1")[0];
+      
         var formData = new FormData(form);
         formData.append("education", education);
         formData.append("candidate_id", candidate_id);
@@ -1537,7 +1569,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
         var url = '{{ route("add.addeducation", ":id") }}';
         url = url.replace(':id', candidate_id);
-
+    
         $.ajax({
             type:'POST',
             url:url,
@@ -1560,7 +1592,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 '<td>'+value.school_medium+'</td>'+
                                 '<td>'+value.mark_obtained+'</td>'+
                                 '<td>'+
-                                '<div class="action-btns d-flex justify-content-end">'+
+                                '<div class="action-btns d-flex ">'+
                                 '<a href="javascript:void(0)" onclick="return edititem('+value.candidate_education_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>'+
                                 '<input type="hidden" id="candidate_education_id_'+value.candidate_education_id+'" value="'+value._id+'"/>'+
                                 '<a href="javascript:void(0)" onclick="return deleteitem('+value.candidate_education_id+');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>'+
@@ -1912,7 +1944,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         duration: 500
                     });
                     setProgressBar(++current);*/
-                    window.location = window.location.origin+'/admin/candidate';
+                    window.location = window.location.origin+'/public/admin/candidate';
                 },error:function(data) {
                     errorsHtml = '<div class="alert alert-danger"><ul>';
 
@@ -1989,7 +2021,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 processData: false,
                 data: form_data,
                 success:function(data) {
-                    window.location = window.location.origin+'/admin/candidate';                   
+                    window.location = window.location.origin+'/public/admin/candidate';                   
                 },error:function(data) {
                     errorsHtml = '<div class="alert alert-danger"><ul>';
 
@@ -2023,5 +2055,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         });
 
     });
+
+</script>
+<script>
+  $(document).ready(function(){
+  $('#remove').click(function(){
+    $("#education-form1").trigger('reset');
+    $("#education-form2").trigger('reset');
+  });
+});
 
 </script>

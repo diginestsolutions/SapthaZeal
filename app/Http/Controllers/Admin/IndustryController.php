@@ -109,16 +109,7 @@ class IndustryController extends Controller
      */
     public function update(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-          
-            'name'      => 'required|string|max:100|exists:industries',
-           
-           
-        ]);
-        if($validator->fails()) {
-            return redirect('admin/industry')->withErrors($validator);
-        }
-        else{
+       
         try {            
             $industry = Industry::find($request->id);
             if($industry){
@@ -131,7 +122,7 @@ class IndustryController extends Controller
                 'message' => 'Error'
             ],400);
         }
-    }
+    
     }
 
     /**

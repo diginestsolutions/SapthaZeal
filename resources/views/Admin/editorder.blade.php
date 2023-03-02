@@ -471,30 +471,24 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                 <div class=" mt-12 pull-right">
-                    <form class="form-inline my-2 my-lg-0 justify-content-center" method="GET">
-                        <div class="w-100">
+
+                    <div class="w-100">
                         <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:21px;  ;padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:26px;    border-radius: 28%;"
-                        src="{{Auth::user()->image}} ">
-                    <h6 class="profile">{{Auth::user()->name}}</h6><span
-                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-                </button>
+                            style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                                class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
+                                src="{{Auth::user()->image}} ">
+                            <h6 class="profile">{{Auth::user()->name}}</h6><span
+                                style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+                        </button>
 
-                            <button class="btn noti " type="button"> <span class="icons1"><i
-                                        class="fa fa-bell"></i><span></button>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </div>
-
-
-                    </form>
-
+                        <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
                 </div>
-
 
             </nav>
 
@@ -514,19 +508,19 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group">
                                     <label class="title-label">Order ID</label>
-                                    <input type="text" class="form-control form-control-lg" value="{{ $order->created_at->format('d/m/Y')}} {{ $order->created_at->format('H:i a')}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" value="{{$order->order_id}}"readonly >
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group">
                                     <label class="title-label">Ordered Date</label>
-                                    <input type="text" class="form-control form-control-lg"  value="{{$order->created_at}}" readonly>
+                                    <input type="text" class="form-control form-control-lg"  value="{{ $order->created_at->format('d/m/Y')}} {{ $order->created_at->format('H:i a')}}"readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group">
                                     <label class="title-label">Job Provider ID</label>
-                                    <input type="text" class="form-control form-control-lg" value="{{$order->jobprovider->jobprovider_id}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" value="{{$order->jobprovider->jobprovider_id}}" readonly >
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -538,13 +532,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group select-date">
                                     <label class="title-label">Expiry Date</label>
-                                    <input type="text" class="form-control form-control-lg" name="expiry_date" value="{{$order->planexpiry_date}}">
+                                    <input type="text" class="form-control form-control-lg" name="expiry_date" value="{{$order->planexpiry_date}}"readonly>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                 <div class=" form-group">
                                     <label class="title-label">Transaction ID</label>
-                                    <input type="text" class="form-control form-control-lg" value="{{$order->transaction_id}}" readonly>
+                                    <input type="text" class="form-control form-control-lg" value="{{$order->transaction_id}}" >
                                 </div>
                             </div>
                             <hr>
