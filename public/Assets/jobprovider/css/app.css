@@ -1,0 +1,50 @@
+.btn-color {
+    background: transparent linear-gradient(180deg, #0070BA 0%, #0D0D80 100%) 0% 0% no-repeat padding-box !important;
+    border-radius: 5px !important;
+    opacity: 1 !important;
+    color: #fff !important;
+
+}
+
+.group {
+    background-image: url('../Assets/jobprovider/card.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 25px !important;
+
+}
+
+.img-fluid {
+    margin-top: 85px;
+    height: 400px !important;
+    width: 504px;
+}
+.heading {
+
+    font-family: 'Poppins' !important;
+    font-size: 20px !important;
+    font-weight: 900 !important;
+    color: #0072BB;
+}
+
+.form-control1 {
+    width: 125% !important;
+    height: 46px !important;
+}
+
+.inputs input {
+    width: 40px;
+    height: 40px
+}
+
+.content {
+    font-size: 13px !important;
+    margin-top: -25px;
+}
+
+::placeholder {
+    opacity: 0.5;
+}
+.iti__country-list {
+    width: 366px !important;
+}

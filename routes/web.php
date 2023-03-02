@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\ResponseController;
 //jobprovider
-use App\Http\Controllers\Jobprovider\JobproviderloginController;
+use App\Http\Controllers\Jobprovider\JobproviderLoginController;
 /*
 
 |--------------------------------------------------------------------------
@@ -140,6 +140,7 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
 Route::group([  'prefix' => 'jobprovider' ], function ($router) {
 
  // Login
- Route::get('/login', [JobproviderloginController::class, 'index'])->name('login');
-
+ Route::get('/login', [JobproviderLoginController::class, 'index'])->name('login');
+ Route::get('/otp',   [JobproviderLoginController::class, 'otp'])  ->name('otp');
+ Route::get('/register',   [JobproviderLoginController::class, 'register'])  ->name('register');
 });

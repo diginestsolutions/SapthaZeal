@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Jobprovider;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class JobproviderloginController extends Controller
+class JobproviderLoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +14,14 @@ class JobproviderloginController extends Controller
     public function index()
     {
         return view('jobprovider/login');
+    }
+    public function otp()
+    {
+        return view('jobprovider/otp');
+    }
+    public function register()
+    {
+        return view('jobprovider/registration');
     }
 
     /**
