@@ -138,6 +138,7 @@ class AuthController extends Controller
     protected function createNewToken($user)
     {
         $basepath = env('APP_URL');
+        $candidate = Candidate::where('user_id',$user->_id)->first();
         return response()->json([
              'access_token' => $user->remember_token,
              'token_type' => 'bearer',
