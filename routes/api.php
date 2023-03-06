@@ -5,13 +5,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\JobController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\SubscriptionController;
 /**Job Seeker */
 use App\Http\Controllers\Api\Jobseeker\ProfileController;
 use App\Http\Controllers\Api\Jobseeker\HomeController;
+use App\Http\Controllers\Api\Jobseeker\JobController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -59,5 +59,7 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'jobseeker' ], function ($rout
     Route::get('/hot-jobs', [HomeController::class, 'hotjobs']);
     Route::get('/recommended-jobs/{id}', [HomeController::class, 'recommendedjobs']);
     Route::get('/other-jobs/{id}', [HomeController::class, 'otherjobs']);
-    Route::get('/job', [JobController::class, 'job']);
+   
+    Route::get('/job-details/{jobid}', [JobController::class, 'jobdetails']);
+   
 });
