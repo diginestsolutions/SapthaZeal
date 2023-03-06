@@ -56,5 +56,8 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'jobseeker' ], function ($rout
     Route::post('/add-skill-details',[ProfileController::class,'skilldetails']);
 
     Route::get('/home/{id}', [HomeController::class, 'home']);
+    Route::get('/hot-jobs', [HomeController::class, 'hotjobs']);
+    Route::get('/recommended-jobs/{id}', [HomeController::class, 'recommendedjobs']);
+    Route::get('/other-jobs/{id}', [HomeController::class, 'otherjobs']);
     Route::get('/job', [JobController::class, 'job']);
 });
