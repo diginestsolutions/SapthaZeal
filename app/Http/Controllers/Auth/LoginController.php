@@ -90,7 +90,7 @@ class LoginController extends Controller
         }          
     }
     public function logout(Request $request) {
-        Auth::logout();
+        Auth::guard('admin')->logout();//Auth::logout();
         return redirect()->route('get.login');
       }
 }
