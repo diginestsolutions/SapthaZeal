@@ -69,6 +69,8 @@ class CandidateController extends Controller
             $user->otp = 1234;
            
             $user->save();
+           //
+            
 
             $candidate = new Candidate;
             $candidate->nextid();
@@ -87,6 +89,7 @@ class CandidateController extends Controller
             $candidate->address = $request->address;
             $candidate->status = "Active";
             $candidate->save();
+
             $response['success']=1;
             $response['message'] ='Candidate inserted successfully';
             $response['candidate_id']=$candidate->id;

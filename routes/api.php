@@ -9,7 +9,9 @@ use App\Http\Controllers\Api\JobController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\SubscriptionController;
-
+/**Job Seeker */
+use App\Http\Controllers\Api\Jobseeker\ProfileController;
+use App\Http\Controllers\Api\Jobseeker\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,5 +48,13 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'jobseeker' ], function ($rout
     Route::post('/loginotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'loginotp']); 
     Route::post('/login',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'jobseekerlogin']);
     Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);   
+
+    Route::get('/profile/{id}', [ProfileController::class, 'profile']);
+    Route::post('/add-basic-details',[ProfileController::class,'basicdetails']);
+    Route::post('/add-educational-details',[ProfileController::class,'educationaldetails']);
+    Route::post('/add-experience-details',[ProfileController::class,'experiencedetails']);
+    Route::post('/add-skill-details',[ProfileController::class,'skilldetails']);
+
+    Route::get('/home/{id}', [HomeController::class, 'home']);
     Route::get('/job', [JobController::class, 'job']);
 });
