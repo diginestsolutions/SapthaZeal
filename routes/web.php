@@ -119,7 +119,10 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     Route::get('/candidate/shortlisted/{id}', [CandidateController::class, 'shortlisted'])->name('shortlisted.candidate');
     Route::get('/candidate/do-shortlisted/{id}/{candidate_id}', [CandidateController::class, 'doshortlisted'])->name('candidate.shortlisted');
     Route::get('/addeducation', [CandidateController::class, 'education'])->name('add.education');
-
+    Route::post('/candidate/store-company/{candidate_id}', [CandidateController::class, 'addcompany'])->name('add.addcompany');
+    Route::get('/candidate/edit-company/{id}', [CandidateController::class, 'editcompany'])->name('candidate.company.edit');
+    Route::post('/candidate/{id}/company-destroy', [CandidateController::class, 'companydestroy'])->name('company.destroy');
+    
     //notications
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('view.notification');
     Route::get('/show/{id}', [NotificationController::class, 'show'])->name('show.notification');

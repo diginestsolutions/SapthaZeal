@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Models\JobAppliedDetails;
+use App\Models\CandidateCompanyDetails;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,10 @@ class Candidate extends Model
     public function candidate_experience()
     {
         return $this->hasOne(CandidateExperience::class,'candidate_id');
+    }
+    public function candidate_company_details()
+    {
+        return $this->hasMany(CandidateCompanyDetails::class,'candidate_id');
     }
     public function candidate_job_applied_details()
     {
