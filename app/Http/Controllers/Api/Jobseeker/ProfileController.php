@@ -7,6 +7,7 @@ use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProfileController extends Controller
 {

@@ -61,5 +61,6 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'jobseeker' ], function ($rout
     Route::get('/other-jobs/{id}', [HomeController::class, 'otherjobs']);
    
     Route::get('/job-details/{jobid}', [JobController::class, 'jobdetails']);
-   
+    Route::post('/save-jobs',[JobController::class,'savejobs']);
+    Route::get('/saved-jobs-list/{candidateid}',[JobController::class,'savedjobslist']);
 });
