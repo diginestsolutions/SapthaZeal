@@ -313,7 +313,6 @@ class CandidateController extends Controller
             if($candidate)
             {
                 $candidate->cover_letter = $request->cover_letter;
-                $candidate->save();
                 if ($request->hasFile('file')) {
                     $filename = time().'.'.$request->resume->getClientOriginalExtension();
                     $filePath = storage_path('app/public/uploads/resumes/'); 
@@ -322,11 +321,10 @@ class CandidateController extends Controller
                     $basePath = env('APP_URL');
                     $candidate->resume = $basePath . '/storage/uploads/resumes/' . $filename;
                 }
+                $candidate->save();
                 
                 $job_applied_details = JobAppliedDetails::where('candidate_id',$candidate->_id)
                                        ->where('job_id',$request->jobid)->first();
-                $job_applied_details->applied_status = 'scheduled_resumes';
-                $job_applied_details->save();
                 if($request->provider_status == 1) {
                     $job_applied_details->applied_status = 'interested';
                 }
