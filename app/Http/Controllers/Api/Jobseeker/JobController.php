@@ -12,7 +12,7 @@ use Validator;
 
 class JobController extends Controller
 {
-    public function jobdetails($jobid)
+    public function jobdetails($jobid,$id)
     {
         $job_details = Job::find($jobid);
         if($job_details != null){
@@ -31,11 +31,11 @@ class JobController extends Controller
     {
         $rules = array(
             'job_id'     => 'required',
-            'candidate_id'    => 'required'
+            'id'    => 'required'
         );
         $messages=array(
-            'job_id.required'  => 'Email is required',
-            'candidate_id.required' => 'mobile is required'
+            'job_id.required'  => 'Job id is required',
+            'id.required' => 'User id is required'
         );
         $validator=Validator::make($request->all(),$rules,$messages);
         if($validator->fails())
@@ -45,12 +45,13 @@ class JobController extends Controller
             return response()->json(['message' => join(',', $errors)], 400);
         }
         try {
-            $saved_jobs = JobSavedDetails::where('job_id',$request->job_id)->where('candidate_id',$request->candidateid)->first();
+            $candidate = Candidate::where('user_id',$request->id)->first();
+            $saved_jobs = JobSavedDetails::where('job_id',$request->job_id)->where('candidate_id',$candidate->id)->first();
             if($saved_jobs != null){
                 $job_saved_details = new JobSavedDetails();
                 $job_saved_details->nextid();
                 $job_saved_details->job_id = $request->job_id;
-                $job_saved_details->candidate_id = $request->candidate_id;
+                $job_saved_details->candidate_id = $candidate->id;
                 $job_saved_details->status = 'Active';
                 $job_saved_details->save();
                 return response()->json([
@@ -69,9 +70,10 @@ class JobController extends Controller
             ], 409);
         }
     }
-    public function savedjobslist($candidateid)
+    public function savedjobslist($id)
     {
-        $saved_jobs = JobSavedDetails::with('Job')->where('candidate_id',$candidateid)->get();
+        $candidate = Candidate::where('user_id',$id)->first();
+        $saved_jobs = JobSavedDetails::with('Job')->where('candidate_id',$candidate->id)->get();
         if($saved_jobs != null){
             return response()->json([
                 'message' => 'Success',
@@ -87,12 +89,12 @@ class JobController extends Controller
     public function appliedjobs(Request $request)
     {
         $rules = array(
-            'job_id' => 'required',
-            'candidate_id' => 'required'
+            'job_id'     => 'required',
+            'id'    => 'required'
         );
         $messages=array(
-            'job_id.required'  => 'Email is required',
-            'candidate_id.required' => 'mobile is required'
+            'job_id.required'  => 'Job id is required',
+            'id.required' => 'User id is required'
         );
         $validator=Validator::make($request->all(),$rules,$messages);
         if($validator->fails())
@@ -102,17 +104,18 @@ class JobController extends Controller
             return response()->json(['message' => join(',', $errors)], 400);
         }
         try {
-            $saved_jobs = JobAppliedDetails::where('job_id',$request->job_id)->where('candidate_id',$request->candidateid)->first();
-            if($saved_jobs == null){
+            $candidate = Candidate::where('user_id',$request->id)->first();
+            $applied_jobs = JobAppliedDetails::where('job_id',$request->job_id)->where('candidate_id',$candidate->id)->first();
+            if($applied_jobs == null){
                 $job_applied_details = new JobAppliedDetails();
                 $job_applied_details->nextid();
                 $job_applied_details->job_id = $request->job_id;
-                $job_applied_details->candidate_id = $request->candidate_id;
+                $job_applied_details->candidate_id = $candidate->id;
                 $job_applied_details->applied_status = 'scheduled_resumes';
                 $job_applied_details->candidate_status = 'applied';
                 $job_applied_details->save();
 
-                $candidate = Candidate::find($request->candidate_id);
+                $candidate = Candidate::find($candidate->id);
                 if($candidate)
                 {
                     $candidate->cover_letter = $request->cover_letter;
@@ -143,9 +146,10 @@ class JobController extends Controller
             ], 409);
         }
     }
-    public function appliedjobslist($candidateid)
+    public function appliedjobslist($id)
     {
-        $applied_jobs = JobAppliedDetails::with('Job')->where('candidate_id',$candidateid)->get();
+        $candidate = Candidate::where('user_id',$id)->first();
+        $applied_jobs = JobAppliedDetails::with('Job')->where('candidate_id',$candidate->id)->get();
         if($applied_jobs != null){
             return response()->json([
                 'message' => 'Success',

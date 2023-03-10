@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,11 @@ class ApiAuthentication
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('jobseeker')->check()) {
+        $user = User::find($request->id);
+        if( $user->remember_token == $request->header('token')) {
             return $next($request);
         } else {
             return response('Unauthorized.', 401);
         }
-        //return $next($request);
     }
 }
