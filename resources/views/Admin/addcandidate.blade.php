@@ -1010,7 +1010,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <form method="POST" enctype="multipart/form-data" id="experience-form" action="javascript:void(0)" >
                             {{csrf_field()}}
                             <div class="row col-lg-12">
-                                <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <!--<div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                         <div class=" form-group">
                                             <label class="title-label">Is this your current employment?</label>
@@ -1043,8 +1043,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         </div>
 
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                </div>-->
+                                <!--<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label">Company Name</label>
                                         <input type="text" class="form-control form-control-lg" name="company_name">
@@ -1062,14 +1062,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <label class="title-label"> Joining Date</label>
                                         <input type="date" class="form-control form-control-lg" name="Joining_date">
                                     </div>
-                                </div>
+                                </div>-->
 
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Salary</label>
-                                        <input type="text" class="form-control form-control-lg" name="salary">
-                                    </div>
-                                </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
                                     <div class=" form-group">
@@ -1104,6 +1098,12 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Salary</label>
+                                        <input type="text" class="form-control form-control-lg" name="salary">
+                                    </div>
+                                </div>
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"></i>Job Description</label>
@@ -1116,6 +1116,32 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <input type="text" rows="4" name="skill" id="skill" class="form-control"
                                             style=" height: 100px;" />
 
+                                    </div>
+                                </div>
+                                <a class="btn " href="" data-toggle="modal" data-target="#companyModal"> <span class="icons"> <i
+                                class="fa fa-plus " aria-hidden="true"></i></span></a>
+                                <div class=" col-md-12 ">
+                                    <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 23px;">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>current employment</th>
+                                                            <th>Employement Type</th>
+                                                            <th>Company Name</th>
+                                                            <th>Designation</th>
+                                                            <th>Joining Date</th>
+                                                            <th>Leaving Date</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbodythird">
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1235,8 +1261,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                     </fiedset>-->
-
-
             </div>
         </div>
     </div>
@@ -1401,6 +1425,103 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <br/>
                         </div>
                     </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------add company-------------->
+<div class="modal fade" id="companyModal" tabindex="-1" role="dialog" aria-labelledby="industryModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius:15px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="industryModal">{{ __('Add Company Details') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times-circle " style="    color: #FF0000;"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <input type="hidden" id="company_edit_id"/>
+                    <div id="showten">
+                        <form id="company-form1" action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row col-lg-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group">
+                                <label class="title-label">Is this your current employment?</label>
+                                    <label class="con1"><span>Yes</span>
+                                        <input type="radio" name="current_employee_status" id="current_employee_status" onchange="radioValue('on')" value="on">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                     <label class="con1"><span>No</span>
+                                        <input type="radio" name="current_employee_status" id="current_employee_status1" onchange="radioValue('off')" value="off">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group select-sup">
+                                    <label class="title-label">Employement Type</label>
+                                    <select class="form-control select form-control-lg" name="employement_type" id="employement_type"
+                                                required>
+                                        <option value="" class="text-capitalize">
+                                             Choose employement type
+                                        </option>
+                                        <option value="fulltime" class="text-capitalize" {{@$candidate->candidate_experience->employement_type == "fulltime" ? 'selected' : ''}}>
+                                            Full Time
+                                        </option>
+                                        <option value="parttime" class="text-capitalize" {{@$candidate->candidate_experience->employement_type == "parttime" ? 'selected' : ''}}>
+                                            Part Time
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label">Company Name</label>
+                                    <input type="text" class="form-control form-control-lg" name="company_name" id="company_name" value="{{@$candidate->candidate_experience->company_name}}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label">Designation</label>
+                                    <input type="text" class="form-control form-control-lg" name="designation" id="designation" value="{{@$candidate->candidate_experience->designation}}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label"> Joining Date</label>
+                                    <input type="date" class="form-control form-control-lg" name="Joining_date" id="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" id="leavingDiv">
+                                <div class=" form-group">
+                                    <label class="title-label"> Leaving Date</label>
+                                    <input type="date" class="form-control form-control-lg" name="leaving_date" id="leaving_date" value="{{@$candidate->candidate_experience->leaving_date}}">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                                <div class="text-center">
+                                    <button type="button"
+                                            class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                                            letter-spacing: 1.25px;
+                                            border:none;
+                                            color: #FFFFFF;
+                                            text-transform: uppercase;
+                                            opacity: 1;
+                                            background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
+                                            width: 100px;
+                                            height:43px;
+                                            ;" onclick="company()">
+                                            Add
+                                            <i class="icon-database-insert ml-1"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
                     </div>
             </div>
         </div>
@@ -2076,4 +2197,180 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
   });
 });
 
+</script>
+<script>
+    function company() {
+        var candidate_id = $(`#candidate_id`).val();
+
+        var form = $("#company-form1")[0];
+        var formData = new FormData(form);
+        var edit_id = $(`#company_edit_id`).val();
+        formData.append("company_edit_id", edit_id);
+
+        var url = '{{ route("add.addcompany", ":id") }}';
+        url = url.replace(':id', candidate_id);
+
+        $.ajax({
+            type:'POST',
+            url:url,
+            dataType: 'json',  // what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success:function(data) {
+                if(data.success==1) {
+                    $('#companyModal').modal('hide');  
+                    var res='';
+                    $.each (data.data, function (key, value) {
+                        var current_employee_status = ""
+                        if(value.current_employee_status == 'on')
+                            current_employee_status = "Yes"
+                        else
+                            current_employee_status = "No"
+                        res +=
+                            '<tr id = "row3'+value.candidate_company_details_id+'">'+
+                                '<td>'+current_employee_status+'</td>'+
+                                '<td>'+value.employement_type+'</td>'+
+                                '<td>'+value.company_name+'</td>'+
+                                '<td>'+value.designation+'</td>'+
+                                '<td>'+value.Joining_date+'</td>'+
+                                '<td>'+value.leaving_date+'</td>'+
+                                '<td>'+
+                                '<div class="action-btns d-flex justify-content-end">'+
+                                '<a href="javascript:void(0)" onclick="return editcompany('+value.candidate_company_details_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>'+
+                                '<input type="hidden" id="candidate_company_id_'+value.candidate_company_details_id+'" value="'+value._id+'"/>'+
+                                '<a href="javascript:void(0)" onclick="return deletecompany('+value.candidate_company_details_id+');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>'+
+                                '</div>'+
+                                '</td>'+
+                            '</tr>';
+                    });
+                    $('#tbodythird').html(res);        
+                } else {
+
+                }
+            },error:function(data) {
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
+
+                        $.each( data.responseJSON.errors, function( key, value ) {
+                            console.log(value[0]);
+                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
+
+                        $('#form-errors').html( errorsHtml );
+                }
+        });
+    }
+    function editcompany (id)
+    {
+        var id = $(`#candidate_company_id_${id}`).val();
+        var url = '{{ route("candidate.company.edit", ":id") }}';
+        url = url.replace(':id', id);
+        if(id) {
+            $.ajax({
+                type:'get',
+                url:url,
+                success:function(data){
+                    if(data.success==1)
+                    {
+                        $(`#company_edit_id`).val(data.data._id);
+                        if(data.data.current_employee_status == "on") {
+                            $('#current_employee_status').attr('checked',true);
+                        } else {
+                            $('#current_employee_status1').attr('checked',true);
+                            $("#leavingDiv").show();
+                            $(`#leaving_date`).val(data.data.leaving_date);
+                        }
+                        $(`#employement_type`).val(data.data.employement_type);
+                        $(`#company_name`).val(data.data.company_name);
+                        $(`#designation`).val(data.data.designation);
+                        $(`#Joining_date`).val(data.data.Joining_date);
+
+                        $('#companyModal').modal('show');
+                    }
+                },error:function(data) {
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
+
+                        $.each( data.responseJSON.errors, function( key, value ) {
+                            console.log(value[0]);
+                            errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                        });
+                        errorsHtml += '</ul></div>';
+
+                        $('#form-errors').html( errorsHtml );
+                }
+            })
+        }
+    }
+    function deletecompany(id)
+    {
+        var row_id = id;
+        var id = $(`#candidate_company_id_${id}`).val();
+        var url = '{{ route("company.destroy", ":id") }}';
+        url = url.replace(':id', id);
+        swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel pls!",
+                closeOnConfirm: true,
+                closeOnCancel: true
+              },
+              function(isConfirm) {
+                if (isConfirm) {
+                   $.ajax({
+                            type:'POST',
+                            url:url,
+                            data:'_token={{ csrf_token() }}',
+                            success:function(data){
+                              if(data.success==1)
+                              {
+                                   swal(
+                                        'Deleted!',
+                                        'Company has been deleted.',
+                                        'success'
+                                      );
+                                      console.log('#row3'+id);
+                                      $('#row3'+row_id).remove();
+                              }
+                              else
+                              {
+                                  swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                              }
+                            },
+                            error:function(data)
+                            {
+                                console.log(data);
+                                swal(
+                                        'Failed!',
+                                        data.message,
+                                        'error'
+                                      );
+                            }
+                            
+                         });
+                } else {
+                  swal("Cancelled", "Company is safe :)", "error");
+                }
+            });
+    }
+    $(document).ready(function () {
+     $("#leavingDiv").hide();
+    });
+    function radioValue(value)
+    {
+        if(value == 'on') {
+            $("#leavingDiv").hide();
+        } else {
+            $("#leavingDiv").show();
+        }
+    }
 </script>

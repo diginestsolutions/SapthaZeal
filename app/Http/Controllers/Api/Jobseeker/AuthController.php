@@ -140,7 +140,6 @@ class AuthController extends Controller
         $basepath = env('APP_URL');
         return response()->json([
              'access_token' => $user->remember_token,
-             'token_type' => 'bearer',
              'user' => $user,
              'role'=>"jobseeker",
              'basepath' => $basepath
@@ -166,6 +165,28 @@ class AuthController extends Controller
             return response()->json(['message' => 'otp Sent'], 201);
         } catch (\Throwable $th) {
            return response()->json(['message' => 'Error'], 400);
+        }
+    }
+    public function logout(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:users,_id'
+        ]);
+
+        if ($validator->fails()) {
+            $messages=$validator->messages();
+            $errors=$messages->all();
+            return response()->json(['message' => join(',', $errors)], 400);
+        }
+        try {
+            $user = User::find($request->id);
+            if ($user){
+                $user->remember_token = null;
+                $user->save();
+                return response()->json(['message' => 'Logout Successfull'], 201);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Error'], 400);
         }
     }
 }

@@ -527,15 +527,15 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
                                 <div class=" form-group">
-                                    <label class="title-label">Experience</label>
+                                    <label class="title-label">Experience(Min-Max)</label>
                                     <div class="row  ">
                                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                             <input type="number" class="form-control form-control-lg " id="datepicker"
-                                                placeholder="years" name="years" style="text-align: right;" value="{{$job->experienceyears}}" readonly>
+                                                placeholder="Min" name="years" style="text-align: right;" value="{{$job->experienceyears}}" readonly>
                                         </div>
                                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                                             <input type="number" name="months" class="form-control form-control-lg "
-                                                placeholder="months" required style="text-align: right;" value="{{$job->experiencemonths}}" readonly>
+                                                placeholder="Max" required style="text-align: right;" value="{{$job->experiencemonths}}" readonly>
                                         </div>
                                     </div>
                                 </div>

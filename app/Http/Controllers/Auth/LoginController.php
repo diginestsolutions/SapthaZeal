@@ -82,7 +82,7 @@ class LoginController extends Controller
 
         if($user != null){
             if($user->status=="Active"){
-                Auth::login($user);
+                Auth::guard('admin')->login($user);
                 $job = Job::orderBy('_id', 'ASC')->get();
                 return view('Admin/job')->with(['name'=>$user->name,'job'=>$job]);
             }
@@ -96,7 +96,7 @@ class LoginController extends Controller
         }          
     }
     public function logout(Request $request) {
-        Auth::logout();
+        Auth::guard('admin')->logout();//Auth::logout();
         return redirect()->route('get.login');
       }
 }
