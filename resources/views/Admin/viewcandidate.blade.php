@@ -1005,7 +1005,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             @if($candidate->candidate_experience)
                             <div class="row col-lg-12">
                                 <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                    <!--<div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                         <div class=" form-group">
                                             <label class="title-label">Is this your current employment?</label>
                                             @if($candidate->candidate_experience->current_employee_status == 'on')
@@ -1070,14 +1070,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <label class="title-label"> Joining Date</label>
                                         <input type="text" class="form-control form-control-lg" name="Joining_date" value="{{$candidate->candidate_experience->Joining_date}}" readonly>
                                     </div>
-                                </div>
+                                </div>-->
 
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Salary</label>
-                                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$candidate->candidate_experience->salary}}" readonly>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
                                     <div class=" form-group">
@@ -1097,19 +1092,20 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group select-sup">
+                                    <div class=" form-group ">
                                         <label class="title-label">Notice Period</label>
-                                        <select class="form-control select form-control-lg" name="notice_period"
-                                            required>
-                                            <option value="0" class="text-capitalize">
-                                            </option>
-                                            <option value="1month" class="text-capitalize" {{$candidate->candidate_experience->notice_period == "1month" ? 'selected' : ''}}>
-                                                1 Month
-                                            </option>
-                                            <option value="3month" class="text-capitalize" {{$candidate->candidate_experience->notice_period == "3month" ? 'selected' : ''}}>
-                                                3 Month
-                                            </option>
-                                        </select>
+                                        @if($candidate->candidate_experience->notice_period == "1month")
+                                        <input type="text" class="form-control form-control-lg" name="current_employee_status" value="1 Month" readonly>
+                                        @endif
+                                        @if($candidate->candidate_experience->notice_period == "3month")
+                                        <input type="text" class="form-control form-control-lg" name="current_employee_status" value="3 Month" readonly>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Salary</label>
+                                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$candidate->candidate_experience->salary}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
@@ -1124,6 +1120,46 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <input type="text" rows="4" name="skill" id="skill" class="form-control"
                                             style=" height: 100px;" value="{{$candidate->candidate_experience->skill}}" readonly/>
 
+                                    </div>
+                                </div>
+                                <a class="btn " href="" data-toggle="modal" data-target="#companyModal"> <span class="icons"> <i
+                                class="fa fa-plus " aria-hidden="true"></i></span></a>
+                                <div class=" col-md-12 ">
+                                    <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 23px;">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>current employment</th>
+                                                            <th>Employement Type</th>
+                                                            <th>Company Name</th>
+                                                            <th>Designation</th>
+                                                            <th>Joining Date</th>
+                                                            <th>leaving Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbodythird">
+                                                        @if($candidate->candidate_company_details)
+                                                            @foreach($candidate->candidate_company_details as $company)
+                                                            <tr>
+                                                                @if($company->current_employee_status == "on")
+                                                                <td>Yes</td>
+                                                                @else
+                                                                <td>No</td>
+                                                                @endif
+                                                                <td>{{$company->employement_type}}</td>
+                                                                <td>{{$company->company_name}}</td>
+                                                                <td>{{$company->designation}}</td>
+                                                                <td>{{$company->Joining_date}}</td>
+                                                                <td>{{$company->leaving_date}}</td>
+                                                            </tr>
+                                                            @endforeach
+                                                        @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

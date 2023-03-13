@@ -7,6 +7,7 @@ use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -28,14 +29,12 @@ class ProfileController extends Controller
     public function basicdetails(Request $request) 
     {
         $rules = array(
-            'email'     => 'required|string|email|max:100|unique:users,email',
-            'mobile'    => 'required|integer|min:10|unique:users,mobile'
+            'email'     => 'required|string|email|max:100',
+            'mobile'    => 'required|integer|min:10'
         );
         $messages=array(
             'email.required'  => 'Email is required',
-            'email.unique'    => 'The email has already been taken',
-            'mobile.required' => 'mobile is required',
-            'mobile.unique'   => 'The mobile has already been taken'
+            'mobile.required' => 'mobile is required'
         );
         
         $validator=Validator::make($request->all(),$rules,$messages);

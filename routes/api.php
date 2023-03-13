@@ -5,13 +5,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Api\JobController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\SubscriptionController;
 /**Job Seeker */
 use App\Http\Controllers\Api\Jobseeker\ProfileController;
 use App\Http\Controllers\Api\Jobseeker\HomeController;
+use App\Http\Controllers\Api\Jobseeker\JobController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,19 +42,33 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'admin' ], function ($router) 
 /**
  * JOB SEEKER API
  */
-Route::group([ 'middleware' => 'api', 'prefix' => 'jobseeker' ], function ($router) {
+Route::group(['prefix' => 'jobseeker' ], function ($router) {
     /**Auth APIS */
     Route::post('/register',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'register']); 
     Route::post('/loginotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'loginotp']); 
     Route::post('/login',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'jobseekerlogin']);
-    Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);   
+    Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);  
 
-    Route::get('/profile/{id}', [ProfileController::class, 'profile']);
-    Route::post('/add-basic-details',[ProfileController::class,'basicdetails']);
-    Route::post('/add-educational-details',[ProfileController::class,'educationaldetails']);
-    Route::post('/add-experience-details',[ProfileController::class,'experiencedetails']);
-    Route::post('/add-skill-details',[ProfileController::class,'skilldetails']);
+    Route::group([ 'middleware' => 'apiauth' ], function ($router) {
 
-    Route::get('/home/{id}', [HomeController::class, 'home']);
-    Route::get('/job', [JobController::class, 'job']);
+        Route::get('/profile/{id}', [ProfileController::class, 'profile']);
+        Route::post('/add-basic-details',[ProfileController::class,'basicdetails']);
+        Route::post('/add-educational-details',[ProfileController::class,'educationaldetails']);
+        Route::post('/add-experience-details',[ProfileController::class,'experiencedetails']);
+        Route::post('/add-skill-details',[ProfileController::class,'skilldetails']);
+
+        Route::get('/home/{id}', [HomeController::class, 'home']);
+        Route::get('/hot-jobs/{id}', [HomeController::class, 'hotjobs']);
+        Route::get('/recommended-jobs/{id}', [HomeController::class, 'recommendedjobs']);
+        Route::get('/other-jobs/{id}', [HomeController::class, 'otherjobs']);
+    
+        Route::get('/job-details/{jobid}/{id}', [JobController::class, 'jobdetails']);
+        Route::post('/save-jobs',[JobController::class,'savejobs']);
+        Route::get('/saved-jobs-list/{id}',[JobController::class,'savedjobslist']);
+
+        Route::post('/applied-jobs',[JobController::class,'appliedjobs']);
+        Route::get('/applied-jobs-list/{id}',[JobController::class,'appliedjobslist']);
+
+        Route::post('/logout',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'logout']);
+    });    
 });
