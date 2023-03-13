@@ -140,17 +140,20 @@ Route::group([  'prefix' => 'admin' ], function ($router) {
     
 });
 Route::group([  'prefix' => 'jobprovider' ], function ($router) {
+    // Login
+ Route::get('/login', [JobproviderLoginController::class, 'index'])->name('jobprovider.login');
+ Route::post('/generateotp', [JobproviderLoginController::class, 'generateotp'])->name('jobprovider.generateotp');
 
- // Login
- Route::get('/login', [JobproviderLoginController::class, 'index'])->name('login');
- Route::get('/otp',   [JobproviderLoginController::class, 'otp'])  ->name('otp');
+ Route::get('/otp',   [JobproviderLoginController::class, 'otp'])  ->name('jobprovider.otp');
+ Route::post('/otplogin', [JobproviderLoginController::class, 'otplogin'])->name('jobprovider.otplogin');
+
  Route::get('/register',   [JobproviderLoginController::class, 'register'])  ->name('register');
  Route::get('/addregister',   [JobproviderLoginController::class, 'addregister'])  ->name('addregister');
  Route::get('/dashboard',   [JobproviderLoginController::class, 'dashboard'])  ->name('dashboard');
  //subscription plan
  Route::get('/subscription',   [SubscriptionPlanController::class, 'index'])  ->name('subscription');
  //job
- Route::get('/job',   [ProviderJobController::class, 'index'])  ->name('job');
+ Route::get('/job',   [ProviderJobController::class, 'index'])  ->name('jobprovider.job');
  Route::get('/jobadd',   [ProviderJobController::class, 'jobadd'])->name('jobadd');
  //profile
 

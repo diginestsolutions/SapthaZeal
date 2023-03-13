@@ -52,6 +52,10 @@ return [
         'jobseeker' => [
             'driver' => 'session',
             'provider' => 'jobseekers',
+        ],
+        'jobprovider' => [
+            'driver' => 'session',
+            'provider' => 'jobproviders',
         ]
     ],
 
@@ -85,6 +89,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'jobproviders' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ]
     ],
 
     /*

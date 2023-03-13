@@ -35,7 +35,9 @@
                 <img src="../Assets/jobprovider/Group 23.png" class="img-fluid" alt="Sample image">
             </div>
             <div class="card group my-5 col-md-12 col-lg-6 col-xl-4">
-                <form class="card-body ">
+                <form class="card-body" method="POST" action="{{ route('jobprovider.otplogin') }}">
+                    @csrf
+                    <input type="hidden" value="{{request()->get('mobile')}}" name="mobile">
                     <div class="text-center">
                         <img src="../../Assets/jobprovider/logo.png" alt="Sample image"
                             class=" profile-image-pic   my-3" width="200px" alt="profile">
@@ -65,6 +67,23 @@
                     </div>
                     <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 "
                             style="width:250px;"><span class="login">CONFIRM</span></button></div>
+                    {{-- Message --}}
+                    @if (Session::has('success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <strong>Success !</strong> {{ session('success') }}
+                    </div>
+                    @endif
+                    @if (Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <strong>Error !</strong> {{ session('error') }}
+                    </div>
+                    @endif
                 </form>
             </div>
         </div>
