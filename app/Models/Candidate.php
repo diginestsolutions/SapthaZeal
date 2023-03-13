@@ -14,7 +14,7 @@ class Candidate extends Model
     use HasFactory;
     protected $collection = '';
     protected $guarded = [];
-
+    protected $dates = ['Joining_date'];
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment

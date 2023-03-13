@@ -1,693 +1,462 @@
 <style>
-    input:focus,
-button:focus,
-.form-control:focus{
-	outline: none;
-	box-shadow: none;
-}
-.form-control:disabled, .form-control[readonly]{
-	background-color: #fff;
-}
-/*----------step-wizard------------*/
-.d-flex{
-	display: flex;
-}
-.justify-content-center{
-	justify-content: center;
-}
-.align-items-center{
-	align-items: center;
-}
+    .card {
+        padding: 20px;
+        margin: 10px 0 10px;
+    }
 
-/*---------signup-step-------------*/
-.bg-color{
-	background-color: #333;
-}
-.signup-step-container{
-	padding: 150px 0px;
-	padding-bottom: 60px;
-}
+    body {
+        font-family: 'Poppins' !important;
+    }
+
+    .container-fluid {
+        background-image: url('../Assets/1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .select-sub::after {
+        font-family: "Font Awesome 5 Free";
+        content: '\f078';
+        font-weight: 900;
+        font-size: 28px;
+        position: absolute;
+        top: 0px;
+        right: 13px;
+        bottom: 17px;
+        border-radius: 0px 12px 12px 0px;
+        padding: 0 1em;
+        background-color: #0263B3;
+        color: white;
+    }
+
+    .form-control {
+        border-radius: 8px !important;
+        opacity: 1 !important;
+
+        height: 50px !important;
+        font-size: 13px;
+    }
+
+    input[type="date"] {
+        cursor: pointer;
+        border-radius: 4px;
+        margin-right: 2px;
+        color: #7ECD7C;
 
 
+    }
 
+    #msform {
 
-    .wizard .nav-tabs {
         position: relative;
-        margin-bottom: 0;
-        border-bottom-color: transparent;
+        margin-top: 20px
     }
 
-    .wizard > div.wizard-inner {
-            position: relative;
-    margin-bottom: 50px;
-    text-align: center;
+    #msform fieldset {
+        border: 0 none;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 20px;
+        position: relative
     }
 
-.connecting-line {
-    height: 2px;
-    background: #e0e0e0;
-    position: absolute;
-    width: 75%;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    top: 15px;
-    z-index: 1;
-}
-
-.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
-    color: #555555;
-    cursor: default;
-    border: 0;
-    border-bottom-color: transparent;
-}
-
-span.round-tab {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    display: inline-block;
-    border-radius: 50%;
-    background: #fff;
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    text-align: center;
-    font-size: 16px;
-    color: #0e214b;
-    font-weight: 500;
-    border: 1px solid #ddd;
-}
-span.round-tab i{
-    color:#555555;
-}
-.wizard li.active span.round-tab {
-        background: #0db02b;
-    color: #fff;
-    border-color: #0db02b;
-}
-.wizard li.active span.round-tab i{
-    color: #5bc0de;
-}
-.wizard .nav-tabs > li.active > a i{
-	color: #0db02b;
-}
-
-.wizard .nav-tabs > li {
-    width: 25%;
-}
-
-.wizard li:after {
-    content: " ";
-    position: absolute;
-    left: 46%;
-    opacity: 0;
-    margin: 0 auto;
-    bottom: 0px;
-    border: 5px solid transparent;
-    border-bottom-color: red;
-    transition: 0.1s ease-in-out;
-}
-
-
-
-.wizard .nav-tabs > li a {
-    width: 30px;
-    height: 30px;
-    margin: 20px auto;
-    border-radius: 100%;
-    padding: 0;
-    background-color: transparent;
-    position: relative;
-    top: 0;
-}
-.wizard .nav-tabs > li a i{
-	position: absolute;
-    top: -15px;
-    font-style: normal;
-    font-weight: 400;
-    white-space: nowrap;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    font-weight: 700;
-    color: #000;
-}
-
-    .wizard .nav-tabs > li a:hover {
-        background: transparent;
+    #main_form {
+        margin-top: -76px;
     }
 
-.wizard .tab-pane {
-    position: relative;
-    padding-top: 20px;
-}
+    .form-card {
+        text-align: left
+    }
 
+    #msform fieldset:not(:first-of-type) {
+        display: none
+    }
 
-.wizard h3 {
-    margin-top: 0;
-}
-.prev-step,
-.next-step{
-    font-size: 13px;
-    padding: 8px 24px;
-    border: none;
-    border-radius: 4px;
-    margin-top: 30px;
-}
-.next-step{
-	background-color: #0db02b;
-}
-.skip-btn{
-	background-color: #cec12d;
-}
-.step-head{
-    font-size: 20px;
-    text-align: center;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-.term-check{
-	font-size: 14px;
-	font-weight: 400;
-}
-.custom-file {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 40px;
-    margin-bottom: 0;
-}
-.custom-file-input {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 40px;
-    margin: 0;
-    opacity: 0;
-}
-.custom-file-label {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1;
-    height: 40px;
-    padding: .375rem .75rem;
-    font-weight: 400;
-    line-height: 2;
-    color: #495057;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-}
-.custom-file-label::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 3;
-    display: block;
-    height: 38px;
-    padding: .375rem .75rem;
-    line-height: 2;
-    color: #495057;
-    content: "Browse";
-    background-color: #e9ecef;
-    border-left: inherit;
-    border-radius: 0 .25rem .25rem 0;
-}
-.footer-link{
-	margin-top: 30px;
-}
-.all-info-container{
+    #msform input:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid green;
+        outline-width: 0
+    }
 
-}
-.list-content{
-	margin-bottom: 10px;
-}
-.list-content a{
-	padding: 10px 15px;
-    width: 100%;
-    display: inline-block;
-    background-color: #f5f5f5;
-    position: relative;
-    color: #565656;
-    font-weight: 400;
-    border-radius: 4px;
-}
-.list-content a[aria-expanded="true"] i{
-	transform: rotate(180deg);
-}
-.list-content a i{
-	text-align: right;
-    position: absolute;
-    top: 15px;
-    right: 10px;
-    transition: 0.5s;
-}
-.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
-    background-color: #fdfdfd;
-}
-.list-box{
-	padding: 10px;
-}
-.signup-logo-header .logo_area{
-	width: 200px;
-}
-.signup-logo-header .nav > li{
-	padding: 0;
-}
-.signup-logo-header .header-flex{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.list-inline li{
-    display: inline-block;
-}
-.pull-right{
-    float: right;
-}
-/*-----------custom-checkbox-----------*/
-/*----------Custom-Checkbox---------*/
-input[type="checkbox"]{
-    position: relative;
-    display: inline-block;
-    margin-right: 5px;
-}
-input[type="checkbox"]::before,
-input[type="checkbox"]::after {
-    position: absolute;
-    content: "";
-    display: inline-block;   
-}
-input[type="checkbox"]::before{
-    height: 16px;
-    width: 16px;
-    border: 1px solid #999;
-    left: 0px;
-    top: 0px;
-    background-color: #fff;
-    border-radius: 2px;
-}
-input[type="checkbox"]::after{
-    height: 5px;
-    width: 9px;
-    left: 4px;
-    top: 4px;
-}
-input[type="checkbox"]:checked::after{
-    content: "";
-    border-left: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-    transform: rotate(-45deg);
-}
-input[type="checkbox"]:checked::before{
-    background-color: #18ba60;
-    border-color: #18ba60;
-}
+    #msform .action-button {
+        width: 100px;
+        background: green;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 0px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 0px 10px 5px;
 
+    }
 
+    #msform .action-button:hover {
+        background-color: #311B92
+    }
 
+    #msform .action-button:focus {
+        background-color: #311B92
+    }
 
+    #msform .action-button-pre {
+        width: 100px;
+        background: #616161;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 0px;
+        cursor: pointer;
+        padding: 10px 5px;
+        margin: 10px 5px 10px 0px;
+        float: right
+    }
 
+    #msform .action-button-pre:hover {
+        background-color: #000000
+    }
 
-@media (max-width: 767px){
-	.sign-content h3{
-		font-size: 40px;
-	}
-	.wizard .nav-tabs > li a i{
-		display: none;
-	}
-	.signup-logo-header .navbar-toggle{
-		margin: 0;
-		margin-top: 8px;
-	}
-	.signup-logo-header .logo_area{
-		margin-top: 0;
-	}
-	.signup-logo-header .header-flex{
-		display: block;
-	}
-}
+    #msform .action-button-pre:focus {
+        background-color: #000000
+    }
 
-    </style>
+    .card {
+        z-index: 0;
+        border: none;
+        position: relative
+    }
+
+    .fs-title {
+        font-size: 25px;
+        color: green;
+        margin-bottom: 15px;
+        font-weight: normal;
+        text-align: left
+    }
+
+    .purple-text {
+        color: green;
+        font-weight: normal
+    }
+
+    .steps {
+        font-size: 15px;
+        color: gray;
+        margin-bottom: 1px;
+        font-weight: normal;
+        text-align: right
+    }
+
+    .fieldlabels {
+        color: gray;
+        text-align: left
+    }
+
+    #progressbar {
+        margin-bottom: 20px;
+        overflow: hidden;
+        color: lightgrey
+    }
+
+    #progressbar .active {
+        color: #48BA48;
+    }
+
+    #progressbar li {
+        list-style-type: none;
+        font-size: 15px;
+        width: 45%;
+        float: left;
+        position: relative;
+        font-weight: 400;
+        font-family: 'Quicksand';
+    }
+
+    #progressbar #account:before {
+        content: "\f13e";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar #personal:before {
+        content: "\f007";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar #payment:before {
+        content: "\f030";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar #confirm:before {
+        content: "\f00c";
+        width: 37px;
+        height: 52px;
+    }
+
+    #progressbar li:before {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        display: block;
+        font-size: 20px;
+        background: lightgray;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        padding: 2px
+    }
+
+    #progressbar li:after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: lightgray;
+        position: absolute;
+        left: 0;
+        top: 25px;
+        z-index: -1
+    }
+
+    #progressbar li.active:before {
+        background: #48BA48;
+    }
+
+    #progressbar li.active:after {
+        background: #48BA48;
+    }
+
+    .progress {
+        height: 20px
+    }
+
+    .pbar {
+        background-color: green
+    }
+
+    .fit-image {
+        width: 100%;
+        object-fit: cover
+    }
+
+    .signup-step-container {
+        background-image: url('../Assets/jobprovider/fluid.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+    }
+
+    .card {
+        border-radius: 25px !important;
+        height: 450px !important;
+        opacity: 0.7;
+        margin-top: 25px;
+    }
+
+</style>
+
 <head>
-    <link rel="stylesheet" href="../assets1/jobprovider/css/app.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+"></script>
+    <link rel="stylesheet" href="../Assets/jobprovider/css/app.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet"
-        href="//mojoaxel.github.io/bootstrap-select-country/dist/css/bootstrap-select-country.min.css">
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
-<section class="signup-step-container">
+
+<body>
+    <section class="signup-step-container">
         <div class="container">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-8">
-                    <div class="wizard">
-                        <div class="wizard-inner">
-                            <div class="connecting-line"></div>
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" aria-expanded="true"><span class="round-tab">1 </span> <i>Step 1</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" aria-expanded="false"><span class="round-tab">2</span> <i>Step 2</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab"><span class="round-tab">3</span> <i>Step 3</i></a>
-                                </li>
-                                <li role="presentation" class="disabled">
-                                    <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab"><span class="round-tab">4</span> <i>Step 4</i></a>
-                                </li>
-                            </ul>
-                        </div>
-        
-                        <form role="form" action="index.html" class="login-box">
+                <div class=" card col-md-12 col-lg-10 my-5">
+                    <form id="msform">
+                        <ul id="progressbar" style=" text-align: center;">
+                            <li class="active" id="account"><strong>Step1</strong></li>
+                            <li id="personal"><strong> Step2 </strong></li>
+                        </ul>
+                        <br>
+                        <fieldset>
                             <div class="tab-content" id="main_form">
                                 <div class="tab-pane active" role="tabpanel" id="step1">
                                     <h4 class="text-center">Step 1</h4>
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    <div class="row col-lg-12">
+                                        <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <label>First and Last Name *</label> 
-                                                <input class="form-control" type="text" name="name" placeholder=""> 
+                                                <input class="form-control" type="text" name="name"
+                                                    placeholder="Full Name">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <label>Phone Number  *</label> 
-                                                <input class="form-control" type="text" name="name" placeholder=""> 
+                                                <input class="form-control" type="email" name="name"
+                                                    placeholder="Email">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <div class="row col-lg-12">
+                                        <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <label>Email Address *</label> 
-                                                <input class="form-control" type="email" name="name" placeholder=""> 
+                                                <input class="form-control" type="email" name="name"
+                                                    placeholder="Mobile">
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-md-6">
+                                        <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <label>Password *</label> 
-                                                <input class="form-control" type="password" name="name" placeholder=""> 
+                                                <input class="form-control" type="password" name="name"
+                                                    placeholder=" Your Designation">
                                             </div>
                                         </div>
-                                        
-                                        
                                     </div>
-                                    <ul class="list-inline pull-right">
-                                        <li><button type="button" class="default-btn next-step">Continue to next step</button></li>
-                                    </ul>
                                 </div>
-                                <div class="tab-pane" role="tabpanel" id="step2">
-                                    <h4 class="text-center">Step 2</h4>
-                                    <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Address 1 *</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>City / Town *</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Country *</label> 
-                                            <select name="country" class="form-control" id="country">
-                                                <option value="NG" selected="selected">Nigeria</option>
-                                                <option value="NU">Niue</option>
-                                                <option value="NF">Norfolk Island</option>
-                                                <option value="KP">North Korea</option>
-                                                <option value="MP">Northern Mariana Islands</option>
-                                                <option value="NO">Norway</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    
-                                    
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Registration No.</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                   </div>
-                                    
-                                    
-                                    <ul class="list-inline pull-right">
-                                        <li><button type="button" class="default-btn prev-step">Back</button></li>
-                                        <li><button type="button" class="default-btn next-step skip-btn">Skip</button></li>
-                                        <li><button type="button" class="default-btn next-step">Continue</button></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" role="tabpanel" id="step3">
-                                    <h4 class="text-center">Step 3</h4>
-                                     <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Account Name *</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Demo</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Inout</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Information</label> 
-                                            <div class="custom-file">
-                                              <input type="file" class="custom-file-input" id="customFile">
-                                              <label class="custom-file-label" for="customFile">Select file</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Number *</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Input Number</label> 
-                                            <input class="form-control" type="text" name="name" placeholder=""> 
-                                        </div>
-                                    </div>
-                                       </div>
-                                    <ul class="list-inline pull-right">
-                                        <li><button type="button" class="default-btn prev-step">Back</button></li>
-                                        <li><button type="button" class="default-btn next-step skip-btn">Skip</button></li>
-                                        <li><button type="button" class="default-btn next-step">Continue</button></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-pane" role="tabpanel" id="step4">
-                                    <h4 class="text-center">Step 4</h4>
-                                    <div class="all-info-container">
-                                        <div class="list-content">
-                                            <a href="#listone" data-toggle="collapse" aria-expanded="false" aria-controls="listone">Collapse 1 <i class="fa fa-chevron-down"></i></a>
-                                            <div class="collapse" id="listone">
-                                                <div class="list-box">
-                                                    <div class="row">
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>First and Last Name *</label> 
-                                                                <input class="form-control" type="text"  name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Phone Number *</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-content">
-                                            <a href="#listtwo" data-toggle="collapse" aria-expanded="false" aria-controls="listtwo">Collapse 2 <i class="fa fa-chevron-down"></i></a>
-                                            <div class="collapse" id="listtwo">
-                                                <div class="list-box">
-                                                    <div class="row">
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Address 1 *</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>City / Town *</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Country *</label> 
-                                                                <select name="country2" class="form-control" id="country2" disabled="disabled">
-                                                                    <option value="NG" selected="selected">Nigeria</option>
-                                                                    <option value="NU">Niue</option>
-                                                                    <option value="NF">Norfolk Island</option>
-                                                                    <option value="KP">North Korea</option>
-                                                                    <option value="MP">Northern Mariana Islands</option>
-                                                                    <option value="NO">Norway</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Legal Form</label> 
-                                                                <select name="legalform2" class="form-control" id="legalform2" disabled="disabled">
-                                                                    <option value="" selected="selected">-Select an Answer-</option>
-                                                                    <option value="AG">Limited liability company</option>
-                                                                    <option value="GmbH">Public Company</option>
-                                                                    <option value="GbR">No minimum capital, unlimited liability of partners, non-busines</option>
-                                                                </select> 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Business Registration No.</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Registered</label> 
-                                                                <select name="vat2" class="form-control" id="vat2" disabled="disabled">
-                                                                    <option value="" selected="selected">-Select an Answer-</option>
-                                                                    <option value="yes">Yes</option>
-                                                                    <option value="no">No</option>
-                                                                </select> 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Seller</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Company Name *</label> 
-                                                                <input class="form-control" type="password" name="name" placeholder="" disabled="disabled"> 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="list-content">
-                                            <a href="#listthree" data-toggle="collapse" aria-expanded="false" aria-controls="listthree">Collapse 3 <i class="fa fa-chevron-down"></i></a>
-                                            <div class="collapse" id="listthree">
-                                                <div class="list-box">
-                                                    <div class="row">
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Name *</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder=""> 
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label>Number *</label> 
-                                                                <input class="form-control" type="text" name="name" placeholder=""> 
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <ul class="list-inline pull-right">
-                                        <li><button type="button" class="default-btn prev-step">Back</button></li>
-                                        <li><button type="button" class="default-btn next-step">Finish</button></li>
-                                    </ul>
-                                </div>
-                                <div class="clearfix"></div>
                             </div>
-                            
-                        </form>
-                    </div>
+                            <button type="button" class=" next btn-color "> NEXT</button>
+                        </fieldset>
+                        <!-- //#step2 -->
+                        <fieldset>
+                            <div class="tab-content " id="main_form">
+                                <div class="tab-pane active" role="tabpanel" id="step2">
+                                    <h4 class="text-center">Step 2</h4>
+                                    <div class="row col-lg-12">
+                                        <div class="col-md-4 col-lg-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="name"
+                                                    placeholder="Full Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-6">
+                                            <div class="form-group select-sub">
+                                                <select name="country" class="form-control" id="country">
+                                                    <option value="NG" selected="selected">Nigeria</option>
+                                                    <option value="NU">Niue</option>
+                                                    <option value="NF">Norfolk Island</option>
+                                                    <option value="KP">North Korea</option>
+                                                    <option value="MP">Northern Mariana Islands</option>
+                                                    <option value="NO">Norway</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-lg-12">
+                                        <div class="col-md-4 col-lg-12">
+                                            <div class="form-group">
+
+                                                <textarea class="form-control" placeholder=" Street Address"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-lg-12">
+                                        <div class="col-md-4 col-lg-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="email" name="name" placeholder="City">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" name="name"
+                                                    placeholder=" Your State">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-lg-12">
+                                        <div class="col-md-4 col-lg-6">
+                                            <div class="form-group">
+
+                                                <input class="form-control" type="email" name="name"
+                                                    placeholder="Country">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-6">
+                                            <div class="form-group">
+
+                                                <input class="form-control" type="password" name="name"
+                                                    placeholder=" Pincode">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class=" pre btn-color ">PREVIOUS</button><button type="button"
+                                class="  btn-color "> Register</button>
+                            </fiedset>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-   
-    <script>
-(document).ready(function () {
-    $('.nav-tabs > li a[title]').tooltip();
-    
-   
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+</body>
 
-        var target = $(e.target);
-    
-        if (target.parent().hasClass('disabled')) {
-            return false;
+<script>
+    $(document).ready(function () {
+
+        var current_fs, next_fs, pre_fs;
+        var opacity;
+        var current = 1;
+        var steps = $("fieldset").length;
+        setProgressBar(current);
+        $(".next").click(function () {
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+            next_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 500
+            });
+            setProgressBar(++current);
+        });
+        $(".pre").click(function () {
+            current_fs = $(this).parent();
+            pre_fs = $(this).parent().prev();
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+            pre_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    pre_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 500
+            });
+
+        });
+
+        function setProgressBar(curStep) {
+            var percent = parseFloat(100 / steps) * curStep;
+            percentpercent = percent.toFixed();
+            $(".pbar")
+                .css("width", percent + "%")
         }
+        $(".submit").click(function () {
+            return false;
+        })
     });
-
-    $(".next-step").click(function (e) {
-      alert("hi");
-        var active = $('.wizard .nav-tabs li.active');
-        active.next().removeClass('disabled');
-        nextTab(active);
-
-    });
-    $(".prev-step").click(function (e) {
-
-        var active = $('.wizard .nav-tabs li.active');
-        prevTab(active);
-
-    });
-});
-
-function nextTab(elem) {
-    $(elem).next().find('a[data-toggle="tab"]').click();
-}
-function prevTab(elem) {
-    $(elem).prev().find('a[data-toggle="tab"]').click();
-}
-
-
-$('.nav-tabs').on('click', 'li', function() {
-    $('.nav-tabs li.active').removeClass('active');
-    $(this).addClass('active');
-});
 
 </script>

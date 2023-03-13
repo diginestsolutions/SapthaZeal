@@ -14,7 +14,7 @@ class Job extends Model
     use HasFactory;
     protected $collection = 'jobs';
     protected $guarded = [];
-
+    protected $dates = ['expirydate'];
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment
@@ -52,5 +52,6 @@ class Job extends Model
     {
         return $this->hasMany(JobAppliedDetails::class,'job_id');
     }
+   
 }
 

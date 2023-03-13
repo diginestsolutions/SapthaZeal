@@ -7,7 +7,16 @@
         text-decoration: none;
 
     }
-
+    input::-webkit-datetime-edit{ color: transparent; }
+    input:focus::-webkit-datetime-edit{ color: #000; }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        border-radius: 4px;
+        filter: invert(1) sepia(100%) saturate(100000%) hue-rotate(170deg);
+}
+.pre{
+    margin-left:10px;
+}
     .con1 {
 
         position: relative;
@@ -82,22 +91,22 @@
         color: #7ECD7C;
         pointer-events: none;
     }
+
     .sidebar {
 
+width: 250px;
+
+background: #fff;
+
+margin-top: 10px;
+border-radius: 15px;
+
+margin-bottom: 10px;
 
 
-        background: #fff;
-        padding: 10px 0;
+color: #000000;
 
-        border-radius: 15px;
-        margin: 10px 0 10px;
-        margin-bottom: 10px;
-
-        overflow: hidden;
-
-        color: #000000;
-
-    }
+}
 
     .navbar-collapse {
         position: absolute;
@@ -203,13 +212,13 @@
     .dropzone1 {
         width: 215px;
         height: 80px;
-       
+
         border-radius: 3px;
         text-align: center;
     }
 
     .upload-icon1 {
-       
+
         background-color: white;
         border-radius: 10px;
     }
@@ -256,7 +265,7 @@
     }
 
     .container-fluid {
-        background-image: url('../../../Assets/1.png');
+        background-image: url('../../../../Assets/1.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -358,7 +367,9 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         height: 40px !important;
-        font-size: 13px;
+        font-size: 17px !important;
+        font-family:'Quicksand' !important;
+
     }
 
     .form-control1 {
@@ -367,6 +378,8 @@
         box-shadow: 0px 3px 6px #0000000d;
         border: none !important;
         width: 450px;
+        font-family:'Quicksand' !important;
+        font-size: 17px !important;
 
     }
 
@@ -387,7 +400,7 @@
     .dropzone {
         width: 100px;
         height: 80px;
-        border: 1px dashed #999;
+       
         border-radius: 3px;
         text-align: center;
     }
@@ -430,6 +443,7 @@
         display: flex;
         padding-left: 50px !important;
     }
+
     p {
         color: grey
     }
@@ -643,6 +657,14 @@
         object-fit: cover
     }
 
+    .make-me-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+
+        padding: 0 15px;
+    }
+
 </style>
 
 <head>
@@ -665,45 +687,45 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
         <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
+            <div class="make-me-sticky p-0">
 
-
-            <div class=" col-lg-10">
-                <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
-            </div>
-            <div class="justify-content-center">
-                <ul>
-                    <li><a href="{{route('view.job')}}">Job Management</a></li>
-                    <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
-                    <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
-                    <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
-                    <li><a href="{{route('view.order')}}">Order Management</a></li>
-                    <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
-                    <li><a href="{{route('view.admin')}}">Admin Management</a></li>
-                    <li><a href="{{route('view.notification')}}">Notifications</a></li>
-                    <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                <div class=" col-lg-10">
+                    <img src="../../../../Assets/logo.png" class="img-fluid " alt="Sample image">
+                </div>
+                <div class="justify-content-center">
                     <ul>
+                        <li><a href="{{route('view.job')}}">Job Management</a></li>
+                        <li><a href="{{route('view.industry')}}">Job Industry Management</a></li>
+                        <li><a href="{{route('view.jobprovider')}}">Job Provider Management</a></li>
+                        <li><a href="{{route('view.candidate')}}">Candidate Management</a></li>
+                        <li><a href="{{route('view.order')}}">Order Management</a></li>
+                        <li><a href="{{route('view.subscription')}}">Subscription Plans</a></li>
+                        <li><a href="{{route('view.admin')}}">Admin Management</a></li>
+                        <li><a href="{{route('view.notification')}}">Notifications</a></li>
+                        <li><a href="{{route('profile.admin')}}">Profile</a></li>
+                        <ul>
 
-                        </a>
+                            </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
 
-                        <button type="button" class="btn btn-primary" href="{{route('logout')}}"
-                            style="border-radius: 0px 0px 50px 50px; width:220px;"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+                            <button type="button" class="btn btn-primary" href="{{route('logout')}}"
+                                style="border-radius: 0px 0px 50px 50px; width:220px;"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
 
 
-                    </ul>
+                        </ul>
+                </div>
             </div>
-
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="sidebar col-lg-2 col-md-3 p-0 ">
 
                 <div class=" col-md-3 ">
-                    <img src="../Assets/logo.png" class="img-fluid" alt="Sample image">
+                    <img src="../../../Assets/logo.png" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="justify-content-center">
                     <ul>
@@ -737,35 +759,38 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
             <nav class="navbar navbar-light col-md-12 ">
 
-                <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.candidate') }}"><span
+                <h3 class=" mt-3  heading"> <a class="btn " href="{{ route('view.job') }}"><span
                             class="icon2"><button class="btn-back" style="border-radius:50px;
-            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Jobseeker #{{$candidate->candidate_id}}</h3>
+            border:none;"><span class="left"><i class="fa-solid fa-chevron-left"></i></span></button></i></a>Jobseeker
+                    #{{$candidate->candidate_id}}</h3>
 
 
 
 
-<div class=" mt-12 pull-right">
+                <div class=" mt-12 pull-right">
 
-<div class="w-100">
-    <button class="btn " type="button"
-        style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
-            class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
-            src="{{Auth::user()->image}} ">
-        <h6 class="profile">{{Auth::user()->name}}</h6><span
-            style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-    </button>
+                    <div class="w-100">
+                        <button class="btn " type="button"
+                            style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                                class="user-avatar  pull-right"
+                                style="width:44px;       height: 44px;   border-radius: 28%;"
+                                src="{{Auth::user()->image}} ">
+                            <h6 class="profile">{{Auth::user()->name}}</h6><span
+                                style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+                        </button>
 
-    <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+                        <button class="btn noti " type="button"> <span class="icons1"><i
+                                    class="fa fa-bell"></i><span></button>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
 
 
 
-</div>
+                </div>
 
 
             </nav>
@@ -779,74 +804,82 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                 <br>
-               <input type="hidden" id="candidate_id" value="{{$candidate->id}}"/>
+                <input type="hidden" id="candidate_id" value="{{$candidate->id}}" />
                 <fieldset>
                     <div class=" col-md-12 ">
                         <div class=" widget-content ">
-                            <form method="POST" enctype="multipart/form-data" id="image-upload" action="javascript:void(0)" >
-                            {{csrf_field()}}
-                            <div class="row col-lg-12">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <label class="title-label"> image </label>
-                                    <div class="dropzone">
-                                        <img src="{{$candidate->image}} " width="200" height="200" alt=""
-                                            style="border-radius:10px;">
+                            <form method="POST" enctype="multipart/form-data" id="image-upload"
+                                action="javascript:void(0)">
+                                {{csrf_field()}}
+                                <div class="row col-lg-12">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <label class="title-label"> image </label>
+                                        <div class="dropzone">
+                                            <img src="{{$candidate->image}} " width="200" height="200" alt=""
+                                                style="border-radius:10px;">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label"> Name </label>
-                                        <input type="text" class="form-control form-control-lg" id="bname" name="name" value="{{$candidate->name}}" readonly>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label"> Name </label>
+                                            <input type="text" class="form-control form-control-lg" id="bname"
+                                                name="name" value="{{$candidate->name}}" readonly>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label"> Email Address </label>
-                                        <input type="text" class="form-control form-control-lg" id="bemail" name="email" value="{{$candidate->email}}" readonly>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label"> Email Address </label>
+                                            <input type="text" class="form-control form-control-lg" id="bemail"
+                                                name="email" value="{{$candidate->email}}" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
 
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Mobile Number </label>
+                                            <input type="text" class="form-control form-control-lg" id="bmobile"
+                                                name="mobile" value="{{$candidate->mobile}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Prefered Job location </label>
+                                            <input type="text" class="form-control form-control-lg" id="bjoblocation"
+                                                name="joblocation" value="{{$candidate->joblocation}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Height</label>
+                                            <input type="text" class="form-control form-control-lg" id="bheight"
+                                                name="height" value="{{$candidate->height}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">weight</label>
+                                            <input type="text" class="form-control form-control-lg" id="bweight"
+                                                name="weight" value="{{$candidate->weight}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Address</label>
+                                            <input type="text" class="form-control form-control-lg" id="baddress"
+                                                name="address" value="{{$candidate->address}}" readonly>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Mobile Number </label>
-                                        <input type="text" class="form-control form-control-lg" id="bmobile" name="mobile" value="{{$candidate->mobile}}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Prefered Job location </label>
-                                        <input type="text" class="form-control form-control-lg" id="bjoblocation" name="joblocation" value="{{$candidate->joblocation}}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Height</label>
-                                        <input type="text" class="form-control form-control-lg" id="bheight" name="height" value="{{$candidate->height}}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">weight</label>
-                                        <input type="text" class="form-control form-control-lg" id="bweight" name="weight" value="{{$candidate->weight}}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Address</label>
-                                        <input type="text" class="form-control form-control-lg" id="baddress" name="address" value="{{$candidate->address}}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                     <button type="button" class="next  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
@@ -867,10 +900,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 </fieldset>
                 <fieldset>
 
-                   <!-- <a class="btn " href="{{ route('add.education') }}" style="float:left;"> <span class="icons"> <i
+                    <!-- <a class="btn " href="{{ route('add.education') }}" style="float:left;"> <span class="icons"> <i
                                 class="fa fa-plus " aria-hidden="true"></i></span></a>-->
 
-                   <!-- <a class="btn " href="" data-toggle="modal" data-target="#educationModal"> <span class="icons"> <i
+                    <!-- <a class="btn " href="" data-toggle="modal" data-target="#educationModal"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>-->
                     <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
@@ -912,28 +945,28 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                 <th>Pass Out</th>
                                                 <th>School Medium</th>
                                                 <th>Marks Obtained(%)</th>
-                                               
+
                                             </tr>
                                         </thead>
                                         <tbody id="tbodyfirst">
                                             @if($candidate->candidate_education)
-                                                @foreach($candidate->candidate_education as $education)
-                                                    @if($education->education == 1 ||  $education->education == 2)
-                                                        <tr>
-                                                            @if($education->education == 1)
-                                                            <td>10th</td>
-                                                            @endif
-                                                            @if($education->education == 2)
-                                                            <td>12th</td>
-                                                            @endif
-                                                            <td>{{$education->board}}</td>
-                                                            <td>{{$education->passout}}</td>
-                                                            <td>{{$education->school_medium}}</td>
-                                                            <td>{{$education->mark_obtained}}</td>
-                                                            
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
+                                            @foreach($candidate->candidate_education as $education)
+                                            @if($education->education == 1 || $education->education == 2)
+                                            <tr>
+                                                @if($education->education == 1)
+                                                <td>10th</td>
+                                                @endif
+                                                @if($education->education == 2)
+                                                <td>12th</td>
+                                                @endif
+                                                <td>{{$education->board}}</td>
+                                                <td>{{$education->passout}}</td>
+                                                <td>{{$education->school_medium}}</td>
+                                                <td>{{$education->mark_obtained}}</td>
+
+                                            </tr>
+                                            @endif
+                                            @endforeach
                                             @endif
                                         </tbody>
                                     </table>
@@ -955,33 +988,34 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                 <th>Type</th>
                                                 <th>Pass Out</th>
                                                 <th>Marks Obtained(%)</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody id="tbodysecond">
                                             @if($candidate->candidate_education)
-                                                @foreach($candidate->candidate_education as $education)
-                                                    @if($education->education == 3 ||  $education->education == 4 || $education->education == 5)
-                                                        <tr>
-                                                            @if($education->education == 3)
-                                                            <td>Graduation/Diploma</td>
-                                                            @endif
-                                                            @if($education->education == 4)
-                                                            <td>Masters/Post Graduation</td>
-                                                            @endif
-                                                            @if($education->education == 5)
-                                                            <td>Doctorate/PHD</td>
-                                                            @endif
-                                                            <td>{{$education->university}}</td>
-                                                            <td>{{$education->course}}</td>
-                                                            <td>{{$education->specialization}}</td>
-                                                            <td>{{$education->course_type}}</td>
-                                                            <td>{{$education->passout}}</td>
-                                                            <td>{{$education->mark_obtained}}</td>
-                                                            
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
+                                            @foreach($candidate->candidate_education as $education)
+                                            @if($education->education == 3 || $education->education == 4 ||
+                                            $education->education == 5)
+                                            <tr>
+                                                @if($education->education == 3)
+                                                <td>Graduation/Diploma</td>
+                                                @endif
+                                                @if($education->education == 4)
+                                                <td>Masters/Post Graduation</td>
+                                                @endif
+                                                @if($education->education == 5)
+                                                <td>Doctorate/PHD</td>
+                                                @endif
+                                                <td>{{$education->university}}</td>
+                                                <td>{{$education->course}}</td>
+                                                <td>{{$education->specialization}}</td>
+                                                <td>{{$education->course_type}}</td>
+                                                <td>{{$education->passout}}</td>
+                                                <td>{{$education->mark_obtained}}</td>
+
+                                            </tr>
+                                            @endif
+                                            @endforeach
                                             @endif
                                         </tbody>
                                     </table>
@@ -995,124 +1029,138 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 <fieldset>
                     <div class=" col-md-12 ">
                         <div class=" widget-content ">
-                            <form method="POST" enctype="multipart/form-data" id="experience-form" action="javascript:void(0)" >
-                            {{csrf_field()}}
-                            @if($candidate->candidate_experience)
-                            <div class="row col-lg-12">
-                                <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                            <form method="POST" enctype="multipart/form-data" id="experience-form"
+                                action="javascript:void(0)">
+                                {{csrf_field()}}
+                                @if($candidate->candidate_experience)
+                                <div class="row col-lg-12">
+                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                            <div class=" form-group">
+                                                <label class="title-label">Is this your current employment?</label>
+                                                @if($candidate->candidate_experience->current_employee_status == 'on')
+                                                <label class="con1"><span>Yes</span>
+                                                    <input type="radio" name="current_employee_status" checked readonly>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                @else
+                                                <label class="con1"><span>No</span>
+                                                    <input type="radio" name="current_employee_status" readonly>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                @endif
+                                                @if($candidate->candidate_experience->current_employee_status == 'off')
+                                                <label class="con1"><span>Yes</span>
+                                                    <input type="radio" name="current_employee_status" readonly>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                @else
+                                                <label class="con1"><span>No</span>
+                                                    <input type="radio" name="current_employee_status" checked readonly>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                            <div class=" form-group">
+                                                <label class="title-label">Employement Type</label>
+                                                @if($candidate->candidate_experience->employement_type == "fulltime")
+                                                <input type="text" class="form-control form-control-lg"
+                                                    name="current_employee_status" value="Full Time" readonly>
+                                                @endif
+                                                @if($candidate->candidate_experience->employement_type == "parttime")
+                                                <input type="text" class="form-control form-control-lg"
+                                                    name="current_employee_status" value="Part Time" readonly>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                         <div class=" form-group">
-                                            <label class="title-label">Is this your current employment?</label>
-                                            @if($candidate->candidate_experience->current_employee_status == 'on')
-                                            <label class="con1"><span>Yes</span>
-                                                <input type="radio" name="current_employee_status" checked readonly>
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            @else
-                                            <label class="con1"><span>No</span>
-                                                <input type="radio" name="current_employee_status" readonly>
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            @endif
-                                            @if($candidate->candidate_experience->current_employee_status == 'off')
-                                            <label class="con1"><span>Yes</span>
-                                                <input type="radio" name="current_employee_status" readonly>
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            @else
-                                            <label class="con1"><span>No</span>
-                                                <input type="radio" name="current_employee_status" checked readonly>
-                                                <span class="checkmark"></span>
-                                            </label>
-                                            @endif
+                                            <label class="title-label">Company Name</label>
+                                            <input type="text" class="form-control form-control-lg" name="company_name"
+                                                value="{{$candidate->candidate_experience->company_name}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Designation</label>
+                                            <input type="text" class="form-control form-control-lg" name="designation"
+                                                value="{{$candidate->candidate_experience->designation}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label"> Joining Date</label>
+                                            <input type="text" class="form-control form-control-lg" name="Joining_date"
+                                                value="{{$candidate->candidate_experience->Joining_date}}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Salary</label>
+                                            <input type="text" class="form-control form-control-lg" name="salary"
+                                                value="{{$candidate->candidate_experience->salary}}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
                                         <div class=" form-group">
-                                            <label class="title-label">Employement Type</label>
-                                            @if($candidate->candidate_experience->employement_type == "fulltime")
-                                            <input type="text" class="form-control form-control-lg" name="current_employee_status" value="Full Time" readonly>
-                                            @endif
-                                            @if($candidate->candidate_experience->employement_type == "parttime")
-                                            <input type="text" class="form-control form-control-lg" name="current_employee_status" value="Part Time" readonly>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Company Name</label>
-                                        <input type="text" class="form-control form-control-lg" name="company_name" value="{{$candidate->candidate_experience->company_name}}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Designation</label>
-                                        <input type="text" class="form-control form-control-lg" name="designation" value="{{$candidate->candidate_experience->designation}}" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label"> Joining Date</label>
-                                        <input type="text" class="form-control form-control-lg" name="Joining_date" value="{{$candidate->candidate_experience->Joining_date}}" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Salary</label>
-                                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$candidate->candidate_experience->salary}}" readonly>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-                                    <div class=" form-group">
-                                        <label class="title-label">Total Experience</label>
-                                        <div class="row  ">
-                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                                                <input type="number" class="form-control form-control-lg "
-                                                    id="datepicker" placeholder="years" name="years" value="{{$candidate->candidate_experience->years}}"
-                                                    style="text-align: right;" readonly>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                                                <input type="number" name="months" class="form-control form-control-lg "
-                                                    placeholder="months" required style="text-align: right;" value="{{$candidate->candidate_experience->months}}" readonly>
+                                            <label class="title-label">Total Experience</label>
+                                            <div class="row  ">
+                                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                    <input type="number" class="form-control form-control-lg "
+                                                        id="datepicker" placeholder="years" name="years"
+                                                        value="{{$candidate->candidate_experience->years}}"
+                                                        style="text-align: right;" readonly>
+                                                </div>
+                                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                    <input type="number" name="months"
+                                                        class="form-control form-control-lg " placeholder="months"
+                                                        required style="text-align: right;"
+                                                        value="{{$candidate->candidate_experience->months}}" readonly>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label">Notice Period</label>
-                                        @if($candidate->candidate_experience->notice_period == "1month")
-                                        <input type="text" class="form-control form-control-lg" name="current_employee_status" value="1 Month" readonly>
-                                        @endif
-                                        @if($candidate->candidate_experience->notice_period == "3month")
-                                        <input type="text" class="form-control form-control-lg" name="current_employee_status" value="3 Month" readonly>
-                                        @endif
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label">Notice Period</label>
+                                            @if($candidate->candidate_experience->notice_period == "1month")
+                                            <input type="text" class="form-control form-control-lg"
+                                                name="current_employee_status" value="1 Month" readonly>
+                                            @endif
+                                            @if($candidate->candidate_experience->notice_period == "3month")
+                                            <input type="text" class="form-control form-control-lg"
+                                                name="current_employee_status" value="3 Month" readonly>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label"></i>Job Description</label>
-                                        <textarea rows="4" class="form-control1" name="job_description" readonly>{{$candidate->candidate_experience->job_description}}</textarea>
+                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label"></i>Job Description</label>
+                                            <textarea rows="4" class="form-control1" name="job_description"
+                                                readonly>{{$candidate->candidate_experience->job_description}}</textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
-                                    <div class=" form-group">
-                                        <label class="title-label"></i>Prefered Skills:</label>
-                                        <input type="text" rows="4" name="skill" id="skill" class="form-control"
-                                            style=" height: 100px;" value="{{$candidate->candidate_experience->skill}}" readonly/>
+                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                        <div class=" form-group">
+                                            <label class="title-label"></i>Prefered Skills:</label>
+                                            <input type="text" rows="4" name="skill" id="skill" class="form-control"
+                                                style=" height: 100px;"
+                                                value="{{$candidate->candidate_experience->skill}}" readonly />
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            @endif
-                        </form>
+                                @endif
+                            </form>
                         </div>
                     </div>
                     <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
@@ -1144,45 +1192,57 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                 </fieldset>
                 <fieldset>
-                    <form method="POST" enctype="multipart/form-data" id="candidate-status-form" action="javascript:void(0)" >
-                    {{csrf_field()}}
-                    <div class="row ">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                    <form method="POST" enctype="multipart/form-data" id="candidate-status-form"
+                        action="javascript:void(0)">
+                        {{csrf_field()}}
+                        <div class="row ">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
-                            <div class=" form-group select-sup">
-                                <label class="title-label">Status</label>
-                                <select class="form-control select form-control-lg" name="provider_status" id="candidatestatus"
-                                    required>
-                                    <option>Select Status</option>
-                                    <option value="1" {{@$candidate->candidate_job_applied_details[0]->applied_status == "interested" ? 'selected' : ''}}>Interested Candidates</option>
-                                    <option value="2" {{@$candidate->candidate_job_applied_details[0]->applied_status == "scheduled_resumes" ? 'selected' : ''}}>Scheduled Resumes</option>
-                                    <option value="3" {{@$candidate->candidate_job_applied_details[0]->applied_status == "interview_scheduled" ? 'selected' : ''}}>Interview Scheduled</option>
-                                    <option value="4" {{@$candidate->candidate_job_applied_details[0]->applied_status == "negotiation" ? 'selected' : ''}}>Negotiation</option>
-                                    <option value="5" {{@$candidate->candidate_job_applied_details[0]->applied_status == "hired" ? 'selected' : ''}}>Hired</option>
-                                </select>
+                                <div class=" form-group select-sup">
+                                    <label class="title-label">Status</label>
+                                    <select class="form-control select form-control-lg" name="provider_status"
+                                        id="candidatestatus" required>
+                                        <option>Select Status</option>
+                                        <option value="1"
+                                            {{@$candidate->candidate_job_applied_details[0]->applied_status == "interested" ? 'selected' : ''}}>
+                                            Interested Candidates</option>
+                                        <option value="2"
+                                            {{@$candidate->candidate_job_applied_details[0]->applied_status == "scheduled_resumes" ? 'selected' : ''}}>
+                                            Scheduled Resumes</option>
+                                        <option value="3"
+                                            {{@$candidate->candidate_job_applied_details[0]->applied_status == "interview_scheduled" ? 'selected' : ''}}>
+                                            Interview Scheduled</option>
+                                        <option value="4"
+                                            {{@$candidate->candidate_job_applied_details[0]->applied_status == "negotiation" ? 'selected' : ''}}>
+                                            Negotiation</option>
+                                        <option value="5"
+                                            {{@$candidate->candidate_job_applied_details[0]->applied_status == "hired" ? 'selected' : ''}}>
+                                            Hired</option>
+                                    </select>
+                                </div>
                             </div>
+
                         </div>
+                        <input type="hidden" id="jobid" name="jobid" value="{{$jobid}}" />
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label">Download Resume</label>
+                                    <button class="btn fileicon" type="button">
+                                        <div class="text-left">
+                                            <img src="../../../../Assets/pdf.png" class="upload-icon1" />
+                                            <input type="file" class="upload-input1" name="resume" id="resume"
+                                                required />
+                                        </div>
+                                    </button>
 
-                    </div>
-                    <input type="hidden" id="jobid" name="jobid" value="{{$jobid}}"/>
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div class=" form-group">
-                                <label class="title-label">Download Resume</label>
-                                <button class="btn fileicon" type="button">
-                                    <div class="dropzone1">
-                                        <img src="../../../Assets/pdf.png" class="upload-icon1" />
-                                        <input type="file" class="upload-input1" name="resume" id="resume" required />                                       
-                                    </div>
-                                </button>
 
-                             
-                            </div>
-                        
-                    
-                    
-                    </br></br><a href="{{@$candidate->resume}}" target="_blank" download>
-                    <button type="button" class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                                </div>
+
+                                @if($candidate->resume)
+                                <a href="{{@$candidate->resume}}" target="_blank" download>
+                                    <button type="button"
+                                        class="btn btn-primary  text-left btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
     color: #FFFFFF;
@@ -1191,38 +1251,56 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     background-color:  #69DB65 ;
    
     font-size: 12px;
-    
-    font-family: 'Quicksand';margin-left: 63px;" >
-                        Download<i class="icon-database-insert ml-1"></i>
-                    </button></a>
-<br/></div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div class=" form-group">
-                                <label class="title-label"></i>Cover Letter</label>
-                                <textarea rows="8" class="form-control1" name="cover_letter" readonly>{{@$candidate->cover_letter}}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div class=" form-group select-sup">
-                                <label class="title-label">Candidate Status <span style="color: red;">*</span></label>
-                                <select class="form-control select form-control-lg" name="candidate_status"
-                                id="candidatestatusselect" required>
-                                    <option>Select Option</option>
-                                    <option value="1" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "applied" ? 'selected' : ''}}>Applied</option>
-                                    <option value="2" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "in_progress" ? 'selected' : ''}}>In Progress</option>
-                                    <option value="3" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "resume_evaluation" ? 'selected' : ''}}>Resume Evaluation</option>
-                                    <option value="4" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "incomplete_application" ? 'selected' : ''}}>Incomplete Application</option>
-                                    <option value="5" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "interview_scheduled" ? 'selected' : ''}}>Interview Scheduled</option>
-                                    <option value="6" {{@$candidate->candidate_job_applied_details[0]->candidate_status == "negotiation" ? 'selected' : ''}}>Negotiation</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="candidate_status_div">
+    margin-top: -26px;
 
-                    </div>
+    font-family: 'Quicksand';">
+                                        Download<i class="icon-database-insert ml-1"></i>
+                                    </button></a>@endif
+                               
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group">
+                                    <label class="title-label"></i>Cover Letter</label>
+                                    <textarea rows="5" class="form-control1" name="cover_letter"
+                                       >{{@$candidate->cover_letter}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        </br>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class=" form-group select-sup">
+                                    <label class="title-label">Candidate Status <span
+                                            style="color: red;">*</span></label>
+                                    <select class="form-control select form-control-lg" name="candidate_status"
+                                        id="candidatestatusselect" required>
+                                        <option>Select Option</option>
+                                        <option value="1"
+                                            {{@$candidate->candidate_job_applied_details[0]->candidate_status == "applied" ? 'selected' : ''}}>
+                                            Applied</option>
+                                        <option value="2"
+                                            {{@$candidate->candidate_job_applied_details[0]->candidate_status == "in_progress" ? 'selected' : ''}}>
+                                            In Progress</option>
+                                        <option value="3"
+                                            {{@$candidate->candidate_job_applied_details[0]->candidate_status == "resume_evaluation" ? 'selected' : ''}}>
+                                            Resume Evaluation</option>
+                                        <option value="4"
+                                            {{@$candidate->candidate_job_applied_details[0]->candidate_status == "incomplete_application" ? 'selected' : ''}}>
+                                            Incomplete Application</option>
+                                        <option value="5"
+                                            {{@$candidate->candidate_job_applied_details[0]->candidate_status == "interview_scheduled" ? 'selected' : ''}}>
+                                            Interview Scheduled</option>
+                                        <option value="6"
+                                            {{@$candidate->candidate_job_applied_details[0]->candidate_status == "negotiation" ? 'selected' : ''}}>
+                                            Negotiation</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="candidate_status_div">
+
+                        </div>
                     </form>
                     <button type="button" class=" pre btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
@@ -1238,7 +1316,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         PREVIOUS<i class="icon-database-insert ml-1"></i>
 
                     </button>
-                    <button type="button" onclick="fileupload()" class=" btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                    <button type="button" onclick="fileupload()"
+                        class=" btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
                           letter-spacing: 0.25px;
     border: none;
     color: #FFFFFF;
@@ -1275,37 +1354,40 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 </button>
             </div>
             <div class="modal-body">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class=" form-group select-sup">
-                            <label class="title-label">Education<span style="color: red;">*</span></label>
-                            <select class="form-control select form-control-lg" name="education"
-                             id="educationselect" required>
-                                <option>Select Option</option>
-                                <option value="1">10th</option>
-                                <option value="2">12th</option>
-                                <option value="3">Graduation/Diploma</option>
-                                <option value="4">Masters/Post Graduation</option>
-                                <option value="5 ">Doctorate/PHD</option>
-                            </select>
-                        </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                    <div class=" form-group select-sup">
+                        <label class="title-label">Education<span style="color: red;">*</span></label>
+                        <select class="form-control select form-control-lg" name="education" id="educationselect"
+                            required>
+                            <option>Select Option</option>
+                            <option value="1">10th</option>
+                            <option value="2">12th</option>
+                            <option value="3">Graduation/Diploma</option>
+                            <option value="4">Masters/Post Graduation</option>
+                            <option value="5 ">Doctorate/PHD</option>
+                        </select>
                     </div>
-                    <input type="hidden" id="educational_edit_id" />
-                    <!--------------mydiv------------>
-                    <div id="showten" class="myDiv">
-                        <form id="education-form1" action="" method="POST" enctype="multipart/form-data">
+                </div>
+                <input type="hidden" id="educational_edit_id" />
+                <!--------------mydiv------------>
+                <div id="showten" class="myDiv">
+                    <form id="education-form1" action="" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row col-lg-12">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class=" form-group select-sup">
                                     <label class="title-label">Board<span style="color: red;">*</span></label>
-                                    <select class="form-control select form-control-lg" name="board" id="mydivboard" required>
+                                    <select class="form-control select form-control-lg" name="board" id="mydivboard"
+                                        required>
                                         <option value="">Choose Board</option>
                                         <option value="CBSE" class="text-capitalize">CBSE</option>
                                         <option value="ICSE" class="text-capitalize">ICSE</option>
                                         <option value="ISC" class="text-capitalize">ISC</option>
                                         <option value="Diploma" class="text-capitalize">Diploma</option>
-                                        <option value="National Open School" class="text-capitalize">National Open School</option>
-                                        <option value="International Baccalaureate" class="text-capitalize">International Baccalaureate</option>
+                                        <option value="National Open School" class="text-capitalize">National Open
+                                            School</option>
+                                        <option value="International Baccalaureate" class="text-capitalize">
+                                            International Baccalaureate</option>
                                         <option value="State Boards" class="text-capitalize">State Boards</option>
                                         <option value="Others" class="text-capitalize">Others</option>
                                     </select>
@@ -1314,25 +1396,29 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class=" form-group">
                                     <label class="title-label">School Medium<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="schoolmedium" id="mydivschoolmedium" required>
+                                    <input type="text" class="form-control form-control-lg" name="schoolmedium"
+                                        id="mydivschoolmedium" required>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class=" form-group">
                                     <label class="title-label">Pass Out<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="passout" id="mydivpassout" required>
+                                    <input type="text" class="form-control form-control-lg" name="passout"
+                                        id="mydivpassout" required>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                 <div class=" form-group">
-                                    <label class="title-label"></i>Marks Obtained(%)<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="marks" id="mydivmarks" required>
+                                    <label class="title-label"></i>Marks Obtained(%)<span
+                                            style="color: red;">*</span></label>
+                                    <input type="text" class="form-control form-control-lg" name="marks" id="mydivmarks"
+                                        required>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
                                 <div class="text-center">
                                     <button type="button"
-                                            class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                                        class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
                                             letter-spacing: 1.25px;
                                             border:none;
                                             color: #FFFFFF;
@@ -1342,67 +1428,76 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             width: 100px;
                                             height:43px;
                                             ;" onclick="eduaction()">
-                                            Add
-                                            <i class="icon-database-insert ml-1"></i>
-                                        </button>
-                                    </div>
+                                        Add
+                                        <i class="icon-database-insert ml-1"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        </form>
-                    </div>
-                    <!--------------mydiv1------------>
-                    <div id="showten" class="myDiv1">
-                        <form id="education-form2" action="" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row col-lg-12">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group select-sup">
-                                    <label class="title-label">University/Institute<span style="color: red;">*</span></label>
-                                    <select class="form-control select form-control-lg" name="university" id="mydivuniversity" required>
-                                        <option value="" class="text-capitalize">Choose University</option>
-                                        <option value="Test university" class="text-capitalize">Test university</option>
-                                    </select>
-                                </div>
+                </div>
+                </form>
+            </div>
+            <!--------------mydiv1------------>
+            <div id="showten" class="myDiv1">
+                <form id="education-form2" action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row col-lg-12">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group select-sup">
+                                <label class="title-label">University/Institute<span
+                                        style="color: red;">*</span></label>
+                                <select class="form-control select form-control-lg" name="university"
+                                    id="mydivuniversity" required>
+                                    <option value="" class="text-capitalize">Choose University</option>
+                                    <option value="Test university" class="text-capitalize">Test university</option>
+                                </select>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group">
-                                    <label class="title-label">Course<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="course" id="mydivcourse" required>
-                                </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group">
+                                <label class="title-label">Course<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="course" id="mydivcourse"
+                                    required>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group">
-                                    <label class="title-label">Specialization<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="specialization" id="mydivspecialization" required>
-                                </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group">
+                                <label class="title-label">Specialization<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="specialization"
+                                    id="mydivspecialization" required>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group select-sup">
-                                    <label class="title-label">Course type<span style="color: red;">*</span></label>
-                                    <select class="form-control select form-control-lg" name="course_type" id="mydivcoursetype" required>
-                                        <option value="Full Time" class="text-capitalize">Full Time</option>
-                                        <option value="Part Time," class="text-capitalize">Part Time</option>
-                                        <option value="Correspondence/ Distance Learning" class="text-capitalize">Correspondence/ Distance Learning</option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group select-sup">
+                                <label class="title-label">Course type<span style="color: red;">*</span></label>
+                                <select class="form-control select form-control-lg" name="course_type"
+                                    id="mydivcoursetype" required>
+                                    <option value="Full Time" class="text-capitalize">Full Time</option>
+                                    <option value="Part Time," class="text-capitalize">Part Time</option>
+                                    <option value="Correspondence/ Distance Learning" class="text-capitalize">
+                                        Correspondence/ Distance Learning</option>
+                                </select>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group">
-                                    <label class="title-label"></i>Pass Out<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="passout" id="mydivpassout1" required>
-                                </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group">
+                                <label class="title-label"></i>Pass Out<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="passout"
+                                    id="mydivpassout1" required>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group">
-                                    <label class="title-label"></i>Mark Obtained(%)<span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" name="marks" id="mydivmarks1" required>
-                                </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class=" form-group">
+                                <label class="title-label"></i>Mark Obtained(%)<span
+                                        style="color: red;">*</span></label>
+                                <input type="text" class="form-control form-control-lg" name="marks" id="mydivmarks1"
+                                    required>
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-                                <div class="text-center">
-                                    <button type="button"
-                                            class="btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                        </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary btn-lg gradient-button gradient-button-1"
+                                    style="font: normal normal100 20px/31px Quicksand;
                                             letter-spacing: 1.25px;
                                             border:none;
                                             color: #FFFFFF;
@@ -1412,24 +1507,24 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             width: 100px;
                                             height:43px;
                                             ;" onclick="eduaction1()">
-                                            Add
-                                            <i class="icon-database-insert ml-1"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                    Add
+                                    <i class="icon-database-insert ml-1"></i>
+                                </button>
                             </div>
-                            <br/>
                         </div>
-                    </form>
                     </div>
+                    <br />
             </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
+</div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
         var current_fs, next_fs, pre_fs;
         var opacity;
         var current = 1;
@@ -1457,6 +1552,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             });
             setProgressBar(++current);
         });
+
         function setProgressBar(curStep) {
             var percent = parseFloat(100 / steps) * curStep;
             percentpercent = percent.toFixed();
@@ -1467,6 +1563,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             return false;
         })
     });
+
 </script>
 <script>
     $(document).ready(function () {
@@ -1474,15 +1571,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         $(".myDiv1").hide();
         $('#educationselect').on('change', function () {
             var demovalue = $(this).val();
-            if ($(this).val() == 1  || $(this).val() == 2) {
+            if ($(this).val() == 1 || $(this).val() == 2) {
                 $(".myDiv").show();
                 $(".myDiv1").hide();
-            }
-            else {
+            } else {
                 $(".myDiv").hide();
                 $(".myDiv1").show();
             }
-            
+
         });
     });
 
@@ -1490,59 +1586,60 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 <script>
     $('#candidatestatusselect').on('change', function () {
         var demovalue = $(this).val();
-        if ($(this).val() == 2  || $(this).val() == 6) {
-            res='<div class="row">'+
-                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
-                '<div class=" form-group">'+
-                '<label class="title-label"></i>Remark</label>'+
-                '<textarea rows="4" class="form-control1" name="remark"></textarea>'+
-                '</div>'+
-                '</div>'+
-                '</div>';
-            $('#candidate_status_div').html(res);    
-        }
-        if($(this).val() == 4) {
-            res='<div class="row">'+
-                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
-                '<div class=" form-group">'+
-                '<label class="title-label"></i>Reson</label>'+
-                '<input type="text" class="form-control1" name="reson">'+
-                '</div>'+
-                '</div>'+
-                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
-                '<div class=" form-group">'+
-                '<label class="title-label"></i>Remark</label>'+
-                '<textarea rows="4" class="form-control1" name="remark"></textarea>'+
-                '</div>'+
-                '</div>'+
+        if ($(this).val() == 2 || $(this).val() == 6) {
+            res = '<div class="row">' +
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">' +
+                '<div class=" form-group">' +
+                '<label class="title-label"></i>Remark</label>' +
+                '<textarea rows="4" class="form-control" name="remark"></textarea>' +
+                '</div>' +
+                '</div>' +
                 '</div>';
             $('#candidate_status_div').html(res);
         }
-        if($(this).val() == 5) {
-            res='<div class="row">'+
-                '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">'+
-                '<div class=" form-group select-date"">'+
-                '<label class="title-label"></i>Date</label>'+
-                '<input type="text" class="form-control form-control-lg" name="interview_date">'+
-                '</div>'+
-                '</div>'+
-                '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">'+
-                '<div class=" form-group">'+
-                '<label class="title-label"></i>Place</label>'+
-                '<input type="text" class="form-control1" name="interview_place">'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">'+
-                '<div class=" form-group">'+
-                '<label class="title-label"></i>Remark</label>'+
-                '<textarea rows="4" class="form-control1" name="remark"></textarea>'+
-                '</div>'+
-                '</div>'+
+        if ($(this).val() == 4) {
+            res = '<div class="row">' +
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">' +
+                '<div class=" form-group">' +
+                '<label class="title-label"></i>Reason</label>' +
+                '<input type="text" class="form-control" name="reson">' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">' +
+                '<div class=" form-group">' +
+                '<label class="title-label"></i>Remark</label>' +
+                '<textarea rows="4" class="form-control" name="remark"></textarea>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+            $('#candidate_status_div').html(res);
+        }
+        if ($(this).val() == 5) {
+            res = '<div class="row">' +
+                '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">' +
+                '<div class=" form-group select-date"">' +
+                '<label class="title-label"></i>Date</label>' +
+                '<input type="date" class="form-control form-control-lg" name="interview_date">' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">' +
+                '<div class=" form-group">' +
+                '<label class="title-label"></i>Place</label>' +
+                '<input type="text" class="form-control" name="interview_place">' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">' +
+                '<div class=" form-group">' +
+                '<label class="title-label"></i>Remark</label>' +
+                '<textarea rows="4" class="form-control" name="remark"></textarea>' +
+                '</div>' +
+                '</div>' +
                 '</div>';
             $('#candidate_status_div').html(res);
         }
     });
+
 </script>
 <script>
     function eduaction() {
@@ -1554,7 +1651,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         formData.append("education", education);
         formData.append("candidate_id", candidate_id);
         formData.append("option", 1);
-        
+
         var edit_id = $(`#educational_edit_id`).val();
         formData.append("educational_edit_id", edit_id);
 
@@ -1562,45 +1659,52 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         url = url.replace(':id', candidate_id);
 
         $.ajax({
-            type:'POST',
-            url:url,
-            dataType: 'json',  // what to expect back from the PHP script, if anything
+            type: 'POST',
+            url: url,
+            dataType: 'json', // what to expect back from the PHP script, if anything
             cache: false,
             contentType: false,
             processData: false,
             data: formData,
-            success:function(data) {
-                if(data.success==1) {
-                    $('#educationModal').modal('hide');  
-                    var res='';
-                    $.each (data.data, function (key, value) {
-                        if(value.education == 1 || value.education == 2) {
+            success: function (data) {
+                if (data.success == 1) {
+                    $('#educationModal').modal('hide');
+                    var res = '';
+                    $.each(data.data, function (key, value) {
+                        if (value.education == 1 || value.education == 2) {
                             res +=
-                            '<tr id = "row1'+value.candidate_education_id+'">'+
-                                '<td>'+value.education+'</td>'+
-                                '<td>'+value.board+'</td>'+
-                                '<td>'+value.passout+'</td>'+
-                                '<td>'+value.school_medium+'</td>'+
-                                '<td>'+value.mark_obtained+'</td>'+
-                                '<td>'+
-                                '<div class="action-btns d-flex justify-content-end">'+
-                                '<a href="javascript:void(0)" onclick="return edititem('+value.candidate_education_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>'+
-                                '<input type="hidden" id="candidate_education_id_'+value.candidate_education_id+'" value="'+value._id+'"/>'+
-                                '<a href="javascript:void(0)" onclick="return deleteitem('+value.candidate_education_id+');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>'+
-                                '</div>'+
-                                '</td>'+
-                            '</tr>';
+                                '<tr id = "row1' + value.candidate_education_id + '">' +
+                                '<td>' + value.education + '</td>' +
+                                '<td>' + value.board + '</td>' +
+                                '<td>' + value.passout + '</td>' +
+                                '<td>' + value.school_medium + '</td>' +
+                                '<td>' + value.mark_obtained + '</td>' +
+                                '<td>' +
+                                '<div class="action-btns d-flex justify-content-end">' +
+                                '<a href="javascript:void(0)" onclick="return edititem(' + value
+                                .candidate_education_id +
+                                ');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>' +
+                                '<input type="hidden" id="candidate_education_id_' + value
+                                .candidate_education_id + '" value="' + value._id + '"/>' +
+                                '<a href="javascript:void(0)" onclick="return deleteitem(' + value
+                                .candidate_education_id +
+                                ');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>' +
+                                '</div>' +
+                                '</td>' +
+                                '</tr>';
                         }
                     });
-                    $('#tbodyfirst').html(res);        
+                    $('#tbodyfirst').html(res);
                 } else {
 
                 }
-            },error:function(data) {
+            },
+            error: function (data) {
 
             }
         });
     }
+
     function eduaction1() {
         var education = $(`#educationselect`).val();
         var candidate_id = $(`#candidate_id`).val();
@@ -1618,69 +1722,73 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         url = url.replace(':id', candidate_id);
 
         $.ajax({
-            type:'POST',
-            url:url,
-            dataType: 'json',  // what to expect back from the PHP script, if anything
+            type: 'POST',
+            url: url,
+            dataType: 'json', // what to expect back from the PHP script, if anything
             cache: false,
             contentType: false,
             processData: false,
             data: formData,
-            success:function(data) {
-                $('#educationModal').modal('hide');  
-                var res='';
-                $.each (data.data, function (key, value) {
-                    if(value.education == 3 || value.education == 4 || value.education == 5) {
+            success: function (data) {
+                $('#educationModal').modal('hide');
+                var res = '';
+                $.each(data.data, function (key, value) {
+                    if (value.education == 3 || value.education == 4 || value.education == 5) {
                         res +=
-                            '<tr id = "row2'+value.candidate_education_id+'">'+
-                            '<td>'+value.education+'</td>'+
-                            '<td>'+value.university+'</td>'+
-                            '<td>'+value.course+'</td>'+
-                            '<td>'+value.specialization+'</td>'+
-                            '<td>'+value.course_type+'</td>'+
-                            '<td>'+value.passout+'</td>'+
-                            '<td>'+value.mark_obtained+'</td>'+
-                            '<td>'+
-                            '<div class="action-btns d-flex justify-content-end">'+
-                            '<a href="javascript:void(0)" onclick="return edititem1('+value.candidate_education_id+');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>'+
-                            '<input type="hidden" id="candidate_education_id1_'+value.candidate_education_id+'" value="'+value._id+'"/>'+
-                            '<a href="javascript:void(0)" onclick="return deleteitem1('+value.candidate_education_id+');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>'+
-                            '</div>'+
-                            '</td>'+
+                            '<tr id = "row2' + value.candidate_education_id + '">' +
+                            '<td>' + value.education + '</td>' +
+                            '<td>' + value.university + '</td>' +
+                            '<td>' + value.course + '</td>' +
+                            '<td>' + value.specialization + '</td>' +
+                            '<td>' + value.course_type + '</td>' +
+                            '<td>' + value.passout + '</td>' +
+                            '<td>' + value.mark_obtained + '</td>' +
+                            '<td>' +
+                            '<div class="action-btns d-flex justify-content-end">' +
+                            '<a href="javascript:void(0)" onclick="return edititem1(' + value
+                            .candidate_education_id +
+                            ');" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>' +
+                            '<input type="hidden" id="candidate_education_id1_' + value
+                            .candidate_education_id + '" value="' + value._id + '"/>' +
+                            '<a href="javascript:void(0)" onclick="return deleteitem1(' + value
+                            .candidate_education_id +
+                            ');" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>' +
+                            '</div>' +
+                            '</td>' +
                             '</tr>';
                     }
                 });
-                $('#tbodysecond').html(res);   
-            },error:function(data) {
+                $('#tbodysecond').html(res);
+            },
+            error: function (data) {
 
             }
         });
     }
+
 </script>
 <script>
-    function edititem(id)
-    {
+    function edititem(id) {
         var id = $(`#candidate_education_id_${id}`).val();
         var url = '{{ route("candidate.education.edit", ":id") }}';
         url = url.replace(':id', id);
-        if(id) {
+        if (id) {
             $.ajax({
-                type:'get',
-                url:url,
-                success:function(data){
+                type: 'get',
+                url: url,
+                success: function (data) {
                     //console.log(data.data);
-                    if(data.success==1)
-                    {
+                    if (data.success == 1) {
                         $(`#educational_edit_id`).val(data.data._id);
                         $(`#educationselect`).val(data.data.education);
-                        if (data.data.education == 1  || data.data.education == 2) {
+                        if (data.data.education == 1 || data.data.education == 2) {
                             $(".myDiv").show();
                             $(".myDiv1").hide();
                             $(`#mydivboard`).val(data.data.board);
                             $(`#mydivschoolmedium`).val(data.data.school_medium);
                             $(`#mydivpassout`).val(data.data.passout);
                             $(`#mydivmarks`).val(data.data.mark_obtained);
-                        }
-                        else {
+                        } else {
                             $(".myDiv").hide();
                             $(".myDiv1").show();
                             $(`#mydivuniversity`).val(data.data.university);
@@ -1696,30 +1804,28 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             })
         }
     }
-    function edititem1(id)
-    {
+
+    function edititem1(id) {
         var id = $(`#candidate_education_id1_${id}`).val();
         var url = '{{ route("candidate.education.edit", ":id") }}';
         url = url.replace(':id', id);
-        if(id) {
+        if (id) {
             $.ajax({
-                type:'get',
-                url:url,
-                success:function(data){
+                type: 'get',
+                url: url,
+                success: function (data) {
                     //console.log(data.data);
-                    if(data.success==1)
-                    {
+                    if (data.success == 1) {
                         $(`#educational_edit_id`).val(data.data._id);
                         $(`#educationselect`).val(data.data.education);
-                        if (data.data.education == 1  || data.data.education == 2) {
+                        if (data.data.education == 1 || data.data.education == 2) {
                             $(".myDiv").show();
                             $(".myDiv1").hide();
                             $(`#mydivboard`).val(data.data.board);
                             $(`#mydivschoolmedium`).val(data.data.school_medium);
                             $(`#mydivpassout`).val(data.data.passout);
                             $(`#mydivmarks`).val(data.data.mark_obtained);
-                        }
-                        else {
+                        } else {
                             $(".myDiv").hide();
                             $(".myDiv1").show();
                             $(`#mydivuniversity`).val(data.data.university);
@@ -1735,8 +1841,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             })
         }
     }
-    function deleteitem(id)
-    {
+
+    function deleteitem(id) {
         var row_id = id;
         var id = $(`#candidate_education_id_${id}`).val();
         var url = '{{ route("education.destroy", ":id") }}';
@@ -1751,51 +1857,47 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 cancelButtonText: "No, cancel pls!",
                 closeOnConfirm: true,
                 closeOnCancel: true
-              },
-              function(isConfirm) {
+            },
+            function (isConfirm) {
                 if (isConfirm) {
-                   $.ajax({
-                            type:'POST',
-                            url:url,
-                            data:'_token={{ csrf_token() }}',
-                            success:function(data){
-                              if(data.success==1)
-                              {
-                                   swal(
-                                        'Deleted!',
-                                        'Education has been deleted.',
-                                        'success'
-                                      );
-                                      console.log('#row1'+id);
-                                      $('#row1'+row_id).remove();
-                              }
-                              else
-                              {
-                                  swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                              }
-                            },
-                            error:function(data)
-                            {
-                                console.log(data);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: '_token={{ csrf_token() }}',
+                        success: function (data) {
+                            if (data.success == 1) {
                                 swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
+                                    'Deleted!',
+                                    'Education has been deleted.',
+                                    'success'
+                                );
+                                console.log('#row1' + id);
+                                $('#row1' + row_id).remove();
+                            } else {
+                                swal(
+                                    'Failed!',
+                                    data.message,
+                                    'error'
+                                );
                             }
-                            
-                         });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            swal(
+                                'Failed!',
+                                data.message,
+                                'error'
+                            );
+                        }
+
+                    });
                 } else {
-                  swal("Cancelled", "Education is safe :)", "error");
+                    swal("Cancelled", "Education is safe :)", "error");
                 }
             });
     }
-    function deleteitem1(id)
-    {
+
+    function deleteitem1(id) {
         var row_id = id;
         var id = $(`#candidate_education_id1_${id}`).val();
         var url = '{{ route("education.destroy", ":id") }}';
@@ -1810,79 +1912,77 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 cancelButtonText: "No, cancel pls!",
                 closeOnConfirm: true,
                 closeOnCancel: true
-              },
-              function(isConfirm) {
+            },
+            function (isConfirm) {
                 if (isConfirm) {
-                   $.ajax({
-                            type:'POST',
-                            url:url,
-                            data:'_token={{ csrf_token() }}',
-                            success:function(data){
-                              if(data.success==1)
-                              {
-                                   swal(
-                                        'Deleted!',
-                                        'Education has been deleted.',
-                                        'success'
-                                      );
-                                      $('#row2'+row_id).remove();
-                              }
-                              else
-                              {
-                                  swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
-                              }
-                            },
-                            error:function(data)
-                            {
-                                console.log(data);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: '_token={{ csrf_token() }}',
+                        success: function (data) {
+                            if (data.success == 1) {
                                 swal(
-                                        'Failed!',
-                                        data.message,
-                                        'error'
-                                      );
+                                    'Deleted!',
+                                    'Education has been deleted.',
+                                    'success'
+                                );
+                                $('#row2' + row_id).remove();
+                            } else {
+                                swal(
+                                    'Failed!',
+                                    data.message,
+                                    'error'
+                                );
                             }
-                            
-                         });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                            swal(
+                                'Failed!',
+                                data.message,
+                                'error'
+                            );
+                        }
+
+                    });
                 } else {
-                  swal("Cancelled", "Education is safe :)", "error");
+                    swal("Cancelled", "Education is safe :)", "error");
                 }
             });
     }
+
 </script>
 <script>
-     $(document).ready(function () {
+    $(document).ready(function () {
         var current_fs, next_fs, pre_fs;
         var opacity;
         var current = 1;
         var steps = $("fieldset").length;
         setProgressBar(current);
         $(".next2").click(function () {
-            
+
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
-            
-            var data=$('#experience-form').serialize();
+
+            var data = $('#experience-form').serialize();
             var form = $("#experience-form")[0];
             var form_data = new FormData(form);
             var candidate_id = $("#candidate_id").val();
             form_data.append("candidate_id", candidate_id);
-            var success_variable= false;
-            
+            var success_variable = false;
+
             var url = '{{ route("update.candidate.experience") }}';
             $.ajax({
-                type:'POST',
-                url:url,
-                dataType: 'json',  // what to expect back from the PHP script, if anything
+                type: 'POST',
+                url: url,
+                dataType: 'json', // what to expect back from the PHP script, if anything
                 cache: false,
                 contentType: false,
                 processData: false,
                 data: form_data,
-                success:function(data) {
-                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                success: function (data) {
+                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass(
+                    "active");
                     next_fs.show();
                     current_fs.animate({
                         opacity: 0
@@ -1901,7 +2001,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     });
                     setProgressBar(++current);
                     //window.location = window.location.origin+'/admin/candidate';  
-                },error:function(data) {
+                },
+                error: function (data) {
 
                 }
             });
@@ -1937,13 +2038,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         $(".submit").click(function () {
             return false;
         })
-        });
+    });
+
 </script>
 <script>
-    function fileupload(){
-        var file_data = $('#resume').prop('files')[0]; 
+    function fileupload() {
+        var file_data = $('#resume').prop('files')[0];
         var error = 0;
-        if(file_data){
+        if (file_data) {
             var fileType = file_data["type"];
             var validImageTypes = ["application/pdf"];
             if ($.inArray(fileType, validImageTypes) < 0) {
@@ -1952,28 +2054,30 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 err.style.display = "block";
             }
         }
-        if(error == 0) {
-            var data=$('#candidate-status-form').serialize();
-            var file_data = $('#resume').prop('files')[0]; 
+        if (error == 0) {
+            var data = $('#candidate-status-form').serialize();
+            var file_data = $('#resume').prop('files')[0];
             var form_data = new FormData($("#candidate-status-form")[0]);
             var candidate_id = $(`#candidate_id`).val();
             form_data.append('candidate_id', candidate_id);
             form_data.append('file', file_data);
             var url = '{{ route("change.candidate.status") }}';
             $.ajax({
-                type:'POST',
-                url:url,
-                dataType: 'json',  // what to expect back from the PHP script, if anything
+                type: 'POST',
+                url: url,
+                dataType: 'json', // what to expect back from the PHP script, if anything
                 cache: false,
                 contentType: false,
                 processData: false,
                 data: form_data,
-                success:function(data) {
-                    window.location = window.location.origin+'/admin/candidate';                   
-                },error:function(data) {
+                success: function (data) {
+                    window.location = window.location.origin + '/sapthazeal1/SapthaZeal/public/admin/candidate';
+                },
+                error: function (data) {
 
                 }
             });
         }
     }
+
 </script>

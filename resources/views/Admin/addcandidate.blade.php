@@ -5,6 +5,9 @@
         box-sizing: border-box;
         list-style: none;
         text-decoration: none;
+    }
+    .pre{
+    margin-left: 10px;
 
     }
 
@@ -105,22 +108,22 @@ input:focus::-webkit-datetime-edit{ color: #000; }
   border-radius: 4px;
   filter: invert(1) sepia(100%) saturate(100000%) hue-rotate(170deg);
 }
-    .sidebar {
+.sidebar {
+
+width: 250px;
+
+background: #fff;
+
+margin-top: 10px;
+border-radius: 15px;
+
+margin-bottom: 10px;
 
 
+color: #000000;
 
-        background: #fff;
-        padding: 10px 0;
+}
 
-        border-radius: 15px;
-        margin: 10px 0 10px;
-        margin-bottom: 10px;
-
-        overflow: hidden;
-
-        color: #000000;
-
-    }
 
     .navbar-collapse {
         position: absolute;
@@ -675,6 +678,13 @@ input:focus::-webkit-datetime-edit{ color: #000; }
         border-radius: 3px;
         text-align: center;
     }
+    .make-me-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+
+        padding: 0 15px;
+    }
 
 </style>
 
@@ -698,11 +708,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
         <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
+        <div class="make-me-sticky p-0">
 
-
-            <div class=" col-lg-10">
-                <img src="../../Assets/logo.png" class="img-fluid " alt="Sample image">
-            </div>
+        <div class=" col-lg-12 text-center">
+                    <img src="../../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
+                </div>
             <div class="justify-content-center">
                 <ul>
                     <li><a href="{{route('view.job')}}">Job Management</a></li>
@@ -728,6 +738,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
                     </ul>
+                </div>
             </div>
 
         </div>
@@ -829,7 +840,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <label class="title-label"> image <span style="color: red;">*</span></label>
                                     <button class="btn fileicon " type="button">
                                         <div class="dropzone1">
-                                        <img id="preview" style="height: 78px;width: 98px;">
+                                        <img id="preview" style="height: 78px;width: 98px;" required>
                                             <img src="../../Assets/cloud-computing.png" class="upload-icon" />
                                             <input type="file" name="image" class="upload-input image" id="bimage"  required/>
                                         </div>
@@ -916,7 +927,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <a  href="" data-toggle="modal" data-target="#educationModal" id="remove"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
                     
-                    <button type="button" class=" next1 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
+                    <button type="button"  class=" next1 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
                           letter-spacing: 0.25px;
     border: none;
     color: #FFFFFF;
@@ -1462,7 +1473,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             current_fs = $(this).parent();
             pre_fs = $(this).parent().prev();
             $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-            $("#image-upload").trigger('reset');
+        
             pre_fs.show();
 
             current_fs.animate({
@@ -1648,7 +1659,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 $.each (data.data, function (key, value) {
                     if(value.education == 3 || value.education == 4 || value.education == 5) {
                         res +=
-                            '<tr id = "row2'+value.candidate_education_id+'">'+
+                            '<tr id= "row2'+value.candidate_education_id+'">'+
                             '<td>'+value.education+'</td>'+
                             '<td>'+value.university+'</td>'+
                             '<td>'+value.course+'</td>'+

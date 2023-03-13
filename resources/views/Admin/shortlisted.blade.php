@@ -457,9 +457,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                         </tr>
                     </thead>
-                    @foreach ($job as $jobs)
+                   
                     <tbody>
-
+                    @foreach ($job as $jobs)
                         <tr>
                             <td>#{{ $jobs->job_id}}</td>
                             <td>{{ $jobs->jobname}}</td>
@@ -478,7 +478,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             </td>
                         </tr>
                         @endforeach
-                        </thead>
+                        </tbody>
 
                 </table>
 

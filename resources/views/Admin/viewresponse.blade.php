@@ -513,10 +513,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                             onclick="getResponseValue(5)">Hired</button>
                     </div>
 
-                    <div class=" has-search col-md-3  pull-right">
-                        <span class="fa fa-search form-control-feedback"></span>
-                        <input type="text" class=" form-control form-control-lg " placeholder="Search">
-                    </div>
+                    
 
                 </div>
             </nav>
@@ -656,11 +653,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
             function edititem(id) {
                 var job_id = $(`#jobs_id`).val();
-                window.location = window.location.origin + '/admin/job/candidate-details/' + id + '/' + job_id;
+                window.location = window.location.origin +  '/sapthazeal1/SapthaZeal/public/admin/job/candidate-details/' + id + '/' + job_id;
             }
 
             function chatbox(id) {
-                window.location = window.location.origin + '/admin/job/candidate-chatbox/' + id;
+                window.location = window.location.origin + '/sapthazeal1/SapthaZeal/public/admin/job/candidate-chatbox/' + id;
             }
 
         </script>

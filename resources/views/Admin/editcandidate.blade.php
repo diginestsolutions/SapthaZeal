@@ -7,6 +7,9 @@
         text-decoration: none;
 
     }
+    .next1{
+        margin-left:10px;
+    }
 
     .con1 {
 
@@ -76,7 +79,7 @@
         right: -9px;
         bottom: 18px;
 
-        padding: 4px 1em;
+        padding: 0px 1em;
         color: #7ECD7C;
         pointer-events: none
     }
@@ -93,6 +96,10 @@
         color: #7ECD7C;
         pointer-events: none
     }
+    .pre{
+    margin-left: 10px;
+
+    }
 
     .select-date::after {
         font-family: "Font Awesome 5 Free";
@@ -108,21 +115,19 @@
     }
     .sidebar {
 
+width: 250px;
+
+background: #fff;
+
+margin-top: 10px;
+border-radius: 15px;
+
+margin-bottom: 10px;
 
 
-        background: #fff;
-        padding: 10px 0;
+color: #000000;
 
-        border-radius: 15px;
-        margin: 10px 0 10px;
-        margin-bottom: 10px;
-
-        overflow: hidden;
-
-        color: #000000;
-
-    }
-
+}
     .navbar-collapse {
         position: absolute;
         z-index: 3;
@@ -150,6 +155,13 @@
 
 
     }
+    input::-webkit-datetime-edit{ color: transparent; }
+input:focus::-webkit-datetime-edit{ color: #000; }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  filter: invert(1) sepia(100%) saturate(100000%) hue-rotate(170deg);
+}
 
     .card {
         padding: 20px;
@@ -678,7 +690,17 @@
       margin-left:42px;
         height: 38px;
     margin-top: -31px;
-
+    }
+    .make-me-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        padding: 0 15px;
+    }
+    .upload-icon {
+        
+        background-color: #208CD1;
+        border-radius: 5px;
     }
 
 </style>
@@ -703,11 +725,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 
         <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
+        <div class="make-me-sticky p-0">
 
-
-            <div class=" col-lg-10">
-                <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
-            </div>
+        <div class=" col-lg-12 text-center">
+                    <img src="../../../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
+                </div>
             <div class="justify-content-center">
                 <ul>
                     <li><a href="{{route('view.job')}}">Job Management</a></li>
@@ -734,7 +756,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                     </ul>
             </div>
-
+</div>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -831,7 +853,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="dropzone">
                                         <img src="{{$candidate->image}} "id="preview" width="150" height="150" alt=""
                                             style="border-radius:10px;">
-                                     
+                                            <img src="../../../Assets/cloud-computing.png" class="upload-icon" />
                                      <input type="file" id="bimage" name="image" class="upload-input image" required/>
                                         </div>
                                     </button>
@@ -916,20 +938,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                     <a class="btn " href="" data-toggle="modal" data-target="#educationModal"> <span class="icons"> <i
                     class="fa fa-plus " aria-hidden="true"></i></span></a>
-                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
-                          letter-spacing: 0.25px;
-    border: none;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    opacity: 1;
-    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
-    width: 90px;
-    float:right;
-    font-size: 14px;
-    font-family: 'Quicksand';">
-                        Previous<i class="icon-database-insert ml-1"></i>
-
-                    </button>
                     <button type="button" class=" next1 btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
                           letter-spacing: 0.25px;
     border: none;
@@ -944,6 +952,21 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         Next<i class="icon-database-insert ml-1"></i>
                     </button>
 
+                    <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
+                          letter-spacing: 0.25px;
+    border: none;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    background-image: linear-gradient(to right, #69DB65 51%, #208CD1 100%);
+    width: 90px;
+    float:right;
+    font-size: 14px;
+    font-family: 'Quicksand';">
+                        Previous<i class="icon-database-insert ml-1"></i>
+
+                    </button>
+                    
                     <div class=" col-md-12 ">
                         <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 43px;">
                             <div class="card-body">
@@ -1118,7 +1141,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                                     <div class=" form-group select-date">
                                         <label class="title-label"> Joining Date</label>
-                                        <input type="date" class="form-control form-control-lg" name="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
+                                        <input type="text" class="form-control form-control-lg"  onfocus="(this.type='date')" onblur="(this.type='text')"name="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
                                     </div>
                                 </div>
 
@@ -1165,7 +1188,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                     <div class=" form-group">
                                         <label class="title-label"></i>Job Description</label>
-                                        <textarea rows="4" class="form-control1" name="job_description">{{@$candidate->candidate_experience->job_description}}</textarea>
+                                        <textarea rows="4" class="form-control"  name="job_description">{{@$candidate->candidate_experience->job_description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
@@ -2010,7 +2033,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                         duration: 500
                     });
                     setProgressBar(++current);*/
-                    window.location = window.location.origin+'/admin/candidate';  
+                    window.location = window.location.origin+'/sapthazeal1/SapthaZeal/public/admin/candidate';  
                 },error:function(data) {
                     errorsHtml = '<div class="alert alert-danger"><ul>';
 

@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Validator;
 use App\Models\Notification;
 class NotificationController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
+   
     public function notification(){
 
         $result = Notification::with('user')->get();
@@ -20,7 +18,15 @@ class NotificationController extends Controller
     
     }
     public function add(Request $request){
+        $validator = Validator::make($request->all(), [
+            
+            'heading'     => 'required|integer|unique:notifications',
+          
+        ]);
 
+        if($validator->fails()) {
+            return redirect('admin/notifications')->with('error', 'Notification already Exists.');
+        }
         try{
         $notification = new Notification;
         $notification->nextid();

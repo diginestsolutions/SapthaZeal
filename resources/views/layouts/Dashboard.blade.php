@@ -329,11 +329,11 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 <div class="container-fluid native-scroll">
     <div class="wrapper d-flex ">
 
-        <div class="sidebar col-lg-2  col-xl-2 col-md-3 p-0 " id="sidenav">
+        <div class="sidebar  col-lg-2  col-xl-2 col-md-3 p-0 " id="sidenav">
             <div class="make-me-sticky p-0">
 
-                <div class=" col-lg-10">
-                    <img src="../Assets/logo.png" class="img-fluid " alt="Sample image">
+                <div class=" col-lg-12 text-center">
+                    <img src="../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
                 </div>
                 <div class="justify-content-center">
                     <ul>
