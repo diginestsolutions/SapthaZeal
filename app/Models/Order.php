@@ -14,7 +14,7 @@ class Order extends Model
 
     protected $collection = 'orders';
     protected $guarded = [];
-
+    protected $dates = ['planexpiry_date'];
     public function nextid()
     {
         // ref is the counter - change it to whatever you want to increment

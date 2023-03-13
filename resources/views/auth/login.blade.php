@@ -146,7 +146,7 @@
                     </div>
                     <div class="row justify-content-center">
                         @error('phone')
-                    </br><span style="color: red;">{{$errors->first('phone')}}</span>
+                    </br><span style="color:red;">{{$errors->first('phone')}}</span>
                         @enderror
                     </div>
                    

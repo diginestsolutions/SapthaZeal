@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'mobile'=> $request->mobile,
-                'otp' => 0,
+                'otp'   => 0,
                 'role' => "jobseeker",
                 'status'=> "Active"
             ]);

@@ -323,9 +323,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
 
               
-<div class=" col-lg-10">
-    <img src="../../Assets/logo.png" class="img-fluid " alt="Sample image">
-</div>
+    <div class=" col-lg-12 text-center">
+                    <img src="../../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
+                </div>
 <div class="justify-content-center">
     <ul >
         <li><a href="{{route('view.job')}}">Job Management</a></li>
@@ -468,7 +468,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Mobile Number<span style="color: red;">*</span></label>
 
-                                    <input type="text" class="form-control form-control-lg" name="mobile" required>
+                                    <input type="number" class="form-control form-control-lg" name="mobile" required>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
@@ -490,7 +490,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label">Company Name</label>
 
-                                    <input type="text" class="form-control form-control-lg" name="company_name" required>
+                                    <input type="text" class="form-control form-control-lg" name="company_name">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">

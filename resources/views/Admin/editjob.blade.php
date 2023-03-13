@@ -412,9 +412,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     <div class="sidebar col-lg-2 col-md-3 p-0">
 
               
-<div class=" col-lg-10">
-    <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
-</div>
+    <div class=" col-lg-12 text-center">
+                    <img src="../../../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
+                </div>
 <div class="justify-content-center">
     <ul >
         <li><a href="{{route('view.job')}}">Job Management</a></li>
@@ -621,7 +621,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group select-date">
                                     <label class="title-label">Expiry Date</label>
 
-                                    <input type="text" id="deadline" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control form-control-lg" name="expirydate" value="{{$jobs->expirydate}}"   
+                                    <input type="text" id="deadline" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control form-control-lg" name="expirydate" value="{{$jobs->expirydate->format('d-m-Y')}}"   
                                         required></span>
                                 </div>
                             </div>

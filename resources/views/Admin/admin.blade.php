@@ -222,10 +222,10 @@
         display: flex;
         padding-left: 28px;
     }
-
 </style>
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
 <div class="col-lg-10  col-md-12" id="main">
 
     <nav class="navbar navbar-light col-md-12 ">
@@ -417,7 +417,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" style="margin-top: -57px;">
 
 
 
@@ -435,8 +435,8 @@
                             <div class=" form-group">
                                 <label class="title-label">Mobile Number</label>
 
-                                <input type="number" class="form-control form-control-lg" name="phone" required
-                                    maxlength=10>
+                                <input type="number"  class="form-control form-control-lg mobile-valid"  name="phone" required
+                                    >
 
 
                             </div>
@@ -452,7 +452,7 @@
                             <div class=" form-group">
                                 <label class="title-label">Designation</label>
 
-                                <input type="text" class="form-control form-control-lg" name="designation" required>
+                                <input type="text" class="form-control form-control-lg" name="designation" required style="margin-top: -77px;">
                             </div>
                         </div>
 
@@ -598,32 +598,19 @@ width: 100px;
                 </button>
             </div>
 
-            <div class="modal-body col-lg-12">
+            <div class="modal-body">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('update1.admin')}}">
                     @csrf
                     <input type="hidden" name="id" id="user_edit_id_">
                     <div class="row">
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
                             <div class=" form-group">
                                 <label class="title-label"> Name</label>
 
                                 <input type="text" class="form-control form-control-lg" name="name" id="name" required>
                             </div>
                         </div>
-
-
-
-
                         <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-
-
-
-
-
                             <div class=" form-group">
                                 <label class="title-label"> Image</label>
 
@@ -637,19 +624,13 @@ width: 100px;
                                 </div>
 
                             </div>
-
-
                         </div>
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" style="margin-top: -57px;">
-
-
-
-
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12"  style="margin-top: -57px;" >
                             <div class=" form-group">
-                                <label class="title-label">Email Address</label>
+                                <label class="title-label" >Email Address</label>
 
                                 <input type="email" class="form-control form-control-lg" name="email" id="_email"
-                                    required>
+                               required>
 
                             </div>
                         </div>
@@ -662,15 +643,7 @@ width: 100px;
 
                             </div>
                         </div>
-
-
-
-
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" style="margin-top: -77px;">
-
-
-
-
+                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12" style="margin-top: -77px;" >
                             <div class=" form-group">
                                 <label class="title-label">Designation</label>
 
@@ -683,22 +656,22 @@ width: 100px;
                     <div class="form-group row ">
                         <div class="col text-center ">
                             <button type="submit" class="btn gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand;
-letter-spacing: 1.25px;
-border:none;
-color: #FFFFFF;
-text-transform: uppercase;
-opacity: 1;
+                            letter-spacing: 1.25px;
+                            border:none;
+                            color: #FFFFFF;
+                            text-transform: uppercase;
+                            opacity: 1;
 
-background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
-width: 100px;
+                            background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
+                            width: 100px;
 
-;">
+                            ;">
                                 Add
                                 <i class="icon-database-insert ml-1"></i>
                             </button>
                         </div>
                     </div>
-            </div>
+                </div>
             </form>
         </div>
     </div>
@@ -767,7 +740,6 @@ width: 100px;
                 }
             });
     }
-
 </script>
 
 <script>
@@ -797,7 +769,6 @@ width: 100px;
             })
         }
     }
-
 </script>
 <script>
     function edititem(id) {
@@ -828,7 +799,6 @@ width: 100px;
             })
         }
     }
-
 </script>
 <script type="text/javascript">
     $(document).ready(function (e) {
@@ -848,7 +818,6 @@ width: 100px;
         });
 
     });
-
 </script>
 <script>
     function statusapproved(id) {
@@ -956,33 +925,42 @@ width: 100px;
                 }
             });
     }
-
 </script>
 <script>
     function reset() {
         $("#form").trigger('reset');
     }
-
 </script>
-<script type="text/javascript">
-    $(document).ready(function (e) {
+<script>
+$(document).ready(function() {
 
+ $('.mobile-valid').on('keypress', function(e) {
 
-        $('.image').change(function () {
-
-            let reader = new FileReader();
-
-            reader.onload = (e) => {
-
-                $('.preview').attr('src', e.target.result);
+            var $this = $(this);
+            var regex = new RegExp("^[0-9\b]+$");
+            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+          
+            if ($this.val().length > 9) {
+                e.preventDefault();
+                return false;
             }
+            if (e.charCode < 54 && e.charCode > 47) {
+                if ($this.val().length == 0) {
+                    e.preventDefault();
+                    return false;
+                } else {
+                    return true;
+                }
 
-            reader.readAsDataURL(this.files[0]);
-
+            }
+            if (regex.test(str)) {
+                return true;
+            }
+            e.preventDefault();
+            return false;
         });
 
-    });
+   });
 
 </script>
-
 @endsection

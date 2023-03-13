@@ -42,6 +42,7 @@
     }
 
 </style>
+
 <div class="col-lg-10  col-md-12" id="main">
     <nav class="navbar navbar-light col-md-12 ">
         <h3 class=" mt-3  heading" style="">Notifications</h3>
@@ -135,12 +136,12 @@
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header">
                 <h5 class="modal-title" id="registerModal">{{ __('Add Notification') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" onclick="return reset();" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fas fa-times-circle " style="    color: #FF0000;"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="registerForm" action="{{ route('add.notification') }}" method="POST"
+                <form id="form" action="{{ route('add.notification') }}" method="POST"
                     enctype="multipart/form-data">
 
                     @csrf
@@ -149,7 +150,7 @@
                             <div class=" form-group select-sup">
                                 <label class="title-label">User Type</label>
                                 <select class="form-control select " name="usertype" required>
-                                    <option value="">Choose Usertype</option>
+                                    <option value="">Choose User type</option>
                                     <option value="jobseeker">Job seekers</option>
                                     <option value="jobprovider">Job providers</option>
                                     <!--@foreach($users as $user)
@@ -171,7 +172,7 @@
                         <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
                             <div class=" form-group">
                                 <label class="title-label">Description</label>
-                                <textarea rows="4" class="form-control1" name="description" required></textarea>
+                                <textarea class="form-control" name="description" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -242,7 +243,7 @@
                     <div class="col-xl-12 col-lg-4 col-md-4 col-sm-12">
                         <div class=" form-group">
                             <label class="title-label">Description</label>
-                            <textarea rows="4" class="form-control1" name="description" id="description"
+                            <textarea  class="form-control" name="description" id="description"
                                 readonly></textarea>
                         </div>
                     </div>
@@ -282,6 +283,13 @@
                 }
             })
         }
+    }
+
+</script>
+<script>
+    function reset() {
+     
+        $("#form").trigger('reset');
     }
 
 </script>

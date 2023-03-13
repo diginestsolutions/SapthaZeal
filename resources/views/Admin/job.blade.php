@@ -80,11 +80,11 @@
                         @foreach ($job as $jobs)
                             <tr>
                                 <td>#{{ $jobs->job_id}}</td>
-                                <td>{{ $jobs->created_at->format('Y-m-d')}}</td>
+                                <td>{{ $jobs->created_at->format('d-m-Y')}}</td>
                                 <td>{{ $jobs->jobprovider }}</td>
                                 <td>{{ $jobs->jobname}}</td>
                                 <td>{{ $jobs->jobcategory}}</td>
-                                <td>{{ $jobs->expirydate}}</td>
+                                <td>{{ $jobs->expirydate->format('d-m-Y')}}</td>
 
                                 <input type="hidden" id="jobs_id_{{$jobs->job_id}}" value="{{ $jobs->id }}"/>
                                 @if($jobs->status =='Saved')  

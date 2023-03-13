@@ -353,9 +353,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <div class="sidebar col-lg-2 col-md-3 p-0">
 
 
-            <div class=" col-lg-10">
-                <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
-            </div>
+        <div class=" col-lg-12 text-center">
+                    <img src="../../../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
+                </div>
             <div class="justify-content-center">
                 <ul>
                     <li><a href="{{route('view.job')}}">Job Management</a></li>
@@ -511,14 +511,14 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 <div class=" form-group">
                                     <label class="title-label"></i>Job Description</label>
 
-                                    <textarea rows="4" class="form-control1" name="jobdescription">{{$job->jobdescription}}</textarea>
+                                    <textarea rows="4" class="form-control1" name="jobdescription"  value="{{$job->jobdescription}}"readonly></textarea>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
 
                                 <div class=" form-group">
                                     <label class="title-label"></i>Prefered Skills:</label>
-                                    <input type="text" rows="4" name="skill" id="skill" class="form-control"
+                                    <input type="text" rows="4" name="skill" class="form-control"
                                         style=" height: 100px;" value="{{$job->skills}}" readonly/>
 
                                 </div>
@@ -555,7 +555,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <label class="title-label">Expiry Date</label>
 
                                     <input type="text" id="deadline" class="form-control form-control-lg"
-                                        name="expirydate" value="{{$job->expirydate}}" readonly></span>
+                                        name="expirydate" value="{{$job->expirydate->format('d-m-Y')}}" readonly></span>
                                 </div>
                             </div>
 

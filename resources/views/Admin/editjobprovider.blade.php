@@ -388,9 +388,9 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     <div class="sidebar col-lg-2 col-md-3 p-0" id="sidenav">
 
               
-<div class=" col-lg-10">
-    <img src="../../../Assets/logo.png" class="img-fluid " alt="Sample image">
-</div>
+    <div class=" col-lg-12 text-center">
+                    <img src="../../../Assets/logo.png" class="img-fluid " width="150" alt="Sample image">
+                </div>
 <div class="justify-content-center">
     <ul >
         <li><a href="{{route('view.job')}}">Job Management</a></li>
@@ -763,7 +763,7 @@ width: 100px;
     $(function () {
         $('.toggle-class').change(function () {
             var status = $(this).prop('checked') == true ? 1 : 0;
-            alert(status);
+          
             if(status == 1)
                 statusapproved();
             else

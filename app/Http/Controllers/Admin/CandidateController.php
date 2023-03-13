@@ -18,10 +18,7 @@ class CandidateController extends Controller
 {
     use ImageTrait;
     
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
+   
     /**
      * Display a listing of the resource.
      *
@@ -62,7 +59,7 @@ class CandidateController extends Controller
             $user = new User();
            
             $user->nextid();
-                  $user->name = $request->name;
+            $user->name = $request->name;
             $user->email = $request->email;
             $user->mobile = $request->mobile;
             $user->role = "jobseeker";
@@ -313,6 +310,7 @@ class CandidateController extends Controller
             if($candidate)
             {
                 $candidate->cover_letter = $request->cover_letter;
+
                 if ($request->hasFile('file')) {
                     $filename = time().'.'.$request->resume->getClientOriginalExtension();
                     $filePath = storage_path('app/public/uploads/resumes/'); 
@@ -322,7 +320,7 @@ class CandidateController extends Controller
                     $candidate->resume = $basePath . '/storage/uploads/resumes/' . $filename;
                 }
                 $candidate->save();
-                
+
                 $job_applied_details = JobAppliedDetails::where('candidate_id',$candidate->_id)
                                        ->where('job_id',$request->jobid)->first();
                 if($request->provider_status == 1) {

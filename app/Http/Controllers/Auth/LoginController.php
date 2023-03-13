@@ -37,8 +37,12 @@ class LoginController extends Controller
     {
         # Validate Data
         $request->validate([
-            'phone' => 'required|exists:users,phone'
-        ]);
+            'phone' => 'required|exists:users,phone'],
+            [
+             'phone.required' => 'The selected Phone Number is invalid'
+              
+            ]
+        );
        
         $code = random_int(1000, 9999);
      
@@ -67,7 +71,9 @@ class LoginController extends Controller
         $request->validate([
             'phone' => 'required|exists:users,phone',
             'otp'   => 'required'
-        ]);
+        ]
+        
+        );
         
         $otp_digits =  implode(' ', array_values($request->otp));
         $otp        =  str_replace(' ','',$otp_digits);
@@ -80,11 +86,11 @@ class LoginController extends Controller
                 $job = Job::orderBy('_id', 'ASC')->get();
                 return view('Admin/job')->with(['name'=>$user->name,'job'=>$job]);
             }
-        else{
-            return redirect('auth/getlogin')->with('error', 'Looks Like Your status is InActive');
-        }
+           else{
+            return redirect('auth/getlogin')->with('error', 'User looks like Inactive');
 
         }
+    }
         else {
             return redirect('auth/getlogin')->with('error', 'Your OTP is not correct');
         }          

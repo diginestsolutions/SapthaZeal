@@ -10,6 +10,7 @@ use App\Models\Order;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 
 class JobProviderController extends Controller
 {
@@ -50,6 +51,19 @@ class JobProviderController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name'       => 'required|string|between:2,100',
+            'email'      => 'required|string|email|max:100|unique:users',
+            'phone'      =>  'required|integer|unique:users',
+           
+           
+        ]);
+
+        if($validator->fails()) {
+            return redirect('admin/jobprovider')->with('error', 'Jobprovider already Exists.');
+        }
+        else{
+
         try{
             $user = new User();
             $user->nextid();		
@@ -101,6 +115,7 @@ class JobProviderController extends Controller
         }catch (\Exception $e) {
             return back()->withErrors(['message' => 'Failed to create Provider']);
         }  
+    }
     }
     
 
