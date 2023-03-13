@@ -323,7 +323,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 <script>
     $(document).ready(function () {
-
         var current_fs, next_fs, pre_fs;
         var opacity;
         var current = 1;

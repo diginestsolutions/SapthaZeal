@@ -74,7 +74,7 @@ class JobproviderLoginController extends Controller
             $user->name 	= $request->name;
             $user->email	= $request->email;
             $user->mobile	= $request->mobile;
-            $user->role     ="jobprovider";
+            $user->role     = "jobprovider";
             $user->status   ="Saved";
             $user->save();
             $provider                       = new JobProvider;
