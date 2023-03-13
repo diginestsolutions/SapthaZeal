@@ -49,8 +49,6 @@ class LoginController extends Controller
         $users = User::where('phone', $request->phone)->first();
         if($users){
         $users->otp = 1234;
-        $now = Carbon::now();
-        $users->last_login_in = $now->format(' d-m-Y h:i a');
         $users->save();
         }
 
@@ -77,9 +75,9 @@ class LoginController extends Controller
         
         $otp_digits =  implode(' ', array_values($request->otp));
         $otp        =  str_replace(' ','',$otp_digits);
-       
         $user = User::where('phone', 'LIKE','%'.$request->phone.'%')->where('otp',(int)$otp)->first();
-
+        $now = Carbon::now();
+        $user->last_login_in = $now->format(' d-m-Y h:i a');
         if($user != null){
             if($user->status=="Active"){
                 Auth::login($user);

@@ -37,12 +37,14 @@
                         <img src="../../Assets/jobprovider/logo.png" alt="Sample image"
                             class=" profile-image-pic   my-3" width="200px" alt="profile">
                     </div>
-                    <h3 class="mb-5 text-center heading" style="">LOG IN</h3>
+                    <h3 class="text-center heading" style="">LOG IN</h3>
+                    <form method="POST" action="">
+                        @csrf
                     <div class="mb-3">
-                        <input type="tel" id="txtPhone" class="txtbox form-control form-control1" />
-                        <input id="btnSubmit" class="btn" type="button">
+                        <input type="text" id="txtPhone" class="txtbox form-control form-control1" />
+                       
                     </div>
-                    <div class="text-center"><button type="submit" class="btn btn-color px-5 w-100"><span
+                    <div class="text-center"><button type="submit"  id="btnSubmit"  class="btn btn-color px-5 w-100"><span
                                 class="login">LOG IN</span></button></div>
                     <div id="emailHelp" class="form-text text-center mb-5 ">
                         Don't have a account yet?<a href="#" class="text-blue font-weight-bold"> Sign up</a>

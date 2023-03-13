@@ -142,7 +142,7 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  Route::get('/login', [JobproviderLoginController::class, 'index'])->name('login');
  Route::get('/otp',   [JobproviderLoginController::class, 'otp'])  ->name('otp');
  Route::get('/register',   [JobproviderLoginController::class, 'register'])  ->name('register');
- Route::get('/addregister',   [JobproviderLoginController::class, 'addregister'])  ->name('addregister');
+ Route::post('/addregister',   [JobproviderLoginController::class, 'addregister']) ->name('addregister');
  Route::get('/dashboard',   [JobproviderLoginController::class, 'dashboard'])  ->name('dashboard');
  //subscription plan
  Route::get('/subscription',   [SubscriptionPlanController::class, 'index'])  ->name('subscription');

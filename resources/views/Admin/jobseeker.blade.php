@@ -1029,138 +1029,163 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 <fieldset>
                     <div class=" col-md-12 ">
                         <div class=" widget-content ">
-                            <form method="POST" enctype="multipart/form-data" id="experience-form"
-                                action="javascript:void(0)">
-                                {{csrf_field()}}
-                                @if($candidate->candidate_experience)
-                                <div class="row col-lg-12">
-                                    <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                        <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
-                                            <div class=" form-group">
-                                                <label class="title-label">Is this your current employment?</label>
-                                                @if($candidate->candidate_experience->current_employee_status == 'on')
-                                                <label class="con1"><span>Yes</span>
-                                                    <input type="radio" name="current_employee_status" checked readonly>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                @else
-                                                <label class="con1"><span>No</span>
-                                                    <input type="radio" name="current_employee_status" readonly>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                @endif
-                                                @if($candidate->candidate_experience->current_employee_status == 'off')
-                                                <label class="con1"><span>Yes</span>
-                                                    <input type="radio" name="current_employee_status" readonly>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                @else
-                                                <label class="con1"><span>No</span>
-                                                    <input type="radio" name="current_employee_status" checked readonly>
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-                                            <div class=" form-group">
-                                                <label class="title-label">Employement Type</label>
-                                                @if($candidate->candidate_experience->employement_type == "fulltime")
-                                                <input type="text" class="form-control form-control-lg"
-                                                    name="current_employee_status" value="Full Time" readonly>
-                                                @endif
-                                                @if($candidate->candidate_experience->employement_type == "parttime")
-                                                <input type="text" class="form-control form-control-lg"
-                                                    name="current_employee_status" value="Part Time" readonly>
-                                                @endif
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                            <form method="POST" enctype="multipart/form-data" id="experience-form" action="javascript:void(0)" >
+                            {{csrf_field()}}
+                            @if($candidate->candidate_experience)
+                            <div class="row col-lg-12">
+                                <div class="row col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                    <!--<div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
                                         <div class=" form-group">
-                                            <label class="title-label">Company Name</label>
-                                            <input type="text" class="form-control form-control-lg" name="company_name"
-                                                value="{{$candidate->candidate_experience->company_name}}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <div class=" form-group">
-                                            <label class="title-label">Designation</label>
-                                            <input type="text" class="form-control form-control-lg" name="designation"
-                                                value="{{$candidate->candidate_experience->designation}}" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <div class=" form-group">
-                                            <label class="title-label"> Joining Date</label>
-                                            <input type="text" class="form-control form-control-lg" name="Joining_date"
-                                                value="{{$candidate->candidate_experience->Joining_date}}" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <div class=" form-group">
-                                            <label class="title-label">Salary</label>
-                                            <input type="text" class="form-control form-control-lg" name="salary"
-                                                value="{{$candidate->candidate_experience->salary}}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-
-                                        <div class=" form-group">
-                                            <label class="title-label">Total Experience</label>
-                                            <div class="row  ">
-                                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                                                    <input type="number" class="form-control form-control-lg "
-                                                        id="datepicker" placeholder="years" name="years"
-                                                        value="{{$candidate->candidate_experience->years}}"
-                                                        style="text-align: right;" readonly>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                                                    <input type="number" name="months"
-                                                        class="form-control form-control-lg " placeholder="months"
-                                                        required style="text-align: right;"
-                                                        value="{{$candidate->candidate_experience->months}}" readonly>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                        <div class=" form-group">
-                                            <label class="title-label">Notice Period</label>
-                                            @if($candidate->candidate_experience->notice_period == "1month")
-                                            <input type="text" class="form-control form-control-lg"
-                                                name="current_employee_status" value="1 Month" readonly>
+                                            <label class="title-label">Is this your current employment?</label>
+                                            @if($candidate->candidate_experience->current_employee_status == 'on')
+                                            <label class="con1"><span>Yes</span>
+                                                <input type="radio" name="current_employee_status" checked readonly>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            @else
+                                            <label class="con1"><span>No</span>
+                                                <input type="radio" name="current_employee_status" readonly>
+                                                <span class="checkmark"></span>
+                                            </label>
                                             @endif
-                                            @if($candidate->candidate_experience->notice_period == "3month")
-                                            <input type="text" class="form-control form-control-lg"
-                                                name="current_employee_status" value="3 Month" readonly>
+                                            @if($candidate->candidate_experience->current_employee_status == 'off')
+                                            <label class="con1"><span>Yes</span>
+                                                <input type="radio" name="current_employee_status" readonly>
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            @else
+                                            <label class="con1"><span>No</span>
+                                                <input type="radio" name="current_employee_status" checked readonly>
+                                                <span class="checkmark"></span>
+                                            </label>
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
-                                        <div class=" form-group">
-                                            <label class="title-label"></i>Job Description</label>
-                                            <textarea rows="4" class="form-control1" name="job_description"
-                                                readonly>{{$candidate->candidate_experience->job_description}}</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
-                                        <div class=" form-group">
-                                            <label class="title-label"></i>Prefered Skills:</label>
-                                            <input type="text" rows="4" name="skill" id="skill" class="form-control"
-                                                style=" height: 100px;"
-                                                value="{{$candidate->candidate_experience->skill}}" readonly />
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
+                                        <div class=" form-group">
+                                            <label class="title-label">Employement Type</label>
+                                            @if($candidate->candidate_experience->employement_type == "fulltime")
+                                            <input type="text" class="form-control form-control-lg" name="current_employee_status" value="Full Time" readonly>
+                                            @endif
+                                            @if($candidate->candidate_experience->employement_type == "parttime")
+                                            <input type="text" class="form-control form-control-lg" name="current_employee_status" value="Part Time" readonly>
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Company Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="company_name" value="{{$candidate->candidate_experience->company_name}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Designation</label>
+                                        <input type="text" class="form-control form-control-lg" name="designation" value="{{$candidate->candidate_experience->designation}}" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"> Joining Date</label>
+                                        <input type="text" class="form-control form-control-lg" name="Joining_date" value="{{$candidate->candidate_experience->Joining_date}}" readonly>
+                                    </div>
+                                </div>-->
+
+                                
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+
+                                    <div class=" form-group">
+                                        <label class="title-label">Total Experience</label>
+                                        <div class="row  ">
+                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                <input type="number" class="form-control form-control-lg "
+                                                    id="datepicker" placeholder="years" name="years" value="{{$candidate->candidate_experience->years}}"
+                                                    style="text-align: right;" readonly>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
+                                                <input type="number" name="months" class="form-control form-control-lg "
+                                                    placeholder="months" required style="text-align: right;" value="{{$candidate->candidate_experience->months}}" readonly>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                @endif
-                            </form>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Notice Period</label>
+                                        @if($candidate->candidate_experience->notice_period == "1month")
+                                        <input type="text" class="form-control form-control-lg" name="current_employee_status" value="1 Month" readonly>
+                                        @endif
+                                        @if($candidate->candidate_experience->notice_period == "3month")
+                                        <input type="text" class="form-control form-control-lg" name="current_employee_status" value="3 Month" readonly>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label">Salary</label>
+                                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$candidate->candidate_experience->salary}}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"></i>Job Description</label>
+                                        <textarea rows="4" class="form-control1" name="job_description" readonly>{{$candidate->candidate_experience->job_description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-4 col-sm-12">
+                                    <div class=" form-group">
+                                        <label class="title-label"></i>Prefered Skills:</label>
+                                        <input type="text" rows="4" name="skill" id="skill" class="form-control"
+                                            style=" height: 100px;" value="{{$candidate->candidate_experience->skill}}" readonly/>
+
+                                    </div>
+                                </div>
+                                <div class=" col-md-12 ">
+                                    <div class="card  col-lg-12 col-md-12" style="border-radius:15px;margin-top: 23px;">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>current employment</th>
+                                                            <th>Employement Type</th>
+                                                            <th>Company Name</th>
+                                                            <th>Designation</th>
+                                                            <th>Joining Date</th>
+                                                            <th>Leaving Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbodythird">
+                                                        @if($candidate->candidate_company_details)
+                                                            @foreach($candidate->candidate_company_details as $company)
+                                                            <tr>
+                                                                @if($company->current_employee_status == "on")
+                                                                <td>Yes</td>
+                                                                @else
+                                                                <td>No</td>
+                                                                @endif
+                                                                <td>{{$company->employement_type}}</td>
+                                                                <td>{{$company->company_name}}</td>
+                                                                <td>{{$company->designation}}</td>
+                                                                <td>{{$company->Joining_date}}</td>
+                                                                <td>{{$company->leaving_date}}</td>
+                                                            </tr>
+                                                            @endforeach
+                                                        @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </form>
                         </div>
                     </div>
                     <button type="button" class="pre  btn btn-primary btn-lg gradient-button gradient-button-1" style="font: normal normal100 20px/31px Quicksand !important;
@@ -2071,7 +2096,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 processData: false,
                 data: form_data,
                 success: function (data) {
-                    window.location = window.location.origin + '/sapthazeal1/SapthaZeal/public/admin/candidate';
+                    window.location = window.location.origin + '/public/admin/candidate';
                 },
                 error: function (data) {
 
