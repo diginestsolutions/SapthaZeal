@@ -149,6 +149,10 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
 
  Route::get('/register',   [JobproviderLoginController::class, 'register'])  ->name('jobprovider.register');
  Route::post('/addregister',   [JobproviderLoginController::class, 'addregister']) ->name('jobprovider.addregister');
+ Route::post('/dosubscription', [SubscriptionPlanController::class, 'dosubscription'])->name('jobprovider.dosubscription');
+
+
+
  Route::get('/dashboard',   [JobproviderLoginController::class, 'dashboard'])  ->name('dashboard');
  //subscription plan
  Route::get('/subscription',   [SubscriptionPlanController::class, 'index'])  ->name('jobprovider.subscription');
