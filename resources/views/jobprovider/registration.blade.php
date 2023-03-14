@@ -46,84 +46,7 @@
 
     }
 
-    #msform {
-
-        position: relative;
-        margin-top: 20px
-    }
-
-    #msform fieldset {
-        border: 0 none;
-        border-radius: 0.5rem;
-        box-sizing: border-box;
-        width: 100%;
-        margin: 0;
-        padding-bottom: 20px;
-        position: relative
-    }
-
-    #main_form {
-        margin-top: -76px;
-    }
-
-    .form-card {
-        text-align: left
-    }
-
-    #msform fieldset:not(:first-of-type) {
-        display: none
-    }
-
-    #msform input:focus {
-        -moz-box-shadow: none !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-        border: 1px solid green;
-        outline-width: 0
-    }
-
-    #msform .action-button {
-        width: 100px;
-        background: green;
-        font-weight: bold;
-        color: white;
-        border: 0 none;
-        border-radius: 0px;
-        cursor: pointer;
-        padding: 10px 5px;
-        margin: 10px 0px 10px 5px;
-
-    }
-
-    #msform .action-button:hover {
-        background-color: #311B92
-    }
-
-    #msform .action-button:focus {
-        background-color: #311B92
-    }
-
-    #msform .action-button-pre {
-        width: 100px;
-        background: #616161;
-        font-weight: bold;
-        color: white;
-        border: 0 none;
-        border-radius: 0px;
-        cursor: pointer;
-        padding: 10px 5px;
-        margin: 10px 5px 10px 0px;
-        float: right
-    }
-
-    #msform .action-button-pre:hover {
-        background-color: #000000
-    }
-
-    #msform .action-button-pre:focus {
-        background-color: #000000
-    }
-
+   
     .card {
         z-index: 0;
         border: none;
@@ -279,7 +202,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class=" card col-md-12 col-lg-10 my-5">
-                    <form id="msform">
+                <div id="form-errors"></div>
+                   <form method="POST" enctype="multipart/form-data" id="msform" action="javascript:void(0)" >
+                            {{csrf_field()}}
+                    <input type="hidden" id="provider_id"/>
                         <ul id="progressbar" style=" text-align: center;">
                             <li class="active" id="account"><strong>Step1</strong></li>
                             <li id="personal"><strong> Step2 </strong></li>
@@ -293,56 +219,55 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
                                                 <input class="form-control" type="text" name="name"
-                                                    placeholder="Full Name">
+                                                    placeholder="Full Name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="email" name="name"
-                                                    placeholder="Email">
+                                                <input class="form-control" type="email" name="email"
+                                                    placeholder="Email" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row col-lg-12">
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="email" name="name"
-                                                    placeholder="Mobile">
+                                                <input class="form-control" type="number" name="mobile"
+                                                    placeholder="Mobile" id="bmobile"required>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="password" name="name"
-                                                    placeholder=" Your Designation">
+                                                <input class="form-control" type="text" name="designation"
+                                                    placeholder=" Your Designation" required>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class=" next btn-color "> NEXT</button>
+                            <button type="button" class=" next1 btn-color "> NEXT</button>
                         </fieldset>
                         <!-- //#step2 -->
                         <fieldset>
                             <div class="tab-content " id="main_form">
+                                
                                 <div class="tab-pane active" role="tabpanel" id="step2">
                                     <h4 class="text-center">Step 2</h4>
                                     <div class="row col-lg-12">
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="name"
-                                                    placeholder="Full Name">
+                                                <input class="form-control" type="text" name="company_name"
+                                                    placeholder="Company Name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group select-sub">
-                                                <select name="country" class="form-control" id="country">
-                                                    <option value="NG" selected="selected">Nigeria</option>
-                                                    <option value="NU">Niue</option>
-                                                    <option value="NF">Norfolk Island</option>
-                                                    <option value="KP">North Korea</option>
-                                                    <option value="MP">Northern Mariana Islands</option>
-                                                    <option value="NO">Norway</option>
-                                                </select>
+                                            <select class="form-control form-control-lg " name="jobindustry" required>
+                                    <option value=""></option>
+                                        @foreach($items as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                    </select>
                                             </div>
                                         </div>
                                     </div>
@@ -350,20 +275,20 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="col-md-4 col-lg-12">
                                             <div class="form-group">
 
-                                                <textarea class="form-control" placeholder=" Street Address"></textarea>
+                                                <textarea class="form-control" name="address" placeholder=" Street Address"required></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row col-lg-12">
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="email" name="name" placeholder="City">
+                                                <input class="form-control" type="text" name="city" placeholder="City"required>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="password" name="name"
-                                                    placeholder=" Your State">
+                                                <input class="form-control" type="text" name="state"
+                                                    placeholder=" Your State" required>
                                             </div>
                                         </div>
                                     </div>
@@ -371,22 +296,23 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
 
-                                                <input class="form-control" type="email" name="name"
-                                                    placeholder="Country">
+                                                <input class="form-control" type="text" name="country"
+                                                    placeholder="Country" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
 
-                                                <input class="form-control" type="password" name="name"
-                                                    placeholder=" Pincode">
+                                                <input class="form-control" type="text" name="pincode"
+                                                    placeholder=" Pincode" required>
                                             </div>
                                         </div>
+                                 </form>
                                     </div>
                                 </div>
                             </div>
                             <button type="button" class=" pre btn-color ">PREVIOUS</button><button type="button"
-                                class="  btn-color "> Register</button>
+                                class="next btn-color "> Register</button>
                             </fiedset>
                     </form>
                 </div>
@@ -397,7 +323,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
 <script>
     $(document).ready(function () {
-
         var current_fs, next_fs, pre_fs;
         var opacity;
         var current = 1;
@@ -406,11 +331,28 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
         $(".next").click(function () {
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
-            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-            next_fs.show();
-            current_fs.animate({
-                opacity: 0
-            }, {
+            var data=$('#msform').serialize();
+            var mob=$('#bmobile').val();
+            var form = $("#msform")[0];
+            var form_data = new FormData(form);
+            var success_variable= false;
+            console.log(data);
+            var url = '{{ route("addregister") }}';
+            $.ajax({
+                type:'POST',
+                url:url,
+                dataType: 'json',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success:function(data) {
+                    $("#provider_id").val(data.jobprovider_id);
+                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                    next_fs.show();
+                    current_fs.animate({
+                        opacity: 0
+                    },  {
                 step: function (now) {
                     opacity = 1 - now;
                     current_fs.css({
@@ -424,6 +366,19 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 duration: 500
             });
             setProgressBar(++current);
+            window.location = window.location.origin+'/jobprovider/login?mobile='+mob;
+        },error:function(data) {
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
+
+                    $.each( data.responseJSON.errors, function( key, value ) {
+                        console.log(value[0]);
+                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                    });
+                    errorsHtml += '</ul></div>';
+
+                    $('#form-errors').html( errorsHtml );
+                }
+        });
         });
         $(".pre").click(function () {
             current_fs = $(this).parent();
@@ -447,6 +402,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             });
 
         });
+        
 
         function setProgressBar(curStep) {
             var percent = parseFloat(100 / steps) * curStep;
@@ -458,5 +414,44 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             return false;
         })
     });
+    $(document).ready(function () {
+        var current_fs, next_fs, pre_fs;
+        var opacity;
+        var current = 1;
+        var steps = $("fieldset").length;
+        setProgressBar(current);
+        $(".next1").click(function () {
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+            next_fs.show();
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now) {
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'display': 'none',
+                        'position': 'relative'
+                    });
+                    next_fs.css({
+                        'opacity': opacity
+                    });
+                },
+                duration: 500
+            });
+            setProgressBar(++current);
+        });
+        function setProgressBar(curStep) {
+            var percent = parseFloat(100 / steps) * curStep;
+            percentpercent = percent.toFixed();
+            $(".pbar")
+                .css("width", percent + "%")
+        }
+        $(".submit").click(function () {
+            return false;
+        })
+    });
+</script>
 
 </script>
