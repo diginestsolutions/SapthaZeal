@@ -156,7 +156,13 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  Route::get('/subscription',   [SubscriptionPlanController::class, 'index'])  ->name('subscription');
  //job
  Route::get('/job',   [ProviderJobController::class, 'index'])  ->name('jobprovider.job');
- Route::get('/jobadd',   [ProviderJobController::class, 'jobadd'])->name('jobadd');
+ Route::get('/job/create',   [ProviderJobController::class, 'create'])->name('jobprovider.job.create');
+ Route::post('/job/store', [ProviderJobController::class, 'store'])->name('jobprovider.job.store');
+ Route::get('/job/edit/{id}', [ProviderJobController::class, 'edit'])->name('jobprovider.job.edit');
+ Route::post('/job/update/{id}', [ProviderJobController::class, 'update'])->name('jobprovider.job.update');
+ Route::post('/job/{id}/destroy', [ProviderJobController::class, 'destroy'])->name('jobprovider.job.destroy');
+ Route::get('/job/show/{id}', [ProviderJobController::class, 'show'])->name('jobprovider.job.show');
+    
  //profile
 
  Route::get('/profile',   [ProfileController::class, 'index'])  ->name('profile');

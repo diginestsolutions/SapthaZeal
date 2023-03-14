@@ -1,7 +1,7 @@
 <style>
     body {
         font-family: 'Poppins' !important;
-        background-image: url('../Assets/jobprovider/1.png');
+        background-image: url('{{ asset('Assets') }}/jobprovider/1.png');
     }
 
     .profile {
@@ -67,7 +67,7 @@
 
 
 </style>
-<link rel="stylesheet" href="../Assets/jobprovider/css/app.css">
+<link rel="stylesheet" href="{{ asset('Assets') }}/jobprovider/css/app.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -88,7 +88,7 @@
         <div class="nav-side-menu col-lg-3  p-0  ">
             <div class="brand">
 
-                <img src="../Assets/jobprovider/logo white.png" class="img-fluid " width="150" alt="Sample image">
+                <img src="{{ asset('Assets') }}/jobprovider/logo white.png" class="img-fluid " width="150" alt="Sample image">
 
             </div>
             <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
@@ -99,7 +99,7 @@
                 <li>
                 <li  class="active">
                    
-                        <a href="{{route('job')}}"  class="active">
+                        <a href="{{route('jobprovider.job')}}"  class="active">
                             <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
 
@@ -134,7 +134,7 @@
                 <div class="w-100">
                     <h6 class="profile">VYSHNAVI RS</h6><span class="role ">HR manager</span>
                     <button class="btn profile-bt" type="button"><img class="user-avatar  pull-right" style=""
-                            src="../Assets/jobprovider/images (6).jfif ">
+                            src="{{ asset('Assets') }}/jobprovider/images (6).jfif ">
 
                     </button>
 
