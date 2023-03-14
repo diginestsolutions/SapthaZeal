@@ -7,7 +7,7 @@
     .profile {
 
         display: flex;
-        padding-left: 44px !important;
+        padding-left: 60px !important;
         color: black;
         font-weight: 600;
     }
@@ -59,11 +59,8 @@
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   color: none !important;
 }
-.nav-side-menu ul .active,
-.nav-side-menu li .active {
-  border-left: 3px solid #d19b3d;
-  background-color: #4f5b69;
-}
+
+  
 
 
 </style>
@@ -97,29 +94,33 @@
 
                 <ul id="menu-content" class="menu-content collapse out">
                 <li>
-                <li  class="active">
+                   <li class="sideNav">
                    
+<<<<<<< HEAD
                         <a href="{{route('jobprovider.job')}}"  class="active">
+=======
+                        <a href="{{route('jobprovider.job')}}" >
+>>>>>>> 4d19146ebfa9f9ce9de1d1080a82122fe5728a98
                             <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
 
-                    <li>
+                    <li class="sideNav">
                         <a href="">
                             <i class="fa-solid fa-bell fa-lg"></i> Notification</a>
                     </li>
-                    <li>
-                        <a href="{{route('profile')}}">
+                    <li class="sideNav">
+                        <a href="{{route('jobprovider.profile')}}">
                             <i class="fa fa-user fa-lg"></i> Profile</a>
                     </li>
-                    <li>
-                        <a href="{{route('subscription')}}">
-                            <i class="fa fa-telegram-plane fa-lg"></i> Upgrade Plan</a>
+                    <li class="sideNav">
+                        <a href="{{route('jobprovider.subscription')}}">
+                            <i class="fa fa-telegram fa-lg"></i> Upgrade Plan</a>
                     </li>
-                    <li>
-                        <a href="{{route('order')}}">
+                    <li class="sideNav">
+                        <a href="{{route('jobprovider.order')}}">
                             <i class="fas fa-file-invoice fa-lg"></i> My Order</a>
                     </li>
-</li>
+                </li>
                 </ul>
             </div>
         </div>
@@ -132,24 +133,14 @@
             <div class="  pull-right">
 
                 <div class="w-100">
-                    <h6 class="profile">VYSHNAVI RS</h6><span class="role ">HR manager</span>
+                    <h6 class="profile">{{Auth::guard('jobprovider')->user()->name}}</h6><span class="role ">{{Auth::guard('jobprovider')->user()->designation}}</span>
                     <button class="btn profile-bt" type="button"><img class="user-avatar  pull-right" style=""
-                            src="{{ asset('Assets') }}/jobprovider/images (6).jfif ">
-
+                            src="{{Auth::guard('jobprovider')->user()->image}} ">
                     </button>
-
-
-
                 </div>
-
-
-
             </div>
             @yield('content')
-
-
         </div>
-       
     </div>
 </body>
 <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -161,16 +152,16 @@
     });
 
 </script>
-<script src="https://code.jquery.com/jquery-1.9.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){
     
-    $('ul li a').click(function(){
-      $('li ').removeClass("active");
-      $(this).addClass("active");
-    });
+    var sideNav = $('.sideNav');
+$('.sideNav').click(function() {
+   
+  $('.sideNav').removeClass('active');
+  $(this).addClass('active');
+});
   });
 </script>

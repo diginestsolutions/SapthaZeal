@@ -147,13 +147,15 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  Route::get('/otp',   [JobproviderLoginController::class, 'otp'])  ->name('jobprovider.otp');
  Route::post('/otplogin', [JobproviderLoginController::class, 'otplogin'])->name('jobprovider.otplogin');
 
+ Route::get('/register',   [JobproviderLoginController::class, 'register'])  ->name('jobprovider.register');
+ Route::post('/addregister',   [JobproviderLoginController::class, 'addregister']) ->name('jobprovider.addregister');
  Route::post('/dosubscription', [SubscriptionPlanController::class, 'dosubscription'])->name('jobprovider.dosubscription');
 
- Route::get('/register',   [JobproviderLoginController::class, 'register'])  ->name('register');
- Route::post('/addregister',   [JobproviderLoginController::class, 'addregister']) ->name('addregister');
+
+
  Route::get('/dashboard',   [JobproviderLoginController::class, 'dashboard'])  ->name('dashboard');
  //subscription plan
- Route::get('/subscription',   [SubscriptionPlanController::class, 'index'])  ->name('subscription');
+ Route::get('/subscription',   [SubscriptionPlanController::class, 'index'])  ->name('jobprovider.subscription');
  //job
  Route::get('/job',   [ProviderJobController::class, 'index'])  ->name('jobprovider.job');
  Route::get('/job/create',   [ProviderJobController::class, 'create'])->name('jobprovider.job.create');
@@ -162,11 +164,12 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  Route::post('/job/update/{id}', [ProviderJobController::class, 'update'])->name('jobprovider.job.update');
  Route::post('/job/{id}/destroy', [ProviderJobController::class, 'destroy'])->name('jobprovider.job.destroy');
  Route::get('/job/show/{id}', [ProviderJobController::class, 'show'])->name('jobprovider.job.show');
-    
  //profile
 
- Route::get('/profile',   [ProfileController::class, 'index'])  ->name('profile');
+ Route::get('/profile',   [ProfileController::class, 'edit'])  ->name('jobprovider.profile');
+ Route::post('/updateprofile', [ProfileController::class, 'update'])  ->name('jobprovider.update');
+ 
  //order
- Route::get('/order',   [ProviderOrderController::class, 'index'])  ->name('order');
+ Route::get('/order',   [ProviderOrderController::class, 'index'])  ->name('jobprovider.order');
  
 });

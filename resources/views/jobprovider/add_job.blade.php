@@ -109,7 +109,6 @@
                             class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job</h3>
     <form action="{{ route('jobprovider.job.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-
         <div class="col-lg-9 ml-5">
 
             <div class="row">

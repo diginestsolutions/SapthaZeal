@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Jobprovider;
 
-use App\Models\User;
-use App\Models\Subscription;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\JobProvider;
@@ -11,6 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Industry;
 use Auth;
+use App\Models\User;
+use App\Models\Subscription;
 use Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -139,6 +139,7 @@ class JobproviderLoginController extends Controller
             $user->email	= $request->email;
             $user->mobile	= $request->mobile;
             $user->role     = "jobprovider";
+            $user->designation= $request->designation;
             $user->status   ="Saved";
             $user->save();
             $provider                       = new JobProvider;
@@ -154,7 +155,8 @@ class JobproviderLoginController extends Controller
             $provider->city                 = $request->city;
             $provider->state                = $request->state;
             $provider->country              = $request->country;
-            $provider->address              = $request->address;
+            $provider->pincode              = $request->pincode;
+           
             $provider->subscriptionplan     = $request->subscriptionplan;
             $provider->duration             = $request->duration;
             $provider->payment_status       = $request->payment_status;
@@ -199,10 +201,7 @@ class JobproviderLoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+  
 
     /**
      * Update the specified resource in storage.
