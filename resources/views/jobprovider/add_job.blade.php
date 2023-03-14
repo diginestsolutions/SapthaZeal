@@ -107,30 +107,24 @@
                     class="btn-back" style="border-radius:50%;
             border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white"><i
                             class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job</h3>
-     <form class="" action="" method="post" enctype="multipart/form-data">
+    <form action="{{ route('jobprovider.job.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-
         <div class="col-lg-9 ml-5">
 
             <div class="row">
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class="form-group select-sub">
                         <label class="title-label">Job Category</label>
-                        <select name="country" class="form-control  " placeholder="select" id="country">
-                            <option value="NG" selected="selected">Nigeria</option>
-                            <option value="NU">Niue</option>
-                            <option value="NF">Norfolk Island</option>
-                            <option value="KP">North Korea</option>
-                            <option value="MP">Northern Mariana Islands</option>
-                            <option value="NO">Norway</option>
+                        <select name="category" class="form-control" placeholder="select" id="country">
+                            <option value="Boosted" class="text-capitalize">Boosted</option>
+                            <option value="medicalfield" class="text-capitalize">Normal</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group">
                         <label class="title-label">Job name</label>
-
-                        <input type="email" class="form-control form-control-lg" placeholder="Job Name" name="email"
+                        <input type="text" class="form-control form-control-lg" placeholder="Job Name" name="name"
                             value="" required>
                     </div>
                 </div>
@@ -139,32 +133,30 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
                     <div class=" form-group">
                         <label class="title-label">Job Description</label>
-
-                        <textarea rows="4" class="form-control " placeholder="Job Description"></textarea>
-
+                        <textarea rows="4" class="form-control" name="description" placeholder="Job Description"></textarea>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group">
                         <label class="title-label">Prefered Skills</label>
-                        <textarea rows="4" class="form-control " placeholder="Prefered  Skills"></textarea>
+                        <textarea rows="4" class="form-control" name="skill" placeholder="Prefered  Skills"></textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class="form-group ">
-                        <label class="title-label">Experience Required</label>
-
-                        <input type="number" class="form-control form-control-lg" placeholder="Experience Required"
-                            name="phone" value="" required>
+                        <label class="title-label">Experience Required(Min-Max)</label>
+                        <input type="number" class="form-control form-control-lg" placeholder="Min"
+                            name="min" required>
+                        <input type="number" class="form-control form-control-lg" placeholder="Max"
+                            name="max" required>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group">
                         <label class="title-label">Salary</label>
-                        <input type="text" class="form-control form-control-lg" placeholder="Salary" name="designation"
-                            value="" required>
+                        <input type="text" class="form-control form-control-lg" placeholder="Salary" name="salary" required>
                     </div>
                 </div>
             </div>
@@ -172,10 +164,8 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
                     <div class=" form-group">
                         <label class="title-label">Job Location</label>
-
-                        <input type="number" class="form-control form-control-lg" placeholder="Job Location"
-                            name="phone" value="" required>
-
+                        <input type="text" class="form-control form-control-lg" placeholder="Job Location"
+                            name="job_location" required>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
@@ -183,6 +173,15 @@
                         <label class="title-label">Expiry date</label>
                         <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="deadline"
                             class="form-control form-control-lg" placeholder=" Expiry Date" name="expirydate" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
+                    <div class=" form-group">
+                        <label class="title-label">Job Opening</label>
+                        <input type="number" class="form-control form-control-lg" placeholder="Job Opening"
+                            name="opening" required>
                     </div>
                 </div>
             </div>

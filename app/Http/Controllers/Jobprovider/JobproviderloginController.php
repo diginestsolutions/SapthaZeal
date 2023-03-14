@@ -6,14 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\JobProvider;
 use Carbon\Carbon;
-use Auth;
 use Illuminate\Http\Request;
-use App\Models\Jobprovider;
 use App\Models\Industry;
+use Auth;
 use App\Models\User;
 use App\Models\Subscription;
 use Validator;
-use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
