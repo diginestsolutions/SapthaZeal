@@ -103,11 +103,11 @@
 @endif
 
 <body>
-    <h3 class="  heading" style=""> <a class="btn mr-2 " href="{{ route('job') }}"><span class="icon2"><button
+    <h3 class="  heading" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job') }}"><span class="icon2"><button
                     class="btn-back" style="border-radius:50%;
             border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white"><i
                             class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job</h3>
-    <form class="" action="" method="post" enctype="multipart/form-data">
+     <form class="" action="" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="col-lg-9 ml-5">

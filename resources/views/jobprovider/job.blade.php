@@ -52,7 +52,7 @@
 @endif
 
 <body>
-  <h3 class="  heading" style=""> Job Management <a class="addbutton" class="btn" href="{{ route('jobadd') }}"> <span
+  <h3 class="  heading my-5" style=""> Job Management <a class="addbutton" class="btn" href="{{ route('jobprovider.jobadd') }}"> <span
                 class="icons"> <i class="fa fa-plus " aria-hidden="true"></i></span>ADD</a></h3>
     <div class="card  " style="border-radius:15px;margin-top:72px">
         <div class="card-body ">

@@ -13,6 +13,13 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+    .btn-color1 {
+        background: transparent linear-gradient(180deg, #0070BA 0%, #0D0D80 100%) 0% 0% no-repeat padding-box !important;
+        border-radius: 5px !important;
+        opacity: 1 !important;
+        color: #fff !important;
+    }
+
 
     .select-sub::after {
         font-family: "Font Awesome 5 Free";
@@ -245,7 +252,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class=" next1 btn-color "> NEXT</button>
+                            <button type="button" class=" next1 btn-color1 "> NEXT</button>
                         </fieldset>
                         <!-- //#step2 -->
                         <fieldset>
@@ -311,8 +318,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class=" pre btn-color ">PREVIOUS</button><button type="button"
-                                class="next btn-color "> Register</button>
+                            <button type="button" class=" pre btn-color1 ">PREVIOUS</button><button type="button"
+                                class="next btn-color1 "> Register</button>
                             </fiedset>
                     </form>
                 </div>
@@ -337,7 +344,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             var form_data = new FormData(form);
             var success_variable= false;
             console.log(data);
-            var url = '{{ route("addregister") }}';
+            var url = '{{ route("jobprovider.addregister") }}';
             $.ajax({
                 type:'POST',
                 url:url,
