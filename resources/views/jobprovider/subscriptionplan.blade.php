@@ -116,100 +116,151 @@
         <div class="container">
             <div class="row">
                 <!-- Free Tier -->
+                @php
+                    $i = 0;
+                @endphp
+                @foreach($subscription as $sub)
+                <input type="hidden" name="subscription" id="subscription{{$i}}" value="{{$sub->id}}">
                 <div class="col-lg-4">
                     <div class="card mb-5 mb-lg-0">
                         <div class="card-body">
                             <div class="gradiennt  ">
-
-                                <h6 class="card-price text-center my-3">Silver</h6>
-
+                                <h6 class="card-price text-center my-3">{{$sub->name}}</h6>
                             </div>
-
-                            <h4 class="text-center ">₹2000</h4>
+                           <!-- <h4 class="text-center ">₹{{$sub->amount}}</h4>-->
                             </br>
                             <ul class="fa-ul text-left">
-                                <li><span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 2 months</li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fa fa-building-o"
-                                            aria-hidden="true"></i></span>Maximum Job Post: 2</li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fa-solid fa-user-tie"></i></span>No. of CV Per Post: 2
+                                <li>
+                                    <span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 
+                                    <select id="select{{$i}}">
+                                        <option>Choose Plan</option>
+                                        @foreach($sub->period as $su)
+                                        <option value="{{$su}}">{{$su}}</option>
+                                        @endforeach
+                                    </select>
                                 </li>
                                 <hr>
-                                <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Extension 1 Month:
-                                    1000</li>
-                                    <div class="text-right">(Max 2 times)</div>
+                                <li><span class="fa-li"><i class="fa fa-building-o"
+                                            aria-hidden="true"></i></span>Maximum Job Post: {{$sub->maximumjobpost}}</li>
+                                <hr>
+                                <li><span class="fa-li"><i class="fa-solid fa-user-tie"></i></span>No. of CV Per Post: {{$sub->cvsperpost}}
+                                </li>
+                                <hr>
+                                <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Amount:
+                                <input type="text" name="amount" id="amount{{$i}}" value="{{$sub->amount}}">
+                                </li>
                                 <div class="d-grid text-center">
-                                    <a href="#" class="btn btn-primary text-uppercase">Try it</a>
+                                    <a href="#" class="btn btn-primary text-uppercase" onclick="submitPlan({{$i}});">Try it</a>
                                 </div>
                         </div>
                     </div>
                 </div>
-                <!-- Plus Tier -->
-                <div class="col-lg-4">
-                    <div class="card mb-5 mb-lg-0">
-                        <div class="card-body">
-                            <div class="gradiennt  ">
-
-                                <h6 class="card-price text-center my-3">Gold</h6>
-
-                            </div>
-
-                            <h4 class="text-center ">₹5000</h4>
-                            </br>
-                            <ul class="fa-ul text-left">
-                                <li><span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 3 months</li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fa fa-building-o"
-                                            aria-hidden="true"></i></span>Maximum Job Post: 5</li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fa-solid fa-user-tie"></i></span>No. of CV Per Post: 7
-                                </li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Extension 1 Month:
-                                    1500</li>
-                                    <div class="text-right">(Max 2 times)</div>
-                                <div class="d-grid text-center">
-                                    <a href="#" class="btn btn-primary text-uppercase">Try it</a>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pro Tier -->
-                <div class="col-lg-4">
-                    <div class="card   mb-5 mb-lg-0">
-                        <div class="card-body">
-                            <div class="gradiennt  ">
-
-                                <h6 class="card-price text-center my-3">Platinum</h6>
-
-                            </div>
-
-                            <h4 class="text-center ">₹10000</h4>
-                            </br>
-                            <ul class="fa-ul text-left">
-                                <li><span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 6 months</li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fa fa-building-o"
-                                            aria-hidden="true"></i></span>Maximum
-                                    Job Post: 15</li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fa-solid fa-user-tie"></i></span>No. of CV Per Post: 7
-                                </li>
-                                <hr>
-                                <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Extension 1 Month:
-                                    3000
-                                </li>
-                                <div class="text-right">(Max 2 times)</div>
-                                <div class="d-grid text-center">
-                                    <a href="#" class="btn btn-primary text-uppercase">Try it</a>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+                @php
+                    $i = $i+1;
+                @endphp
+                @endforeach()
             </div>
+            <div class="alert alert-danger" id="err" style="display: none"><label for="myalue1"></label></div>
         </div>
         
     </section>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $('#select0').on('change', function() {
+        if( this.value == "1month")
+        {
+            $('#amount0').val(2000);
+        }
+        if( this.value == "3month")
+        {
+            $('#amount0').val(3*2000);
+        }
+        if( this.value == "6month")
+        {
+            $('#amount0').val(6*2000);
+        }
+        if( this.value == "1year")
+        {
+            $('#amount0').val(12*2000);
+        }
+    });
+    $('#select1').on('change', function() {
+        if( this.value == "1month")
+        {
+            $('#amount1').val(5000);
+        }
+        if( this.value == "3month")
+        {
+            $('#amount1').val(3*5000);
+        }
+        if( this.value == "6month")
+        {
+            $('#amount1').val(6*5000);
+        }
+        if( this.value == "1year")
+        {
+            $('#amount1').val(12*5000);
+        }
+    });
+    $('#select2').on('change', function() {
+        if( this.value == "1month")
+        {
+            $('#amount2').val(10000);
+        }
+        if( this.value == "3month")
+        {
+            $('#amount2').val(3*10000);
+        }
+        if( this.value == "6month")
+        {
+            $('#amount2').val(6*10000);
+        }
+        if( this.value == "1year")
+        {
+            $('#amount2').val(12*10000);
+        }
+    });
+    function submitPlan(index)
+    {
+        var plan =  $('#select'+index).val();
+        var amount =  $('#amount'+index).val();
+        var subscription = $('#subscription'+index).val();
+        var url = '{{ route("jobprovider.dosubscription") }}';
+        var token = "{{ csrf_token() }}";
+        var error = 0;
+        if(plan == '')
+        {
+            jQuery("label[for='myalue1']").html("Choose any of plan");
+            err.style.display = "block";
+            error++;
+        }
+        if(error == 0) {
+            $.ajax({
+                type:'POST',
+                url:url,
+                dataType: 'json',  
+                data: { plan: plan,amount: amount,subscription: subscription,_token: token },
+                success:function(data) {
+                    if(data.success==1)
+                    {
+                        window.location = window.location.origin+'/jobprovider/job';
+                    }
+                    else
+                    {
+                        jQuery("label[for='myalue1']").html(data.message);
+                        err.style.display = "block";
+                    }
+                },error:function(data) {
+                    errorsHtml = '<div class="alert alert-danger"><ul>';
+                    $.each( data.responseJSON.errors, function( key, value ) {
+                        console.log(value[0]);
+                        errorsHtml += '<li>'+ value[0] + '</li>'; 
+                    });
+                    errorsHtml += '</ul></div>';
+                    $('#form-errors').html( errorsHtml );
+                }
+            });
+        }
+    }
+</script>
