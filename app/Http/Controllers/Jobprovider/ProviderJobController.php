@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jobprovider;
 
 use App\Models\Job;
+use App\Models\JobAppliedDetails;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -79,7 +80,11 @@ class ProviderJobController extends Controller
      */
     public function show($id)
     {
-        //
+        $job = Job::find($id);
+        $job->interested_candidate_count = JobAppliedDetails::where('job_id',$job->id)->where('applied_status','interested')->count();
+        $job->shortlisted_resumes_count = JobAppliedDetails::where('job_id',$job->id)->where('applied_status','scheduled_resumes')->count();
+        $job->interview_scheduled_count = JobAppliedDetails::where('job_id',$job->id)->where('applied_status','interview_scheduled')->count();
+        return view('jobprovider/view_job',compact('job'));
     }
 
     /**
