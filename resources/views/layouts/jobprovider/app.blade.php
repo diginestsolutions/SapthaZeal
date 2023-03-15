@@ -95,15 +95,9 @@
                 <ul id="menu-content" class="menu-content collapse out">
                 <li>
                    <li class="sideNav">
-                   
-<<<<<<< HEAD
-                        <a href="{{route('jobprovider.job')}}"  class="active">
-=======
                         <a href="{{route('jobprovider.job')}}" >
->>>>>>> 4d19146ebfa9f9ce9de1d1080a82122fe5728a98
-                            <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
+                        <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
-
                     <li class="sideNav">
                         <a href="">
                             <i class="fa-solid fa-bell fa-lg"></i> Notification</a>
