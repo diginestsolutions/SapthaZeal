@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers\Jobprovider;
 
+use App\Models\Order;
+use App\Models\Jobprovider;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProviderOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:jobprovider');
+    }
+
     public function index()
     {
-        return view('jobprovider/order');
+        $userId = Auth::guard('jobprovider')->user()->id;
+        $providerId  = Jobprovider::where('user_id',$userId)->first();
+        $orders = Order::with('subscription')->where('provider_id',$providerId->id)->get();
+        return view('jobprovider/order',compact('orders'));
     }
 
     /**

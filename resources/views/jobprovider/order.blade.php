@@ -32,17 +32,26 @@
                 <table class="table table-resp-noscroll" id="dt-vertical-scroll">
                     <thead>
                         <tr>
-                            <th>Job ID</th>
-                            <th>Created Date</th>
-                            <th>JobProvider Name</th>
-                            <th>Job Name</th>
-                            <th>Category</th>
+                            <th>Order No</th>
+                            <th>Date</th>
+                            <th>Plane</th>
                             <th>Expiry Date</th>
-                            <th>Approval Status</th>
-                            <th>Actions</th>
+                            <th>Payment Status</th>
+                            <th>Download</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        @foreach ($orders as $order)
+                        <tr>
+                            <td>#{{ $order->order_id}}</td>
+                            <td>{{ $order->created_at->format('d-m-Y')}}</td>
+                            <td>{{ $order->subscription->name}}</td>
+                            <td>{{ $order->planexpiry_date}}</td>
+                            <td>{{ $order->payment_status}}</td>
+                            <td><a href=""  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Dowload</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
