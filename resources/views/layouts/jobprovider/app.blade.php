@@ -59,11 +59,19 @@
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   color: none !important;
 }
+.nav-side-menu ul li a.active {
+    background-color: #005185;
+    color:#4CB848;
+    border-right: 5px solid #4CB848;
+    border-bottom: none !important;
+}
 
-  
-
-
+  .nav-side-menu li {
+ 
+    border-bottom: 1px solid white;
+  }
 </style>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <link rel="stylesheet" href="../Assets/jobprovider/css/app.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -78,28 +86,22 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-
-
 <body>
     <div class="col-lg-12 p-0">
         <div class="nav-side-menu col-lg-3  p-0  ">
+        <div class="make-me-sticky p-0">
             <div class="brand">
-
-                <img src="../Assets/jobprovider/logo white.png" class="img-fluid " width="150" alt="Sample image">
-
+                <img src="../Assets/jobprovider/logo white.png"  width="150" alt="Sample image">
             </div>
             <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-
             <div class="menu-list">
-
                 <ul id="menu-content" class="menu-content collapse out">
-                <li>
+                
                    <li class="sideNav">
-                   
-                        <a href="{{route('jobprovider.job')}}" >
+                     <a href="{{route('jobprovider.job')}}" >
                             <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
-
+                 
                     <li class="sideNav">
                         <a href="">
                             <i class="fa-solid fa-bell fa-lg"></i> Notification</a>
@@ -110,37 +112,29 @@
                     </li>
                     <li class="sideNav">
                         <a href="{{route('jobprovider.subscription')}}">
-                            <i class="fa fa-telegram fa-lg"></i> Upgrade Plan</a>
+                        <i class='fab fa-telegram-plane'></i> Upgrade Plan</a>
                     </li>
                     <li class="sideNav">
                         <a href="{{route('jobprovider.order')}}">
                             <i class="fas fa-file-invoice fa-lg"></i> My Order</a>
                     </li>
-                </li>
+                    
+                
                 </ul>
+                
             </div>
+       <div  style="margin-bottom:10px !important;">  <h3 ><a href="#"style="color:white;text-decoration:none;"><img  style=""  class="ml-5" src="{{ asset('Assets') }}/jobprovider/logout.png ">Logout </h3></a></div>
+        </div>
         </div>
         <div class="col-lg-9   col-md-12" id="main">
-
-
-
-
-
-            <div class="  pull-right">
-
+           <div class="  pull-right">
                 <div class="w-100">
                     <h6 class="profile">{{Auth::guard('jobprovider')->user()->name}}</h6><span class="role ">{{Auth::guard('jobprovider')->user()->designation}}</span>
                     <button class="btn profile-bt" type="button"><img class="user-avatar  pull-right" style=""
                             src="{{Auth::guard('jobprovider')->user()->image}} ">
 
                     </button>
-
-
-
                 </div>
-
-
-
             </div>
             @yield('content')
 
@@ -163,11 +157,9 @@
 
   $(document).ready(function(){
     
-    var sideNav = $('.sideNav');
-$('.sideNav').click(function() {
-   
-  $('.sideNav').removeClass('active');
-  $(this).addClass('active');
-});
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        $('.nav-side-menu  ul li a[href="' + url + '"]').addClass('active');
+    });
   });
 </script>

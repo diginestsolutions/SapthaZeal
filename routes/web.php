@@ -155,6 +155,7 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  //job
  Route::get('/job',   [ProviderJobController::class, 'index'])  ->name('jobprovider.job');
  Route::get('/jobadd',   [ProviderJobController::class, 'jobadd'])->name('jobprovider.jobadd');
+
  //profile
 
  Route::get('/profile',   [ProfileController::class, 'edit'])  ->name('jobprovider.profile');

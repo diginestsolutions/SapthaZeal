@@ -74,7 +74,7 @@ class JobproviderLoginController extends Controller
         $user = User::where('mobile', 'LIKE','%'.$request->mobile.'%')->where('otp',(int)$otp)->where('role','jobprovider')->first();
         if($user != null){
             if($user->status=="Active"){
-                \Auth::guard('jobprovider')->login($user);
+                Auth::guard('jobprovider')->login($user);
                 return view('jobprovider.job')->with(['name'=>$user->name]);
             }
            else{

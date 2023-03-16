@@ -53,12 +53,12 @@
         <div class=" mt-12 pull-right p-0">
 
             <div class="w-100  p-0 ">
-                <button class="btn " type="button"
-                    style=" background-color:white;border:none;border-radius:21px;  padding: 0px!important; "><img
-                        class="user-avatar  pull-right" style="width:44px;     height: 44px;   border-radius: 28%;"
-                        src="{{Auth::user()->image}} ">
-                    <h6 class="profile">{{Auth::user()->name}}</h6><span
-                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+            <button class="btn " type="button"
+                    style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                        class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
+                        src="{{Auth::guard('admin')->user()->image}} ">
+                    <h6 class="profile">{{Auth::guard('admin')->user()->name}}</h6><span
+                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::guard('admin')->user()->role}}</span>
                 </button>
 
                 <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
@@ -109,7 +109,7 @@
 
                                     <button class="btn fileicon " type="button"
                                         onclick="document.getElementById('image').click()">
-                                        <img src="{{Auth::user()->image}}" id="preview" width="200" height="200" alt=""
+                                        <img src="{{Auth::guard('admin')->user()->image}}" id="preview" width="200" height="200" alt=""
                                             style="border-radius:10px;">
 
                                         <img src="../Assets/Group 22.png" class="upload-icon" />
@@ -126,7 +126,7 @@
                                     <div class=" form-group">
                                         <label class="title-label"> Name</label>
                                         <input type="text" class="form-control form-control-lg" name="name"
-                                            value="{{Auth::user()->name}}" required>
+                                            value="{{Auth::guard('admin')->user()->name}}" required>
                                     </div>
                                 </div>
 
@@ -136,7 +136,7 @@
                                         <label class="title-label"> Email Address</label>
 
                                         <input type="email" class="form-control form-control-lg" name="email"
-                                            value="{{Auth::user()->email}}" required>
+                                            value="{{Auth::guard('admin')->user()->email}}" required>
 
                                     </div>
                                 </div>
@@ -147,7 +147,7 @@
                                         <label class="title-label">Mobile Number</label>
 
                                         <input type="number" class="form-control form-control-lg" name="phone"
-                                            value="{{Auth::user()->phone}}" required>
+                                            value="{{Auth::guard('admin')->user()->phone}}" required>
 
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                     <div class=" form-group">
                                         <label class="title-label">Designation</label>
                                          <input type="text" class="form-control form-control-lg" name="designation"
-                                            value="{{Auth::user()->designation}}" required>
+                                            value="{{Auth::guard('admin')->user()->designation}}" required>
                                     </div>
                                 </div>
                             </div>

@@ -14,12 +14,14 @@
 
 }
 
-.img-fluid {
-  
-  height: 170px !important;
-  margin-top: 17px;
 
+  
+  .img-fluid {
+    height: 420px !important;
+    margin-top: 72px;
 }
+
+
 .heading {
 
     font-family: 'Poppins' !important;
@@ -103,7 +105,7 @@
     margin: 0px;
     line-height: 55px;
     cursor: pointer;
-   
+
   }
   
   .nav-side-menu ul :not(collapsed) .arrow:before,
@@ -119,21 +121,31 @@
  
   
   .nav-side-menu ul  li:hover,
-  .nav-side-menu li  li:hover ,.nav-side-menu ul  li.active {
+  .nav-side-menu li  li:hover  {
     background-color: #005185;
     color:#4CB848 ;
-    border-right: 5px solid #4CB848;
+    border-right: 3px solid #4CB848;
     padding: 0px;
     margin: 0px;
+    display: block;
+    border-bottom: none;
   }
-  
+  .make-me-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    padding: 0 15px;
+}
+
   
  
   .nav-side-menu li a {
     text-decoration: none;
     color: #e1ffff;
-    padding: 0px;
-    margin: 0px;
+    display: block;
+    padding: 5px;
+
   }
   .nav-side-menu li a :hover{
     
@@ -149,6 +161,7 @@
  
     background-color: #005185;
     color:#4CB848;
+    display: block;
   
   }
   @media (max-width: 767px) {

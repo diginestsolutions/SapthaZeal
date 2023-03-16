@@ -31,6 +31,9 @@
     .dataTables_wrapper .dataTables_paginate .paginate_button.current {
         color: none !important;
     }
+    .addbutton:hover{
+        text-decoration:none;
+    }
 
 </style>
 {{-- Message --}}
