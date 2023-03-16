@@ -1,11 +1,46 @@
 <?php
 
 namespace App\Http\Controllers\Jobprovider;
+
+use App\Models\JobProvider;
+use Auth;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SubscriptionPlanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:jobprovider');
+    }
+    public function dosubscription(Request $request)
+    {
+        $userId = Auth::guard('jobprovider')->user()->id;
+        $provider = JobProvider::where('user_id',$userId)->first();
+        if($provider)
+        {
+            $provider->subscriptionplan = $request->subscription;   
+            $provider->duration = $request->plan;  
+            if(str_contains($request->plan, "month")){
+                $date = str_replace("month","",$request->plan); 
+                $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
+            }else{
+                $date = str_replace("Year","",$request->plan);
+                $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
+            }
+            $provider->planexpiry_date = $newDateTime;
+            $provider->payment_status = "Pending";
+            $provider->save();
+
+            $response['success'] = 1;
+            $response['message'] ='Subscription Plan Choosed Successfully';
+        }else {
+            $response['success'] = 0;
+            $response['message'] ='Job provider Not Found';
+        }
+        return $response;
+    }
     /**
      * Display a listing of the resource.
      *

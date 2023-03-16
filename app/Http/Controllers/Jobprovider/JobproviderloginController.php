@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Jobprovider;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\JobProvider;
+use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\Jobprovider;
@@ -75,7 +78,13 @@ class JobproviderLoginController extends Controller
         if($user != null){
             if($user->status=="Active"){
                 Auth::guard('jobprovider')->login($user);
-                return view('jobprovider.job')->with(['name'=>$user->name]);
+                $provider = JobProvider::where('user_id',Auth::guard('jobprovider')->user()->id)->first();
+                if($provider->subscriptionplan != null && $provider->planexpiry_date >= Carbon::now()->format('Y-m-d'))
+                {
+                    return redirect()->route('jobprovider.job');
+                }
+                $subscription = Subscription::all();
+                return view('jobprovider.subscriptionplan')->with(['userid'=>$user->id,'subscription'=>$subscription]);
             }
            else{
                 return redirect('otp')->with('error', 'User looks like Inactive');
