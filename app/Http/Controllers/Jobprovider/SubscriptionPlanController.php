@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Jobprovider;
 
 use App\Models\JobProvider;
+use App\Models\Order;
 use Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -32,6 +33,16 @@ class SubscriptionPlanController extends Controller
             $provider->planexpiry_date = $newDateTime;
             $provider->payment_status = "Pending";
             $provider->save();
+
+            $order = new Order();
+            $order->nextid();
+            $order->provider_id = $provider->id;
+            $order->subscriptionplan = $request->subscription; 
+            $order->payment_status = "Pending";  
+            $order->planexpiry_date = $newDateTime;
+            $order->transaction_id = "";
+            $order->status = "Active";
+            $order->save();
 
             $response['success'] = 1;
             $response['message'] ='Subscription Plan Choosed Successfully';

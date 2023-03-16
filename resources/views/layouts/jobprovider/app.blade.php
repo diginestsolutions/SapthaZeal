@@ -1,7 +1,7 @@
 <style>
     body {
         font-family: 'Poppins' !important;
-        background-image: url('../Assets/jobprovider/1.png');
+        background-image: url('{{ asset('Assets') }}/jobprovider/1.png');
     }
 
     .profile {
@@ -72,7 +72,7 @@
   }
 </style>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<link rel="stylesheet" href="../Assets/jobprovider/css/app.css">
+<link rel="stylesheet" href="{{ asset('Assets') }}/jobprovider/css/app.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -91,7 +91,7 @@
         <div class="nav-side-menu col-lg-3  p-0  ">
         <div class="make-me-sticky p-0">
             <div class="brand">
-                <img src="../Assets/jobprovider/logo white.png"  width="150" alt="Sample image">
+                <img src="{{ asset('Assets') }}/jobprovider/logo white.png" class="img-fluid " width="150" alt="Sample image">
             </div>
             <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
             <div class="menu-list">
@@ -101,7 +101,6 @@
                      <a href="{{route('jobprovider.job')}}" >
                             <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
-                 
                     <li class="sideNav">
                         <a href="">
                             <i class="fa-solid fa-bell fa-lg"></i> Notification</a>
@@ -132,15 +131,11 @@
                     <h6 class="profile">{{Auth::guard('jobprovider')->user()->name}}</h6><span class="role ">{{Auth::guard('jobprovider')->user()->designation}}</span>
                     <button class="btn profile-bt" type="button"><img class="user-avatar  pull-right" style=""
                             src="{{Auth::guard('jobprovider')->user()->image}} ">
-
                     </button>
                 </div>
             </div>
             @yield('content')
-
-
         </div>
-       
     </div>
 </body>
 <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
