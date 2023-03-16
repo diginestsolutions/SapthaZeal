@@ -79,7 +79,20 @@
         right: -9px;
         bottom: 18px;
 
-        padding: 0px 1em;
+        padding:0px 1em;
+        color: #7ECD7C;
+        pointer-events: none
+    }
+    .select-sup2::after {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 28px;
+        content: "\f13a";
+        position: absolute;
+        right: -9px;
+        bottom: 18px;
+
+        padding:18px 1em;
         color: #7ECD7C;
         pointer-events: none
     }
@@ -113,6 +126,7 @@
         color: #7ECD7C;
         pointer-events: none;
     }
+    
     .sidebar {
 
 width: 250px;
@@ -809,13 +823,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 <div class=" mt-12 pull-right">
 
                     <div class="w-100">
-                        <button class="btn " type="button"
-                            style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
-                                class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
-                                src="{{Auth::user()->image}} ">
-                            <h6 class="profile">{{Auth::user()->name}}</h6><span
-                                style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-                        </button>
+                    <button class="btn " type="button"
+                    style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                        class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
+                        src="{{Auth::guard('admin')->user()->image}} ">
+                    <h6 class="profile">{{Auth::guard('admin')->user()->name}}</h6><span
+                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::guard('admin')->user()->role}}</span>
+                </button>
 
                         <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -998,7 +1012,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                             <td>{{$education->school_medium}}</td>
                                                             <td>{{$education->mark_obtained}}</td>
                                                             <td>
-                                                                <div class="action-btns d-flex justify-content-end">
+                                                                <div class="action-btns d-flex ">
                                                                     <a href="javascript:void(0)" onclick="return edititem({{$education->candidate_education_id}});" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
                                                                     <input type="hidden" id="candidate_education_id_{{$education->candidate_education_id}} value="{{$education->candidate_education_id}}"/>
                                                                     <a href="javascript:void(0)" onclick="return deleteitem({{$education->candidate_education_id}});" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>
@@ -1052,7 +1066,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                                             <td>{{$education->passout}}</td>
                                                             <td>{{$education->mark_obtained}}</td>
                                                             <td>
-                                                                <div class="action-btns d-flex justify-content-end">
+                                                                <div class="action-btns d-flex ">
                                                                     <a href="javascript:void(0)" onclick="return edititem1({{$education->candidate_education_id}});" data-popup="tooltip" title="Edit" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-edit"></i></a>
                                                                     <input type="hidden" id="candidate_education_id1_{{$education->candidate_education_id}}" value="'+value._id+'"/>
                                                                     <a href="javascript:void(0)" onclick="return deleteitem1({{$education->candidate_education_id}});" data-popup="tooltip" title="Delete" data-placement="bottom" class="mt-2" style="margin-right:5px;"><i class="fa fa-trash"></i></a>
@@ -1064,8 +1078,6 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                             @endif
                                         </tbody>
                                     </table>
-
-
                                 </div>
                             </div>
                         </div>
@@ -1386,7 +1398,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             </div>
             <div class="modal-body">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                        <div class=" form-group select-sup1">
+                        <div class=" form-group select-sup2">
                             <label class="title-label">Education<span style="color: red;">*</span></label>
                             <select class="form-control  form-control-lg" name="education"
                              id="educationselect" required>
@@ -1567,7 +1579,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group select-sup">
+                                <div class=" form-group select-sup2">
                                     <label class="title-label">Employement Type</label>
                                     <select class="form-control select form-control-lg" name="employement_type" id="employement_type"
                                                 required>
@@ -1596,15 +1608,18 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class=" form-group">
+                                <div class=" form-group select-date">
                                     <label class="title-label"> Joining Date</label>
-                                    <input type="date" class="form-control form-control-lg" name="Joining_date" id="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}">
+                                    
+                                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"  class="form-control form-control-lg" name="Joining_date" id="Joining_date" value="{{@$candidate->candidate_experience->Joining_date}}"
+                                        required></span>
+                          
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" id="leavingDiv">
-                                <div class=" form-group">
+                                <div class=" form-group select-date">
                                     <label class="title-label"> Leaving Date</label>
-                                    <input type="date" class="form-control form-control-lg" name="leaving_date" id="leaving_date" value="{{@$candidate->candidate_experience->leaving_date}}">
+                                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control form-control-lg"  name="leaving_date" id="leaving_date" value="{{@$candidate->candidate_experience->leaving_date}}">
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">

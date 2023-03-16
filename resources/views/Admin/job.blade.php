@@ -14,9 +14,9 @@
                 <button class="btn " type="button"
                     style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
                         class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
-                        src="{{Auth::user()->image}} ">
-                    <h6 class="profile">{{Auth::user()->name}}</h6><span
-                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
+                        src="{{Auth::guard('admin')->user()->image}} ">
+                    <h6 class="profile">{{Auth::guard('admin')->user()->name}}</h6><span
+                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::guard('admin')->user()->role}}</span>
                 </button>
 
                 <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
@@ -81,7 +81,11 @@
                             <tr>
                                 <td>#{{ $jobs->job_id}}</td>
                                 <td>{{ $jobs->created_at->format('d-m-Y')}}</td>
-                                <td>{{ $jobs->jobprovider }}</td>
+                                @if($jobs->user->company_name)
+                                <td>{{ @$jobs->user->company_name}}</td>
+                                @else
+                                <td>{{Auth::guard('admin')->user()->name}}</td>
+                                @endif
                                 <td>{{ $jobs->jobname}}</td>
                                 <td>{{ $jobs->jobcategory}}</td>
                                 <td>{{ $jobs->expirydate->format('d-m-Y')}}</td>
