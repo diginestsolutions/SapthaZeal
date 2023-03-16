@@ -114,6 +114,10 @@
                         <a href="{{route('jobprovider.order')}}">
                             <i class="fas fa-file-invoice fa-lg"></i> My Order</a>
                     </li>
+                    <li class="sideNav">
+                        <a href="{{route('jobprovider.logout')}}">
+                            <i class="fas fa-file-invoice fa-lg"></i> Logout</a>
+                    </li>
                 </li>
                 </ul>
             </div>
