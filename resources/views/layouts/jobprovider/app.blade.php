@@ -99,7 +99,7 @@
                         <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
                     <li class="sideNav">
-                        <a href="">
+                        <a href="{{route('jobprovider.notification')}}">
                             <i class="fa-solid fa-bell fa-lg"></i> Notification</a>
                     </li>
                     <li class="sideNav">

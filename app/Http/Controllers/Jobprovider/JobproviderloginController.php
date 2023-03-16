@@ -102,12 +102,10 @@ class JobproviderLoginController extends Controller
         $items =Industry::all(['_id', 'name']);
         return view('jobprovider/registration',compact('items'));
     }
-   
     public function dashboard()
     {
         return view('jobprovider/dashboard');
     }
-
     /**
      * Show the form for creating a new resource.
      *
