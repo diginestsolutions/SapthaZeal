@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Jobprovider;
 
 use App\Models\JobProvider;
 use App\Models\Order;
+use App\Models\Subscription;
 use Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -59,7 +60,10 @@ class SubscriptionPlanController extends Controller
      */
     public function index()
     {
-        return view('jobprovider/subscriptionplan');
+        $userid = Auth::guard('jobprovider')->user()->id;
+        $jobprovider = JobProvider::where('user_id',$userid)->first();
+        $subscription = Subscription::all();
+        return view('jobprovider/subscriptionplan')->with(['subscription'=>$subscription,'jobprovider'=>$jobprovider]);
     }
 
     /**
