@@ -91,6 +91,7 @@
         top: -20px;
     }
     .form-control2 {
+
         font-size: 16px !important;
         border-radius: 16px !important;
         opacity: 1 !important;
@@ -238,7 +239,6 @@
                                 <hr>
                                 <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Amount:
                                 <input type="text" name="amount" id="amount{{$i}}" value="{{$sub->amount}}" class="form-control2">
-
                                 </li>
                                 <div class="d-grid text-center">
                                     <a href="#" class="btn btn-primary text-uppercase" onclick="submitPlan({{$i}});">Try it</a>
