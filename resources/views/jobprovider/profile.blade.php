@@ -209,14 +209,14 @@
                         </div>
                         <div class="row">
                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                                <div class="form-group select-sub">
+                                <div class="form-group ">
                                     <label class="title-label">State</label>
                                     <input type="text" class="form-control form-control-lg" name="state"
                                         value="{{ $provider->state}}" required>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                                <div class="form-group select-sub">
+                                <div class="form-group ">
                                     <label class="title-label">Country</label>
                                     <input type="text" class="form-control form-control-lg" name="country"
                                         value="{{ $provider->country}}" required>

@@ -81,7 +81,9 @@
                             <tr>
                                 <td>#{{ $jobs->job_id}}</td>
                                 <td>{{ $jobs->created_at->format('d-m-Y')}}</td>
+
                                 @if(@$jobs->user->company_name)
+
                                 <td>{{ @$jobs->user->company_name}}</td>
                                 @else
                                 <td>{{Auth::guard('admin')->user()->name}}</td>

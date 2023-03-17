@@ -374,7 +374,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 duration: 500
             });
             setProgressBar(++current);
-            window.location = window.location.origin+'/jobprovider/login?mobile='+mob;
+            window.location = window.location.origin+'/jobprovider/login';
         },error:function(data) {
                     errorsHtml = '<div class="alert alert-danger"><ul>';
 

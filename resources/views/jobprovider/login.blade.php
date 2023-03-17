@@ -47,7 +47,7 @@
                     <div class="text-center"><button type="button"  id="btnSubmit"  class="btn btn-color px-5 w-100"><span
                                 class="login">LOG IN</span></button></div>
                     <div id="emailHelp" class="form-text text-center mb-5 ">
-                        Don't have a account yet?<a href="#" class="text-blue font-weight-bold"> Sign up</a>
+                        Don't have a account yet?<a href="{{route('jobprovider.register')}}" class="text-blue font-weight-bold"> Sign up</a>
                     </div>
                     <div class="alert alert-danger" id="err" style="display: none"><label for="myalue1"></label></div>
                 </form>
