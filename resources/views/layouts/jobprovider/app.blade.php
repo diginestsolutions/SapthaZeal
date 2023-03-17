@@ -117,14 +117,10 @@
                         <a href="{{route('jobprovider.order')}}">
                             <i class="fas fa-file-invoice fa-lg"></i> My Order</a>
                     </li>
-                    <li class="sideNav">
-                        <a href="{{route('jobprovider.logout')}}">
-                            <i class="fas fa-file-invoice fa-lg"></i> Logout</a>
-                    </li>
                 </li>
                 
             </div>
-       <div  style="margin-bottom:10px !important;">  <h3 ><a href="#"style="color:white;text-decoration:none;"><img  style=""  class="ml-5" src="{{ asset('Assets') }}/jobprovider/logout.png ">Logout </h3></a></div>
+       <div  style="margin-bottom:10px !important;">  <h3 ><a href="{{route('jobprovider.logout')}}"style="color:white;text-decoration:none;"><img  style=""  class="ml-5" src="{{ asset('Assets') }}/jobprovider/logout.png ">Logout </h3></a></div>
         </div>
         </div>
         <div class="col-lg-9   col-md-12" id="main">
