@@ -101,6 +101,11 @@
                         </div>
                         @endif
                         @endforeach
+                        @if($noti->created_at->format('d-m-Y') != $dt->format('d-m-Y'))
+                        <div class=" row col-md-12 my-12">
+                            <label style="margin: 85px;font-size: 19px;color: #6868bd;">No New Notifications</label>
+                        </div>
+                        @endif
                     </div>
                     <div class="tab-pane" id="profile">
                     @foreach ($notification as $noti)

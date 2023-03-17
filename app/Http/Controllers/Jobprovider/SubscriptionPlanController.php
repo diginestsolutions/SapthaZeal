@@ -63,7 +63,7 @@ class SubscriptionPlanController extends Controller
         $userid = Auth::guard('jobprovider')->user()->id;
         $jobprovider = JobProvider::where('user_id',$userid)->first();
         $subscription = Subscription::all();
-        return view('jobprovider/subscriptionplan')->with(['subscription'=>$subscription,'jobprovider'=>$jobprovider]);
+        return view('jobprovider/edit_subscription')->with(['subscription'=>$subscription,'jobprovider'=>$jobprovider]);
     }
 
     /**
