@@ -84,11 +84,12 @@
     }
 
 </style>
+
 <body>
-    <h3 class="  heading" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job.update', $jobs->id) }}"><span class="icon2"><button
-                    class="btn-back" style="border-radius:50%;
+    <h3 class="  heading" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job') }}"><span
+                class="icon2"><button class="btn-back" style="border-radius:50%;
             border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white"><i
-                            class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job</h3>
+                            class="fa-solid fa-chevron-left"></i></span></button></i></a>Edit Job</h3>
     {{-- Message --}}
     @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible" role="alert">
@@ -106,7 +107,7 @@
         <strong>Error !</strong> {{ session('error') }}
     </div>
     @endif
-    <br/>
+    <br />
     <form action="{{ route('jobprovider.job.update', $jobs->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
@@ -117,15 +118,18 @@
                     <div class="form-group select-sub">
                         <label class="title-label">Job Category</label>
                         <select name="jobcategory" class="form-control  " placeholder="select" id="country">
-                            <option value="Boosted" class="text-capitalize" {{$jobs->jobcategory == "Boosted" ? 'selected' : ''}}>Boosted</option>
-                            <option value="medicalfield" class="text-capitalize" {{$jobs->jobcategory == "medicalfield" ? 'selected' : ''}}>Normal</option>
+                            <option value="Boosted" class="text-capitalize"
+                                {{$jobs->jobcategory == "Boosted" ? 'selected' : ''}}>Boosted</option>
+                            <option value="medicalfield" class="text-capitalize"
+                                {{$jobs->jobcategory == "medicalfield" ? 'selected' : ''}}>Normal</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group">
                         <label class="title-label">Job name</label>
-                        <input type="text" class="form-control form-control-lg" name="jobname" value="{{$jobs->jobname}}" required>
+                        <input type="text" class="form-control form-control-lg" name="jobname"
+                            value="{{$jobs->jobname}}" required>
                     </div>
                 </div>
             </div>
@@ -133,34 +137,39 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
                     <div class=" form-group">
                         <label class="title-label">Job Description</label>
-                        <textarea rows="4" class="form-control1" name="jobdescription">{{$jobs->jobdescription}}</textarea>
+                        <textarea rows="4" class="form-control form-control-lg"
+                            name="jobdescription">{{$jobs->jobdescription}}</textarea>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group">
                         <label class="title-label">Prefered Skills</label>
-                        <textarea rows="4" class="form-control " placeholder="Prefered  Skills">{{$jobs->skills}}</textarea>
+                        <textarea rows="4" class="form-control "
+                            placeholder="Prefered  Skills">{{$jobs->skills}}</textarea>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                    <div class="form-group ">
-                        <label class="title-label">Experience Required</label>
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                            <input type="number" class="form-control form-control-lg " id="datepicker"
-                            placeholder="Min" name="years" style="text-align: right;" value="{{($jobs->experienceyears)}}">
-                        </div>
-                        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
-                            <input type="number" name="months" class="form-control form-control-lg "
-                            placeholder="Max" required style="text-align: right;" value="{{$jobs->experiencemonths}}">
+                    <div class="col-lg-10">
+                        <div class="form-group ">
+                            <label class="title-label" style="margin-right:10px;">Experience Required</label>
+                            <div class="col-xl-6 col-lg-5 col-md-4 col-sm-12">
+                                <input type="number" class="form-control " id="datepicker" placeholder="Min"
+                                    name="years" style="text-align: right;" value="{{($jobs->experienceyears)}}">
+                            </div>
+                            <div class="col-xl-6 col-lg-5 col-md-4 col-sm-12">
+                                <input type="number" name="months" class="form-control  " placeholder="Max" required
+                                    style="text-align: right;" value="{{$jobs->experiencemonths}}">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group">
                         <label class="title-label">Salary</label>
-                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$jobs->salary}}" required>
+                        <input type="text" class="form-control form-control-lg" name="salary" value="{{$jobs->salary}}"
+                            required>
                     </div>
                 </div>
             </div>
@@ -168,14 +177,16 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
                     <div class=" form-group">
                         <label class="title-label">Job Location</label>
-                        <input type="text" class="form-control form-control-lg" name="joblocation" value="{{$jobs->joblocation}}" required>
+                        <input type="text" class="form-control form-control-lg" name="joblocation"
+                            value="{{$jobs->joblocation}}" required>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class=" form-group select-date">
                         <label class="title-label">Expiry date</label>
-                        <input type="text" id="deadline" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control form-control-lg" name="expirydate" value="{{$jobs->expirydate->format('d-m-Y')}}"   
-                                        required></span>
+                        <input type="text" id="deadline" onfocus="(this.type='date')" onblur="(this.type='text')"
+                            class="form-control form-control-lg" name="expirydate"
+                            value="{{$jobs->expirydate->format('d-m-Y')}}" required></span>
                     </div>
                 </div>
             </div>
@@ -183,7 +194,8 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 ">
                     <div class=" form-group">
                         <label class="title-label">Job Opening</label>
-                        <input type="text" class="form-control form-control-lg" name="openings" value="{{$jobs->openings}}" required>
+                        <input type="text" class="form-control form-control-lg" name="openings"
+                            value="{{$jobs->openings}}" required>
                     </div>
                 </div>
             </div>
