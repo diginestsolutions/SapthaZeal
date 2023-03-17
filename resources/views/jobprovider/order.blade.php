@@ -46,7 +46,7 @@
                             <td>#{{ $order->order_id}}</td>
                             <td>{{ $order->created_at->format('d-m-Y')}}</td>
                             <td>{{ $order->subscription->name}}</td>
-                            <td>{{ $order->planexpiry_date}}</td>
+                            <td>{{ $order->planexpiry_date->format('d-m-Y')}}</td>
                             <td>{{ $order->payment_status}}</td>
                             <td><a href=""  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Dowload</a></td>
                         </tr>

@@ -8,7 +8,7 @@ use App\Models\JobProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Industry;
-use Auth;
+
 use App\Models\User;
 use App\Models\Subscription;
 use Validator;

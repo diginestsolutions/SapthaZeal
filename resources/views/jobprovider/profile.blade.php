@@ -74,6 +74,9 @@
         width: 207px;
         border-left: 1px solid #f0f0f0;
     }
+    input:focus {
+    outline:none;
+}
 
 </style>
 
