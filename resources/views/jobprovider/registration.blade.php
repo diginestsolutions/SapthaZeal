@@ -18,6 +18,7 @@
         border-radius: 5px !important;
         opacity: 1 !important;
         color: #fff !important;
+        float:right;
     }
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Jobprovider;
 
 use App\Models\JobProvider;
 use App\Models\Order;
+use App\Models\Subscription;
 use Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -59,7 +60,8 @@ class SubscriptionPlanController extends Controller
      */
     public function index()
     {
-        return view('jobprovider/subscriptionplan');
+        $subscription = Subscription::get();
+        return view('jobprovider/subscriptionplan',compact('subscription'));
     }
 
     /**
