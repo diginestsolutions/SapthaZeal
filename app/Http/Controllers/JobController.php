@@ -56,12 +56,7 @@ class JobController extends Controller
     
     }
    
-    public function viewjob(){
-        $job = Job::orderBy('_id', 'ASC')->get();
-      
-        return view('Admin/job',array('job'=>$job));
 
-    }
     public function show(){
         
         $items =Industry::all(['_id', 'name']);

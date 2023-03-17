@@ -93,6 +93,7 @@ class ProfileController extends Controller
         if($id ){
             
             $provider = Jobprovider::with('subscription:id,name')->where('user_id', $id)->first();
+            $provider->name                 = $request->name;
             $provider->email                = $request->email;
             $provider->mobile               = $request->mobile;
             $provider->company_name         = $request->company_name;
@@ -105,6 +106,7 @@ class ProfileController extends Controller
             $provider->pincode              = $request->pincode;
             $provider->save();
             $user = User::where('_id', $id)->first();
+            $user->name	    = $request->name;
             $user->email	= $request->email;
             $user->phone 	= $request->phone;
            if ($request->hasFile('image')) {

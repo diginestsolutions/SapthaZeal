@@ -86,7 +86,6 @@ class ProviderJobController extends Controller
         $job->interview_scheduled_count = JobAppliedDetails::where('job_id',$job->id)->where('applied_status','interview_scheduled')->count();
         return view('jobprovider/view_job',compact('job'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

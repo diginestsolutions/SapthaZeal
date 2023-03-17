@@ -47,7 +47,10 @@ class Job extends Model
     {
         return $this->belongsTo(Industry::class,'jobindustry');
     }
+    public function user() {
 
+        return $this->belongsTo(User::class,'jobprovider');
+    }
     public function job_applied_details()
     {
         return $this->hasMany(JobAppliedDetails::class,'job_id');

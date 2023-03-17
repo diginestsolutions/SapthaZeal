@@ -675,13 +675,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
     <div class=" mt-12 pull-right">
 
         <div class="w-100">
-            <button class="btn " type="button"
-                style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
-                    class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
-                    src="{{Auth::user()->image}} ">
-                <h6 class="profile">{{Auth::user()->name}}</h6><span
-                    style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::user()->role}}</span>
-            </button>
+          <button class="btn " type="button"
+                    style=" background-color:white;border:none;border-radius:21px; padding: 0px!important; "><img
+                        class="user-avatar  pull-right" style="width:44px;       height: 44px;   border-radius: 28%;"
+                        src="{{Auth::guard('admin')->user()->image}} ">
+                    <h6 class="profile">{{Auth::guard('admin')->user()->name}}</h6><span
+                        style="font-size: 12px;font-weight:200px; padding-left:56px;!important;    font-weight: 200!important; ">{{Auth::guard('admin')->user()->role}}</span>
+                </button>
 
             <button class="btn noti " type="button"> <span class="icons1"><i class="fa fa-bell"></i><span></button>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -714,7 +714,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     src="{{Auth::user()->image}} ">
                             </a>
                             <div class="chat-about">
-                                <h6 class="m-b-0" style="font-weight:600 ;">{{Auth::user()->name}}</h6>
+                                <h6 class="m-b-0" style="font-weight:600 ;">{{Auth::guard('admin')->user()->name}}</h6>
                                 <div class="status"> <i class="fa fa-circle online"></i> online </div>
                             </div>
                         </div>
@@ -751,7 +751,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                     <div class="chat-message clearfix">
                         <div class="input-group mb-0">
                             <input type="hidden" name="candidate_id" value="{{$candidate_id}}">
-                            <input type="hidden" name="admin_id" value="{{Auth::user()->id}}">
+                            <input type="hidden" name="admin_id" value="{{Auth::guard('admin')->user()->id}}">
                             <input type="text" name="message" class="form-control" placeholder="Enter text here..."  required>
                             <div class="input-group-prepend">
                                 <button type="submit">
