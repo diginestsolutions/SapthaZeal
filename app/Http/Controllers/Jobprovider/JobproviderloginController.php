@@ -92,17 +92,20 @@ class JobproviderLoginController extends Controller
             return redirect('otp')->with('error', 'Your OTP is not correct');
         }  
     }
+    public function logout()
+    {
+        Auth::guard('jobprovider')->logout();
+        return redirect()->route('jobprovider.login');
+    }
     public function register()
     {
         $items =Industry::all(['_id', 'name']);
         return view('jobprovider/registration',compact('items'));
     }
-   
     public function dashboard()
     {
         return view('jobprovider/dashboard');
     }
-
     /**
      * Show the form for creating a new resource.
      *

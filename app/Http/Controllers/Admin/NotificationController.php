@@ -19,9 +19,7 @@ class NotificationController extends Controller
     }
     public function add(Request $request){
         $validator = Validator::make($request->all(), [
-            
-            'heading'     => 'required|integer|unique:notifications',
-          
+            'heading'     => 'required|unique:notifications',
         ]);
 
         if($validator->fails()) {

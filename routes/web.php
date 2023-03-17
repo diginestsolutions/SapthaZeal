@@ -19,6 +19,7 @@ use App\Http\Controllers\Jobprovider\SubscriptionPlanController;
 use App\Http\Controllers\Jobprovider\ProviderJobController;
 use App\Http\Controllers\Jobprovider\ProfileController;
 use App\Http\Controllers\Jobprovider\ProviderOrderController;
+use App\Http\Controllers\Jobprovider\ProviderNotificationController;
 /*
 
 |--------------------------------------------------------------------------
@@ -52,10 +53,8 @@ Route::group([  'prefix' => 'auth' ], function ($router) {
 });
 
 Route::group([  'prefix' => 'admin' ], function ($router) {
-  
     // dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    
     //job
     Route::get('/job', [JobController::class, 'index'])->name('view.job');
     Route::get('/job/create', [JobController::class, 'create'])->name('get.addjob');
@@ -151,7 +150,7 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  Route::post('/addregister',   [JobproviderLoginController::class, 'addregister']) ->name('jobprovider.addregister');
  Route::post('/dosubscription', [SubscriptionPlanController::class, 'dosubscription'])->name('jobprovider.dosubscription');
 
-
+ Route::get('/logout', [JobproviderLoginController::class,'logout'])->name('jobprovider.logout');
 
  Route::get('/dashboard',   [JobproviderLoginController::class, 'dashboard'])  ->name('dashboard');
  //subscription plan
@@ -165,11 +164,12 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  Route::post('/job/{id}/destroy', [ProviderJobController::class, 'destroy'])->name('jobprovider.job.destroy');
  Route::get('/job/show/{id}', [ProviderJobController::class, 'show'])->name('jobprovider.job.show');
  //profile
-
  Route::get('/profile',   [ProfileController::class, 'edit'])  ->name('jobprovider.profile');
  Route::post('/updateprofile', [ProfileController::class, 'update'])  ->name('jobprovider.update');
  
  //order
  Route::get('/order',   [ProviderOrderController::class, 'index'])  ->name('jobprovider.order');
- 
+
+//Notification
+  Route::get('/notification',   [ProviderNotificationController::class, 'index'])  ->name('jobprovider.notification');
 });

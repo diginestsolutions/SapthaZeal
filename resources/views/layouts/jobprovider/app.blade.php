@@ -102,7 +102,7 @@
                             <i class="fa-solid fa-business-time fa-lg"></i>Job Management</a>
                     </li>
                     <li class="sideNav">
-                        <a href="">
+                        <a href="{{route('jobprovider.notification')}}">
                             <i class="fa-solid fa-bell fa-lg"></i> Notification</a>
                     </li>
                     <li class="sideNav">
@@ -117,9 +117,11 @@
                         <a href="{{route('jobprovider.order')}}">
                             <i class="fas fa-file-invoice fa-lg"></i> My Order</a>
                     </li>
-                    
-                
-                </ul>
+                    <li class="sideNav">
+                        <a href="{{route('jobprovider.logout')}}">
+                            <i class="fas fa-file-invoice fa-lg"></i> Logout</a>
+                    </li>
+                </li>
                 
             </div>
        <div  style="margin-bottom:10px !important;">  <h3 ><a href="#"style="color:white;text-decoration:none;"><img  style=""  class="ml-5" src="{{ asset('Assets') }}/jobprovider/logout.png ">Logout </h3></a></div>

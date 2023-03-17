@@ -90,7 +90,8 @@
         right: 20px !important;
         top: -20px;
     }
-     .form-control2 {
+    .form-control2 {
+
         font-size: 16px !important;
         border-radius: 16px !important;
         opacity: 1 !important;
@@ -98,11 +99,22 @@
         border: none !important;
         background-color: #b1e5fd;
     }
-  
-input:focus {
-    outline:none;
-}
+    input:focus {
+        outline:none;
+    }
+    @media (min-width: 992px) {
+        .pricing .card .active{
+            margin-top: -.25rem;
+            margin-bottom: .25rem;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+            background-color:#b1e5fd;
+           border-radius:78px;
+        }
 
+        .pricing .card:hover .btn {
+            opacity: 1;
+        }
+    }
 </style>
 
 <head>
@@ -130,7 +142,9 @@ input:focus {
                 @php
                     $i = 0;
                 @endphp
+                @if($subscription)
                 @foreach($subscription as $sub)
+                @if($sub->id == $jobprovider->subscriptionplan)
                 <input type="hidden" name="subscription" id="subscription{{$i}}" value="{{$sub->id}}">
                 <div class="col-lg-4">
                     <div class="card  mb-5 mb-lg-0">
@@ -138,12 +152,78 @@ input:focus {
                             <div class="gradiennt  ">
                                 <h6 class="card-price text-center my-3">{{$sub->name}}</h6>
                             </div>
-                           <!-- <h4 class="text-center ">₹{{$sub->amount}}</h4>-->
                             </br>
                             <ul class="fa-ul text-left ">
                                 <li >
                                     <span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 
-                                    <select id="select{{$i}}" class="form-control2 ">
+                                    <select id="select{{$i}}" class="form-control2">
+                                        <option>Choose Plan</option>
+                                        @foreach($sub->period as $su)
+                                        <option value="{{$su}}" {{@$su == $jobprovider->duration ? 'selected' : ''}}>{{$su}}</option>
+                                        @endforeach
+                                    </select>
+                                </li>
+                                <hr>
+                                <li><span class="fa-li"><i class="fa fa-building-o"
+                                            aria-hidden="true"></i></span>Maximum Job Post: {{$sub->maximumjobpost}}</li>
+                                <hr>
+                                <li><span class="fa-li"><i class="fa-solid fa-user-tie"></i></span>No. of CV Per Post: {{$sub->cvsperpost}}
+                                </li>
+                                <hr>
+                                <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Amount:
+                                <?php
+                                if($i == 0) {
+                                    if( $jobprovider->duration == "1month")
+                                        $amount = 2000;
+                                    if( $jobprovider->duration == "3month")
+                                        $amount = 3*2000;
+                                    if( $jobprovider->duration == "6month")
+                                        $amount = 6*2000;
+                                    if( $jobprovider->duration == "1year")
+                                        $amount = 12*2000;
+                                }
+                                if($i == 1) {
+                                    if( $jobprovider->duration == "1month")
+                                        $amount = 5000;
+                                    if( $jobprovider->duration == "3month")
+                                        $amount = 3*5000;
+                                    if( $jobprovider->duration == "6month")
+                                        $amount = 6*5000;
+                                    if( $jobprovider->duration == "1year")
+                                        $amount = 12*5000;
+                                }
+                                if($i == 2) {
+                                    if( $jobprovider->duration == "1month")
+                                        $amount = 10000;
+                                    if( $jobprovider->duration == "3month")
+                                        $amount = 3*10000;
+                                    if( $jobprovider->duration == "6month")
+                                        $amount = 6*10000;
+                                    if( $jobprovider->duration == "1year")
+                                        $amount = 12*10000;
+                                }
+                                ?>
+                                <input type="text" name="amount" id="amount{{$i}}" value="{{$amount}}" class="form-control2">
+                                </li>
+                                <div class="d-grid text-center">
+                                    <a href="#" class="btn btn-primary text-uppercase" onclick="submitPlan({{$i}});">Try it</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <input type="hidden" name="subscription" id="subscription{{$i}}" value="{{$sub->id}}">
+                <div class="col-lg-4">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-body">
+                            <div class="gradiennt">
+                                <h6 class="card-price text-center my-3">{{$sub->name}}</h6>
+                            </div>
+                            </br>
+                            <ul class="fa-ul text-left">
+                                <li>
+                                    <span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 
+                                    <select id="select{{$i}}" class="form-control2">
                                         <option>Choose Plan</option>
                                         @foreach($sub->period as $su)
                                         <option value="{{$su}}">{{$su}}</option>
@@ -158,7 +238,7 @@ input:focus {
                                 </li>
                                 <hr>
                                 <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Amount:
-                                <input type="text"  class="form-control2" name="amount" id="amount{{$i}}" value="{{$sub->amount}}">
+                                <input type="text" name="amount" id="amount{{$i}}" value="{{$sub->amount}}" class="form-control2">
                                 </li>
                                 <div class="d-grid text-center">
                                     <a href="#" class="btn btn-primary text-uppercase" onclick="submitPlan({{$i}});">Try it</a>
@@ -166,10 +246,12 @@ input:focus {
                         </div>
                     </div>
                 </div>
+                @endif
                 @php
                     $i = $i+1;
                 @endphp
                 @endforeach()
+                @endif
             </div>
             <div class="alert alert-danger" id="err" style="display: none"><label for="myalue1"></label></div>
         </div>
@@ -255,7 +337,7 @@ input:focus {
                 success:function(data) {
                     if(data.success==1)
                     {
-                        window.location = window.location.origin+'/jobprovider/job';
+                        location.reload();
                     }
                     else
                     {

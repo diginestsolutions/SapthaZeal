@@ -60,8 +60,10 @@ class SubscriptionPlanController extends Controller
      */
     public function index()
     {
-        $subscription = Subscription::get();
-        return view('jobprovider/subscriptionplan',compact('subscription'));
+        $userid = Auth::guard('jobprovider')->user()->id;
+        $jobprovider = JobProvider::where('user_id',$userid)->first();
+        $subscription = Subscription::all();
+        return view('jobprovider/subscriptionplan')->with(['subscription'=>$subscription,'jobprovider'=>$jobprovider]);
     }
 
     /**
