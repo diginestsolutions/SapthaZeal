@@ -60,12 +60,12 @@
     /* Hover Effects on Card */
 
     @media (min-width: 992px) {
-        .pricing .card:hover {
+        .pricing .card .active{
             margin-top: -.25rem;
             margin-bottom: .25rem;
             box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
             background-color:#b1e5fd;
-      
+           border-radius:78px;
         }
 
         .pricing .card:hover .btn {
@@ -81,7 +81,6 @@
 
         width: 350px;
         height: 90px;
-
         padding: 12px;
         padding-top: -21px;
         position: relative;
@@ -91,7 +90,9 @@
         right: 20px !important;
         top: -20px;
     }
-    .form-control2 {
+
+     .form-control2 {
+
         font-size: 16px !important;
         border-radius: 16px !important;
         opacity: 1 !important;
@@ -100,6 +101,7 @@
         background-color: #b1e5fd;
     }
   
+
     input:focus {
         outline:none;
     }
@@ -116,6 +118,7 @@
             opacity: 1;
         }
     }
+
 
 </style>
 
@@ -149,15 +152,18 @@
                 @if($sub->id == $jobprovider->subscriptionplan)
                 <input type="hidden" name="subscription" id="subscription{{$i}}" value="{{$sub->id}}">
                 <div class="col-lg-4">
+
                     <div class="card mb-5 mb-lg-0">
+
                         <div class="card-body active">
                             <div class="gradiennt  ">
                                 <h6 class="card-price text-center my-3">{{$sub->name}}</h6>
                             </div>
                             </br>
-                            <ul class="fa-ul text-left">
-                                <li>
+                            <ul class="fa-ul text-left ">
+                                <li >
                                     <span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 
+
                                     <select id="select{{$i}}" class="form-control2">
                                         <option>Choose Plan</option>
                                         @foreach($sub->period as $su)
@@ -226,7 +232,7 @@
                                 <li>
                                     <span class="fa-li"><i class="fa-regular fa-clock"></i></span>Period: 
                                     <select id="select{{$i}}" class="form-control2">
-                                        <option>Choose Plan</option>
+                                    <option>Choose Plan</option>
                                         @foreach($sub->period as $su)
                                         <option value="{{$su}}">{{$su}}</option>
                                         @endforeach
@@ -240,7 +246,9 @@
                                 </li>
                                 <hr>
                                 <li><span class="fa-li"><i class="fas fa-calendar-alt"></i></span>Amount:
+
                                 <input type="text" name="amount" id="amount{{$i}}" value="{{$sub->amount}}" class="form-control2">
+=
                                 </li>
                                 <div class="d-grid text-center">
                                     <a href="#" class="btn btn-primary text-uppercase" onclick="submitPlan({{$i}});">Try it</a>

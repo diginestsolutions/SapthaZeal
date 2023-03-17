@@ -19,10 +19,8 @@ class NotificationController extends Controller
     }
     public function add(Request $request){
         $validator = Validator::make($request->all(), [
-            
-            'heading'     => 'required|unique:notifications',
-          
-        ]);
+           'heading'     => 'required|unique:notifications',
+         ]);
 
         if($validator->fails()) {
             return redirect('admin/notifications')->with('error', 'Notification already Exists.');
