@@ -29,7 +29,7 @@
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 col-lg-6 col-xl-6">
-                <img src="../Assets/jobprovider/Group 23.png" class="img-fluid" alt="Sample image">
+                <img src="../Assets/jobprovider/Group 23.png" class="img-fluid1" alt="Sample image">
             </div>
             <div class="card group my-5 col-md-12 col-lg-6 col-xl-4">
                 <form class="card-body ">

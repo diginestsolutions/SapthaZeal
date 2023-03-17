@@ -250,7 +250,13 @@
   margin: 10px 0px 10px 5px;
 
 }
-
+.img-fluid1 {
+  height: 420px !important;
+  margin-top: 150px;
+}
+input:focus{
+ border:none;
+}
 #msform .action-button:hover {
   background-color: #311B92
 }
