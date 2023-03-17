@@ -646,10 +646,10 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <label class="title-label">Approved Status</label><br/>
                                     <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
                                             class="mt-2"><i class="fa-solid fa-circle-check"
-                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$provider->id}});"></i></a>
+                                                style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$provider->jobprovider_id}});"></i></a>
                                     <a href="javascript:void(0)" data-popup="tooltip" title="Edit" data-placement="bottom"
                                             class="mt-2" style="margin-right:5px;"><i class="fa fa-times-circle"
-                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$provider->id}});"></i></a>
+                                                style="font-size:25px;color:#C15A5A" onclick="return statusrejected({{$provider->jobprovider_id}});"></i></a>
                                
                                 </div>
                             </div>

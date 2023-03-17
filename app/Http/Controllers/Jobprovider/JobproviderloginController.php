@@ -85,11 +85,11 @@ class JobproviderLoginController extends Controller
                 return view('jobprovider.subscriptionplan')->with(['userid'=>$user->id,'subscription'=>$subscription]);
             }
            else{
-                return redirect('otp')->with('error', 'User looks like Inactive');
+                return back()->with('error', 'User looks like inactive, you can login after admin approval');
             }
         }
         else {
-            return redirect('otp')->with('error', 'Your OTP is not correct');
+            return back()->with('error', 'Your OTP is not correct');
         }  
     }
     public function logout()
