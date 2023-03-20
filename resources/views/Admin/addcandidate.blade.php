@@ -2273,7 +2273,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                 success:function(data){
                     if(data.success==1)
                     {
-                        $(`#company_edit_id`).val(data.data._id);
+                        $("#company_edit_id").val(data.data._id);
                         if(data.data.current_employee_status == "on") {
                             $('#current_employee_status').attr('checked',true);
                         } else {

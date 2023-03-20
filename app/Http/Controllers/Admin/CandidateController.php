@@ -8,6 +8,7 @@ use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Models\Job;
 use App\Models\JobAppliedDetails;
+use App\Models\CandidateCompanyDetails;
 use validator;
 use App\Http\Traits\ImageTrait;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,10 @@ class CandidateController extends Controller
 {
     use ImageTrait;
     
-   
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +29,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $results = Candidate::with('candidate_education','candidate_experience')->get();
+        $results = Candidate::with('candidate_education','candidate_experience','candidate_company_details')->get();
         return view('Admin/candidate',compact('results'));
     }
 
@@ -103,7 +107,7 @@ class CandidateController extends Controller
      */
     public function show($id)
     {
-        $candidate = Candidate::with('candidate_education','candidate_experience')->find($id);
+        $candidate = Candidate::with('candidate_education','candidate_experience','candidate_company_details')->find($id);
         return view('Admin/viewcandidate',compact('candidate'));
     }
 
@@ -115,8 +119,8 @@ class CandidateController extends Controller
      */
     public function edit($id)
     {
-        $candidate = Candidate::with('candidate_education','candidate_experience')->find($id);
-       // dd($candidate);
+        $candidate = Candidate::with('candidate_education','candidate_experience','candidate_company_details')->find($id);
+        //dd($candidate);
         return view('Admin/editcandidate',compact('candidate'));
     }
 
@@ -281,11 +285,6 @@ class CandidateController extends Controller
                 $candidate_experience = new CandidateExperience();
                 $candidate_experience->nextid();
                 $candidate_experience->candidate_id = $candidate->id;   
-                $candidate_experience->current_employee_status = $request->current_employee_status;
-                $candidate_experience->employement_type = $request->employement_type;
-                $candidate_experience->company_name = $request->company_name;
-                $candidate_experience->designation = $request->designation;
-                $candidate_experience->Joining_date = $request->Joining_date;
                 $candidate_experience->salary = $request->salary;
                 $candidate_experience->years = $request->years;
                 $candidate_experience->months = $request->months;
@@ -385,11 +384,6 @@ class CandidateController extends Controller
         try{
             $candidate_experience = CandidateExperience::where('candidate_id',$request->candidate_id)->first();
             if($candidate_experience) {
-                $candidate_experience->current_employee_status = $request->current_employee_status;
-                $candidate_experience->employement_type = $request->employement_type;
-                $candidate_experience->company_name = $request->company_name;
-                $candidate_experience->designation = $request->designation;
-                $candidate_experience->Joining_date = $request->Joining_date;
                 $candidate_experience->salary = $request->salary;
                 $candidate_experience->years = $request->years;
                 $candidate_experience->months = $request->months;
@@ -401,12 +395,24 @@ class CandidateController extends Controller
                 $response['success']=1;
                 $response['message'] ='Candidate experience updated successfully';
             }else {
+                $candidate_experience = new CandidateExperience();
+                $candidate_experience->nextid();
+                $candidate_experience->candidate_id = $request->candidate_id;   
+                $candidate_experience->salary = $request->salary;
+                $candidate_experience->years = $request->years;
+                $candidate_experience->months = $request->months;
+                $candidate_experience->notice_period = $request->notice_period;
+                $candidate_experience->job_description = $request->job_description;
+                $candidate_experience->skill = $request->skill;
+                $candidate_experience->status = "Active";
+                $candidate_experience->save();
                 $response['success'] = 1;
-                $response['message'] ='Candidate not found';
+                $response['message'] ='Candidate experience added successfully';
             }
             return $response;
         }
         catch (\Exception $e) {
+            echo $e;
             return response()->json([
                 'status'  => false,
                 'message' => 'Failed to update candidate'
@@ -439,5 +445,86 @@ class CandidateController extends Controller
                 'message' => 'Failed to update candidate'
             ], 400);
         }
+    }
+    public function addcompany(Request $request,$candidate_id) 
+    {
+        try {
+            $candidate = Candidate::find($request->candidate_id);
+            if($candidate)
+            {
+                if($request->company_edit_id)
+                {
+                    $candidate_company = CandidateCompanyDetails::find($request->company_edit_id);
+                    $candidate_company->current_employee_status = $request->current_employee_status;
+                    $candidate_company->employement_type = $request->employement_type;
+                    $candidate_company->company_name = $request->company_name;
+                    $candidate_company->designation = $request->designation;
+                    $candidate_company->Joining_date = $request->Joining_date;
+                    $candidate_company->leaving_date = $request->leaving_date;
+                    $candidate_company->save();
+
+                    $company_list = CandidateCompanyDetails::where('candidate_id',$request->candidate_id)->get();
+
+                    $response['success']=1;
+                    $response['message'] ='Company details Updated successfully';
+                    $response['data'] = $company_list;
+                }else {
+                    $candidate_company = new CandidateCompanyDetails();
+                    $candidate_company->nextid();
+                    $candidate_company->candidate_id = $candidate->id;   
+                    $candidate_company->current_employee_status = $request->current_employee_status;
+                    $candidate_company->employement_type = $request->employement_type;
+                    $candidate_company->company_name = $request->company_name;
+                    $candidate_company->designation = $request->designation;
+                    $candidate_company->Joining_date = $request->Joining_date;
+                    $candidate_company->leaving_date = $request->leaving_date;
+                    $candidate_company->save();
+
+                    $company_list = CandidateCompanyDetails::where('candidate_id',$request->candidate_id)->get();
+
+                    $response['success'] = 1;
+                    $response['message'] = 'Company details added successfully';
+                    $response['data'] = $company_list;
+                }
+            }else {
+                $response['success'] = 0;
+                $response['message'] ='Candidate not found';
+            }
+            return $response;
+
+        } catch (\Exception $e) {
+            echo $e;
+            return response()->json([
+                'status'  => false,
+                'message' => 'Failed to update candidate'
+            ], 400);
+        }
+    }
+    public function editcompany($id)
+    {
+        $candidate_company = CandidateCompanyDetails::find($id);
+        
+        $response['success'] = 1;
+        $response['data'] = $candidate_company;
+        return $response;
+    }
+    public function companydestroy($id)
+    {
+        $company_details=CandidateCompanyDetails::find($id);
+        $response=array();
+        $response['success']=0;
+        $response['message'] ='';
+        if($company_details)
+        {
+            $status = $company_details->delete();
+            $response['success']=1;
+            $response['message'] ='Delete Success';  
+        }
+        else
+        {
+            $response['success'] = 0;
+            $response['message'] = 'Data not Exist';
+        }
+        return response()->json($response); 
     }
 }
