@@ -71,9 +71,10 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
+                  
                     <tbody>
-                        @foreach ($jobs as $job)
-                        <tr>
+                    @foreach ($jobs as $job)
+                    <tr>
                             <td>#{{ $job->job_id}}</td>
                             <td>{{ $job->created_at->format('d-m-Y')}}</td>
                             <td>{{ $job->jobname}}</td>
@@ -108,12 +109,23 @@
                         </tr>
                         @endforeach
                     </tbody>
+                    
                 </table>
             </div>
         </div>
     </div>
 </body>
-@endsection
+
+<script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" />
+
+<script>
+    $(document).ready(function () {
+        $('#dt-vertical-scroll').dataTable();
+    });
+
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>   
 <script>
@@ -176,3 +188,4 @@
             });
     }
 </script>
+@endsection

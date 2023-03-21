@@ -3,6 +3,7 @@
 <style>
     body {
         text-decoration: none;
+        
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button:active {

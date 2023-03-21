@@ -34,7 +34,7 @@
                         <tr>
                             <th>Order No</th>
                             <th>Date</th>
-                            <th>Plane</th>
+                            <th>Plan</th>
                             <th>Expiry Date</th>
                             <th>Payment Status</th>
                             <th>Download</th>
@@ -48,7 +48,7 @@
                             <td>{{ $order->subscription->name}}</td>
                             <td>{{ $order->planexpiry_date->format('d-m-Y')}}</td>
                             <td>{{ $order->payment_status}}</td>
-                            <td><a href=""  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Dowload</a></td>
+                            <td><a href=""  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Download</a></td>
                         </tr>
                         @endforeach
                     </tbody>

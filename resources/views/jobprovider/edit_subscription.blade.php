@@ -115,6 +115,9 @@
             opacity: 1;
         }
     }
+    .bt:focus {
+        outline: none;
+      }
 </style>
 
 <head>
@@ -135,8 +138,13 @@
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
 <body>
+    
     <section class="pricing py-5">
         <div class="container">
+        <h3 class="heading" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job') }}"><span class="icon2"><button
+                    class="btn-back bt" style="border-radius:50%;
+                 border:none; background-color:#38c4ed; padding:10px;"><span class="left" style="color:white"><i
+                            class="fa-solid fa-chevron-left"></i></span></button></i></a>SubscriptionPlan</h3>
             <div class="row">
                 <!-- Free Tier -->
                 @php
@@ -203,7 +211,7 @@
                                         $amount = 12*10000;
                                 }
                                 ?>
-                                <input type="text" name="amount" id="amount{{$i}}" value="{{$amount}}" class="form-control2">
+                                <input type="text" name="amount" id="amount{{$i}}" value="{{$sub->amount}}" class="form-control2">
                                 </li>
                                 <div class="d-grid text-center">
                                     <a href="#" class="btn btn-primary text-uppercase" onclick="submitPlan({{$i}});">Try it</a>

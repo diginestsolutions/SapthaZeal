@@ -28,7 +28,7 @@ class SubscriptionPlanController extends Controller
                 $date = str_replace("month","",$request->plan); 
                 $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
             }else{
-                $date = str_replace("Year","",$request->plan);
+                $date = str_replace("year","",$request->plan);
                 $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
             }
             $provider->planexpiry_date = $newDateTime;
@@ -44,7 +44,6 @@ class SubscriptionPlanController extends Controller
             $order->transaction_id = "";
             $order->status = "Active";
             $order->save();
-
             $response['success'] = 1;
             $response['message'] ='Subscription Plan Choosed Successfully';
         }else {

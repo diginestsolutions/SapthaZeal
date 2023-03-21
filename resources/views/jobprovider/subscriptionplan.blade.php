@@ -123,6 +123,7 @@ input:focus {
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 
 <body>
+
     <section class="pricing py-5">
         <div class="container">
             <div class="row">

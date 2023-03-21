@@ -270,8 +270,8 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group select-sub">
-                                            <select class="form-control form-control-lg " name="jobindustry" required>
-                                    <option value=""></option>
+                                            <select class="form-control "  name="jobindustry" required>
+                                    <option value="">Select Industry</option>
                                         @foreach($items as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
@@ -380,7 +380,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
 
                     $.each( data.responseJSON.errors, function( key, value ) {
                         console.log(value[0]);
-                        errorsHtml += '<li>'+ value[0] + '</li>'; //showing only the first error.
+                        errorsHtml += '<div>'+ value[0] + '</div>'; //showing only the first error.
                     });
                     errorsHtml += '</ul></div>';
 

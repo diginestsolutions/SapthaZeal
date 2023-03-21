@@ -11,12 +11,17 @@ use App\Models\Industry;
 use Auth;
 use App\Models\User;
 use App\Models\Subscription;
+
 use Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
 class JobproviderLoginController extends Controller
-{
+{   
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:jobprovider');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +44,6 @@ class JobproviderLoginController extends Controller
             ]
         );
         $code = random_int(1000, 9999);
-     
         $users = User::where('mobile', $request->mobile)->first();
         if($users){
             if($users->role == "jobprovider")
@@ -95,7 +99,7 @@ class JobproviderLoginController extends Controller
     public function logout()
     {
         Auth::guard('jobprovider')->logout();
-        return redirect()->route('jobprovider.login');
+        return view('jobprovider/login');
     }
     public function register()
     {
@@ -159,34 +163,17 @@ class JobproviderLoginController extends Controller
             $provider->state                = $request->state;
             $provider->country              = $request->country;
             $provider->pincode              = $request->pincode;
-           
-            $provider->subscriptionplan     = $request->subscriptionplan;
-            $provider->duration             = $request->duration;
-            $provider->payment_status       = $request->payment_status;
-            if(str_contains($request->duration, "Month")){
-                $date = str_replace("Month","",$request->duration); 
-                $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
-            }else{
-                $date = str_replace("Year","",$request->duration);
-                $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
-            }
-            $provider->planexpiry_date = $newDateTime;
-            $provider->payment_status = $request->payment_status;
             $provider->status = "Saved";
             $provider->save();
-            $provider->provider_id    = $provider->jobprovider_id;
-            $provider->save();
             $response['success']=1;
-            $response['message'] ='Provider inserted successfully';
+            $response['message'] ='Provider Registered successfully';
             $response['jobprovider_id']=$provider->id;
             return $response;
         }catch (\Exception $e) {
             print($e);exit;
-            return back()->withErrors(['message' => 'Failed to add candidate']);
+            return back()->withErrors(['message' => 'Failed to register']);
         }
-    
     }
-
     /**
      * Display the specified resource.
      *
