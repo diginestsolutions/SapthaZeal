@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Api\Jobprovider;
 use App\Models\User;
 use App\Models\JobProvider;
 use App\Models\Industry;
+use App\Models\Subscription;
+use App\Models\Order;
 use App\Http\Traits\ImageTrait;
 use Validator;
 use Hash;
 use Session;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -182,5 +185,115 @@ class AuthController extends Controller
              'role'=>"jobprovider",
              'basepath' => $basepath
         ],200);
+    }
+    public function resendotp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required|exists:users,mobile',
+        ]);
+  
+        if ($validator->fails()) {
+              $messages=$validator->messages();
+              $errors=$messages->all();
+              return response()->json(['message' => join(',', $errors)], 400);
+        }
+        try {
+            $otp = 1234;
+            $auth = User::where('mobile', $request->mobile)->first();
+            $auth->otp = $otp;
+            $auth->save();
+
+            return response()->json(['message' => 'otp Sent'], 201);
+        } catch (\Throwable $th) {
+           return response()->json(['message' => 'Error'], 400);
+        }
+    }
+    public function logout(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:users,_id'
+        ]);
+
+        if ($validator->fails()) {
+            $messages=$validator->messages();
+            $errors=$messages->all();
+            return response()->json(['message' => join(',', $errors)], 400);
+        }
+        try {
+            $user = User::find($request->id);
+            if ($user){
+                $user->remember_token = null;
+                $user->save();
+                return response()->json(['message' => 'Logout Successfull'], 201);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Error'], 400);
+        }
+    }
+    public function getallsubscription()
+    {
+        try{
+            $subscription = Subscription::all();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Success',
+                'subscriptions'=>$subscription
+            ], 200);
+        }catch (\Throwable $th) {
+            echo $th;
+           return response()->json([
+               'status' => 400,
+               'message' => 'Error',
+               'data' => $th
+           ], 400);
+       }
+    }
+    public function dosubscription(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:users,_id'
+        ]);
+
+        if ($validator->fails()) {
+            $messages=$validator->messages();
+            $errors=$messages->all();
+            return response()->json(['status' => 400, 'message' => join(',', $errors)], 400);
+        }
+        try {
+            $provider = JobProvider::where('user_id',$request->id)->first();
+            if($provider)
+            {
+                $provider->subscriptionplan = $request->subscription_id;   
+                $provider->duration = $request->duration;  
+                if(str_contains($request->plan, "month")){
+                    $date = str_replace("month","",$request->plan); 
+                    $newDateTime = Carbon::now()->addMonths($date)->format('Y-m-d');
+                }else{
+                    $date = str_replace("Year","",$request->plan);
+                    $newDateTime = Carbon::now()->addYear($date)->format('Y-m-d');
+                }
+                $provider->planexpiry_date = $newDateTime;
+                $provider->payment_status = "Pending";
+                $provider->save();
+    
+                $order = new Order();
+                $order->nextid();
+                $order->provider_id = $provider->id;
+                $order->subscriptionplan = $request->subscription_id; 
+                $order->payment_status = "Pending";  
+                $order->planexpiry_date = $newDateTime;
+                $order->transaction_id = "";
+                $order->status = "Active";
+                $order->save();
+                return response()->json([
+                    'status' => 201,                                                                        
+                    'message' => 'Success'
+                ], 201);
+            } else {
+                return response()->json(['status' => 400, 'message' => 'Provider not found'], 400);   
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['status' => 400, 'message' => 'Error'], 400);
+        }
     }
 }
