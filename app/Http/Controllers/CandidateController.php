@@ -17,8 +17,6 @@ class CandidateController extends Controller
     }
     public function add(Request $request){
       
-   
-
         $user = new User();
         $user->nextid();		
         $user->name 	= $request->name;

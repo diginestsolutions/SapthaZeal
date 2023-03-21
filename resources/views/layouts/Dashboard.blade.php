@@ -307,7 +307,6 @@
         position: -webkit-sticky;
         position: sticky;
         top: 0;
-
         padding: 0 15px;
     }
 

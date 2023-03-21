@@ -34,8 +34,6 @@ class AdminprofileController extends Controller
         // }
         // return $request->all();
         $code = random_int(1000, 9999);
-       
-   
         $user = new User();
         $user->nextid();		
         $user->name 	= $request->name;

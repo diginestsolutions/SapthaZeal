@@ -14,12 +14,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (\Auth::guard('admin')->check()) {
-            return route('get.login');
+        if(request()->segment(1) == "admin"){
+            return route('get.login');  
         }
-        if (\Auth::guard('jobprovider')->check()) {
-            return redirect('/jobprovider/login');
-           // return route('jobprovider.login');
+        if(request()->segment(1) == "jobprovider"){
+           return route('jobprovider.login');
         }
     }
 }

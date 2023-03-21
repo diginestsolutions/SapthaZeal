@@ -39,11 +39,8 @@ class SubscriptionController extends Controller
             //code...
 
             $subscriptionplan                   = new Subscription;
-               
             $subscriptionplan->name             = $request->name;
-
             $subscriptionplan->period           = str_split($request->period,6);
-
             $subscriptionplan->maximumjobpost   = $request->maximumjobpost;
             $subscriptionplan->cvsperpost       = $request->cvsperpost;
             $subscriptionplan->amount           = $request->amount;
@@ -51,7 +48,6 @@ class SubscriptionController extends Controller
             $subscriptionplan->nooftimes        = $request->nooftimes;
             $subscriptionplan->expiry_date      = $request->expiry_date;
             $subscriptionplan->status           = 'Active';
-
             $subscriptionplan->save();
         } catch (\Exception $e) {
             //echo $e;
@@ -72,9 +68,7 @@ class SubscriptionController extends Controller
         $validator = Validator::make($request->all(), [
             'id'                       => 'required|string',
             'period'                   => 'required|string',
-            
             'amount'                   => 'required|string',
-           
             'expiry_date'              => 'required|string'   
         ]);
 
@@ -86,17 +80,13 @@ class SubscriptionController extends Controller
             //code...
             $subscriptionplan  = Subscriptionplan::find($request->id);
             $current = Carbon::now();
-         
             if($subscriptionplan ->expiry_date < $current){
                 //$data = $request->all();
                 $data['name']           = $request->name;
                 $data['period']         = $request->period;
                 $data['maximumjobpost'] = $request->maximumjobpost;
-       
                 $data['amount']         = $request->amount;
-               
-               
-                $subscriptionplan->update($data,['upsert' => true]);
+                 $subscriptionplan->update($data,['upsert' => true]);
                 
             }
         } catch (\Exception $e) {

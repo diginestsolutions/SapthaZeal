@@ -8,7 +8,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProviderNotificationController extends Controller
-{
+{    
+    public function __construct()
+    {
+        $this->middleware('auth:jobprovider');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -82,6 +82,9 @@
         top: 34px;
 
     }
+    .bt:focus {
+        outline: none;
+      }
 
 </style>
 {{-- Message --}}
@@ -104,7 +107,7 @@
 
 <body>
     <h3 class="  heading" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job') }}"><span class="icon2"><button
-                    class="btn-back" style="border-radius:50%;
+                    class="btn-back bt" style="border-radius:50%;
             border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white"><i
                             class="fa-solid fa-chevron-left"></i></span></button></i></a>Add Job</h3>
     <form action="{{ route('jobprovider.job.store') }}" method="post" enctype="multipart/form-data">
@@ -147,7 +150,7 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                 <div class="col-lg-10">
                         <div class="form-group ">
-                            <label class="title-label" style="margin-right:10px;">Experience Required</label>
+                            <label class="title-label" style="margin-right:42px;">Experience Required</label>
                             <div class="col-xl-6 col-lg-5 col-md-4 col-sm-12">
                                 <input type="number" class="form-control " id="datepicker" placeholder="Min"
                                     name="years" style="text-align: right;">
@@ -198,18 +201,17 @@
             </div>
         </div>
     </form>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
+
 <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 <script>
     $(document).ready(function () {
-
+        
         $('#skill').tokenfield({
+          
        autocomplete: {
                 source: ['PHP', 'Codeigniter', 'HTML', 'JQuery', 'Javascript', 'CSS', 'Laravel',
                     'CakePHP', 'Symfony', 'Yii 2', 'Phalcon', 'Zend', 'Slim', 'FuelPHP', 'PHPixie',
@@ -220,41 +222,11 @@
             showAutocompleteOnFocus: true
         });
 
-        $('#programmer_form').on('submit', function (event) {
-            event.preventDefault();
-            if ($.trim($('#name').val()).length == 0) {
-                alert("Please Enter Your Name");
-                return false;
-            } else if ($.trim($('#skill').val()).length == 0) {
-                alert("Please Enter Atleast one Skill");
-                return false;
-            } else {
-                var form_data = $(this).serialize();
-                $('#submit').attr("disabled", "disabled");
-                $.ajax({
-                    url: "insert.php",
-                    method: "POST",
-                    data: form_data,
-                    beforeSend: function () {
-                        $('#submit').val('Submitting...');
-                    },
-                    success: function (data) {
-                        if (data != '') {
-                            $('#name').val('');
-                            $('#skill').tokenfield('setTokens', []);
-                            $('#success_message').html(data);
-                            $('#submit').attr("disabled", false);
-                            $('#submit').val('Submit');
-                        }
-                    }
-                });
-                setInterval(function () {
-                    $('#success_message').html('');
-                }, 5000);
-            }
+       
         });
 
-    });
+   
 
 </script>
+</body>
 @endsection

@@ -27,6 +27,7 @@
 <body>
 <section class="vh-100">
     <div class="container-fluid h-custom">
+   
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-6 col-lg-6 col-xl-6">
                 <img src="../Assets/jobprovider/Group 23.png" class="img-fluid1" alt="Sample image">
@@ -34,22 +35,25 @@
             <div class="card group my-5 col-md-12 col-lg-6 col-xl-4">
                 <form class="card-body ">
                     <div class="text-center">
-                        <img src="../../Assets/jobprovider/logo.png" alt="Sample image"
+                        <img src="../Assets/jobprovider/logo.png" alt="Sample image"
                             class=" profile-image-pic   my-3" width="200px" alt="profile">
                     </div>
                     <h3 class="text-center heading" style="">LOG IN</h3>
+                    <div id="form-errors"></div>
+                    <div class="alert alert-danger" id="err" style="display: none"><label for="myalue1"></label></div>
                     <form method="POST" action="#">
                         @csrf
                     <div class="mb-3">
-                        <input type="text" id="txtPhone" class="txtbox form-control form-control1" />
+                        <input type="text" id="txtPhone" name="phone" class="txtbox form-control form-control1" />
                        
                     </div>
+                
                     <div class="text-center"><button type="button"  id="btnSubmit"  class="btn btn-color px-5 w-100"><span
                                 class="login">LOG IN</span></button></div>
                     <div id="emailHelp" class="form-text text-center mb-5 ">
                         Don't have a account yet?<a href="{{route('jobprovider.register')}}" class="text-blue font-weight-bold"> Sign up</a>
                     </div>
-                    <div class="alert alert-danger" id="err" style="display: none"><label for="myalue1"></label></div>
+                    
                 </form>
             </div>
         </div>
@@ -110,7 +114,7 @@
                         errorsHtml = '<div class="alert alert-danger"><ul>';
                         $.each( data.responseJSON.errors, function( key, value ) {
                             console.log(value[0]);
-                            errorsHtml += '<li>'+ value[0] + '</li>'; 
+                            errorsHtml += '<div>'+ value[0] + '</div>'; 
                         });
                         errorsHtml += '</ul></div>';
                         $('#form-errors').html( errorsHtml );

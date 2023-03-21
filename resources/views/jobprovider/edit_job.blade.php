@@ -82,12 +82,15 @@
         top: 34px;
 
     }
+    .bt:focus {
+        outline: none;
+      }
 
 </style>
 
 <body>
     <h3 class="  heading" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job') }}"><span
-                class="icon2"><button class="btn-back" style="border-radius:50%;
+                class="icon2"><button class="btn-back bt" style="border-radius:50%;
             border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white"><i
                             class="fa-solid fa-chevron-left"></i></span></button></i></a>Edit Job</h3>
     {{-- Message --}}
@@ -153,7 +156,7 @@
                 <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12">
                     <div class="col-lg-10">
                         <div class="form-group ">
-                            <label class="title-label" style="margin-right:10px;">Experience Required</label>
+                            <label class="title-label" style="margin-right:42px;">Experience Required</label>
                             <div class="col-xl-6 col-lg-5 col-md-4 col-sm-12">
                                 <input type="number" class="form-control " id="datepicker" placeholder="Min"
                                     name="years" style="text-align: right;" value="{{($jobs->experienceyears)}}">

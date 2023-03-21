@@ -43,7 +43,7 @@
 
     .form-control2 {
 
-        height: 40px !important;
+        height: 30px !important;
         font-size: 16px !important;
         border-radius: 16px !important;
         opacity: 1 !important;
@@ -56,18 +56,19 @@
     .gradiennt {
 
         width: 210px;
-        height: 101px;
-        /* padding: 27px; */
-        padding-top: -24px;
-        /* position: relative; */
-        background: transparent linear-gradient(180deg, #48D7FF 0%, #0080AE 100%);
-        border-radius: 0px 0px 44px 46px;
-        opacity: 1;
-        right: 25px !important;
-        top: 34px;
-        margin-top: -9px;
+    height: 160px;
+    padding: 29px;
+    padding-top: -24px;
+    /* position: relative; */
+    background: transparent linear-gradient(180deg, #48D7FF 0%, #0080AE 100%);
+    border-radius: 0px 0px 44px 46px;
+    opacity: 1;
+    right: 25px !important;
+    top: 34px;
+    margin-top: -9px;
+}
 
-    }
+   
 
     .card1 {
         border-right: 1px solid #f0f0f0;
@@ -109,12 +110,25 @@
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                          <input style="display:none" type="file" id="image" name="image">
                             <div class="dropzone">
+                            @if(Auth::guard('jobprovider')->user()->image)
                                 <button class="btn fileicon " type="button"
                                     onclick="document.getElementById('image').click()">
-                                    <img src="{{Auth::user()->image}}" id="preview" width="200" height="200" alt=""
+                                  
+                                    <img src="{{Auth::guard('jobprovider')->user()->image}}" id="preview" width="200" height="200" alt=""
                                         style="border-radius:10px; margin-left:-10px;">
 
                                     <img src="../Assets/Group 22.png" class="upload-icon" />
+                                   
+                                    @else
+                                    <button class="btn fileicon " type="button"
+                                    onclick="document.getElementById('image').click()">
+                                  
+                                    <img src="{{ asset('Assets') }}/jobprovider/3.jpeg" id="preview" width="200" height="200" alt=""
+                                        style="border-radius:10px; margin-left:-10px;">
+
+                                    <img src="../Assets/Group 22.png" class="upload-icon" />
+                                  
+                                    @endif
                             </div>
                             </button>
                             <div class="card1">
@@ -122,16 +136,17 @@
                                 <div class="name"><input type="text" class="form-control2 " name="name"
                                         value="{{Auth::guard('jobprovider')->user()->name}}"></div>
 
-                                <div class="card-price text-center">
+                                <div class=" text-center">
                                     <h5>{{Auth::guard('jobprovider')->user()->designation}}</h5>
                                 </div>
                             </div>
                             <div class="d-grid gradiennt text-center ">
                                 <h6 class="card-price text-center " style="color:white;">Current Plan</h6>
-                                <h6 class="card-price text-center " style="color:#e3c02d;">
-                                    {{$provider->subscription->name}}</h6>
+                                <h5 class="card-price text-center " style="color:#e3c02d;">
+                                    {{$provider->subscription->name}}</h5>
                                 <h6 class="card-price text-center " style="color:white;">Expiry
                                     Date:{{$provider->planexpiry_date}}</h6>
+                                    <a href="{{ route('jobprovider.subscription') }}" class="btn btn-color1 px-5 mt-3" style="margin-top:-5px;">Renew</a>
                             </div>
                         </div>
                     </div>

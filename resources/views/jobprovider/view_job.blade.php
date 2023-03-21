@@ -38,10 +38,13 @@
     tr {
         height: 82px !important;
     }
+    .bt:focus {
+        outline: none;
+      }
 </style>
 <body>
 <h3 class=" heading  my-5" style=""> <a class="btn mr-2 " href="{{ route('jobprovider.job') }}"><span class="icon2">
-    <button class="btn-back" style="border-radius:50%;border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white">
+    <button class="btn-back bt" style="border-radius:50%;border:none; background-color:#4CB848; padding:10px;"><span class="left" style="color:white">
     <i class="fa-solid fa-chevron-left"></i></span></button></i></a>View Job Post</h3>
     <div class="card  " style="border-radius:15px;margin-top:72px">
         <div class="card-body ">

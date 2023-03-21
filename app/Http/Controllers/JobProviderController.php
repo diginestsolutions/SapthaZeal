@@ -38,14 +38,11 @@ class JobProviderController extends Controller
             $provider->nextid();
             $provider->user_id              = $user->id;
             $provider->company_name         = $request->company_name;
-        
             $provider->designation          = $request->designation;
             $provider->jobindustry          = $request->jobindustry;
             $provider->address              = $request->address;
-          
             $provider->subscriptionplan     = $request->subscriptionplan;
             $provider->duration             = $request->duration;
-            
             $provider->payment_status       = $request->payment_status;
             $provider->status               = $request->status;
             $provider->save();

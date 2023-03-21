@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class ProviderOrderController extends Controller
 {
+    
+    
     public function __construct()
     {
         $this->middleware('auth:jobprovider');
@@ -18,7 +20,7 @@ class ProviderOrderController extends Controller
     public function index()
     {
         $userId = Auth::guard('jobprovider')->user()->id;
-        $providerId  = Jobprovider::where('user_id',$userId)->first();
+        $providerId= Jobprovider::where('user_id',$userId)->first();
         $orders = Order::with('subscription')->where('provider_id',$providerId->id)->get();
         return view('jobprovider/order',compact('orders'));
     }
