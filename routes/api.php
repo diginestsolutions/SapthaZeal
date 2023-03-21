@@ -72,3 +72,19 @@ Route::group(['prefix' => 'jobseeker' ], function ($router) {
         Route::post('/logout',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'logout']);
     });    
 });
+/**
+ * JOB PROVIDER API
+ */
+Route::group(['prefix' => 'jobprovider' ], function ($router) {
+    /**Auth APIS */
+    Route::get('/get-industry',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'getallindustry']);
+    Route::post('/register',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'register']); 
+    Route::post('/loginotp',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'loginotp']); 
+    Route::post('/login',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'jobproviderlogin']);
+    Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);
+    Route::get('/get-subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'getallsubscription']);
+    Route::post('/subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'dosubscription']);
+    Route::group([ 'middleware' => 'apiauth' ], function ($router) {
+        Route::post('/logout',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'logout']);
+    }); 
+});
