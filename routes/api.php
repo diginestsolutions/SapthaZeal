@@ -97,7 +97,7 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
         Route::post('/add-job',[App\Http\Controllers\Api\Jobprovider\JobController::class,'addjob']);
         Route::post('/update-job',[App\Http\Controllers\Api\Jobprovider\JobController::class,'updatejob']);
         Route::delete('/delete-job',[App\Http\Controllers\Api\Jobprovider\JobController::class,'deletejob']);
-       
-      
+        Route::get('/jobs/{id}', [App\Http\Controllers\Api\Jobprovider\JobController::class, 'joblist']); 
+        Route::get('/job-details/{jobid}/{id}', [App\Http\Controllers\Api\Jobprovider\JobController::class, 'jobdetails']);
     }); 
 });

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api\Jobprovider;
+
 use App\Models\User;
 use App\Models\Job;
+use App\Models\JobAppliedDetails;
 use App\Http\Traits\ImageTrait;
 use Validator;
 use Hash;
@@ -137,6 +139,62 @@ class JobController extends Controller
             ], 400);
         }
     }    
-        
-
+    public function joblist($id)
+    {
+        $jobs = Job::where('jobprovider',$id)->get();
+        if($jobs)
+        {
+            foreach($jobs as $job)
+            {
+                if($job->expirydate < Carbon::today())
+                {
+                    $job->status = "Closed";
+                }else{
+                    if($job->status == "Saved")
+                    {
+                        $job->status = "Under Review";
+                    }
+                    if($job->status == "Active")
+                    {
+                        $job->status = "Active";
+                    }
+                    if($job->status == "Inactive")
+                    {
+                        $job->status = "Inactive";
+                    }
+                }
+            }
+            return response()->json([
+                'status'=>201,
+                'message' => 'Success',
+                'job' => $jobs,
+            ], 201);
+        }else{
+            return response()->json([
+                'status'=>400,
+                'message' => 'Job Not Found',
+               ], 400);
+        }
+    }
+    public function jobdetails($jobid,$id)
+    {
+        $job_details = Job::find($jobid);
+        if($job_details != null){
+            $job_details->interested_candidate_count = JobAppliedDetails::where('job_id',$job_details->id)->where('applied_status','interested')->count();
+            $job_details->shortlisted_resumes_count = JobAppliedDetails::where('job_id',$job_details->id)->where('applied_status','scheduled_resumes')->count();
+            $job_details->interview_scheduled_count = JobAppliedDetails::where('job_id',$job_details->id)->where('applied_status','interview_scheduled')->count();
+            $job_details->negotiation_count = JobAppliedDetails::where('job_id',$job_details->id)->where('applied_status','negotiation')->count();
+            return response()->json([
+                'status'=>201,
+                'message' => 'Success',
+                'job_details' => $job_details,
+            ], 201);
+        }
+        else{
+            return response()->json([
+                'status'=>400,
+                'message' => 'Job Not Found',
+               ], 400);
+        }
+    }
 }
