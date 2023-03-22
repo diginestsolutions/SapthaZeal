@@ -95,6 +95,7 @@ class AuthController extends Controller
             $job_provider->state = $request->state;
             $job_provider->country = $request->country;
             $job_provider->pincode = $request->pincode;
+            $job_provider->notification_status = 'on';
             $job_provider->status = "Saved";
             $job_provider->save();
 
