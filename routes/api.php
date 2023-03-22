@@ -86,5 +86,6 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
     Route::post('/subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'dosubscription']);
     Route::group([ 'middleware' => 'apiauth' ], function ($router) {
         Route::post('/logout',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'logout']);
+        Route::post('/add_job',[App\Http\Controllers\Api\Jobprovider\jobController::class,'add_job']);
     }); 
 });
