@@ -58,6 +58,7 @@ class JobController extends Controller
             return response()->json([
                 'status' => 201,
                 'message' => 'Job Created Successfully',
+                'job'     => $job
             ], 201); 
         }
         catch (\Exception $th) {
@@ -104,12 +105,13 @@ class JobController extends Controller
                     return response()->json([
                         'status' => 201,
                         'message' => 'Job Updated Successfully',
+                        'job'     => $job
                     ], 201); 
                 }
                 else{
                     return response()->json([
                         'status'  => 400,
-                        'message' => 'No Job Found'
+                        'message' => 'Failed to Update Job',
                     ], 400);
                 }
             }

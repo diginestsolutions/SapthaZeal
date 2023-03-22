@@ -93,6 +93,7 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
         Route::post('/edit-profile', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'editprofile']);
         Route::post('/change-status', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'changestatus']);
         Route::post('/logout',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'logout']);
+        Route::get('/notifications', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'notifications']);
         #job api
         Route::post('/add-job',[App\Http\Controllers\Api\Jobprovider\JobController::class,'addjob']);
         Route::post('/update-job',[App\Http\Controllers\Api\Jobprovider\JobController::class,'updatejob']);

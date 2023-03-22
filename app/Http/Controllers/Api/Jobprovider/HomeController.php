@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Models\JobAppliedDetails;
 use App\Models\JobProvider;
 use App\Models\User;
+use App\Models\Notification;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -160,4 +161,34 @@ class HomeController extends Controller
             ], 400);
         }
     }
-}
+    public function notifications(Request $request){
+        try {
+            $provider = JobProvider::where('user_id',$request->id)->first();
+            if($provider->notification_status == "on")
+            {
+                $notification = Notification::where('usertype', '=', 'jobprovider')->get(); 
+            
+                return response()->json([
+                    'status'=>200,
+                    'message' => 'Success',
+                    'data' => $notification
+                ], 200);
+            }
+            else {
+                return response()->json([
+                    'status'=>400,
+                    'message' => 'Please Enable Your Status',
+                ], 400);
+            }
+        } catch (\Throwable $th) {
+            echo $th;
+            return response()->json([
+                'status'=>400,
+                'message' => 'Error',
+                'data' => $th
+            ], 400);
+        }
+    }
+
+    }
+
