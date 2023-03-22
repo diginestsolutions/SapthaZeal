@@ -85,6 +85,10 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
     Route::get('/get-subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'getallsubscription']);
     Route::post('/subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'dosubscription']);
     Route::group([ 'middleware' => 'apiauth' ], function ($router) {
+        Route::get('/home/{id}', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'home']);
+        Route::get('/profile/{id}', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'profile']);
+        Route::post('/edit-profile', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'editprofile']);
+        Route::post('/change-status', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'changestatus']);
         Route::post('/logout',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'logout']);
     }); 
 });

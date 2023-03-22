@@ -7,6 +7,7 @@ use App\Models\Industry;
 use App\Models\User;
 use App\Models\Subscription;
 use App\Models\Order;
+use Mail;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -233,11 +234,18 @@ class JobProviderController extends Controller
 
             $user = User::findOrFail($provider->user_id);
             if($user) {
-                $user->status= "Active";
-                $user->save();
-
-                $response['success']=1;
-                $response['message'] ='Approve Success';
+                //send email
+                if(Mail::to($user->email)->send(new \App\Mail\JobProviderApproval()))
+                {
+                    $user->status= "Active";
+                    $user->save();
+    
+                    $response['success']=1;
+                    $response['message'] ='Approve Success';
+                }else{
+                    $response['success'] = 0;
+                    $response['message'] = 'Email Not Send';
+                }       
             }else{
                 $response['success'] = 0;
                 $response['message'] = 'User Not Found';
@@ -260,11 +268,18 @@ class JobProviderController extends Controller
 
             $user = User::findOrFail($provider->user_id);
             if($user) {
-                $user->status= "Inactive";
-                $user->save();
+                //send email
+                if(Mail::to($user->email)->send(new \App\Mail\JobProviderReject()))
+                {
+                    $user->status= "Inactive";
+                    $user->save();
 
-                $response['success']=1;
-                $response['message'] ='Rejected Success';
+                    $response['success']=1;
+                    $response['message'] ='Rejected Success';
+                }else{
+                    $response['success'] = 0;
+                    $response['message'] = 'Email Not Send';
+                }
             }else{
                 $response['success'] = 0;
                 $response['message'] = 'User Not Found';
