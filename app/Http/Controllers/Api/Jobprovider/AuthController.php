@@ -103,7 +103,6 @@ class AuthController extends Controller
                 'status' => 201,
                 'message' => 'Register Successfully',
             ], 201);
-            return $response;
         } catch (\Throwable $th) {
             echo $th;
            return response()->json([
