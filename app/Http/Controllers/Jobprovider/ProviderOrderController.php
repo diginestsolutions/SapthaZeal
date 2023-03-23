@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Jobprovider;
 use App\Models\Order;
 use App\Models\Jobprovider;
 use Auth;
+use PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,12 @@ class ProviderOrderController extends Controller
         $orders = Order::with('subscription')->where('provider_id',$providerId->id)->get();
         return view('jobprovider/order',compact('orders'));
     }
-
+    public function download_invoice($id)
+    {
+        $order = Order::with('jobprovider','subscription')->find($id); 
+        $pdf = PDF::loadView('includes.invoice_template',array('order'=>$order));
+        return $pdf->download('Invoice.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *

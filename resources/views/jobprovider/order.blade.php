@@ -45,10 +45,10 @@
                         <tr>
                             <td>#{{ $order->order_id}}</td>
                             <td>{{ $order->created_at->format('d-m-Y')}}</td>
-                            <td>{{ $order->subscription->name}}</td>
-                            <td>{{ $order->planexpiry_date->format('d-m-Y')}}</td>
-                            <td>{{ $order->payment_status}}</td>
-                            <td><a href=""  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Download</a></td>
+                            <td>{{ @$order->subscription->name}}</td>
+                            <td>{{ @$order->planexpiry_date->format('d-m-Y')}}</td>
+                            <td>{{ @$order->payment_status}}</td>
+                            <td><a href="{{route('jobprovider.download_invoice',$order->id)}}"  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Download</a></td>
                         </tr>
                         @endforeach
                     </tbody>
