@@ -9,10 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Candidate;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-
-
-class User extends Authenticatable 
+class User extends Authenticatable implements JWTSubject
 {
     use  HasFactory, Notifiable;
 

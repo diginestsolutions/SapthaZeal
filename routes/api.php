@@ -51,7 +51,8 @@ Route::group(['prefix' => 'jobseeker' ], function ($router) {
     Route::post('/login',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'jobseekerlogin']);
     Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);  
 
-    Route::group([ 'middleware' => 'apiauth' ], function ($router) {
+   // Route::group([ 'middleware' => 'apiauth' ], function ($router) {
+    Route::group([ 'middleware' => 'jwt.auth' ], function ($router) {
 
         Route::get('/profile/{id}', [ProfileController::class, 'profile']);
         Route::post('/add-basic-details',[ProfileController::class,'basicdetails']);
@@ -87,7 +88,8 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
     Route::get('/get-subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'getallsubscription']);
     Route::post('/subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'dosubscription']);
 
-    Route::group([ 'middleware' => 'apiauth' ], function ($router) {
+    //Route::group([ 'middleware' => 'apiauth' ], function ($router) {
+    Route::group([ 'middleware' => 'jwt.auth' ], function ($router) {
         Route::get('/home/{id}', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'home']);
         Route::get('/profile/{id}', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'profile']);
         Route::post('/edit-profile', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'editprofile']);
