@@ -95,7 +95,7 @@
                                 <input type="hidden" id="jobs_id_{{$jobs->job_id}}" value="{{ $jobs->id }}"/>
                                 @if($jobs->status =='Saved')  
                                 <td class="text-right">
-                                    <div class="action-btns d-flex justify-content-end">
+                                    <div class="action-btns d-flex ">
                                         <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
                                             class="mt-2"><i class="fa-solid fa-circle-check"
                                                 style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$jobs->job_id}});"></i></a>

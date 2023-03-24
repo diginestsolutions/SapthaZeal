@@ -32,6 +32,7 @@
         color: #000000;
 
     }
+    button:focus {outline:0;}
 
     .navbar-collapse {
         position: absolute;
@@ -285,7 +286,6 @@
     .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
 
         background-color: #208CD1 !important;
-
         border: none !important;
         border-radius: 35px !important;
 
@@ -298,7 +298,13 @@
         border-radius: 35px !important;
 
     }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
 
+        background-color: #7ECD7C !important;
+        border: none !important;
+        border-radius: 35px !important;
+
+        }
     .dataTables_wrapper .dataTables_paginate .paginate_button.current {
         color: none !important;
     }

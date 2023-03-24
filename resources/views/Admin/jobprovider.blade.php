@@ -85,7 +85,7 @@
                                 <input type="hidden" id="providers_id_{{$providers->jobprovider_id}}" value="{{ $providers->id }}"/>
                                 @if($providers->status =='Saved')  
                                 <td class="text-right">
-                                    <div class="action-btns d-flex justify-content-end">
+                                    <div class="action-btns d-flex ">
                                         <a href="javascript:void(0)" data-popup="tooltip" title="View Cities" style="margin-right:5px;"
                                             class="mt-2"><i class="fa-solid fa-circle-check"
                                                 style="font-size:25px;color:#7ECD7C" onclick="return statusapproved({{$providers->jobprovider_id}});"></i></a>
@@ -106,7 +106,7 @@
                                 </td>
                                 @endif
                                 <td class="text-right">
-                                    <div class="action-btns d-flex justify-content-end">
+                                    <div class="action-btns d-flex ">
                                         <a href="{{route('show.jobprovider',$providers->id)}}" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
                                                 class="fa fa-eye"></i></a>
 

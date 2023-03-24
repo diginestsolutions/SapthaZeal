@@ -174,7 +174,7 @@ class JobController extends Controller
         }else{
             return response()->json([
                 'status'=>400,
-                'message' => 'Job Not Found',
+                'message' => 'Jobs Not Found',
                ], 400);
         }
     }
@@ -195,7 +195,7 @@ class JobController extends Controller
         else{
             return response()->json([
                 'status'=>400,
-                'message' => 'Job Not Found',
+                'message' => 'Jobs Not Found',
                ], 400);
         }
     }
