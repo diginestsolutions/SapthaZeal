@@ -169,6 +169,7 @@ Route::group([  'prefix' => 'jobprovider' ], function ($router) {
  
  //order
  Route::get('/order',   [ProviderOrderController::class, 'index'])  ->name('jobprovider.order');
+ Route::get('/order/download_invoice/{id}',[ProviderOrderController::class, 'download_invoice'])->name('jobprovider.download_invoice');
 
 //Notification
   Route::get('/notification',   [ProviderNotificationController::class, 'index'])  ->name('jobprovider.notification');
