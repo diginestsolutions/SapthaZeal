@@ -56,6 +56,13 @@
         border-radius: 35px !important;
 
     }
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+
+        background-color: #7ECD7C !important;
+        border: none !important;
+        border-radius: 35px !important;
+
+        }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current {
         color: none !important;
@@ -99,7 +106,7 @@
 <body>
     <div class="col-lg-12 native-scroll">
     <div class="wrapper d-flex">
-        <div class="nav-side-menu col-lg-2  p-0" >
+        <div class="nav-side-menu col-lg-2 col-md-3 p-0" class="menu-content collapse out">
             <div class="make-me-sticky p-0 ">
                 <div class="brand">
                     <img src="{{ asset('Assets') }}/jobprovider/logo white.png" class="img-fluid " width="150"

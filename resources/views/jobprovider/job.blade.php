@@ -37,7 +37,7 @@
 
 </style>
 <body>
-  <h3 class="  heading" style=""> Job Management <a class="addbutton" class="btn" href="{{ route('jobprovider.job.create') }}"> <span
+  <h3 class="  heading " style=""> Job Management <a class="addbutton" class="btn" href="{{ route('jobprovider.job.create') }}"> <span
                 class="icons"> <i class="fa fa-plus " aria-hidden="true"></i></span>ADD</a></h3>
         {{-- Message --}}
         @if (Session::has('success'))
@@ -56,7 +56,7 @@
             <strong>Error !</strong> {{ session('error') }}
         </div>
         @endif
-        <div class="card  " style="border-radius:15px;margin-top:72px">
+        <div class="card  " style="border-radius:15px;margin-top:62px">
         <div class="card-body ">
             <div class="table-responsive">
                 <table class="table table-resp-noscroll" id="dt-vertical-scroll">
@@ -97,7 +97,7 @@
                                 </td>
                             @endif
                             <td class="text-right" style="width: 10%;">
-                                <div class="action-btns d-flex justify-content-end">
+                                <div class="action-btns d-flex ">
                                     <a href="{{route('jobprovider.job.show',$job->id)}}" data-popup="tooltip" title="View" style="margin-right:5px;"
                                     class="mt-2"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('jobprovider.job.edit',$job->id) }}" data-popup="tooltip" title="Edit" data-placement="bottom"

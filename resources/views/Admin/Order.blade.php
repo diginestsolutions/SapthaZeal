@@ -79,13 +79,13 @@
                                         <td>{{ $order->created_at->format('d/m/Y')}} {{ $order->created_at->format('h:i a')}}</td>
                                         <td>#{{ $order->jobprovider->jobprovider_id}}</td>
                                         <td>{{ $order->jobprovider->mobile}}</td>
-                                        <td>{{ $order->subscription->name}}</td>
+                                        <td>{{ @$order->subscription->name}}</td>
                                         <td>{{ $order->planexpiry_date}}</td>
                                         <td>{{ $order->transaction_id}}</td>
                                         @if($order->payment_status == "paid")
                                         <td style="color: #2ead2e;">Paid</td>
                                         @endif
-                                        @if($order->payment_status == "pending")
+                                        @if($order->payment_status == "Pending")
                                         <td style="color: #c38b25;">Pending</td>
                                         @endif
                                         @if($order->payment_status == "cancelled")

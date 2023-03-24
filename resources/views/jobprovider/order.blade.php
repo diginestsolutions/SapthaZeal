@@ -26,7 +26,7 @@
 
 <body>
 <h3 class="  heading" style="">My Order </h3>
-    <div class="card  " style="border-radius:15px;margin-top:72px">
+    <div class="card  " style="border-radius:15px;margin-top:62px">
         <div class="card-body ">
             <div class="table-responsive">
                 <table class="table table-resp-noscroll" id="dt-vertical-scroll">
@@ -45,7 +45,7 @@
                         <tr>
                             <td>#{{ $order->order_id}}</td>
                             <td>{{ $order->created_at->format('d-m-Y')}}</td>
-                            <td>{{ $order->subscription->name}}</td>
+                            <td>{{ @$order->subscription->name}}</td>
                             <td>{{ $order->planexpiry_date->format('d-m-Y')}}</td>
                             <td>{{ $order->payment_status}}</td>
                             <td><a href=""  style="color: black;"><i class="fa fa-download" aria-hidden="true"></i>Download</a></td>

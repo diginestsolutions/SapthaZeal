@@ -78,7 +78,9 @@
     input:focus {
     outline:none;
 }
-
+.bt:focus {
+    outline:none;
+}
 </style>
 
 <body>
@@ -111,7 +113,7 @@
                          <input style="display:none" type="file" id="image" name="image">
                             <div class="dropzone">
                             @if(Auth::guard('jobprovider')->user()->image)
-                                <button class="btn fileicon " type="button"
+                                <button class="btn fileicon bt" type="button"
                                     onclick="document.getElementById('image').click()">
                                   
                                     <img src="{{Auth::guard('jobprovider')->user()->image}}" id="preview" width="200" height="200" alt=""

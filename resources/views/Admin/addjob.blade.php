@@ -643,41 +643,6 @@ width: 100px;
             },
             showAutocompleteOnFocus: true
         });
-
-        $('#programmer_form').on('submit', function (event) {
-            event.preventDefault();
-            if ($.trim($('#name').val()).length == 0) {
-                alert("Please Enter Your Name");
-                return false;
-            } else if ($.trim($('#skill').val()).length == 0) {
-                alert("Please Enter Atleast one Skill");
-                return false;
-            } else {
-                var form_data = $(this).serialize();
-                $('#submit').attr("disabled", "disabled");
-                $.ajax({
-                    url: "insert.php",
-                    method: "POST",
-                    data: form_data,
-                    beforeSend: function () {
-                        $('#submit').val('Submitting...');
-                    },
-                    success: function (data) {
-                        if (data != '') {
-                            $('#name').val('');
-                            $('#skill').tokenfield('setTokens', []);
-                            $('#success_message').html(data);
-                            $('#submit').attr("disabled", false);
-                            $('#submit').val('Submit');
-                        }
-                    }
-                });
-                setInterval(function () {
-                    $('#success_message').html('');
-                }, 5000);
-            }
-        });
-
-    });
+   });
 
 </script>

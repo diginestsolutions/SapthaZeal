@@ -196,7 +196,7 @@
             </div>
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing  text-center">
                 <div class="text-center"><button type="submit" class="btn btn-color1 px-5 "><span
-                            class="login">Update</span></button>
+                            class="login">Add</span></button>
                 </div>
             </div>
         </div>
