@@ -212,7 +212,7 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        /*$validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,_id'
         ]);
 
@@ -220,14 +220,10 @@ class AuthController extends Controller
             $messages=$validator->messages();
             $errors=$messages->all();
             return response()->json(['message' => join(',', $errors)], 400);
-        }
+        }*/
         try {
-            $user = User::find($request->id);
-            if ($user){
-                $user->remember_token = null;
-                $user->save();
-                return response()->json(['message' => 'Logout Successfull'], 201);
-            }
+            auth('api')->logout();
+            return response()->json(['message' => 'Logout Successfull'], 201);
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Error'], 400);
         }

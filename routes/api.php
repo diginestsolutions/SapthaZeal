@@ -84,7 +84,7 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
     Route::post('/register',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'register']); 
     Route::post('/loginotp',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'loginotp']); 
     Route::post('/login',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'jobproviderlogin']);
-    Route::post('/resendotp',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'resendotp']);
+    Route::post('/resendotp',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'resendotp']);
     Route::get('/get-subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'getallsubscription']);
     Route::post('/subscription',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'dosubscription']);
 
@@ -94,7 +94,7 @@ Route::group(['prefix' => 'jobprovider' ], function ($router) {
         Route::get('/profile/{id}', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'profile']);
         Route::post('/edit-profile', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'editprofile']);
         Route::post('/change-status', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'changestatus']);
-        Route::post('/logout',[App\Http\Controllers\Api\Jobprovider\AuthController::class,'logout']);
+        Route::post('/logout',[App\Http\Controllers\Api\Jobseeker\AuthController::class,'logout']);
         Route::get('/notifications', [App\Http\Controllers\Api\Jobprovider\HomeController::class, 'notifications']);
         #job api
         Route::post('/add-job',[App\Http\Controllers\Api\Jobprovider\JobController::class,'addjob']);
