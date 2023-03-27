@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Http\Traits\ImageTrait;
 use Validator;
 use Hash;
+use JWTAuth;
 use Session;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -152,39 +153,36 @@ class AuthController extends Controller
             $errors=$messages->all();
             return response()->json(['status'=> 400,'message' => join(',', $errors)], 400);
         }
+        $user = User::find($request->id);
         try {
-            $user = User::find($request->id);
-            if ($user->role ="jobprovider"){
-                /*if ($auuserth->otp != $request->otp) {
-                    return response()->json(['message' => 'Wrong otp'], 403);
-                }*/
-                $token = Str::random(60);
-                $user->remember_token = hash('sha256', $token);
-                $user->save();
-                            
-                \Session::put('token', $user->remember_token);
-                \Session::save();
-                Auth::guard('jobprovider')->login($user);
-                
-                if (Auth::guard('jobprovider')->login($user)) {
-                    return response()->json(['status'=> 400,'message' => 'Unauthorized'], 403);
+            if($user != null){
+                if ($user->role == "jobprovider"){
+                    if ($user->otp != $request->otp) {
+                        return response()->json(['message' => 'Wrong otp'], 403);
+                    }
+                    if (!$userToken=JWTAuth::fromUser($user)) {
+                        return response()->json(['message' => 'invalid_credentials'], 401);
+                    }
+                    $token = $this->respondWithToken($userToken);
+                    $otoken = $token->original;
+                    $userData = array(
+                        'accessToken' => $otoken['access_token'], 
+                        'userData' => $user
+                    );
+                    return response()->json(['message' => "Success", 'data' => $userData], 200); 
                 }
             }
-            return $this->createNewToken($user);
         } catch (\Throwable $th) {
             echo $th;
-        } 
+        }
     }
-    protected function createNewToken($user)
+    protected function respondWithToken($token)
     {
-        $basepath = env('APP_URL');
         return response()->json([
-             'status'=> 200,
-             'access_token' => $user->remember_token,
-             'user' => $user,
-             'role'=>"jobprovider",
-             'basepath' => $basepath
-        ],200);
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->guard('api')->factory()->getTTL() * 60
+        ]);
     }
     public function resendotp(Request $request)
     {

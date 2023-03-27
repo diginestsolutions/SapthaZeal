@@ -7,6 +7,7 @@ use App\Models\User;
 use Validator;
 use Hash;
 use Session;
+use JWTAuth;
 use App\Http\Traits\ImageTrait;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -101,7 +102,7 @@ class AuthController extends Controller
            return response()->json(['message' => 'Error'], 400);
         }
     }
-    public function jobseekerlogin(Request $request){
+    /*public function jobseekerlogin(Request $request){
         $validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,_id',
             'otp'    => 'required',
@@ -115,9 +116,9 @@ class AuthController extends Controller
         try {
             $user = User::find($request->id);
             if ($user->role ="jobseeker"){
-                /*if ($auuserth->otp != $request->otp) {
+                if ($auuserth->otp != $request->otp) {
                     return response()->json(['message' => 'Wrong otp'], 403);
-                }*/
+                }
                 $token = Str::random(60);
                 $user->remember_token = hash('sha256', $token);
                 $user->save();
@@ -144,6 +145,48 @@ class AuthController extends Controller
              'role'=>"jobseeker",
              'basepath' => $basepath
         ]);
+    }*/
+    public function jobseekerlogin(Request $request){
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|exists:users,_id',
+            'otp'    => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $messages=$validator->messages();
+            $errors=$messages->all();
+            return response()->json(['status'=> 400,'message' => join(',', $errors)], 400);
+        }
+        $user = User::find($request->id);
+        try {
+            if($user != null){
+                if ($user->role == "jobseeker"){
+                    if ($user->otp != $request->otp) {
+                        return response()->json(['message' => 'Wrong otp'], 403);
+                    }
+                    if (!$userToken=JWTAuth::fromUser($user)) {
+                        return response()->json(['message' => 'invalid_credentials'], 401);
+                    }
+                    $token = $this->respondWithToken($userToken);
+                    $otoken = $token->original;
+                    $userData = array(
+                        'accessToken' => $otoken['access_token'], 
+                        'userData' => $user
+                    );
+                    return response()->json(['message' => "Success", 'data' => $userData], 200); 
+                }
+            }
+        } catch (\Throwable $th) {
+            echo $th;
+        }
+    }
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->guard('api')->factory()->getTTL() * 60
+        ]);
     }
     public function resendotp(Request $request)
     {
@@ -169,7 +212,7 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        /*$validator = Validator::make($request->all(), [
             'id' => 'required|exists:users,_id'
         ]);
 
@@ -177,14 +220,10 @@ class AuthController extends Controller
             $messages=$validator->messages();
             $errors=$messages->all();
             return response()->json(['message' => join(',', $errors)], 400);
-        }
+        }*/
         try {
-            $user = User::find($request->id);
-            if ($user){
-                $user->remember_token = null;
-                $user->save();
-                return response()->json(['message' => 'Logout Successfull'], 201);
-            }
+            auth('api')->logout();
+            return response()->json(['message' => 'Logout Successfull'], 201);
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Error'], 400);
         }
