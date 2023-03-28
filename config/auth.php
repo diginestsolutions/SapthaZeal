@@ -56,7 +56,12 @@ return [
         'jobprovider' => [
             'driver' => 'session',
             'provider' => 'jobproviders',
-        ]
+        ],
+        
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'jobproviders',
+    ],
     ],
 
     /*

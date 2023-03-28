@@ -12,13 +12,23 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+    // protected function redirectTo($request)
+    // {
+    //     if(request()->segment(1) == "admin"){
+    //         return route('get.login');  
+    //     }
+    //     if(request()->segment(1) == "jobprovider"){
+    //        return route('jobprovider.login');
+    //     }
+    // }
     protected function redirectTo($request)
     {
-        if(request()->segment(1) == "admin"){
-            return route('get.login');  
+        if (! $request->expectsJson()) {
+            return route('login');
         }
-        if(request()->segment(1) == "jobprovider"){
-           return route('jobprovider.login');
-        }
+    }
+    protected function unauthenticated($request, array $guards)
+    {
+        abort(response()->json(['error' => 'Unauthenticated.'], 403));
     }
 }

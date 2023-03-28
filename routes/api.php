@@ -12,6 +12,8 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Api\Jobseeker\ProfileController;
 use App\Http\Controllers\Api\Jobseeker\HomeController;
 use App\Http\Controllers\Api\Jobseeker\JobController;
+#JWT
+use App\Http\Controllers\Api\JWTapiController;
 
 /*
 
@@ -40,7 +42,6 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'admin' ], function ($router) 
     Route::post('/create-subscription', [SubscriptionController::class, 'Create']);
     Route::delete('/delete-subscriptionplan/{id}', [SubscriptionController::class, 'Delete']);
 });
-
 /**
  * JOB SEEKER API
  */

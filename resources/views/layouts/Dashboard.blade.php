@@ -286,7 +286,7 @@
     .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
 
         background-color: #208CD1 !important;
-        border: none !important;
+        cborder: none !important;
         border-radius: 35px !important;
 
     }

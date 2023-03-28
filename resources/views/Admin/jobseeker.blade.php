@@ -13,7 +13,7 @@
         cursor: pointer;
         border-radius: 4px;
         filter: invert(1) sepia(100%) saturate(100000%) hue-rotate(170deg);
-}
+    }
 .pre{
     margin-left:10px;
 }

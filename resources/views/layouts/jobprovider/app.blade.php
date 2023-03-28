@@ -63,6 +63,12 @@
         border-radius: 35px !important;
 
         }
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  
+   
+    background: #7ECD7C !important;
+  
+}
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current {
         color: none !important;
