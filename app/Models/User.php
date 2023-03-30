@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Candidate;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
+
 class User extends Authenticatable implements JWTSubject
 {
     use  HasFactory, Notifiable;
@@ -74,6 +75,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->casts;
     }
+    
 
     
     private static function getID()

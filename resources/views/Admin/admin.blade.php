@@ -661,11 +661,8 @@ width: 100px;
                             color: #FFFFFF;
                             text-transform: uppercase;
                             opacity: 1;
-
                             background-image: linear-gradient(to right,  #69DB65 51%, #208CD1 100%);
-                            width: 100px;
-
-                            ;">
+                            width: 100px;">
                                 Add
                                 <i class="icon-database-insert ml-1"></i>
                             </button>

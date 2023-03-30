@@ -132,10 +132,10 @@ class JobproviderLoginController extends Controller
       # Validate Data
         
       $request->validate([
-        'name'       => 'required|string|',
-        'email'      => 'required|string|email|max:100|unique:users',
-        'mobile'     => 'required|integer|unique:users',
-        'designation'=> 'required|string|',
+    
+        'email'      => 'string|email|max:100|unique:users',
+        'mobile'     => 'integer|unique:users',
+      
     ]);
   
     try {

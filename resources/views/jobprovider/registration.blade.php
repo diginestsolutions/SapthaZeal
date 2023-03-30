@@ -188,7 +188,16 @@
         opacity: 0.7;
         margin-top: 25px;
     }
-
+    .error {
+  color: red;
+  margin-left: 17px;
+}
+.alert{
+    height:45px;
+    text-align:center;
+    color: red;
+    font-size:12px;
+}
 </style>
 
 <head>
@@ -226,13 +235,13 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                     <div class="row col-lg-12">
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="name"
+                                                <input class="form-control" type="text" name="name" id="bname"
                                                     placeholder="Full Name" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="email" name="email"
+                                                <input class="form-control" type="email" name="email" id="bemail"
                                                     placeholder="Email" required>
                                             </div>
                                         </div>
@@ -247,7 +256,7 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
                                         <div class="col-md-4 col-lg-6">
                                             <div class="form-group">
                                                 <input class="form-control" type="text" name="designation"
-                                                    placeholder=" Your Designation" required>
+                                                    placeholder=" Your Designation"  id="bdesignation" required>
                                             </div>
                                         </div>
                                     </div>
@@ -340,11 +349,34 @@ https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
             current_fs = $(this).parent();
             next_fs = $(this).parent().next();
             var data=$('#msform').serialize();
+            var name=$('#bname').val();
+            var email=$('#bemail').val();
             var mob=$('#bmobile').val();
+            var desi=$('#bdesignation').val();
             var form = $("#msform")[0];
             var form_data = new FormData(form);
             var success_variable= false;
             console.log(data);
+          
+ 
+
+    $(".error").remove();
+
+    
+    if (name.length < 1) {
+      $('#bname').after('<span class="error">This field is required</span>');
+    }
+   
+    if (email.length < 1) {
+      $('#bemail').after('<span class="error">This field is required</span>');
+    } 
+    if (mob.length < 1) {
+      $('#bmobile').after('<span class="error">This field is required</span>');
+    }
+    if (desi.length < 1) {
+      $('#bdesignation').after('<span class="error">This field is required</span>');
+    }
+    
             var url = '{{ route("jobprovider.addregister") }}';
             $.ajax({
                 type:'POST',

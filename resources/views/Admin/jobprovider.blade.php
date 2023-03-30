@@ -109,7 +109,6 @@
                                     <div class="action-btns d-flex ">
                                         <a href="{{route('show.jobprovider',$providers->id)}}" data-popup="tooltip" style="margin-right:5px;" class="mt-2"><i
                                                 class="fa fa-eye"></i></a>
-
                                         <a href="{{ route('get.editjobprovider',$providers->id) }}" data-popup="tooltip"
                                             title="Edit" data-placement="bottom" class="mt-2"
                                             style="margin-right:5px;"><i class="fa fa-edit"></i></a>
